@@ -1,0 +1,11 @@
+
+[Unit]
+Description=Deluge WebUI
+After=deluged.service
+
+[Service]
+ExecStart=/usr/bin/deluge-web
+
+[Install]
+WantedBy=default.target
+

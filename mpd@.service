@@ -1,0 +1,16 @@
+
+[Unit]
+After=x@vt7.service
+Description=Run music player daemon for audio
+Wants=x@vt7.service network.service
+
+[Service]
+Environment=PULSE_PROP='media.role=music'
+ExecReload=/bin/kill -HUP $MAINPID
+ExecStart=/usr/bin/mpd /home/chris/.config/mpd/%i/%i.conf
+Restart=always
+Type=forking
+
+[Install]
+WantedBy=default.target
+

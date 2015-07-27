@@ -1,0 +1,18 @@
+
+[Unit]
+Description=Happy Hacking Keyboard
+
+[Service]
+Environment=DISPLAY=:0
+RemainAfterExit=yes
+ExecStart=/usr/lib/udev/hhkb.zsh
+Restart=always
+RestartSec=2
+ExecStop=
+Type=forking
+User=chris
+WorkingDirectory=/home/chris
+
+[Install]
+WantedBy=multi-user.target
+

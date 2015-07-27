@@ -1,0 +1,13 @@
+
+[Unit]
+Description=SABnzbd binary newsreader
+
+[Service]
+EnvironmentFile=/etc/conf.d/sabnzbd_systemd
+ExecStart=/usr/bin/python2 /opt/sabnzbd/SABnzbd.py -f /home/chris/.config/sabnzbd/sabnzbd.ini -s 0.0.0.0:8089 -d
+Restart=always
+Type=forking
+
+[Install]
+WantedBy=default.target
+

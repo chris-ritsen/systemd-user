@@ -1,0 +1,13 @@
+
+[Unit]
+Description=Urxvt
+
+[Service]
+Environment=SHELL=/bin/zsh
+ExecStart=/usr/bin/urxvtd -q -o -f
+Restart=always
+Type=forking
+
+[Install]
+WantedBy=default.target
+
