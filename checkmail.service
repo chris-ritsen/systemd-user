@@ -1,0 +1,10 @@
+
+[Unit]
+Description=check mail
+RefuseManualStart=no
+RefuseManualStop=yes
+
+[Service]
+ExecStart=/home/chris/.scripts/checkmail.zsh
+Type=oneshot
+
