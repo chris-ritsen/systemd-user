@@ -1,6 +1,6 @@
 
 [Unit]
-Description=Check Mail every # minutes
+Description=Check Mail every few minutes
 RefuseManualStart=no
 RefuseManualStop=no
 
