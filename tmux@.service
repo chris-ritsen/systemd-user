@@ -14,5 +14,5 @@ Type=forking
 WorkingDirectory=/home/chris/
 
 [Install]
-WantedBy=default.target
+WantedBy=multi-user.target
 
