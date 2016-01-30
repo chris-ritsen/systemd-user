@@ -9,6 +9,7 @@ EnvironmentFile=/home/chris/.config/systemd/user/default_env
 # Environment=TMUX_TMPDIR=/home/chris/.tmp/tmux/
 ExecStart=/usr/bin/zsh -c "/usr/bin/tmux -S /home/chris/.tmp/tmux/tmux-1000/%i -f /home/chris/.config/tmux/sessions/%i start-server"
 ExecStop=/usr/bin/tmux -S /home/chris/.tmp/tmux/tmux-1000/%i kill-server
+RestartSec=5
 Restart=always
 Type=forking
 WorkingDirectory=/home/chris/

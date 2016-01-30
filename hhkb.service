@@ -7,7 +7,7 @@ Environment=DISPLAY=:0
 RemainAfterExit=yes
 ExecStart=/usr/lib/udev/hhkb.zsh
 Restart=always
-RestartSec=2
+RestartSec=1
 ExecStop=
 Type=forking
 User=chris
