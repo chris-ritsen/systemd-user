@@ -1,0 +1,16 @@
+
+[Unit]
+Description=Chromium Web browser
+
+[Service]
+Environment=DISPLAY=:0
+ExecStart=/usr/bin/chromium --no-startup-window --disable-new-avatar-menu --disk-cache-dir=/tmp --disk-cache-size=50000000 --enable-print-preview --enable-webgl --force-device-scale-factor=1 --remote-debugging-port=9222 --scroll-pixels=1601
+ExecStop=/usr/bin/killall chromium
+Restart=always
+Type=simple
+RestartSec=5
+WorkingDirectory=/home/chris/
+
+[Install]
+WantedBy=graphical.target
+
