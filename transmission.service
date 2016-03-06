@@ -1,5 +1,6 @@
 
 [Unit]
+Conflicts=shutdown.target
 Description=Transmission BitTorrent Daemon
 
 [Service]

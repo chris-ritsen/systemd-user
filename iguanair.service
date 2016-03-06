@@ -1,5 +1,6 @@
 
 [Unit]
+Conflicts=shutdown.target
 Description=IguanaWorks infrared transceiver service
 Documentation=https://github.com/terazini/abs-htpc/iguana-ir
 

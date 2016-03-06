@@ -1,5 +1,6 @@
 
 [Unit]
+Conflicts=shutdown.target
 Description=Respond to IR remote buttons
 
 [Service]

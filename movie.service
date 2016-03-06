@@ -1,0 +1,17 @@
+
+[Unit]
+Conflicts=shutdown.target
+Description=watch a movie
+
+[Service]
+Environment=DISPLAY=:0
+ExecStart=/home/chris/.scripts/start_movie.zsh
+ExecStop=/usr/bin/killall mpv
+Restart=always
+Type=simple
+RestartSec=5
+WorkingDirectory=/home/chris/
+
+[Install]
+WantedBy=graphical.target
+

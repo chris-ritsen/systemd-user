@@ -1,5 +1,6 @@
 
 [Unit]
+Conflicts=shutdown.target
 Description=Chromium Web browser
 
 [Service]

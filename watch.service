@@ -1,11 +1,11 @@
 
 [Unit]
 Conflicts=shutdown.target
-Description=check mail
+Description=watch videos reliably
 RefuseManualStart=no
 RefuseManualStop=yes
 
 [Service]
-ExecStart=/home/chris/.scripts/checkmail.zsh
+ExecStart=/home/chris/.scripts/watch_videos.zsh
 Type=oneshot
 
