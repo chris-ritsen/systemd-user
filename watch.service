@@ -6,6 +6,7 @@ RefuseManualStart=no
 RefuseManualStop=yes
 
 [Service]
-ExecStart=/home/chris/.scripts/watch_videos.zsh
+ExecStart=/home/chris/.scripts/video_player/main.zsh
+WorkingDirectory=/home/chris/.scripts/video_player/
 Type=oneshot
 

@@ -3,9 +3,11 @@
 Conflicts=shutdown.target
 Description=watch a movie
 
+; TODO: Use pid to stop daemon
+
 [Service]
 Environment=DISPLAY=:0
-ExecStart=/home/chris/.scripts/start_movie.zsh
+ExecStart=/home/chris/.scripts/video_player/player.zsh
 ExecStop=/usr/bin/killall mpv
 Restart=always
 Type=simple
