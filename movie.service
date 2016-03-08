@@ -7,11 +7,11 @@ Description=watch a movie
 
 [Service]
 Environment=DISPLAY=:0
+ExecReload=/bin/kill -HUP $MAINPID
 ExecStart=/home/chris/.scripts/video_player/player.zsh
-ExecStop=/usr/bin/killall mpv
 Restart=always
+RestartSec=1
 Type=simple
-RestartSec=5
 WorkingDirectory=/home/chris/
 
 [Install]
