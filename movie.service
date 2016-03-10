@@ -12,7 +12,7 @@ ExecStart=/home/chris/.scripts/video_player/player.zsh
 Restart=always
 RestartSec=1
 Type=simple
-WorkingDirectory=/home/chris/
+WorkingDirectory=/home/chris/.scripts/video_player/
 
 [Install]
 WantedBy=graphical.target
