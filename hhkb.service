@@ -4,14 +4,9 @@ Description=Happy Hacking Keyboard
 
 [Service]
 Environment=DISPLAY=:0
-RemainAfterExit=yes
-ExecStart=/usr/lib/udev/hhkb.zsh
-Restart=always
+ExecStart=/home/chris/.scripts/hhkb.zsh
 RestartSec=1
-ExecStop=
-Type=forking
-User=chris
-WorkingDirectory=/home/chris
+Type=simple
 
 [Install]
 WantedBy=multi-user.target
