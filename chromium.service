@@ -4,8 +4,9 @@ Conflicts=shutdown.target
 Description=Chromium Web browser
 
 [Service]
-Environment=DISPLAY=:0
-ExecStart=/usr/bin/chromium --no-startup-window --disable-new-avatar-menu --disk-cache-dir=/tmp --disk-cache-size=50000000 --enable-print-preview --enable-webgl --force-device-scale-factor=1 --remote-debugging-port=9222 --scroll-pixels=1601
+EnvironmentFile=/home/chris/.config/systemd/user/chromium_env
+# PIDFile=/run/user/1000/chromium
+ExecStart=/usr/bin/chromium
 ExecStop=/usr/bin/killall chromium
 Restart=always
 Type=simple
