@@ -3,10 +3,13 @@
 Conflicts=shutdown.target
 Description=Chromium Web browser
 
+# $XDG_CONFIG_HOME/chromium-flags.conf
+
 [Service]
 EnvironmentFile=/home/chris/.config/systemd/user/chromium_env
 # PIDFile=/run/user/1000/chromium
 ExecStart=/usr/bin/chromium
+# ExecStart=/usr/bin/chromium --no-startup-window
 ExecStop=/usr/bin/killall chromium
 Restart=always
 Type=simple
