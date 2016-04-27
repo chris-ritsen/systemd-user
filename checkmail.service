@@ -6,6 +6,6 @@ RefuseManualStart=no
 RefuseManualStop=yes
 
 [Service]
-ExecStart=/home/chris/.scripts/checkmail.zsh
+ExecStart=/home/chris/.scripts/checkmail
 Type=oneshot
 

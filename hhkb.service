@@ -4,7 +4,7 @@ Description=Happy Hacking Keyboard
 
 [Service]
 Environment=DISPLAY=:0
-ExecStart=/home/chris/.scripts/hhkb.zsh
+ExecStart=/home/chris/.scripts/hhkb
 RestartSec=1
 Type=simple
 
