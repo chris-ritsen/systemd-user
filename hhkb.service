@@ -1,13 +1,14 @@
 
 [Unit]
+Conflicts=shutdown.target
 Description=Happy Hacking Keyboard
+RefuseManualStart=no
+RefuseManualStop=yes
 
 [Service]
 Environment=DISPLAY=:0
-ExecStart=/home/chris/.scripts/hhkb
+ExecStart=/usr/bin/xset r rate 200 120
+ExecStop=
 RestartSec=1
-Type=simple
-
-[Install]
-WantedBy=multi-user.target
+Type=oneshot
 

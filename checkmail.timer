@@ -11,5 +11,5 @@ Persistent=false
 Unit=checkmail.service
 
 [Install]
-WantedBy=default.target
+WantedBy=timers.target
 
