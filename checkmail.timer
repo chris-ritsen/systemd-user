@@ -1,12 +1,12 @@
 
 [Unit]
-Description=Check Mail every few minutes
+Description=Check Mail
 RefuseManualStart=no
 RefuseManualStop=no
 
 [Timer]
 OnBootSec=5min
-OnUnitActiveSec=1min
+OnUnitActiveSec=45
 Persistent=false
 Unit=checkmail.service
 
