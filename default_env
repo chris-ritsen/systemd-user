@@ -1,6 +1,6 @@
 
 CONFIG_DIR=/home/chris/.config
-DOCUMENTS_DIR=/home/chris/Documents
+DOCUMENTS_DIR=/home/chris/.documents
 EDITOR=vim
 HOST_SYMBOL=∃
 MPD_BOOKS_PORT=8003
@@ -11,12 +11,12 @@ MUTT_CONFIG_DIR=/home/chris/.config/mutt
 VIMRC=/home/chris/.vimrc
 VIMRC_PLUGIN_DIR=/home/chris/.config/vim/bundle/vimrc/plugin
 VIM_BUNDLE_DIR=/home/chris/.config/vim/bundle
-MAIL=Media/Mail
+MAIL=/media/mail
 PAGER=less
 VIM_CONFIG_DIR=/home/chris/.config/vim
 XDG_CONFIG_HOME=/home/chris/.config
-XDG_MUSIC_DIR=/Media/Audio/Music
+XDG_MUSIC_DIR=/media/audio/music
 XDG_RUNTIME_DIR=/run/user/1000
-XDG_VIDEO_DIR=/Media/Large/Video
+XDG_VIDEO_DIR=/media/video
 ZSH_CONFIG_DIR=/home/chris/.config/zsh
 
