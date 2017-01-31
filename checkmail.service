@@ -6,6 +6,10 @@ RefuseManualStart=no
 RefuseManualStop=yes
 
 [Service]
-ExecStart=/home/chris/.scripts/checkmail
+# ExecStart=/home/chris/.scripts/checkmail
+ExecStart=/usr/bin/env mbsync -qqa
 Type=oneshot
+
+[Install]
+WantedBy=default.target
 

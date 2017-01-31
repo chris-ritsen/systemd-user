@@ -1,9 +1,9 @@
 
 [Unit]
 Conflicts=shutdown.target
-After=x@vt7.service
+After=x@vt7.service network.target
 Description=Run music player daemon for audio
-Wants=x@vt7.service network.service
+Wants=x@vt7.service
 
 [Service]
 Environment=PULSE_PROP='media.role=music'
@@ -13,5 +13,5 @@ Restart=always
 Type=forking
 
 [Install]
-WantedBy=default.target
+WantedBy=sound.target
 

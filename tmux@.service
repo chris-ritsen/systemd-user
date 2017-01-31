@@ -1,20 +1,18 @@
 
 [Unit]
 Conflicts=shutdown.target
-After=x@vt7.service emacs.service
 Description=Start scripted tmux session
-Wants=x@vt7.service network.service emacs.service
 
 [Service]
-# Environment=TMUX_TMPDIR=/home/chris/.tmp/tmux/
 EnvironmentFile=/home/chris/.config/systemd/user/default_env
 ExecStart=/usr/bin/zsh -c "/usr/bin/tmux -S /home/chris/.tmp/tmux/tmux-1000/%i -f /home/chris/.config/tmux/sessions/%i start-server"
 ExecStop=/usr/bin/tmux -S /home/chris/.tmp/tmux/tmux-1000/%i kill-server
 Restart=always
-RestartSec=5
+RestartSec=1
 Type=forking
 WorkingDirectory=/home/chris/
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target
+DefaultInstance=admin
 

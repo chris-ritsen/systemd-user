@@ -1,14 +1,13 @@
 
 [Unit]
-Conflicts=shutdown.target
 Description=Happy Hacking Keyboard
-RefuseManualStart=no
-RefuseManualStop=yes
 
 [Service]
 Environment=DISPLAY=:0
 ExecStart=/usr/bin/xset r rate 200 120
-ExecStop=
-RestartSec=1
+RestartSec=2
 Type=oneshot
+
+[Install]
+WantedBy=graphical.target
 
