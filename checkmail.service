@@ -4,10 +4,12 @@ Conflicts=shutdown.target
 Description=check mail
 RefuseManualStart=no
 RefuseManualStop=yes
+KillMode=process
 
 [Service]
 # ExecStart=/home/chris/.scripts/checkmail
 ExecStart=/usr/bin/env mbsync -qqa
+ExecStop=/usr/bin/killall -9 mbsync
 Type=oneshot
 
 [Install]

@@ -6,6 +6,7 @@ Description=Transmission BitTorrent Daemon
 [Service]
 ExecReload=/bin/kill -s HUP $MAINPID
 ExecStart=/usr/bin/transmission-daemon -f --log-error
+TimeoutStopSec=1
 Restart=always
 Type=notify
 

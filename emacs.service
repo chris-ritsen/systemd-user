@@ -6,6 +6,7 @@ Description=Emacs; a text-editor
 [Service]
 ExecStart=/usr/bin/emacs --daemon
 ExecStop=/usr/bin/emacsclient --eval "(setq kill-emacs-hook 'nil (kill-emacs))"
+KillMode=process
 Restart=always
 Type=forking
 

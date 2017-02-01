@@ -10,6 +10,7 @@ Environment=PULSE_PROP='media.role=music'
 ExecReload=/bin/kill -HUP $MAINPID
 ExecStart=/usr/bin/mpd /home/chris/.config/mpd/%i/%i.conf
 Restart=always
+TimeoutStopSec=1
 Type=forking
 
 [Install]

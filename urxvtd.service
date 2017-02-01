@@ -7,6 +7,8 @@ Description=Urxvt Terminal Daemon
 Environment=RXVT_SOCKET=%t/urxvtd-%H
 ExecStart=/usr/bin/urxvtd -q -o -f
 ExecStop=/usr/bin/urxvtc -k
+KillMode=process
+TimeoutStopSec=10
 Type=forking
 
 [Install]

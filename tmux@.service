@@ -7,8 +7,10 @@ Description=Start scripted tmux session
 EnvironmentFile=/home/chris/.config/systemd/user/default_env
 ExecStart=/usr/bin/zsh -c "/usr/bin/tmux -S /home/chris/.tmp/tmux/tmux-1000/%i -f /home/chris/.config/tmux/sessions/%i start-server"
 ExecStop=/usr/bin/tmux -S /home/chris/.tmp/tmux/tmux-1000/%i kill-server
+KillMode=process
 Restart=always
-RestartSec=1
+RestartSec=2
+SendSIGKILL=no
 Type=forking
 WorkingDirectory=/home/chris/
 
