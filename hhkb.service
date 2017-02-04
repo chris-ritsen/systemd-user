@@ -1,13 +1,26 @@
 
 [Unit]
+
+After=dev-hhkb.device
+Before=hhkb.target
+# After=dev-hhkb.device
+# After=hhkb.timer
+# Before=hhkb.target
+RefuseManualStart=yes
+RefuseManualStop=yes
+DefaultDependencies=no
+BindsTo=dev-hhkb.device
+Requires=dev-hhkb.device
+PartOf=hhkb.target
+PartOf=dev-hhkb.device
 Description=Happy Hacking Keyboard
 
 [Service]
-Environment=DISPLAY=:0
+
+ExecStartPre=/usr/bin/sleep 0.5
 ExecStart=/usr/bin/xset r rate 200 120
+RemainAfterExit=yes
+Restart=no
 RestartSec=2
 Type=oneshot
-
-[Install]
-WantedBy=graphical.target
 

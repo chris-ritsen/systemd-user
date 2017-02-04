@@ -1,14 +1,23 @@
 
 [Unit]
-Conflicts=shutdown.target
+After=basic.target 
+# AssertPathIsReadWrite=/run/user/1000/emacs/
 Description=Emacs; a text-editor
+Requires=basic.target 
+RefuseManualStart=yes
+RefuseManualStop=yes
+StopWhenUnneeded=no
 
 [Service]
 ExecStart=/usr/bin/emacs --daemon
+# PIDFile=/run/user/1000/emacs/emacs.pid
+TimeoutStartSec=15s
+TimeoutStopSec=5s
 ExecStop=/usr/bin/emacsclient --eval "(setq kill-emacs-hook 'nil (kill-emacs))"
 KillMode=process
-Restart=always
 Type=forking
+Restart=on-abort
+RestartSec=15
 
 [Install]
 WantedBy=default.target

@@ -1,18 +1,17 @@
 
 [Unit]
-Conflicts=shutdown.target
-After=x@vt7.service network.target
+After=sound.target basic.target
 Description=Run music player daemon for audio
-Wants=x@vt7.service
 
 [Service]
 Environment=PULSE_PROP='media.role=music'
-ExecReload=/bin/kill -HUP $MAINPID
-ExecStart=/usr/bin/mpd /home/chris/.config/mpd/%i/%i.conf
-Restart=always
+ExecStart=/usr/bin/mpd --no-daemon /home/chris/.config/mpd/%i/%i.conf
+LimitRTPRIO=50
+LimitRTTIME=infinity
+ProtectSystem=yes
 TimeoutStopSec=1
-Type=forking
+Type=notify
 
 [Install]
-WantedBy=sound.target
+WantedBy=default.target
 
