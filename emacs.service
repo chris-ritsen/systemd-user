@@ -1,19 +1,24 @@
 
 [Unit]
 After=basic.target 
+After=graphical-session.target 
 # AssertPathIsReadWrite=/run/user/1000/emacs/
 Description=Emacs; a text-editor
-Requires=basic.target 
-RefuseManualStart=yes
-RefuseManualStop=yes
+Wants=basic.target
+Wants=graphical-session.target 
+RefuseManualStart=no
+RefuseManualStop=no
+# PropagatesReloadTo=tmux@admin.service
+# ReloadPropagatedFrom=tmux@admin.service
 StopWhenUnneeded=no
 
 [Service]
 ExecStart=/usr/bin/emacs --daemon
 # PIDFile=/run/user/1000/emacs/emacs.pid
 TimeoutStartSec=15s
-TimeoutStopSec=5s
+TimeoutStopSec=15s
 ExecStop=/usr/bin/emacsclient --eval "(setq kill-emacs-hook 'nil (kill-emacs))"
+ExecReload=/bin/kill -HUP $MAINPID
 KillMode=process
 Type=forking
 Restart=on-abort

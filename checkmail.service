@@ -7,9 +7,8 @@ RefuseManualStart=no
 
 [Service]
 # ExecStart=/home/chris/.scripts/checkmail
-ExecStart=/usr/bin/env mbsync -qqa
-ExecStop=/usr/bin/killall -9 mbsync
-TimeoutStopSec=5
-KillMode=process
-Type=oneshot
+ExecStart=/usr/bin/mbsync -qqa
+# ExecStop=/usr/bin/zsh -c 'killall --quiet -9 mbsync || true'
+TimeoutStopSec=1
+Type=idle
 

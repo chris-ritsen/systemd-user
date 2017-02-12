@@ -1,27 +1,36 @@
 
 [Unit]
 
-Conflicts=shutdown.target
-Description=Start scripted tmux session
-RefuseManualStart=yes
-RefuseManualStop=yes
-StopWhenUnneeded=yes
+ConditionFileNotEmpty = %h/.config/%p/sessions/%i
+Description = %i %p session
+RefuseManualStart = no
+RefuseManualStop = no
+StopWhenUnneeded = no
+
+# StartLimitAction = none
+# StartLimitBurst = 0
+# StartLimitIntervalSec = 0
 
 [Service]
 
-EnvironmentFile=/home/chris/.config/systemd/user/default_env
-ExecStart=/usr/bin/zsh -c "/usr/bin/tmux -S /home/chris/.tmp/tmux/tmux-1000/%i -f /home/chris/.config/tmux/sessions/%i start-server"
-ExecStop=/usr/bin/tmux -S /home/chris/.tmp/tmux/tmux-1000/%i kill-server
-KillMode=process
-Restart=always
-RestartSec=2
-SendSIGKILL=no
-TimeoutStopSec=5
-Type=forking
-WorkingDirectory=/home/chris/
+EnvironmentFile = /home/chris/.config/systemd/user/default_env
+
+# ExecReload = /usr/bin/echo 'test'
+# ExecReload = /usr/bin/tmux -L %i display-message testing
+ExecStart = /usr/bin/tmux -u2 -L %i -f %h/.config/%p/sessions/%i start-server 
+ExecStartPost = /usr/bin/tmux -L %i set-option @status 'started'
+ExecStartPost = /usr/bin/tmux -L %i has-session -t %i
+ExecReload = /usr/bin/tmux -u2 -L %i -f %h/.config/%p/sessions/%i start-server 
+
+Restart = no
+RestartSec = 1
+SendSIGKILL = yes
+TimeoutStartSec = 10
+TimeoutStopSec = 1
+Type = forking
 
 [Install]
 
-WantedBy=default.target
-DefaultInstance=admin
+DefaultInstance = default
+WantedBy = default.target
 

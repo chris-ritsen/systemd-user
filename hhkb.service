@@ -1,20 +1,21 @@
 
 [Unit]
 
-After=dev-hhkb.device
-After=hhkb.timer
-BindsTo=dev-hhkb.device
-DefaultDependencies=no
-Description=Happy Hacking Keyboard
-Requires=dev-hhkb.device
-Requires=hhkb.timer
-StopWhenUnneeded=on
+Description = Happy Hacking Keyboard
+StopWhenUnneeded = no
 
 [Service]
 
-# ExecStartPre=/usr/bin/sleep 0.5
-ExecStart=/usr/bin/xset r rate 200 120
-RemainAfterExit=yes
-TimeoutStopSec=2
-Type=idle
+ExecStart = /usr/bin/sh -c '/usr/bin/xset r rate 200 125 || true' 
+ExecReload = /usr/bin/sh -c '/usr/bin/xset r rate 200 125 || true'
+RemainAfterExit = no
+Restart = no
+RestartSec = 10m
+StandardOutput = null
+TimeoutStopSec = 1
+Type = simple
+
+[Install]
+
+WantedBy = default.target
 
