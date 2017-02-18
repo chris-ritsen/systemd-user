@@ -1,5 +1,37 @@
 
-[Unit]
+# TODO vim notes unit
+
+# -c 'colorscheme default' -c 'setlocal noshowmode noshowmatch' -c 'silent execute \"!/home/chris/.scripts/zsh/name.zsh notes\"' -c 'execute \"normal zt\"'  notes +"
+# /bin/tmux -L %i source-file %h/.config/tmux/sessions/%i
+# ExecReload = /bin/echo 'test'
+# ExecReload = /bin/tmux -L %i display-message testing
+# ExecReload = /bin/tmux -L %i respawn-window -t org
+# ExecReload = /bin/tmux -L %i source-file %h/.config/tmux/sessions/%i
+# ExecReload = /bin/tmux -u2 -L %i -f %h/.config/%p/sessions/%i start-server 
+# ExecReload = /bin/zsh -c 'vim --servername NOTES --remote-send "<esc>:source $MYVIMRC<cr>"'
+# ExecStart = /bin/tmux -u2 -L %i -f %h/.config/%p/sessions/%i start-server 
+# ExecStart = /bin/tmux -u2 -L %i -f %h/.tmux.conf start-server 
+# ExecStart = /bin/tmux -u2 -L %i start-server 
+# ExecStartPost = /bin/zsh -c "tmux -L %i new-session -A -c %h -s %i@1 -t %i"
+# ExecStartPost = /bin/zsh -c "tmux -L %i new-session -A -c %h -s %i@laptop -t %i"
+# ExecStartPost = /bin/zsh -c "tmux -L %i new-session -s %i -n loading 'zsh'"
+# ExecStartPost = /bin/zsh -c "tmux -L %i new-window -c "%h/" -n config "%h/.scripts/zsh/name.zsh config; vim --servername CONFIG -c 'silent! source %h/.tmp/vim/config' -c 'autocmd VimLeavePre * mksession! %h/.tmp/vim/config' -p ~/.profile $VIMRC_DIR/abbrev.vim"
+# ExecStartPost = /bin/zsh -c "tmux -L %i new-window -c "%h/" -n mail "; %h/.scripts/zsh/name.zsh mail; dtach -A %h/.tmp/dtach/mutt -r winch $SHELL -c mutt -e 'push <limit>!~l<enter>'"
+# ExecStartPost = /bin/zsh -c "tmux -L %i new-window -c "%h/" -n music "%h/.scripts/zsh/name.zsh music; PULSE_PROP=media.role=music $SHELL -c mpc -q 2>/dev/null && vimpc || vimpc -p 6601"
+# ExecStartPost = /bin/zsh -c "tmux -L %i new-window -c '%h' -n chat '%h/.scripts/zsh/name.zsh chat; dtach -A %h/.tmp/dtach/finch -r winch $SHELL -c finch --nologin'"
+# ExecStartPost = /bin/zsh -c "tmux -L %i new-window -c '%h' -n irc '%h/.scripts/zsh/name.zsh irc; dtach -A %h/.tmp/dtach/irssi -r winch $SHELL -c irssi --noconnect'"
+# ExecStartPost = /bin/zsh -c "tmux -L %i select-window -t %i@laptop:1"
+# ExecStartPost = /bin/zsh -c "tmux -L %i select-window -t %i@www:1"
+# ExecStartPost = /bin/zsh -c "tmux -L %i set-hook -g client-attached run-shell -b 'wmctrl -r clock -t 3 || true'"
+# ExecStartPost = /bin/zsh -c "tmux -L %i set-hook -g client-attached run-shell -b 'wmctrl -r notes -t 1 || true'"
+# ExecStartPost = /bin/zsh -c "tmux -L %i set-hook -g client-attached run-shell -b 'wmctrl -r org -t 1 || true'"
+# ExecStartPost = /bin/zsh -c "tmux -L %i source-file %h/.tmux.conf"
+# ExecStartPost = /bin/zsh -c "tmux -u2 -L %i new-session -d -s %i"
+# ExecStartPost = /bin/zsh -c "tmux new-session -s %i -c %h/.documents/ -n notes '%h/.scripts/zsh/name.zsh org; VIM_ABBREV=1 vim --servername NOTES'"
+# ExecStartPost = /bin/zsh -c "vim --servername NOTES --remote-send '<esc>:source $MYVIMRC<cr>'"
+# ExecStartPost = /bin/zsh -c "vim --servername NOTES --remote-wait-silent notes"
+# KillMode = mixed
+# new-session -s %i -c "/home/chris/.documents/" -n notes "/home/chris/.scripts/zsh/name.zsh org; VIM_ABBREV=1 vim --servername NOTES -c 'colorscheme default' -c 'setlocal noshowmode noshowmatch' -c 'silent execute \"!/home/chris/.scripts/zsh/name.zsh notes\"' -c 'execute \"normal zt\"'  notes +"
 
 # PropagatesReloadTo = emacs.service
 # ReloadPropagatedFrom = emacs.service
@@ -8,6 +40,8 @@
 # StartLimitBurst = 0
 # StartLimitIntervalSec = 0
 # Wants = /media/mail
+
+[Unit]
 
 After = basic.target 
 After = emacs.service
@@ -21,16 +55,8 @@ Wants = mpd@music.service
 
 [Service]
 
-# /usr/bin/tmux -L %i source-file %h/.config/tmux/sessions/%i
-# ExecReload = /usr/bin/echo 'test'
-# ExecReload = /usr/bin/tmux -L %i display-message testing
-# ExecReload = /usr/bin/tmux -L %i respawn-window -t org
-# ExecReload = /usr/bin/tmux -L %i source-file %h/.config/tmux/sessions/%i
-# ExecReload = /usr/bin/tmux -u2 -L %i -f %h/.config/%p/sessions/%i start-server 
-# ExecReload = /usr/bin/zsh -c 'vim --servername NOTES --remote-send "<esc>:source $MYVIMRC<cr>"'
-# KillMode = mixed
-
 EnvironmentFile = %h/.config/systemd/user/default_env
+EnvironmentFile = %h/.config/systemd/user/admin.env
 Restart = no
 RestartSec = 1
 SendSIGKILL = yes
@@ -38,65 +64,54 @@ TimeoutStartSec = 10
 TimeoutStopSec = 1
 Type = forking
 
-# ExecStart = /usr/bin/tmux -u2 -L %i start-server 
-# ExecStart = /usr/bin/tmux -u2 -L %i -f %h/.config/%p/sessions/%i start-server 
-ExecStart = /usr/bin/zsh -c "tmux -u2 -L %i new-session -d -n admin -s admin"
-# ExecStartPost = /usr/bin/zsh -c "tmux -L %i source-file %h/.tmux.conf"
+Environment = 'bind_key=tmux -L %i bind-key'
+Environment = 'clock_script=%h/.scripts/py/clock.py'
+Environment = 'clock_args=-c %h -n clock'
+Environment = 'documents_dir=%h/.documents'
+Environment = 'has_session=tmux -L %i has-session'
+Environment = 'kill_window=tmux -L %i kill-window'
+Environment = 'name_script=%h/.scripts/zsh/name.zsh'
+Environment = 'new_window=tmux -L %i new-window'
+Environment = 'notes_args=-c $documents_dir -n notes'
+Environment = 'org_args=-c $documents_dir -n org'
+Environment = 'respawn_window=tmux -L %i respawn-window'
+Environment = 'select_window=tmux -L %i select-window'
+Environment = 'set_option=tmux -L %i set-option'
+Environment = 'source_file=tmux -L %i source-file'
+Environment = 'vim_script=VIM_ABBREV=0 vim -c ${vim_options}'
+Environment = 'vim_server_arg=--servername ${vim_server_name}'
 
-ExecStartPost = /usr/bin/zsh -c "tmux -L %i source-file %h/.tmux.conf"
+ExecStart = /bin/zsh -c "tmux -u2 -L %i new-session -d -n %i -s %i"
 
-# ExecStart = /usr/bin/tmux -u2 -L %i -f %h/.tmux.conf start-server 
-# ExecStartPost = /usr/bin/zsh -c "tmux -u2 -L %i new-session -d -s admin"
+ExecStartPost = /bin/zsh -c "\
+${source_file} %h/.tmux.conf && \
+${set_option} -g default-terminal "screen-256color" && \
+${set_option} -g set-remain-on-exit on && \
+${bind_key} R respawn-window && \
+${has_session} -t %i && \
+${set_option} -g status off && \
+${set_option} @status 'started'"
 
-# ExecStartPost = /usr/bin/zsh -c "tmux -L %i new-session -s admin -n loading 'zsh'"
+ExecStartPost = /bin/zsh -c "\
+${new_window} ${clock_args} '$name_script clock; ${clock_script}' && \
+${new_window} ${notes_args} \
+'$name_script notes; ${vim_script} ${vim_server_arg}' && \
+${new_window} ${org_args} '$name_script org; ${emacs_script}'" 
 
-ExecStartPost = /usr/bin/tmux -L %i set-option @status 'started'
+ExecStartPost = /bin/zsh -c "\
+${select_window} -t %i:notes && \
+sleep 0.5 && \
+vim --serverlist | grep $vim_server_name 1>/dev/null && \
+${kill_window} -t %i" 
 
-ExecStartPost = /usr/bin/zsh -c "tmux -L %i set-option @status 'started'"
-ExecStartPost = /usr/bin/zsh -c "tmux -L %i has-session -t %i"
+ExecReload = /bin/zsh -c "${has_session} -t %i"
 
-ExecStartPost = /usr/bin/zsh -c "tmux -L %i bind-key R respawn-window"
-ExecStartPost = /usr/bin/zsh -c "tmux -L %i set-option -g status off"
-
-Environment = clock_script=%h/.scripts/py/clock.py
-Environment = MAIL=/media/mail
-Environment = name_script=%h/.scripts/zsh/name.zsh
-
-# -c 'colorscheme default' -c 'setlocal noshowmode noshowmatch' -c 'silent execute \"!/home/chris/.scripts/zsh/name.zsh notes\"' -c 'execute \"normal zt\"'  notes +"
-# new-session -s admin -c "/home/chris/.documents/" -n notes "/home/chris/.scripts/zsh/name.zsh org; VIM_ABBREV=1 vim --servername NOTES -c 'colorscheme default' -c 'setlocal noshowmode noshowmatch' -c 'silent execute \"!/home/chris/.scripts/zsh/name.zsh notes\"' -c 'execute \"normal zt\"'  notes +"
-
-# ExecStartPost = /usr/bin/zsh -c "tmux new-session -s admin -c %h/.documents/ -n notes '%h/.scripts/zsh/name.zsh org; VIM_ABBREV=1 vim --servername NOTES'"
-
-# ExecStartPost = /usr/bin/zsh -c "tmux -L %i new-session -A -c %h -s admin@www -t admin"
-# ExecStartPost = /usr/bin/zsh -c "tmux -L %i new-session -A -c %h -s admin@laptop -t admin"
-
-ExecStartPost = /usr/bin/zsh -c "tmux -L %i new-window -c %h/.documents -n notes '$name_script org; VIM_ABBREV=0 vim --servername NOTES'"
-ExecStartPost = /usr/bin/zsh -c "tmux -L %i new-window -c %h/.documents -n org '$name_script org; emacsclient -c -t'"
-ExecStartPost = /usr/bin/zsh -c "tmux -L %i new-window -c %h -n clock $clock_script"
-# ExecStartPost = /usr/bin/zsh -c "tmux -L %i new-window -c '%h' -n irc '%h/.scripts/zsh/name.zsh irc; dtach -A %h/.tmp/dtach/irssi -r winch $SHELL -c irssi --noconnect'"
-# ExecStartPost = /usr/bin/zsh -c "tmux -L %i new-window -c '%h' -n chat '%h/.scripts/zsh/name.zsh chat; dtach -A %h/.tmp/dtach/finch -r winch $SHELL -c finch --nologin'"
-
-# ExecStartPost = /usr/bin/zsh -c "tmux -L %i new-window -c "%h/" -n mail "; %h/.scripts/zsh/name.zsh mail; dtach -A %h/.tmp/dtach/mutt -r winch $SHELL -c mutt -e 'push <limit>!~l<enter>'"
-# ExecStartPost = /usr/bin/zsh -c "tmux -L %i new-window -c "%h/" -n music "%h/.scripts/zsh/name.zsh music; PULSE_PROP=media.role=music $SHELL -c mpc -q 2>/dev/null && vimpc || vimpc -p 6601"
-# ExecStartPost = /usr/bin/zsh -c "tmux -L %i new-window -c "%h/" -n config "%h/.scripts/zsh/name.zsh config; vim --servername CONFIG -c 'silent! source %h/.tmp/vim/config' -c 'autocmd VimLeavePre * mksession! %h/.tmp/vim/config' -p ~/.profile $VIMRC_DIR/abbrev.vim"
-
-ExecStartPost = /usr/bin/zsh -c "tmux -L %i select-window -t admin:1"
-# ExecStartPost = /usr/bin/zsh -c "tmux -L %i select-window -t admin@laptop:1"
-# ExecStartPost = /usr/bin/zsh -c "tmux -L %i select-window -t admin@www:1"
-
-# ExecStartPost = /usr/bin/zsh -c "tmux -L %i set-hook -g client-attached run-shell -b 'wmctrl -r clock -t 3 || true'"
-# ExecStartPost = /usr/bin/zsh -c "tmux -L %i set-hook -g client-attached run-shell -b 'wmctrl -r notes -t 1 || true'"
-# ExecStartPost = /usr/bin/zsh -c "tmux -L %i set-hook -g client-attached run-shell -b 'wmctrl -r org -t 1 || true'"
-
-ExecStartPost = /usr/bin/zsh -c "tmux -L %i kill-window -t admin"
-
-ExecReload = /usr/bin/zsh -c "tmux -L %i has-session -t %i"
-
-ExecReload = /usr/bin/zsh -c "tmux -L %i respawn-window -t notes || true"
-ExecReload = /usr/bin/zsh -c 'vim --servername NOTES --remote-send ":echo \'test\'<cr>"'
-ExecReload = /usr/bin/zsh -c "tmux -L %i respawn-window -k -t %i:clock || true"
-ExecReload = /usr/bin/zsh -c "tmux -L %i respawn-window -t mail || true"
-ExecReload = /usr/bin/zsh -c "tmux -L %i respawn-window -t org || true"
+ExecReload = /bin/zsh -c "\
+${has_session} -t %i || true; \
+${respawn_window} -t note %i || true; \
+${respawn_window} -k -t %i:clock %i || true; \
+${respawn_window} -t mail %i || true; \
+${respawn_window} -t org %i || ${new_window} ${org_window}"
 
 [Install]
 
