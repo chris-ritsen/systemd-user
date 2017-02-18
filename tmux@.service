@@ -1,7 +1,7 @@
 
 [Unit]
 
-ConditionFileNotEmpty = %h/.config/%p/sessions/%i
+# ConditionFileNotEmpty = %h/.config/%p/sessions/%i
 Description = %i %p session
 RefuseManualStart = no
 RefuseManualStop = no

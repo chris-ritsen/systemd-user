@@ -33,6 +33,12 @@
 # KillMode = mixed
 # new-session -s %i -c "/home/chris/.documents/" -n notes "/home/chris/.scripts/zsh/name.zsh org; VIM_ABBREV=1 vim --servername NOTES -c 'colorscheme default' -c 'setlocal noshowmode noshowmatch' -c 'silent execute \"!/home/chris/.scripts/zsh/name.zsh notes\"' -c 'execute \"normal zt\"'  notes +"
 
+# ExecReload = /bin/zsh -c "\
+# ${respawn_window} -t '%i:notes' || true; \
+# ${respawn_window} -k -t '%i:clock' || true; \
+# ${respawn_window} -t '%i:mail' || true; \
+# ${respawn_window} -t '%i:org' || true"
+
 # PropagatesReloadTo = emacs.service
 # ReloadPropagatedFrom = emacs.service
 # Requires = emacs.service
@@ -45,7 +51,6 @@
 
 After = basic.target 
 After = emacs.service
-ConditionFileNotEmpty = %h/.config/%p/sessions/%i
 Description = %i %p session
 RefuseManualStart = no
 RefuseManualStop = no
@@ -106,12 +111,10 @@ ${kill_window} -t %i"
 
 ExecReload = /bin/zsh -c "${has_session} -t %i"
 
-ExecReload = /bin/zsh -c "\
-${has_session} -t %i || true; \
-${respawn_window} -t note %i || true; \
-${respawn_window} -k -t %i:clock %i || true; \
-${respawn_window} -t mail %i || true; \
-${respawn_window} -t org %i || ${new_window} ${org_window}"
+ExecReload = /bin/zsh -c "${respawn_window} -t '%i:notes' || true"
+ExecReload = /bin/zsh -c "${respawn_window} -k -t '%i:clock' || true"
+ExecReload = /bin/zsh -c "${respawn_window} -t '%i:mail' || true"
+ExecReload = /bin/zsh -c "${respawn_window} -t '%i:org' || true"
 
 [Install]
 
