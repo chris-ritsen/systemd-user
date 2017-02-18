@@ -1,6 +1,5 @@
 
 [Unit]
-Conflicts=shutdown.target
 Description=SABnzbd binary newsreader
 
 [Service]

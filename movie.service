@@ -2,15 +2,17 @@
 [Unit]
 
 # BindsTo=mpv.service
+
 After = mpv.service
-Conflicts = shutdown.target
+BindsTo = clock.target
 Description = watch a movie
-PartOf = test.target 
-BindsTo = test.target
+PartOf = tv.target 
 PropagatesReloadTo = mpv.service
+RefuseManualStart = yes
+RefuseManualStop = yes
 Requires = mpv.service
+RequiresMountsFor = /home/chris/media_player_state
 StopWhenUnneeded = no
-RequiresMountsFor = %h/media_player_state
 
 ; TODO: Use pid to stop daemon
 
@@ -32,7 +34,15 @@ Environment = MPV_TIME_POS=/home/chris/media_player_state/time-pos
 # ExecReload = /bin/kill -HUP $MAINPID
 ExecStart = /home/chris/.scripts/py/media_player --daemon
 ExecReload = /home/chris/.scripts/py/media_player --daemon
-# KillMode = process
+
+ExecStop = /usr/bin/zsh -ic "media_player --prop time-pos && media_player --prop time-pos > $MPV_TIME_POS || true"
+ExecStop = /usr/bin/zsh -ic "media_player --prop path && media_player --prop path > $MPV_CURRENT || true"
+ExecStop = /bin/kill -HUP $MAINPID
+
+ExecReload = /usr/bin/zsh -ic "media_player --prop path && media_player --prop path > $MPV_CURRENT || true"
+ExecStop = /usr/bin/zsh -ic "media_player --prop time-pos && media_player --prop time-pos > $MPV_TIME_POS || true"
+
+KillMode = process
 
 # ExecStartPost = /usr/bin/sleep 0.1
 # ExecStartPost = /usr/bin/zsh -ic "media_player --playlist $MPV_PLAYLIST --current $(cat $MPV_CURRENT)"
@@ -46,11 +56,13 @@ ExecReload = /home/chris/.scripts/py/media_player --daemon
 NotifyAccess = all
 
 Restart = always
+TimeoutStartSec=5s
+TimeoutStopSec=2s
 RestartSec = 1
 Type = notify
 RemainAfterExit = yes
 
 [Install]
 
-WantedBy = test.target
+WantedBy = clock.target
 

@@ -1,18 +1,21 @@
 
 [Unit]
+
 Description=Urxvt Terminal Daemon
 BindsTo=graphical-session.target
 PartOf=graphical-session.target
 
 [Service]
+
 # Environment=SHELL=/bin/zsh
-Environment=RXVT_SOCKET=%t/urxvtd-%H
-RestartSec=1
-# Nice=10
-Restart=always
-ExecStart=/usr/bin/urxvtd -q -o -f
 # ExecStop=/usr/bin/urxvtc -k
+# Nice=10
+
+Environment=RXVT_SOCKET=%t/urxvtd-%H
+ExecStart=/usr/bin/urxvtd -q -o -f
 KillMode=process
+Restart=always
+RestartSec=1
 TimeoutStartSec=10s
 TimeoutStopSec=10s
 Type=forking
