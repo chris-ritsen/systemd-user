@@ -11,6 +11,7 @@ LimitRTTIME=infinity
 ProtectSystem=yes
 TimeoutStopSec=1
 Type=notify
+RuntimeDirectory = mpd
 
 [Install]
 WantedBy=default.target
