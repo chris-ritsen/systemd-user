@@ -1,27 +1,19 @@
 
 [Unit]
 
-# ConditionFileNotEmpty = %h/.config/%p/sessions/%i
 Description = %i %p session
 RefuseManualStart = no
 RefuseManualStop = no
 StopWhenUnneeded = no
 
-# StartLimitAction = none
-# StartLimitBurst = 0
-# StartLimitIntervalSec = 0
-
 [Service]
 
-EnvironmentFile = /home/chris/.config/systemd/user/default_env
-
-# ExecReload = /usr/bin/echo 'test'
 # ExecReload = /usr/bin/tmux -L %i display-message testing
+EnvironmentFile = /home/chris/.config/systemd/user/default_env
+ExecReload = /usr/bin/tmux -u2 -L %i -f %h/.config/%p/sessions/%i start-server
 ExecStart = /usr/bin/tmux -u2 -L %i -f %h/.config/%p/sessions/%i start-server 
-ExecStartPost = /usr/bin/tmux -L %i set-option @status 'started'
 ExecStartPost = /usr/bin/tmux -L %i has-session -t %i
-ExecReload = /usr/bin/tmux -u2 -L %i -f %h/.config/%p/sessions/%i start-server 
-
+ExecStartPost = /usr/bin/tmux -L %i set-option @status 'started'
 Restart = no
 RestartSec = 1
 SendSIGKILL = yes

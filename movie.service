@@ -61,7 +61,7 @@ NotifyAccess = all
 Restart = always
 TimeoutStartSec=1s
 TimeoutStopSec=1s
-RestartSec = 0
+RestartSec = 1
 Type = notify
 RemainAfterExit = yes
 

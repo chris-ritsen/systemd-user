@@ -92,7 +92,7 @@ Environment = 'vim_server_arg=--servername ${vim_server_name}'
 
 ExecStart = /bin/zsh -c "tmux -u2 -L %i new-session -d -n %i -s %i"
 
-ExecStartPost = /bin/zsh -c %h/.scripts/zsh/admin.zsh
+ExecStartPost = /bin/zsh -c %h/.scripts/zsh/tmux/admin.zsh
 
 # ExecStartPost = /bin/zsh -c " \
 # ${new_window} ${clock_args} '$name_script clock; ${clock_script}' && \
