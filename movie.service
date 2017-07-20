@@ -34,7 +34,11 @@ Environment = MPV_TIME_POS=/home/chris/media_player_state/time-pos
 # ExecStop = /usr/bin/zsh -ic "systemctl --user is-active mpv.service && media_player --prop path > $MPV_CURRENT"
 
 # ExecReload = /bin/kill -HUP $MAINPID
-ExecStart = /home/chris/.scripts/py/media_player --daemon
+
+# FIXME: the systemd notification never happens now
+# ExecStart = /home/chris/.scripts/py/media_player --daemon
+
+ExecStart = /usr/bin/systemd-notify --ready
 
 ExecStop = /usr/bin/zsh -ic "media_player --prop pause && media_player --prop pause > $MPV_PAUSE || true"
 ExecStop = /usr/bin/zsh -ic "media_player --prop pause=yes || true"
@@ -58,9 +62,10 @@ ExecReload = /usr/bin/zsh -ic "media_player --prop path && media_player --prop p
 # ExecStop = /usr/bin/zsh -ic "media_player --prop path > $MPV_CURRENT"
 NotifyAccess = all
 
-Restart = always
+# Restart = always
+Restart = no
 TimeoutStartSec=1s
-TimeoutStopSec=1s
+TimeoutStopSec=10s
 RestartSec = 1
 Type = notify
 RemainAfterExit = yes
