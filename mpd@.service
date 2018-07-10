@@ -1,31 +1,49 @@
 
 [Unit]
-After = jack_client@main.service 
+After = jack_client@main.service
 After = media.mount
-ConditionPathIsDirectory = /media/audio/music 
+ConditionPathIsDirectory = /media/audio/%i
 Description = Run music player daemon for %i
 Requires = jack_client@main.service
 Requires = media.mount
-RequiresMountsFor = /media/audio/music
+RequiresMountsFor = /media/audio/%i
 PartOf = jackd.service
 
 [Service]
 Environment = XDG_CONFIG_HOME=%h/.config/%p/%i/
 Environment = PULSE_PROP='media.role=music'
 Environment = MPD_HOST='%t/%p_%i/socket'
+
 ExecReload = -/usr/bin/zsh -c "mpc toggle"
 ExecReload = -/usr/bin/zsh -c "mpc toggle"
+ExecReload = -/usr/bin/zsh -c "mpc update --wait"
+
 ExecReload = -/usr/bin/zsh -c "jack_connect %i:left main:playback_1"
 ExecReload = -/usr/bin/zsh -c "jack_connect %i:right main:playback_2"
+ExecReload = -/usr/bin/zsh -c "jack_connect %i:left dante_out:playback_1"
+ExecReload = -/usr/bin/zsh -c "jack_connect %i:right dante_out:playback_2"
+
 ExecStart=/usr/local/bin/mpd --no-daemon /home/chris/.config/%p/%i/%p/%p.conf
+
 ExecStartPre=/usr/bin/zsh -c "mkdir -p %t/%p_%i/playlists"
 ExecStartPre=/usr/bin/zsh -c "touch %t/%p_%i/{log,database,state}"
+
+ExecStartPost = -/usr/bin/zsh -c "mpc update --wait"
 ExecStartPost = -/usr/bin/zsh -c "sleep 5 && mpc toggle; mpc toggle"
-ExecStartPost = -/usr/bin/zsh -c "echo jack_connect %i:left main:playback_1"
+
 ExecStartPost = -/usr/bin/zsh -c "jack_connect %i:left main:playback_1"
 ExecStartPost = -/usr/bin/zsh -c "jack_connect %i:right main:playback_2"
-LimitRTPRIO=50
+ExecStartPost = -/usr/bin/zsh -c "jack_connect %i:left dante_out:playback_1"
+ExecStartPost = -/usr/bin/zsh -c "jack_connect %i:right dante_out:playback_2"
+
+CPUSchedulingPolicy=rr
+CPUSchedulingPriority=90
+LimitCORE=infinity
+LimitMEMLOCK=infinity
+LimitRTPRIO=infinity
 LimitRTTIME=infinity
+Nice=0
+
 PIDFile = %t/%p_%i/pid
 PassEnvironment = XDG_CONFIG_HOME
 PrivateTmp = yes
