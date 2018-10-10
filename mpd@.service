@@ -28,7 +28,8 @@ ExecStart=/usr/local/bin/mpd --no-daemon /home/chris/.config/%p/%i/%p/%p.conf
 ExecStartPre=/usr/bin/zsh -c "mkdir -p %t/%p_%i/playlists"
 ExecStartPre=/usr/bin/zsh -c "touch %t/%p_%i/{log,database,state}"
 
-ExecStartPost = -/usr/bin/zsh -c "mpc update --wait"
+ExecStartPost = /usr/bin/zsh -c "mpc update --wait"
+# ExecStartPost = -/usr/bin/zsh -c "mpc update"
 ExecStartPost = -/usr/bin/zsh -c "sleep 5 && mpc toggle; mpc toggle"
 
 ExecStartPost = -/usr/bin/zsh -c "jack_connect %i:left main:playback_1"
@@ -50,6 +51,7 @@ PrivateTmp = yes
 ProtectSystem=yes
 RuntimeDirectory = %p_%i
 RuntimeDirectory = mpd
+TimeoutStartSec=25m
 TimeoutStopSec=1
 Type=notify
 
