@@ -1,0 +1,33 @@
+
+[Unit]
+
+Conflicts = microphone.service
+After = outlet@7.service
+Before = dante_in.service
+BindsTo = wireless-microphone.target
+BindsTo = outlet@7.service
+DefaultDependencies = no
+Description = DANTE Wireless microphone
+StopWhenUnneeded = yes
+# RefuseManualStart = yes
+# RefuseManualStop = yes
+# Requires = dante_in.service
+Requires = outlet@7.service
+
+[Service]
+
+ExecStart = /usr/bin/sleep 0.2
+ExecStartPost = /bin/zsh -ic "dante_wireless_mic_1 off"
+ExecStartPost = /bin/zsh -ic "dante_wireless_mic_1 off"
+ExecStartPost = /bin/zsh -ic "dante_wireless_mic_1 on"
+ExecStartPost = /bin/zsh -ic "dante_wireless_mic_1 on"
+ExecStartPost = /bin/zsh -ic "sleep 0.2 && dante_wireless_mic_1 on"
+ExecStartPost = /bin/zsh -ic "sleep 0.2 && dante_wireless_mic_1 on"
+
+ExecStop = /bin/zsh -ic "dante_wireless_mic_1 off"
+
+RemainAfterExit = yes
+RestartSec=2
+TimeoutStopSec=2s
+# Type = oneshot
+

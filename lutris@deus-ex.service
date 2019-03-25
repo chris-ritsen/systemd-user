@@ -1,0 +1,15 @@
+
+[Unit]
+
+Description = Deus Ex
+Requires = steam.service
+After = steam.service
+BindsTo = steam.service
+
+[Service]
+
+ExecStart = /usr/bin/lutris lutris:rungame/%i
+ExecStartPost = -/usr/bin/zsh -ic "rm $STEAM_APPS/common/Deus\\\sEx/System/Running.ini"
+ExecStop = -/usr/bin/zsh -ic 'killall DeusEx.exe'
+ExecStopPost = -/usr/bin/zsh -ic "rm $STEAM_APPS/common/Deus\\\sEx/System/Running.ini"
+Restart = no

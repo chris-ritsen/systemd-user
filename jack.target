@@ -1,0 +1,10 @@
+
+[Unit]
+
+Description = Jack sound service
+Requires = jackd.service 
+
+[Install]
+
+WantedBy = default.target
+

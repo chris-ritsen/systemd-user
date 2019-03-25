@@ -1,0 +1,34 @@
+
+[Unit]
+
+After = urxvtd.service  
+BindsTo = clock.target
+ConditionFileNotEmpty = %h/.scripts/zsh/%p/%i.zsh
+Description = %i %p session
+RefuseManualStart = no
+RefuseManualStop = no
+StopWhenUnneeded = no
+Wants = urxvtd.service
+
+[Service]
+
+Environment = DISPLAY=:0
+EnvironmentFile = %h/.config/systemd/user/default_env
+Restart = no
+RestartSec = 1
+SendSIGKILL = yes
+TimeoutStartSec = 10
+TimeoutStopSec = 0
+Type = forking
+
+ExecStart = /bin/zsh -c "tmux -u2 -L %i new-session -d -n 'clock' -s clock '/home/chris/.scripts/zsh/name.zsh clock; clock.py'"
+ExecStartPost =     /bin/tmux -L %i has-session -t %i
+ExecStartPost =   /bin/zsh -c "/bin/urxvtc -title clockurxvt -name clockurxvt -e zsh -c '/home/chris/.scripts/zsh/name.zsh clock; zsh -ic %i'"
+
+ExecReload = /bin/zsh -c '/bin/tmux -L %i respawn-window -t %i'
+
+[Install]
+
+DefaultInstance = default
+WantedBy = default.target
+

@@ -1,0 +1,38 @@
+
+[Unit]
+
+Conflicts = microphone.service
+Conflicts = speakers.service
+Conflicts = wireless-microphone.service
+After = outlet@3.service
+After = outlet@7.service
+Before = dante_in.service
+BindsTo = mixed-microphones.target
+BindsTo = outlet@3.service
+BindsTo = outlet@7.service
+DefaultDependencies = no
+Description = Mixed microphones
+StopWhenUnneeded = yes
+# RefuseManualStart = yes
+# RefuseManualStop = yes
+# Requires = dante_in.service
+Requires = outlet@3.service
+Requires = outlet@7.service
+
+[Service]
+
+ExecStart = /usr/bin/sleep 0.2
+ExecStartPost = /bin/zsh -ic "dante_mic_both off"
+ExecStartPost = /bin/zsh -ic "dante_mic_both off"
+ExecStartPost = /bin/zsh -ic "dante_mic_both on"
+ExecStartPost = /bin/zsh -ic "dante_mic_both on"
+ExecStartPost = /bin/zsh -ic "sleep 0.2 && dante_mic_both on"
+ExecStartPost = /bin/zsh -ic "sleep 0.2 && dante_mic_both on"
+
+ExecStop = /bin/zsh -ic "dante_mic_both off"
+
+RemainAfterExit = yes
+RestartSec=2
+TimeoutStopSec=2s
+# Type = oneshot
+

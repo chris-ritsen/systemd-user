@@ -1,60 +1,72 @@
 
 [Unit]
-After = jack_client@main.service
+
 After = media.mount
 ConditionPathIsDirectory = /media/audio/%i
 Description = Run music player daemon for %i
-Requires = jack_client@main.service
-Requires = media.mount
-RequiresMountsFor = /media/audio/%i
 PartOf = jackd.service
+Requires = media.mount
+Requires = ecasound@jack.service
+After = ecasound@jack.service
+Requires = ecasound@%i.service
+RequiresMountsFor = /media/audio/%i
 
 [Service]
-Environment = XDG_CONFIG_HOME=%h/.config/%p/%i/
-Environment = PULSE_PROP='media.role=music'
+
+Environment = MPD_CONFIG_FILE='%h/.config/%p/%i/%p/%p.conf'
 Environment = MPD_HOST='%t/%p_%i/socket'
+Environment = MPD_PLAYLIST_DIR='%t/%p_%i/playlists'
+Environment = PULSE_PROP='media.role=music'
+Environment = XDG_CONFIG_HOME=%h/.config/%p/%i/
+
+CPUSchedulingPolicy = rr
+CPUSchedulingPriority = 90
+LimitCORE = infinity
+LimitMEMLOCK = infinity
+LimitRTPRIO = infinity
+LimitRTTIME = infinity
+Nice = 0
+PIDFile = %t/%p_%i/pid
+PassEnvironment = XDG_CONFIG_HOME
+Restart = always
+RestartSec = 200
+RuntimeDirectory = %p_%i
+TimeoutStartSec = 4m
+TimeoutStopSec = 1
+Type = notify
 
 ExecReload = -/usr/bin/zsh -c "mpc toggle"
 ExecReload = -/usr/bin/zsh -c "mpc toggle"
 ExecReload = -/usr/bin/zsh -c "mpc update --wait"
+ExecReload = /bin/zsh -ic "%h/.scripts/fixes/sidechain.zsh"
 
-ExecReload = -/usr/bin/zsh -c "jack_connect %i:left main:playback_1"
-ExecReload = -/usr/bin/zsh -c "jack_connect %i:right main:playback_2"
-ExecReload = -/usr/bin/zsh -c "jack_connect %i:left dante_out:playback_1"
-ExecReload = -/usr/bin/zsh -c "jack_connect %i:right dante_out:playback_2"
+# ExecReload = -/usr/bin/zsh -c "jack_connect %i:left main:playback_1"
+# ExecReload = -/usr/bin/zsh -c "jack_connect %i:right main:playback_2"
+# ExecReload = -/usr/bin/zsh -c "jack_connect %i:left dante_out:playback_1"
+# ExecReload = -/usr/bin/zsh -c "jack_connect %i:right dante_out:playback_2"
 
-ExecStart=/usr/local/bin/mpd --no-daemon /home/chris/.config/%p/%i/%p/%p.conf
+ExecStartPre = /usr/bin/zsh -c "mkdir -p $MPD_PLAYLIST_DIR"
+ExecStartPre = /usr/bin/zsh -c "touch %t/%p_%i/{log,database,state}"
 
-ExecStartPre=/usr/bin/zsh -c "mkdir -p %t/%p_%i/playlists"
-ExecStartPre=/usr/bin/zsh -c "touch %t/%p_%i/{log,database,state}"
+ExecStart = /usr/local/bin/mpd --no-daemon $MPD_CONFIG_FILE
 
 ExecStartPost = /usr/bin/zsh -c "mpc update --wait"
-# ExecStartPost = -/usr/bin/zsh -c "mpc update"
-ExecStartPost = -/usr/bin/zsh -c "sleep 5 && mpc toggle; mpc toggle"
+ExecStartPost = -/usr/bin/zsh -c "sleep 2 && mpc toggle; mpc toggle"
+# ExecStartPost = /bin/zsh -ic "%h/.scripts/fixes/sidechain.zsh || true"
+ExecStartPost = -/usr/bin/zsh -c "jack_connect '%i:left' '%i_effects:in_1' && jack_connect '%i:right' '%i_effects:in_2' && jack_connect '%i_effects:out_1' 'jack_effects:in_1' && jack_connect '%i_effects:out_2' 'jack_effects:in_2'"
 
-ExecStartPost = -/usr/bin/zsh -c "jack_connect %i:left main:playback_1"
-ExecStartPost = -/usr/bin/zsh -c "jack_connect %i:right main:playback_2"
-ExecStartPost = -/usr/bin/zsh -c "jack_connect %i:left dante_out:playback_1"
-ExecStartPost = -/usr/bin/zsh -c "jack_connect %i:right dante_out:playback_2"
+ExecStop = /usr/bin/zsh -c "mpc pause"
 
-CPUSchedulingPolicy=rr
-CPUSchedulingPriority=90
-LimitCORE=infinity
-LimitMEMLOCK=infinity
-LimitRTPRIO=infinity
-LimitRTTIME=infinity
-Nice=0
+# ExecStartPost = -/usr/bin/zsh -c "jack_connect %i:left main:playback_1"
+# ExecStartPost = -/usr/bin/zsh -c "jack_connect %i:right main:playback_2"
+# ExecStartPost = -/usr/bin/zsh -c "jack_connect %i:left dante_out:playback_1"
+# ExecStartPost = -/usr/bin/zsh -c "jack_connect %i:right dante_out:playback_2"
 
-PIDFile = %t/%p_%i/pid
-PassEnvironment = XDG_CONFIG_HOME
-PrivateTmp = yes
-ProtectSystem=yes
-RuntimeDirectory = %p_%i
-RuntimeDirectory = mpd
-TimeoutStartSec=25m
-TimeoutStopSec=1
-Type=notify
+# These break stuff now
+# PrivateTmp = yes
+# ProtectSystem = yes
 
 [Install]
-WantedBy=default.target
+
+WantedBy = default.target
 

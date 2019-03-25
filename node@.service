@@ -1,0 +1,31 @@
+
+[Unit]
+
+Description = Run node package %i
+
+[Service]
+
+CPUQuota = 40%
+CPUSchedulingPolicy=rr
+CPUSchedulingPriority=90
+ExecStart = /usr/bin/npm start
+MemoryHigh = 2G
+MemoryMax = 3G
+Nice = 1
+PIDFile = %t/%p_%i/pid
+PassEnvironment = XDG_CONFIG_HOME
+PrivateTmp = yes
+ProtectSystem=yes
+# Restart = always
+Restart = on-abnormal
+RestartSec = 10
+RestartSec = 2
+RuntimeDirectory = %p_%i
+StandardOutput = journal
+TimeoutStartSec = 0
+TimeoutStopSec = 10
+Type = simple
+
+[Install]
+
+WantedBy=default.target

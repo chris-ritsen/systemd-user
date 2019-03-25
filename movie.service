@@ -2,16 +2,17 @@
 [Unit]
 
 # BindsTo=mpv.service
-
-After = mpv.service
-Description = watch a movie
 # PartOf = tv.target 
 # PropagatesReloadTo = mpv.service
-RefuseManualStart = no
-RefuseManualStop = no
+
+After = mpv.service
+BindsTo = movie.target
+Description = Watch videos
+RefuseManualStart = yes
+RefuseManualStop = yes
 Requires = mpv.service
-RequiresMountsFor = /home/chris/media_player_state
-StopWhenUnneeded = no
+RequiresMountsFor = /home/chris/.scripts/media_player_state
+StopWhenUnneeded = yes
 
 ; TODO: Use pid to stop daemon
 
@@ -21,14 +22,22 @@ StopWhenUnneeded = no
 # ExecStart = /usr/bin/mpv --input-unix-socket=%t/mpv.video --softvol-max=200 --no-resume-playback --force-window=yes --keep-open=yes --idle=yes
 # ExecStartPost = /usr/bin/env media_player --playlist $MPV_PLAYLIST --current $MPV_CURRENT --prop time-pos=$MPV_TIME_POS
 
-StartLimitBurst = 0
-EnvironmentFile = /home/chris/.config/systemd/user/default_env
+# Restart = always
+
 Environment = DISPLAY=:0
-Environment = MPV_CURRENT=/home/chris/media_player_state/path
-Environment = MPV_PAUSE=/home/chris/media_player_state/pause
-# /home/chris/media_player_state/pause 
-Environment = MPV_PLAYLIST=/home/chris/media_player_state/playlist
-Environment = MPV_TIME_POS=/home/chris/media_player_state/time-pos
+Environment = MPV_CURRENT=/home/chris/.scripts/media_player_state/path
+Environment = MPV_PAUSE=/home/chris/.scripts/media_player_state/pause
+Environment = MPV_PLAYLIST=/home/chris/.scripts/media_player_state/playlist
+Environment = MPV_TIME_POS=/home/chris/.scripts/media_player_state/time-pos
+EnvironmentFile = /home/chris/.config/systemd/user/default_env
+NotifyAccess = all
+RemainAfterExit = yes
+Restart = no
+RestartSec = 1
+StartLimitBurst = 0
+TimeoutStartSec = 1s
+TimeoutStopSec = 1s
+Type = notify
 
 # ExecStop = /usr/bin/zsh -ic "systemctl --user is-active mpv.service && media_player --prop time-pos > $MPV_TIME_POS"
 # ExecStop = /usr/bin/zsh -ic "systemctl --user is-active mpv.service && media_player --prop path > $MPV_CURRENT"
@@ -44,7 +53,7 @@ ExecStop = /usr/bin/zsh -ic "media_player --prop pause && media_player --prop pa
 ExecStop = /usr/bin/zsh -ic "media_player --prop pause=yes || true"
 ExecStop = /usr/bin/zsh -ic "media_player --prop time-pos && media_player --prop time-pos > $MPV_TIME_POS || true"
 ExecStop = /usr/bin/zsh -ic "media_player --prop path && media_player --prop path > $MPV_CURRENT || true"
-ExecStop = /bin/kill -HUP $MAINPID
+# ExecStop = /bin/kill -HUP $MAINPID
 
 ExecReload = /usr/bin/zsh -ic "media_player --prop path && media_player --prop path > $MPV_CURRENT || true"
 # ExecReload = /home/chris/.scripts/py/media_player --daemon
@@ -56,19 +65,10 @@ ExecReload = /usr/bin/zsh -ic "media_player --prop path && media_player --prop p
 # ExecStartPost = /usr/bin/sleep 1
 # ExecStartPost = /usr/bin/zsh -ic "media_player --prop time-pos=$(cat $MPV_TIME_POS)"
 
-# ExecStopPost = /usr/bin/zsh -ic "media_player --json --prop playlist | underscore pluck filename --outfmt text > /home/chris/media_player_state/playlist"
+# ExecStopPost = /usr/bin/zsh -ic "media_player --json --prop playlist | underscore pluck filename --outfmt text > /home/chris/.scripts/media_player_state/playlist"
 # ExecStop = /usr/bin/zsh -ic "media_player --prop time-pos > $MPV_TIME_POS"
 # ExecStop = /usr/bin/zsh -ic "echo media_player --prop path > $MPV_CURRENT"
 # ExecStop = /usr/bin/zsh -ic "media_player --prop path > $MPV_CURRENT"
-NotifyAccess = all
-
-# Restart = always
-Restart = no
-TimeoutStartSec=1s
-TimeoutStopSec=10s
-RestartSec = 1
-Type = notify
-RemainAfterExit = yes
 
 [Install]
 

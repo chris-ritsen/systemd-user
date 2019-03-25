@@ -1,0 +1,22 @@
+
+[Unit]
+
+After = sound.target basic.target dante_pcie_out.service
+Description = Main system audio
+Requires = sound.target basic.target jackd.service
+StopWhenUnneeded = no
+
+[Service]
+
+#zita-j2a caps out at 66 channels, alsa_out at 99
+
+# ExecStart = /usr/bin/alsa_out -c 99 -p 64 -j '%i' -d asym_dante0
+ExecStart = /usr/bin/alsa_out -c 16 -p 64 -j '%i' -d asym_dante0
+# ExecStart = /usr/bin/zita-j2a -c 32 -p 64 -j dante_pcie_out -d hw:DantePCIe,0,0
+
+ExecStop = /usr/bin/true
+
+[Install]
+
+WantedBy=default.target
+

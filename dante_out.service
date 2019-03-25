@@ -1,0 +1,19 @@
+
+[Unit]
+
+# Before = jack_client@dante_out.service
+After = ecasound@jack.service
+DefaultDependencies = no
+Description = Dante output
+Requires = ecasound@jack.service
+Requires = jack_client@dante_out.service
+StopWhenUnneeded = yes
+
+[Service]
+
+RemainAfterExit=yes
+RestartSec=2
+TimeoutStopSec=2s
+
+ExecStart = /usr/bin/zsh -ic "jack_connect 'dante_out:playback_1' 'jack_effects:out_1'; jack_connect 'dante_out:playback_2' 'jack_effects:out_2'"
+ExecStop = /usr/bin/zsh -ic "jack_disconnect 'dante_out:playback_1' 'jack_effects:out_1'; jack_disconnect 'dante_out:playback_2' 'jack_effects:out_2'"

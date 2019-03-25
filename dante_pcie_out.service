@@ -1,0 +1,18 @@
+
+[Unit]
+
+# Before = jack_client@dante_out.service
+After = ecasound@jack.service
+DefaultDependencies = no
+Description = Dante output
+Requires = ecasound@jack.service
+Requires = jack_client@dante_pcie_out.service
+StopWhenUnneeded = yes
+
+[Service]
+
+RemainAfterExit=yes
+RestartSec=2
+TimeoutStopSec=2s
+
+ExecStart = /usr/bin/true

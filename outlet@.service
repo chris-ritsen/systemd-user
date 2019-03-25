@@ -1,0 +1,20 @@
+
+[Unit]
+
+DefaultDependencies = no
+Description = Power outlet %i
+
+[Service]
+TimeoutStartSec = 1
+TimeoutStopSec = 1
+RestartSec = 1
+Restart = no
+RemainAfterExit = yes
+Type = oneshot
+
+ExecStart = /usr/bin/zsh -ic 'pdu_snmp_command pdu-7901-1 %i on'
+ExecStop = /usr/bin/zsh -ic 'pdu_snmp_command pdu-7901-1 %i off'
+
+[Install]
+
+WantedBy=default.target

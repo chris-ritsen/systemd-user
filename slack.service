@@ -1,0 +1,17 @@
+
+[Unit]
+After=graphical-session.target
+Requires=graphical-session.target
+Description=Slack
+
+[Service]
+Environment=DISPLAY=:0
+ExecStart=/usr/lib/slack/slack -l /tmp/slack.log
+ExecStop=/usr/bin/killall -9 slack
+Restart=always
+RestartSec=1
+Type=simple
+
+[Install]
+WantedBy=default.target
+

@@ -1,0 +1,125 @@
+
+[Unit]
+
+BindsTo = jackd.target
+RefuseManualStart = no
+RefuseManualStop = no
+Description=JACK Audio Connection Kit sound server
+
+Wants = jack_client@pulseaudio.service
+
+After = jack_client@dante_in.service
+After = jack_client@dante_out.service
+After = jack_out_notify.service
+After = sound.target
+Before = chromium@default.service
+Before = pulseaudio.service
+BindsTo = pulseaudio.service
+Requires = sound.target
+Wants = jack_out_notify.service
+
+AssertFileIsExecutable = /usr/bin/jackdbus
+Description = Run jackdbus
+# RefuseManualStart = yes
+# RefuseManualStop = yes
+
+[Service]
+
+# CPUSchedulingPolicy=rr
+# IOSchedulingClass=realtime
+# LimitNICE=-15
+# LimitNICESoft=-15
+# User=chris
+
+# CPUSchedulingResetOnFork=yes
+# IOSchedulingClass=realtime
+# IOSchedulingPriority=0
+
+CPUSchedulingPolicy=rr
+CPUSchedulingPriority=90
+LimitCORE=infinity
+LimitMEMLOCK=infinity
+LimitRTPRIO=infinity
+LimitRTTIME=infinity
+Nice=0
+
+# MemoryLimit=512M 
+# MemorySoftLimit=512M 
+
+
+# Safe
+# Environment=bufsize=640
+# Environment=period=256
+
+# Low-latency
+# Environment=bufsize=128
+# Environment=period=256
+
+# Ultra-low-latency
+Environment=bufsize=24
+Environment=period=16
+
+Environment=rate=48000
+
+# ExecStop = /usr/bin/zsh -c '/usr/bin/jack_control stop'
+
+
+ExecStart = /usr/bin/jack_control start
+
+# Essential
+
+ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control ds dummy'
+
+ExecStart = /usr/bin/zsh -c "/usr/bin/jack_bufsize $bufsize" 
+ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps period $period"
+ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps rate $rate"
+
+ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control eps realtime-priority 90'
+ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control eps self-connect-mode A'
+ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control status'
+
+ExecReload = /usr/bin/zsh -c "/usr/bin/jack_bufsize $bufsize" 
+ExecReload = /usr/bin/zsh -c "/usr/bin/jack_control dps period $period"
+ExecReload = /usr/bin/zsh -c "/usr/bin/jack_control dps rate $rate"
+
+ExecStartPre = -/usr/bin/zsh -c '/usr/bin/killall -9 jackdbus'
+ExecStartPre = -/usr/bin/zsh -c '/usr/bin/killall -9 pavucontrol'
+
+# ExecStartPre = /usr/bin/zsh -c "amixer -c II set 'Analog Output',0 'Headphones'"
+# ExecStartPre = /usr/bin/zsh -c "amixer -c II set 'DAC Filter',0 'Sharp Roll-off'"
+# ExecStartPre = /usr/bin/zsh -c "amixer -c II set 'Headphones Impedance',0 '300-600 ohms'"
+# ExecStartPre = /usr/bin/zsh -c "amixer -c II set 'Line' cap"
+# ExecStartPre = /usr/bin/zsh -c "amixer -c II set 'Master',0 255 unmute"
+
+ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'Capture',0 16 cap"
+ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'Master',0 255 unmute"
+
+# Test
+
+# ExecStopPost = /usr/bin/zsh -c '/usr/bin/jack_control stop'
+
+# ExecStartPost = +/usr/bin/zsh -c 'rtirq start'
+
+# ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control dps nperiods 2'
+# ExecStartPre = -/usr/bin/zsh -c '/usr/bin/killall -9 catia'
+# ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control dps period 64'
+# ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control ds alsa'
+# ExecStartPost = /usr/bin/zsh -c 'jack_lsp'
+
+# Safe volume
+# ExecStartPre = /usr/bin/zsh -c "amixer -c II set 'Master',0 175 unmute"
+# ExecStartPre = /usr/bin/zsh -c "amixer -c II set 'Headphones Impedance',0 '< 32 ohms'"
+
+# BusName = org.jackaudio.service
+RemainAfterExit = yes
+RestartSec = 1
+Slice = audio.slice
+TimeoutStartSec = 5
+Type = oneshot
+# Type = dbus
+TimeoutStopSec=1
+
+[Install]
+
+WantedBy = default.target
+

@@ -1,0 +1,32 @@
+
+[Unit]
+
+ConditionUser=!root
+Description=Sound Service
+Requires=pulseaudio.socket
+
+[Service]
+
+ExecStart=/usr/bin/pulseaudio --daemonize=no
+Restart=on-failure
+Type=notify
+
+CPUSchedulingPolicy=rr
+CPUSchedulingPriority=90
+# CPUSchedulingResetOnFork=yes
+# IOSchedulingClass=realtime
+# IOSchedulingPriority=0
+LimitCORE=infinity
+LimitMEMLOCK=infinity
+TimeoutStartSec=2s
+TimeoutStopSec=2s
+RestartSec=6
+LimitRTPRIO=infinity
+LimitRTTIME=infinity
+Nice=0
+
+[Install]
+
+Also=pulseaudio.socket
+WantedBy=default.target
+

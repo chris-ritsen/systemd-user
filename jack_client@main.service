@@ -1,0 +1,16 @@
+
+[Unit]
+
+DefaultDependencies = no
+Description = Main system audio
+StopWhenUnneeded = yes
+
+[Service]
+
+Restart = always
+
+ExecStart = /usr/bin/alsa_out -c2 -j '%i' -d hw:PCH
+
+[Install]
+
+WantedBy=jack_clients.target

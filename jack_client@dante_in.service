@@ -1,0 +1,16 @@
+
+[Unit]
+
+# After = sound.target basic.target microphone.service
+After = dante_in.service
+Description = Main system audio
+BindsTo = dante_in.service
+Requires = sound.target basic.target jackd.service
+StopWhenUnneeded = yes
+
+[Service]
+ExecStart=/usr/bin/alsa_in -c2 -j '%i' -d hw:Module
+
+[Install]
+WantedBy=jack_clients.target
+

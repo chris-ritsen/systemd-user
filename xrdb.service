@@ -1,0 +1,19 @@
+
+[Unit]
+
+Description = xrdb
+RefuseManualStart = no
+RefuseManualStop = no
+
+[Service]
+
+ExecStart = /usr/bin/xrdb -load %h/.Xresources
+ExecStartPost = /usr/bin/xrdb -load %h/.Xresources 
+RemainAfterExit = no
+RestartSec = 2
+Type = oneshot
+
+[Install]
+
+WantedBy = xmonad.target
+

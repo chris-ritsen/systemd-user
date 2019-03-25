@@ -1,0 +1,26 @@
+
+[Unit]
+
+Description = OBS
+Requires = sound.target graphical-session.target
+After = xbox_out.service
+
+[Service]
+
+Nice=10
+
+# ExecStartPre=-/usr/bin/v4l2-ctl -d /dev/video0 -c focus_auto=0
+# ExecStartPre=-/usr/bin/v4l2-ctl -d /dev/video0 -c focus_absolute=0
+# ExecStartPre=-/usr/bin/jack_control status
+
+ExecStart=/usr/bin/obs
+
+KillMode=process
+Restart=no
+RestartSec=6
+TimeoutStartSec=2s
+TimeoutStopSec=2s
+
+[Install]
+WantedBy = default.target
+

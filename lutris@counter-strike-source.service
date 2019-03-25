@@ -1,0 +1,13 @@
+
+[Unit]
+
+After = steam.service
+BindsTo = steam.service
+Description = Counter-Strike: Source
+Requires = steam.service
+
+[Service]
+
+ExecStart = /usr/bin/lutris lutris:rungame/%i
+ExecStop = -/usr/bin/zsh -ic "killall $STEAM_APPS/common/Counter-Strike\\\sSource/hl2_linux"
+Restart = no

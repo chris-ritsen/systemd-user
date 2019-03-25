@@ -1,0 +1,22 @@
+
+[Unit]
+
+AssertFileIsExecutable = /home/chris/.xmonad/xmonad-x86_64-linux
+Description = Build Xmonad
+RefuseManualStart = yes
+RefuseManualStop = yes
+Wants = xmonad.path
+
+[Service]
+
+ExecStart = /usr/bin/xmonad --recompile
+ExecStartPost = /usr/bin/xmonad --restart
+RemainAfterExit = no
+RestartSec = 2
+Slice = xmonad.slice
+Type = oneshot
+
+[Install]
+
+WantedBy = graphical-session-pre.target
+

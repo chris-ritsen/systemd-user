@@ -1,0 +1,13 @@
+
+[Unit]
+
+# Before = xmonad-instance.service
+# Wants = xmonad-instance.service
+
+Before = xmonad.service
+Before = xmonad.target
+BindsTo = xmonad.target
+DefaultDependencies = no
+Description = Xmonad Slice
+Wants = xmonad.service
+

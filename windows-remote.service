@@ -1,0 +1,28 @@
+
+[Unit]
+
+Description=Windows remote desktop viewer
+Requires=sound.target graphical-session.target
+
+[Service]
+
+Nice=10
+
+ExecStart=/usr/bin/remote-viewer --debug /media/unsorted/more/software/applications/windows10.remote
+
+
+KillMode=process
+Restart=no
+RestartSec=6
+TimeoutStartSec=1s
+TimeoutStopSec=1s
+
+ExecStartPost = /usr/bin/sleep 0.01
+ExecStartPost = /bin/zsh -ic "wmctrl -t7 -i -r $(xdotool search --onlyvisible --class 'remote-viewer' getwindowpid %@ | xargs -I{} xdotool search --all --pid {} --name 'windows10.remote') || true"
+# ExecStartPost = /bin/zsh -ic "wmctrl -t7 -i -r $(xdotool search --onlyvisible --class 'remote-viewer' getwindowpid %@ | xargs -I{} xdotool search --all --pid {} --name 'windows_1') || true"
+# /media/unsorted/software/applications/windows10.remote (1) - Remote Viewer
+# ExecStartPost = /bin/zsh -ic "wmctrl -t7 -i -r $(xdotool search --onlyvisible --class 'remote-viewer' getwindowpid %@ | xargs -I{} xdotool search --all --pid {} --name 'windows_1 (1) - Remote Viewer') || true"
+
+[Install]
+WantedBy = default.target
+

@@ -1,0 +1,12 @@
+
+[Unit]
+
+After = outlet@3.service
+BindsTo = outlet@3.service
+After = outlet@7.service
+BindsTo = outlet@7.service
+Description=Mixed microphones
+PropagatesReloadTo = mixed-microphones.service
+Requires = mixed-microphones.service
+Requires = jack_client@dante_in.service 
+Requires = dante_in.service

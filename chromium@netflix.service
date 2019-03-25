@@ -1,0 +1,20 @@
+
+[Service]
+
+# Environment=PULSE_SINK='jack.out.%i'
+# Environment=PULSE_SOURCE='jack.in.%i' 
+Environment=app=--app='https://www.netflix.com/browse'
+Environment=disk_cache_dir=--disk-cache-dir=%t/%p
+Environment=scale=--force-device-scale-factor='1.1'
+Environment=user_data_dir=--user-data-dir='%h/.config/%p-apps/%i'
+
+ExecStart = /usr/bin/chromium \
+${disk_cache_dir} \
+${user_data_dir} \
+${app} \
+${scale} \
+--enable-dom-distiller \
+--keep-alive-for-test
+
+RuntimeDirectory = %p_%i
+

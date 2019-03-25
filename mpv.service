@@ -1,86 +1,59 @@
 
 [Unit]
 
-# After = chromium.service
-# After = xmonad.target
-# BindsTo = movie.service
-# PartOf = movie.service
-# PartOf = xmonad.target
-# Wants = xmonad.target
-
 Before = movie.service
-BindsTo = tv.target
-# Wants = xcompmgr.service
 BindsTo = movie.service
+BindsTo = tv.target
 Description = mpv player
 RefuseManualStart = yes
 RefuseManualStop = yes
-RequiresMountsFor = /home/chris/media_player_state
+RequiresMountsFor = /home/chris/.scripts/media_player_state
 RequiresMountsFor = /media
-StopWhenUnneeded = no
+StopWhenUnneeded = yes
+
+Before = ecasound@jack.service
+Before = ecasound@mpv.service
+DefaultDependencies = no
+Requires = ecasound@mpv.service
+Wants = mpv_notify.service
 
 [Service]
 
 RemainAfterExit = no
 Restart = always
-RestartSec = 10
+RestartSec = 1
 RuntimeDirectory = mpv
 StartLimitBurst = 0
-TimeoutStartSec=1s
-TimeoutStopSec=2s
+TimeoutStartSec = 2s
+TimeoutStopSec = 1s
 Type = simple
-
-# RestartSec = 0
-# TimeoutStartSec=0.5s
-# TimeoutStopSec=0.1s
 
 Environment = DISPLAY=:0
 Environment = MPV_PAUSE=no
 
-Environment = MPV_CURRENT=%h/media_player_state/path
-Environment = MPV_PAUSE=%h/media_player_state/pause
-Environment = MPV_PLAYLIST=%h/media_player_state/playlist
-Environment = MPV_TIME_POS=%h/media_player_state/time-pos
-EnvironmentFile = %h/.config/systemd/user/default_env
+Environment = MPV_CURRENT=/home/chris/.scripts/media_player_state/path
+Environment = MPV_PAUSE=/home/chris/.scripts/media_player_state/pause
+Environment = MPV_PLAYLIST=/home/chris/.scripts/media_player_state/playlist
+Environment = MPV_TIME_POS=/home/chris/.scripts/media_player_state/time-pos
+EnvironmentFile = /home/chris/.config/systemd/user/default_env
 
-ExecStart = /usr/bin/mpv --input-ipc-server=%t/mpv/video --volume-max=200 --no-resume-playback --force-window=yes --keep-open=yes --idle=yes
-# ExecStartPost = /usr/bin/zsh -ic "wmctrl -l | grep -oe 'No file - mpv'"
-ExecStartPost = /usr/bin/zsh -ic "wmctrl -r 'No file - mpv' -t 7 || true"
-# ExecStartPost = /usr/bin/zsh -ic "transset-df --name 'No file - mpv' 0"
-# ExecStartPost = /usr/bin/zsh -ic "media_player --prop brightness=-100"
-# ExecStartPost = /usr/bin/zsh -ic "media_player --prop contrast=-100"
-# ExecStartPost = /usr/bin/zsh -ic "media_player --prop saturation=-100"
-# ExecStartPost = /usr/bin/zsh -ic "media_player --prop gamma=-100"
-ExecStartPost = /usr/bin/zsh -ic "media_player --playlist $MPV_PLAYLIST --current $(cat $MPV_CURRENT)"
-# ExecStartPost = /usr/bin/zsh -ic "media_player --prop path"
-ExecStartPost = /usr/bin/zsh -ic "media_player --prop pause=yes || true"
-ExecStartPost = /usr/bin/zsh -ic "media_player --prop time-pos=$(cat $MPV_TIME_POS)"
+ExecStart = /usr/bin/zsh -ic "/usr/bin/mpv --input-ipc-server=%t/mpv/video --ao=jack --jack-name=mpv --jack-autostart=no --jack-connect=no --x11-name MPV_SCRIPTED --x11-bypass-compositor=never --volume-max=200 --no-resume-playback --force-window=yes --keep-open=yes --idle=yes"
+ExecStartPost = /usr/bin/zsh -ic "media_player --prop vid=0 || true"
+ExecStartPost = /usr/bin/zsh -ic 'redis-cli -s /run/redis/redis.sock lrange video_playlist 0 -1 > %t/%p_playlist'
 ExecStartPost = /usr/bin/zsh -ic "media_player --prop pause=yes || true"
 
-ExecStartPost = /usr/bin/zsh -ic "wmctrl -l | grep -oe $(basename $(cat $MPV_CURRENT))"
-# ExecStartPost = /usr/bin/zsh -ic "media_player --prop brightness=0"
-# ExecStartPost = /usr/bin/zsh -ic "media_player --prop contrast=0"
-# ExecStartPost = /usr/bin/zsh -ic "media_player --prop saturation=0"
-# ExecStartPost = /usr/bin/zsh -ic "media_player --prop gamma=0"
-
-ExecStartPost = /usr/bin/zsh -ic "wmctrl -r $(basename $(cat $MPV_CURRENT)) -t 2 || true"
-# ExecStartPost = /usr/bin/zsh -ic "transset-df --name $(basename $(cat $MPV_CURRENT)) 1"
-ExecStartPost = /usr/bin/zsh -ic "media_player --prop pause=$(cat $MPV_PAUSE) || true"
+ExecStartPost = /usr/bin/zsh -ic 'media_player --playlist %t/%p_playlist'
+ExecStartPost = /usr/bin/zsh -ic "media_player --prop vid=0 || true"
+ExecStartPost = /usr/bin/zsh -ic "grep -nr $(redis-cli -s /run/redis/redis.sock get video_playlist_current) %t/%p_playlist | cut -d : -f1 | xargs -I{} media_player --prop playlist-pos-1={}"
+ExecStartPost = /usr/bin/zsh -ic "media_player --prop vid=0 || true"
+ExecStartPost = /usr/bin/zsh -ic "media_player --prop time-pos=$(redis-cli -s /run/redis/redis.sock get video_playlist_current_time)"
+ExecStartPost = /usr/bin/zsh -ic "media_player --prop vid=0 || true"
+ExecStartPost = /usr/bin/zsh -ic "media_player --prop vid=1 || true"
 
 ExecStop = /usr/bin/zsh -ic "media_player --prop pause=yes || true"
-# ExecStop = /usr/bin/zsh -ic "transset-df --name $(basename $(cat $MPV_CURRENT)) 0"
-ExecStop = /usr/bin/zsh -ic "media_player --prop time-pos && media_player --prop time-pos > $MPV_TIME_POS || true"
-ExecStop = /usr/bin/zsh -ic "media_player --prop path && media_player --prop path > $MPV_CURRENT || true"
-ExecStop = /bin/kill -HUP $MAINPID || true
-
-# ExecReload = /bin/kill -HUP $MAINPID
-
-# ExecReload = /usr/bin/zsh -ic "wmctrl -s 2 || true"
-# ExecReload = /usr/bin/zsh -ic "%h/xmonadctl screen0 || true"
-# ExecReload = /usr/bin/zsh -ic "wmctrl -r $(basename $(cat $MPV_CURRENT)) -t 7 || true"
-# ExecReload = /usr/bin/zsh -ic "wmctrl -r $(basename $(cat $MPV_CURRENT)) -t 2 || true"
-# ExecReload = /usr/bin/zsh -ic "wmctrl -a $(basename $(cat $MPV_CURRENT)) || true"
+ExecStop = /usr/bin/zsh -ic "redis-cli -s /run/redis/redis.sock set video_playlist_current $(media_player --prop path)"
+ExecStop = /usr/bin/zsh -ic "redis-cli -s /run/redis/redis.sock set video_playlist_current_time $(media_player --prop time-pos)"
 
 [Install]
-WantedBy = graphical-session.target
 
+WantedBy = graphical-session.target

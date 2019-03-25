@@ -1,0 +1,8 @@
+
+[Unit]
+
+BindsTo = speakers.service
+Description = Speakers
+PropagatesReloadTo = speakers.service
+Requires = jack_client@main.service
+Requires = speakers.service

@@ -1,0 +1,12 @@
+
+[Unit]
+Description=Chromium web browser (socket activation) 
+BindsTo = chromium.target
+Documentation=man:chromium(1)
+
+[Socket]
+ListenStream = %h/.config/chromium/SingletonSocket
+
+[Install]
+WantedBy = sockets.target
+

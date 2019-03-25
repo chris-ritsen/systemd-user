@@ -1,0 +1,11 @@
+
+[Unit]
+
+Description = Video player
+Requires = movie.service 
+PropagatesReloadTo = movie.service
+
+[Install]
+
+WantedBy=default.target
+

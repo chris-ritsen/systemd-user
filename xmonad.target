@@ -1,0 +1,24 @@
+
+[Unit]
+
+# Requires = xmonad-instance.service
+
+After = sockets.target
+After = urxtvtd.service
+
+Description = Graphical session
+
+# Wants = xmonad-instance.service
+# Wants = work.target
+# Wants = urxvtd.socket
+# Wants = xrdb.service
+
+BindsTo = graphical-session.target
+Wants = chromium.target
+Wants = clock.target
+Wants = hhkb.service
+Wants = tmux@admin.service
+Wants = urxvtd.service
+Wants = xmonad.service
+# Wants = tv.target
+

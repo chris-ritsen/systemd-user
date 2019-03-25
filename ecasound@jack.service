@@ -1,0 +1,14 @@
+
+[Unit]
+
+Description = ecasound %i effects
+Requires = jackd.service
+
+[Service]
+
+Environment = TERM=xterm
+ExecStart = /usr/bin/zsh -ic "ecasound -C -f:f32_le,2,48000 -G:jack,%i_effects -a:1 -i jack,,in -o jack,,out -a:1 -elv2:http://calf.sourceforge.net/plugins/SidechainCompressor,0,1,0,0,0,0,0.0401071,20,0.01,2000,1,8,0,1,1,9,369.16,4500,1,1,0,1,1,0,1,1"
+
+[Install]
+WantedBy=jack_clients.target
+

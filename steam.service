@@ -1,0 +1,40 @@
+
+# [Unit]
+#
+# Description=Steam
+# BindsTo=graphical-session.target
+# PartOf=graphical-session.target
+#
+# [Service]
+#
+# Environment=PULSE_PROP='media.role=game'
+# Environment=LD_PRELOAD='/usr/$LIB/libstdc++.so.6 /usr/$LIB/libgcc_s.so.1 /usr/$LIB/libxcb.so.1 /usr/$LIB/libgpg-error.so'
+# ExecStart=/usr/bin/steam -console -silent %%U 
+# KillMode=process
+# Restart=no
+# RestartSec=10
+# TimeoutStartSec=10s
+# TimeoutStopSec=10s
+
+[Unit]
+
+Description=Steam
+Requires=sound.target graphical-session.target
+
+[Service]
+
+Nice=10
+
+ExecStart=/usr/bin/steam
+
+KillMode=process
+Restart=no
+RestartSec=6
+TimeoutStartSec=10s
+TimeoutStopSec=2s
+
+ExecStop = /usr/bin/killall -9 steam
+
+[Install]
+WantedBy = default.target
+

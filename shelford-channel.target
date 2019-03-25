@@ -1,0 +1,7 @@
+
+[Unit]
+
+After = outlet@3.service
+BindsTo = outlet@3.service
+Description = Shelford channel
+Requires = outlet@3.service 

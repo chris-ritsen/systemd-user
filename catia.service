@@ -1,0 +1,21 @@
+
+[Unit]
+
+Description=Catia jackd patchbay
+Requires=sound.target graphical-session.target
+
+[Service]
+
+Nice=10
+
+ExecStart=/usr/bin/catia
+
+KillMode=process
+Restart=no
+RestartSec=6
+TimeoutStartSec=2s
+TimeoutStopSec=2s
+
+[Install]
+WantedBy = default.target
+

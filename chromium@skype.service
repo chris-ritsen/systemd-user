@@ -1,0 +1,25 @@
+
+[Unit]
+
+Requires = skype_audio.service
+Before = skype_audio.service
+
+[Service]
+
+Environment=DISPLAY=:0
+# Environment=PULSE_SINK='jack.out.skype'
+# Environment=PULSE_SOURCE='jack.in.skype'
+Environment=app=--app='https://web.skype.com/en/'
+Environment=disk_cache_dir=--disk-cache-dir=%t/%p_%i
+Environment=scale=--force-device-scale-factor='1.0'
+Environment=user_data_dir=--user-data-dir='%h/.config/%p-apps/%i'
+
+ExecStart = /usr/bin/chromium \
+${disk_cache_dir} \
+${user_data_dir} \
+${app} \
+${scale} \
+--enable-dom-distiller \
+--keep-alive-for-test
+
+RuntimeDirectory = %p_%i

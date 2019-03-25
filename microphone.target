@@ -1,0 +1,8 @@
+
+[Unit]
+
+After = outlet@3.service
+BindsTo = outlet@3.service
+Description=DANTE Microphone
+PropagatesReloadTo = microphone.service
+Requires = microphone.service jack_client@dante_in.service dante_in.service

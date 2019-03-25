@@ -1,0 +1,17 @@
+
+[Unit]
+
+# ConditionFileNotEmpty = %t/%p-%U/%i
+Before = %p@%i.service 
+ConditionFileNotEmpty = %h/.config/%p/sessions/%i
+Description=Socket activated tmux
+Documentation=man:tmux(1)
+Requires = %p@%i.service
+StopWhenUnneeded = no
+
+[Socket]
+ListenStream=%t/%p-%U/%i
+
+[Install]
+WantedBy=sockets.target
+

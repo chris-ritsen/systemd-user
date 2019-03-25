@@ -1,0 +1,27 @@
+
+[Unit]
+
+Before = dante_out.service
+After = outlet@2.service
+DefaultDependencies = no
+Description = Wireless audio channel %i
+Requires = dante_out.service
+Requires = outlet@2.service
+Requires = outlet@4.service
+
+[Service]
+
+TimeoutStartSec = 20s
+TimeoutStopSec = 1
+RestartSec = 1
+Restart = no
+RemainAfterExit = yes
+Type = oneshot
+
+ExecStart = /usr/bin/zsh -ic 'shure_p10t_command SET %i RF_MUTE 0'
+ExecStop = /usr/bin/zsh -ic 'shure_p10t_command SET %i RF_MUTE 1'
+ExecReload = /usr/bin/zsh -ic '%h/.scripts/zsh/maybe_mute.zsh'
+
+[Install]
+
+WantedBy=default.target

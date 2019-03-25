@@ -1,0 +1,27 @@
+
+[Unit]
+
+# Before = jack_client@main.service
+# RefuseManualStart = yes
+# RefuseManualStop = yes
+# StopWhenUnneeded = yes
+
+After = ecasound@jack.service
+After = ecasound@speakers.service
+BindsTo = speakers.target
+DefaultDependencies = no
+Description = Speakers
+Requires = ecasound@jack.service
+Requires = ecasound@speakers.service
+Wants = node_notify.service
+
+[Service]
+
+RemainAfterExit=yes
+RestartSec=2
+TimeoutStopSec=2s
+Type=oneshot
+
+ExecStart = /usr/bin/true
+# ExecStartPost = /usr/bin/zsh -ic "jack_connect 'main:playback_1' 'speakers_effects:out_1'; jack_connect 'main:playback_2' 'speakers_effects:out_2'"
+# ExecStopPost = /usr/bin/zsh -ic "jack_disconnect 'main:playback_1' 'speakers_effects:out_2'; jack_disconnect 'main:playback_2' 'speakers_effects:out_2'"

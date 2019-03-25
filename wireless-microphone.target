@@ -1,0 +1,10 @@
+
+[Unit]
+
+After = outlet@7.service
+BindsTo = outlet@7.service
+Description=DANTE Wireless microphone
+PropagatesReloadTo = wireless-microphone.service
+Requires = wireless-microphone.service
+# Requires = jack_client@dante_in.service 
+# Requires = dante_in.service

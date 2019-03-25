@@ -1,0 +1,17 @@
+
+[Unit]
+
+After=network.target
+Description = Run %i
+
+[Service]
+
+CPUQuota=5%
+EnvironmentFile = %h/home-control/%i/.env
+WorkingDirectory = %h/home-control/%i/
+
+ExecStart = /usr/bin/npm start
+
+[Install]
+
+WantedBy = default.target

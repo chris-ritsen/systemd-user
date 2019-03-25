@@ -1,0 +1,18 @@
+
+[Unit]
+
+After = sound.target basic.target dante_out.service
+Description = Main system audio
+Requires = sound.target basic.target jackd.service
+StopWhenUnneeded = yes
+
+[Service]
+
+ExecStart = /usr/bin/alsa_out -c2 -j '%i' -d hw:Module
+
+ExecStop = /usr/bin/true
+
+[Install]
+
+WantedBy=default.target
+

@@ -1,0 +1,8 @@
+
+[Unit]
+
+After = tmux@clock.service
+BindsTo = xmonad.target
+PropagatesReloadTo = tmux@clock.service 
+Requires = tmux@clock.service
+

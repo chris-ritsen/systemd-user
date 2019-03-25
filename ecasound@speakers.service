@@ -1,0 +1,23 @@
+
+[Unit]
+
+Description = ecasound %i effects
+Requires = jackd.service
+Requires = ecasound@jack.service
+After = ecasound@jack.service
+StopWhenUnneeded = yes
+
+[Service]
+
+Environment = TERM=xterm
+# ExecStart = /usr/bin/zsh -ic "ecasound -C -f:f32_le,2,48000 -G:jack,%i_effects -a:1,2 -i jack,,in -o jack,,out -a:1 -elv2:http://calf.sourceforge.net/plugins/Compressor,0,1,0,0,0,0,0.015625,20,0.01,2000,1,1,0,0,1,1 -a:2 -elv2:http://calf.sourceforge.net/plugins/Limiter,0,1,0.587231,0,0,0,0,0,0,0,0,0.0625,0.1,1000,1,1,0,0.5,4"
+
+# Volume needs to be lower
+ExecStart = /usr/bin/zsh -ic "ecasound -C -f:f32_le,2,48000 -G:jack,%i_effects -a:1 -i jack,,in -o jack,,out -a:1 -elv2:http://calf.sourceforge.net/plugins/SidechainCompressor,0,1,0,0,0,0,0.015625,20,0.01,2000,1,8,0,1,1,0,250,4500,1,1,0,0,0,0,1,1"
+
+# copied
+# ExecStart = /usr/bin/zsh -ic "ecasound -C -f:f32_le,2,48000 -G:jack,%i_effects -a:1 -i jack,,in -o jack,,out -a:1 -elv2:http://calf.sourceforge.net/plugins/SidechainCompressor,0,1,0,0,0,0,0.0401071,20,0.01,2000,1,8,0,1,1,9,369.16,4500,1,1,0,1,1,0,1,1"
+ 
+[Install]
+WantedBy=jack_clients.target
+

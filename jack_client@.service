@@ -1,0 +1,31 @@
+
+[Unit]
+# Before = pulseaudio.service
+# RefuseManualStart = yes
+# RefuseManualStop = yes
+Description=Run jack client
+PartOf = jack.target
+Requires = jackd.service
+Requisite = jackd.service
+# PropagatesReloadTo = jackd.service
+
+AssertFileIsExecutable = /usr/bin/alsa_in
+AssertFileIsExecutable = /usr/bin/alsa_out
+
+[Service]
+Restart = always
+RestartSec = 10
+TimeoutStartSec = 10
+TimeoutStopSec = 10
+
+CPUSchedulingPolicy=rr
+CPUSchedulingPriority=90
+LimitCORE=infinity
+LimitMEMLOCK=infinity
+LimitRTPRIO=infinity
+LimitRTTIME=infinity
+Nice=0
+
+[Install]
+WantedBy=default.target
+

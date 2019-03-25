@@ -1,0 +1,12 @@
+
+[Unit]
+After = sound.target basic.target
+Description = Brio Webcam microphones
+Requires = sound.target basic.target 
+
+[Service]
+ExecStart=/usr/bin/alsa_in -c2 -j '%i' -d hw:BRIO
+
+[Install]
+WantedBy=jack_clients.target
+

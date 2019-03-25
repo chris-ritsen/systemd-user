@@ -1,0 +1,28 @@
+
+[Unit]
+
+Description = Display monitors
+RefuseManualStart = yes
+BindsTo = display-monitors.target
+RefuseManualStop = yes
+
+[Service]
+
+Environment = DISPLAY=:0 
+RemainAfterExit=yes
+RestartSec=2
+TimeoutStopSec=2s
+Type=oneshot
+
+ExecStart = /usr/bin/zsh -ic /usr/local/bin/xfix
+ExecStartPost = -/bin/zsh -c "hsetroot -solid '#000000'"
+ExecStartPost = -/usr/bin/zsh -ic "~/haskell/xmonad_server_mode/xmonadctl -a RESET ''"
+# ExecStartPost = /usr/bin/sleep 0.1
+# ExecStartPost = /usr/bin/zsh -ic "~/haskell/xmonad_server_mode/xmonadctl -a RESET ''"
+
+ExecStop = /usr/bin/zsh -ic /usr/local/bin/xoff
+ExecStopPost = -/bin/zsh -c "hsetroot -solid '#000000'"
+
+[Install]
+
+WantedBy = default.target

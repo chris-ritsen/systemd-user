@@ -1,0 +1,8 @@
+
+[Unit]
+
+# PropagatesReloadTo = movie.service
+
+After = xmonad.target
+BindsTo = xmonad.target
+Wants = movie.service

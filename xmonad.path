@@ -1,0 +1,18 @@
+
+[Unit]
+
+# ConditionPathExists = !%h/.xmonad/xmonad-x86_64-linux
+
+DefaultDependencies = no
+Description = Watch Xmonad config for changes
+PropagatesReloadTo = xmonad.service
+RefuseManualStart = yes
+RefuseManualStop = yes
+
+[Path]
+
+PathChanged = %h/.xmonad/xmonad.hs
+PathModified = %h/.xmonad/xmonad.hs 
+
+Unit = xmonad.service
+

@@ -1,0 +1,7 @@
+
+[Unit]
+
+PropagatesReloadTo = display-monitors.service
+PropagatesReloadTo = xmonad.target
+Wants = display-monitors.service
+

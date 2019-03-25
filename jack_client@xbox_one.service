@@ -1,0 +1,54 @@
+
+[Unit]
+# RefuseManualStart = yes
+# RefuseManualStop = yes
+
+Description=Run jack client for %i
+StopWhenUnneeded=no
+
+Requires = jackd.service
+Requires = pulseaudio.service
+
+After = jackd.service
+After = pulseaudio.service
+
+Before = mpd@books.service
+Before = mpd@music.service
+Before = mpd@voice.service
+
+BindsTo = pulseaudio.service
+# Before = pulseaudio.service
+
+AssertFileIsExecutable = /usr/bin/pulseaudio
+
+[Service]
+# RemainAfterExit = yes
+
+Type = oneshot
+
+Restart = no
+RestartSec = 10
+TimeoutStartSec = 10
+TimeoutStopSec = 10
+Slice = audio.slice
+ExecStartPre = /usr/bin/zsh -c '/usr/bin/jack_control status'
+
+ExecStart = /usr/bin/zsh -c 'pactl load-module module-jack-sink channels=2 client_name=skype.out sink_name=jack.out.skype'
+ExecStart = /usr/bin/zsh -c 'pactl load-module module-jack-source channels=2 client_name=skype.in source_name=jack.in.skype'
+ExecStart = /usr/bin/zsh -c 'pactl load-module module-jack-sink channels=1 client_name=phone.out sink_name=jack.out.phone'
+ExecStart = /usr/bin/zsh -c 'pactl load-module module-jack-sink channels=2 client_name=iphone.out sink_name=jack.out.iphone'
+ExecStart = /usr/bin/zsh -c 'pactl load-module module-jack-sink channels=2 client_name=jack_out sink_name=jack_out'
+ExecStart = /usr/bin/zsh -c 'pactl load-module module-jack-sink channels=2 client_name=slack.out sink_name=jack.out.slack'
+ExecStart = /usr/bin/zsh -c 'pactl load-module module-jack-sink channels=2 client_name=xbox_chat.out sink_name=jack.out.xbox_chat'
+ExecStart = /usr/bin/zsh -c 'pactl load-module module-jack-sink channels=2 client_name=xbox_one.out sink_name=jack.out.xbox_one'
+ExecStart = /usr/bin/zsh -c 'pactl load-module module-jack-source channels=1 client_name=phone.in source_name=jack.in.phone'
+ExecStart = /usr/bin/zsh -c 'pactl load-module module-jack-source channels=1 client_name=slack.in source_name=jack.in.slack'
+ExecStart = /usr/bin/zsh -c 'pactl load-module module-jack-source channels=1 client_name=xbox_chat.in source_name=jack.in.xbox_chat'
+ExecStart = /usr/bin/zsh -c 'pactl load-module module-jack-source channels=2 client_name=jack_in source_name=jack_in'
+
+ExecStart = /usr/bin/zsh -c 'pactl set-default-sink jack_out'
+ExecStart = /usr/bin/zsh -c 'pactl set-default-source jack_in'
+
+[Install]
+WantedBy=default.target
+

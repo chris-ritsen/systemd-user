@@ -1,0 +1,28 @@
+
+[Unit]
+
+Description = Ecasound effects
+PartOf = jack.target
+Requires = jackd.service
+Requisite = jackd.service
+StopWhenUnneeded = yes
+
+AssertFileIsExecutable = /usr/bin/ecasound
+
+[Service]
+Restart = always
+RestartSec = 10
+TimeoutStartSec = 10
+TimeoutStopSec = 10
+
+CPUSchedulingPolicy=rr
+CPUSchedulingPriority=90
+LimitCORE=infinity
+LimitMEMLOCK=infinity
+LimitRTPRIO=infinity
+LimitRTTIME=infinity
+Nice=0
+
+[Install]
+WantedBy=default.target
+
