@@ -26,6 +26,9 @@ LimitRTPRIO=infinity
 LimitRTTIME=infinity
 Nice=0
 
+Slice = audio.slice
+
 [Install]
-WantedBy=default.target
+
+WantedBy = jack.target
 

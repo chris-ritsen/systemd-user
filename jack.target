@@ -3,6 +3,8 @@
 
 Description = Jack sound service
 Requires = jackd.service 
+Wants = jack_clients.target
+PropagatesReloadTo = jack_clients.target
 
 [Install]
 

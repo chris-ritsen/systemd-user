@@ -10,11 +10,16 @@ StopWhenUnneeded = no
 
 [Service]
 
-ExecStart = /usr/bin/alsa_in -r 48000 -c 16 -p 64 -j '%i' -d asym_dante0
+# ExecStart = /usr/bin/alsa_in -r 48000 -c 16 -p 64 -j '%i' -d asym_dante0
+ExecStart = /usr/bin/alsa_in -r 48000 -c 16 -p 128 -j '%i' -d asym_dante0
+
 # ExecStart = /usr/bin/alsa_in -c 16 -p 64 -j '%i' -d asym_dante0
 # ExecStart = /usr/bin/alsa_in -c 32 -p 64 -j '%i' -d asym_dante0
 # ExecStart = /usr/bin/zita-a2j -c 8 -p 64 -j dante_pcie_in -d hw:DantePCIe,0,0
 
-[Install]
-WantedBy=jack_clients.target
+Restart = always
+RestartSec = 2
 
+[Install]
+
+WantedBy = jack_clients.target

@@ -9,7 +9,7 @@ Before = skype_audio.service
 Environment=DISPLAY=:0
 # Environment=PULSE_SINK='jack.out.skype'
 # Environment=PULSE_SOURCE='jack.in.skype'
-Environment=app=--app='https://web.skype.com/en/'
+Environment=app=--app='https://web.skype.com'
 Environment=disk_cache_dir=--disk-cache-dir=%t/%p_%i
 Environment=scale=--force-device-scale-factor='1.0'
 Environment=user_data_dir=--user-data-dir='%h/.config/%p-apps/%i'

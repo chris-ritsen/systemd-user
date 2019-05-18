@@ -16,7 +16,7 @@ Type=oneshot
 
 ExecStart = /usr/bin/zsh -ic /usr/local/bin/xfix
 ExecStartPost = -/bin/zsh -c "hsetroot -solid '#000000'"
-ExecStartPost = -/usr/bin/zsh -ic "~/haskell/xmonad_server_mode/xmonadctl -a RESET ''"
+# ExecStartPost = -/usr/bin/zsh -ic "~/haskell/xmonad_server_mode/xmonadctl -a RESET ''"
 # ExecStartPost = /usr/bin/sleep 0.1
 # ExecStartPost = /usr/bin/zsh -ic "~/haskell/xmonad_server_mode/xmonadctl -a RESET ''"
 

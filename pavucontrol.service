@@ -15,6 +15,7 @@ Restart=no
 RestartSec=6
 TimeoutStartSec=1s
 TimeoutStopSec=1s
+Slice = audio.slice
 
 [Install]
 WantedBy = default.target

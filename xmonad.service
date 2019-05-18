@@ -13,7 +13,6 @@ ExecStart = /usr/bin/xmonad --recompile
 ExecStartPost = /usr/bin/xmonad --restart
 RemainAfterExit = no
 RestartSec = 2
-Slice = xmonad.slice
 Type = oneshot
 
 [Install]

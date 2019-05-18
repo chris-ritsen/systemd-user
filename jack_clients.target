@@ -3,3 +3,9 @@
 
 After = jackd.service
 Description = Jack clients
+PartOf = jack.target
+Requires = jackd.service
+
+[Install]
+
+WantedBy = jack.target

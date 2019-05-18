@@ -17,7 +17,10 @@ BindsTo = pulseaudio.service
 Wants = ecasound@jack.service
 After = ecasound@jack.service
 
+AssertFileIsExecutable = /usr/bin/jack_control
+AssertFileIsExecutable = /usr/bin/pactl
 AssertFileIsExecutable = /usr/bin/pulseaudio
+AssertFileIsExecutable = /usr/bin/zsh
 
 [Service]
 RemainAfterExit = yes
@@ -28,7 +31,6 @@ Restart = no
 RestartSec = 10
 TimeoutStartSec = 10
 TimeoutStopSec = 10
-Slice = audio.slice
 ExecStartPre = /usr/bin/zsh -c '/usr/bin/jack_control status'
 
 ExecStart = /usr/bin/zsh -c 'pactl load-module module-jack-sink channels=2 client_name=jack_out sink_name=jack_out'

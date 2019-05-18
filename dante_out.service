@@ -14,6 +14,7 @@ StopWhenUnneeded = yes
 RemainAfterExit=yes
 RestartSec=2
 TimeoutStopSec=2s
+Slice = audio.slice
 
 ExecStart = /usr/bin/zsh -ic "jack_connect 'dante_out:playback_1' 'jack_effects:out_1'; jack_connect 'dante_out:playback_2' 'jack_effects:out_2'"
 ExecStop = /usr/bin/zsh -ic "jack_disconnect 'dante_out:playback_1' 'jack_effects:out_1'; jack_disconnect 'dante_out:playback_2' 'jack_effects:out_2'"

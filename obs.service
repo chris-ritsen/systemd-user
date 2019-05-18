@@ -3,7 +3,7 @@
 
 Description = OBS
 Requires = sound.target graphical-session.target
-After = xbox_out.service
+# After = xbox_out.service
 
 [Service]
 

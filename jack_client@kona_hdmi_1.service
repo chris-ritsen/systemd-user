@@ -1,0 +1,20 @@
+
+[Unit]
+
+After = xbox_notify.service
+Description = AJA Kona HDMI 1 input
+BindsTo = xbox_notify.service
+Wants = xbox_notify.service
+Requires = sound.target basic.target jackd.service
+StopWhenUnneeded = no
+
+[Service]
+
+ExecStart = /usr/bin/alsa_in -c 8 -p 256 -r 48000 -n 16 -j 'xbox_one' -d xbox
+
+Restart = always
+RestartSec = 2
+
+[Install]
+
+WantedBy = jack_clients.target

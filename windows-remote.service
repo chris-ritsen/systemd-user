@@ -8,8 +8,11 @@ Requires=sound.target graphical-session.target
 
 Nice=10
 
-ExecStart=/usr/bin/remote-viewer --debug /media/unsorted/more/software/applications/windows10.remote
-
+# ExecStart=/usr/bin/remote-viewer --debug /media/unsorted/more/software/applications/windows10.remote
+ExecStartPre = -/usr/bin/zsh -c 'virsh start win10'
+ExecStartPre = -/usr/bin/zsh -c 'virsh resume win10'
+ExecStart=/usr/bin/spicy -p 5901 -f --spice-shared-dir=/media/unsorted --spice-preferred-compression=off --name=WINDOWS_10_VM --class=WINDOWS_10_VM
+ExecStopPost = /usr/bin/zsh -c 'virsh suspend win10'
 
 KillMode=process
 Restart=no
@@ -17,11 +20,11 @@ RestartSec=6
 TimeoutStartSec=1s
 TimeoutStopSec=1s
 
-ExecStartPost = /usr/bin/sleep 0.01
-ExecStartPost = /bin/zsh -ic "wmctrl -t7 -i -r $(xdotool search --onlyvisible --class 'remote-viewer' getwindowpid %@ | xargs -I{} xdotool search --all --pid {} --name 'windows10.remote') || true"
-# ExecStartPost = /bin/zsh -ic "wmctrl -t7 -i -r $(xdotool search --onlyvisible --class 'remote-viewer' getwindowpid %@ | xargs -I{} xdotool search --all --pid {} --name 'windows_1') || true"
-# /media/unsorted/software/applications/windows10.remote (1) - Remote Viewer
-# ExecStartPost = /bin/zsh -ic "wmctrl -t7 -i -r $(xdotool search --onlyvisible --class 'remote-viewer' getwindowpid %@ | xargs -I{} xdotool search --all --pid {} --name 'windows_1 (1) - Remote Viewer') || true"
+# ExecStartPost = /usr/bin/sleep 0.01
+# ExecStartPost = /bin/zsh -ic "wmctrl -t7 -i -r $(xdotool search --onlyvisible --class 'remote-viewer' getwindowpid %@ | xargs -I{} xdotool search --all --pid {} --name 'windows10.remote') || true"
+# ExecStartPost = /bin/zsh -ic "wmctrl -t7 -i -r $(xdotool search --onlyvisible --name 'spice display 0:0') || true"
+# ExecStartPost = /usr/bin/sleep 0.01
+# ExecStartPost = /bin/zsh -ic "wmctrl -t7 -i -r $(xdotool search --onlyvisible --name 'spice') || true"
 
 [Install]
 WantedBy = default.target

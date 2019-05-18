@@ -46,17 +46,20 @@ Nice=0
 # MemoryLimit=512M 
 # MemorySoftLimit=512M 
 
-
 # Safe
 # Environment=bufsize=640
 # Environment=period=256
 
-# Low-latency
+# Medium latency
 # Environment=bufsize=128
 # Environment=period=256
 
-# Ultra-low-latency
-Environment=bufsize=24
+# Low latency
+Environment=bufsize=32
+
+# Ultra low latency
+# Environment=bufsize=24
+
 Environment=period=16
 
 Environment=rate=48000
@@ -92,7 +95,16 @@ ExecStartPre = -/usr/bin/zsh -c '/usr/bin/killall -9 pavucontrol'
 # ExecStartPre = /usr/bin/zsh -c "amixer -c II set 'Master',0 255 unmute"
 
 ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'Capture',0 16 cap"
+ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'Crystalizer',0 mute"
+ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'Dialog Plus',0 mute"
+ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'Equalizer',0 mute"
 ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'Master',0 255 unmute"
+ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'PlayEnhancement',0 mute"
+ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'Smart Volume' mute"
+ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'Smart Volume',0 mute"
+ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'Surround',0 mute"
+ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'X-Bass',0 mute"
+
 
 # Test
 
@@ -113,7 +125,6 @@ ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'Master',0 255 unmute"
 # BusName = org.jackaudio.service
 RemainAfterExit = yes
 RestartSec = 1
-Slice = audio.slice
 TimeoutStartSec = 5
 Type = oneshot
 # Type = dbus

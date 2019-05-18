@@ -62,5 +62,5 @@ Type = simple
 [Install]
 
 DefaultInstance = default
-WantedBy = chromium.target
+WantedBy = xmonad.target
 

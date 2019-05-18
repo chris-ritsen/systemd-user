@@ -19,4 +19,4 @@ RestartSec=1
 TimeoutStartSec=10s
 TimeoutStopSec=10s
 Type=forking
-
+Slice = urxvtd.slice

@@ -52,10 +52,10 @@ ExecStart = /usr/bin/systemd-notify --ready
 ExecStop = /usr/bin/zsh -ic "media_player --prop pause && media_player --prop pause > $MPV_PAUSE || true"
 ExecStop = /usr/bin/zsh -ic "media_player --prop pause=yes || true"
 ExecStop = /usr/bin/zsh -ic "media_player --prop time-pos && media_player --prop time-pos > $MPV_TIME_POS || true"
-ExecStop = /usr/bin/zsh -ic "media_player --prop path && media_player --prop path > $MPV_CURRENT || true"
+ExecStop = -/usr/bin/zsh -ic "media_player --prop path && media_player --prop path > $MPV_CURRENT || true"
 # ExecStop = /bin/kill -HUP $MAINPID
 
-ExecReload = /usr/bin/zsh -ic "media_player --prop path && media_player --prop path > $MPV_CURRENT || true"
+ExecReload = -/usr/bin/zsh -ic "media_player --prop path && media_player --prop path > $MPV_CURRENT || true"
 # ExecReload = /home/chris/.scripts/py/media_player --daemon
 
 # KillMode = process

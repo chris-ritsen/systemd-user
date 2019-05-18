@@ -8,5 +8,3 @@ Description = xmonad instance
 Type = simple
 Restart = always
 ExecStart = /usr/bin/xmonad
-Slice = xmonad.slice
-

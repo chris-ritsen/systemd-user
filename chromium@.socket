@@ -1,12 +1,14 @@
 
 [Unit]
-Description=Chromium web browser (socket activation) 
+
+After = network.target
 BindsTo = chromium.target
+Description=Chromium web browser (socket activation) 
 Documentation=man:chromium(1)
+Requires = network.target
 
 [Socket]
 ListenStream = %h/.config/chromium/SingletonSocket
 
 [Install]
 WantedBy = sockets.target
-

@@ -18,5 +18,6 @@ StartLimitBurst = 0
 TimeoutStartSec = 20s
 TimeoutStopSec = 20s
 Type = notify
+Slice = audio.slice
 
 ExecStart = /usr/bin/node %h/home-control/dbus/jack_out.js

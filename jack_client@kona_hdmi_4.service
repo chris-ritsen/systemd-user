@@ -1,0 +1,20 @@
+
+[Unit]
+
+After = super_nt_notify.service
+Description = AJA Kona HDMI 4 input
+BindsTo = super_nt_notify.service
+Wants = super_nt_notify.service
+Requires = sound.target basic.target jackd.service
+StopWhenUnneeded = no
+
+[Service]
+
+ExecStart = /usr/bin/alsa_in -c 8 -p 256 -r 48000 -n 16 -j 'super_nt' -d kona_hdmi_4
+
+Restart = always
+RestartSec = 2
+
+[Install]
+
+WantedBy = jack_clients.target

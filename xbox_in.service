@@ -1,0 +1,16 @@
+
+[Unit]
+
+DefaultDependencies = no
+Description = Xbox One audio
+Requires = jack_client@kona_hdmi_1.service jackd.service
+StopWhenUnneeded = yes
+
+[Service]
+
+RemainAfterExit = yes
+RestartSec=2
+Slice = audio.slice
+TimeoutStopSec=2s
+
+ExecStart = /usr/bin/zsh -c "sleep 0.1 && jack_connect xbox_one:capture_1 jack_effects:'in_1' || true; jack_connect xbox_one:capture_2 jack_effects:'in_2' || true;"

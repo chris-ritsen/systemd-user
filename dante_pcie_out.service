@@ -14,5 +14,6 @@ StopWhenUnneeded = yes
 RemainAfterExit=yes
 RestartSec=2
 TimeoutStopSec=2s
+Slice = audio.slice
 
 ExecStart = /usr/bin/true

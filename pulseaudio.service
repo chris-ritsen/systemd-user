@@ -24,6 +24,7 @@ RestartSec=6
 LimitRTPRIO=infinity
 LimitRTTIME=infinity
 Nice=0
+Slice = audio.slice
 
 [Install]
 

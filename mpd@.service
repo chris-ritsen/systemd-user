@@ -1,11 +1,11 @@
 
 [Unit]
 
-After = media.mount
+After = media-audio.mount
 ConditionPathIsDirectory = /media/audio/%i
 Description = Run music player daemon for %i
 PartOf = jackd.service
-Requires = media.mount
+Requires = media-audio.mount
 Requires = ecasound@jack.service
 After = ecasound@jack.service
 Requires = ecasound@%i.service
@@ -31,14 +31,13 @@ PassEnvironment = XDG_CONFIG_HOME
 Restart = always
 RestartSec = 200
 RuntimeDirectory = %p_%i
-TimeoutStartSec = 4m
+TimeoutStartSec = 10m
 TimeoutStopSec = 1
 Type = notify
 
 ExecReload = -/usr/bin/zsh -c "mpc toggle"
 ExecReload = -/usr/bin/zsh -c "mpc toggle"
 ExecReload = -/usr/bin/zsh -c "mpc update --wait"
-ExecReload = /bin/zsh -ic "%h/.scripts/fixes/sidechain.zsh"
 
 # ExecReload = -/usr/bin/zsh -c "jack_connect %i:left main:playback_1"
 # ExecReload = -/usr/bin/zsh -c "jack_connect %i:right main:playback_2"
@@ -48,12 +47,13 @@ ExecReload = /bin/zsh -ic "%h/.scripts/fixes/sidechain.zsh"
 ExecStartPre = /usr/bin/zsh -c "mkdir -p $MPD_PLAYLIST_DIR"
 ExecStartPre = /usr/bin/zsh -c "touch %t/%p_%i/{log,database,state}"
 
-ExecStart = /usr/local/bin/mpd --no-daemon $MPD_CONFIG_FILE
+ExecStart = /usr/bin/mpd --verbose --no-daemon $MPD_CONFIG_FILE
+# ExecStart = /usr/bin/mpd --no-daemon $MPD_CONFIG_FILE
 
 ExecStartPost = /usr/bin/zsh -c "mpc update --wait"
 ExecStartPost = -/usr/bin/zsh -c "sleep 2 && mpc toggle; mpc toggle"
 # ExecStartPost = /bin/zsh -ic "%h/.scripts/fixes/sidechain.zsh || true"
-ExecStartPost = -/usr/bin/zsh -c "jack_connect '%i:left' '%i_effects:in_1' && jack_connect '%i:right' '%i_effects:in_2' && jack_connect '%i_effects:out_1' 'jack_effects:in_1' && jack_connect '%i_effects:out_2' 'jack_effects:in_2'"
+# ExecStartPost = -/usr/bin/zsh -c "jack_connect '%i:left' '%i_effects:in_1' && jack_connect '%i:right' '%i_effects:in_2' && jack_connect '%i_effects:out_1' 'jack_effects:in_1' && jack_connect '%i_effects:out_2' 'jack_effects:in_2'"
 
 ExecStop = /usr/bin/zsh -c "mpc pause"
 
