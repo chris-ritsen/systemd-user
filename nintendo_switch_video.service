@@ -1,0 +1,22 @@
+
+[Unit]
+
+Description = Nintendo Switch video
+Requires = graphical-session.target
+PartOf = nintendo_switch.target
+
+[Service]
+
+# Nice=10
+
+ExecStart = /usr/bin/ffplay -f v4l2 -window_title 'kona_hdmi_3.nintendo_switch' -i /dev/kona_hdmi_3
+
+KillMode=process
+Restart=no
+RestartSec=6
+TimeoutStartSec=2s
+TimeoutStopSec=2s
+
+[Install]
+
+WantedBy = default.target

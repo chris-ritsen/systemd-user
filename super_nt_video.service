@@ -1,0 +1,22 @@
+
+[Unit]
+
+PartOf = super_nt.target
+Description = Super NT video
+Requires = graphical-session.target
+
+[Service]
+
+# Nice=10
+
+ExecStart = /usr/bin/ffplay -f v4l2 -window_title 'kona_hdmi_4.super_nt' -i /dev/kona_hdmi_4
+
+KillMode=process
+Restart=no
+RestartSec=6
+TimeoutStartSec=2s
+TimeoutStopSec=2s
+
+[Install]
+
+WantedBy = default.target

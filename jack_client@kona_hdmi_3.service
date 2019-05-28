@@ -1,0 +1,21 @@
+
+[Unit]
+
+After = nintendo_switch_notify.service
+BindsTo = nintendo_switch_notify.service
+Description = AJA Kona HDMI 3 input
+PartOf = nintendo_switch.target
+Requires = sound.target basic.target jackd.service
+StopWhenUnneeded = no
+Wants = nintendo_switch_notify.service
+
+[Service]
+
+ExecStart = /usr/bin/alsa_in -c 8 -p 256 -r 48000 -n 16 -j 'nintendo_switch' -d kona_hdmi_3
+
+Restart = always
+RestartSec = 2
+
+[Install]
+
+WantedBy = jack_clients.target

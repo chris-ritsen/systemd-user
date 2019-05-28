@@ -1,0 +1,10 @@
+
+[Unit]
+
+After = nintendo_switch_video.service
+After = jack_client@kona_hdmi_3.service
+BindsTo = nintendo_switch_video.service
+BindsTo = jack_client@kona_hdmi_3.service 
+Description = Nintendo Switch audio/video
+Wants = nintendo_switch_video.service
+Wants = jack_client@kona_hdmi_3.service

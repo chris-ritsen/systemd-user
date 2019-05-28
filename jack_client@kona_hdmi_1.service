@@ -4,6 +4,8 @@
 After = xbox_notify.service
 Description = AJA Kona HDMI 1 input
 BindsTo = xbox_notify.service
+BindsTo = jack_client@kona_hdmi_1.service
+PartOf = xbox_one.target
 Wants = xbox_notify.service
 Requires = sound.target basic.target jackd.service
 StopWhenUnneeded = no

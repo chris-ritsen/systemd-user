@@ -17,7 +17,7 @@ ExecStopPost = /usr/bin/zsh -c 'virsh suspend win10'
 KillMode=process
 Restart=no
 RestartSec=6
-TimeoutStartSec=1s
+TimeoutStartSec=20s
 TimeoutStopSec=1s
 
 # ExecStartPost = /usr/bin/sleep 0.01

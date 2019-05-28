@@ -2,12 +2,13 @@
 [Unit]
 
 # Before = jack_client@dante_in.service
-DefaultDependencies = no
+# PartOf = microphone.target
+
 After = skype_audio.service
 After = xbox.service
 After = xbox_chat.service
+DefaultDependencies = no
 Description = Dante input
-# PartOf = microphone.target
 Requires = jack_client@dante_in.service jackd.service
 StopWhenUnneeded = yes
 
@@ -15,13 +16,7 @@ StopWhenUnneeded = yes
 
 RemainAfterExit = yes
 RestartSec=2
+Slice = audio.slice
 TimeoutStopSec=2s
 
-Slice = audio.slice
-
-ExecStart = /usr/bin/zsh -c "sleep 0.1 && jack_connect dante_in:capture_1 jack_in:'front-left' || true; jack_connect dante_in:capture_1 jack_in:'front-right' || true; jack_connect dante_in:capture_1 skype.in:'front-left' || true; jack_connect dante_in:capture_1 skype.in:'front-right' || true; jack_connect dante_in:capture_1 slack.in:'front-left' || true; jack_connect dante_in:capture_1 slack.in:'front-right' || true; jack_connect dante_in:capture_1 xbox_chat.in:'front-left' || true; jack_connect dante_in:capture_1 xbox_chat.in:'front-right' || true; jack_connect dante_in:capture_2 jack_in:'front-left' || true; jack_connect dante_in:capture_2 jack_in:'front-right' || true; jack_connect dante_in:capture_2 skype.in:'front-left' || true; jack_connect dante_in:capture_2 skype.in:'front-right' || true; jack_connect dante_in:capture_2 slack.in:'front-left' || true; jack_connect dante_in:capture_2 slack.in:'front-right' || true; jack_connect dante_in:capture_2 xbox_chat.in:'front-left' || true; jack_connect dante_in:capture_2 xbox_chat.in:'front-right' || true;"
-ExecStartPre = /usr/bin/zsh -c "sleep 0.1 && jack_connect dante_in:capture_1 jack_in:'front-left' || true; jack_connect dante_in:capture_1 jack_in:'front-right' || true; jack_connect dante_in:capture_1 skype.in:'front-left' || true; jack_connect dante_in:capture_1 skype.in:'front-right' || true; jack_connect dante_in:capture_1 slack.in:'front-left' || true; jack_connect dante_in:capture_1 slack.in:'front-right' || true; jack_connect dante_in:capture_1 xbox_chat.in:'front-left' || true; jack_connect dante_in:capture_1 xbox_chat.in:'front-right' || true; jack_connect dante_in:capture_2 jack_in:'front-left' || true; jack_connect dante_in:capture_2 jack_in:'front-right' || true; jack_connect dante_in:capture_2 skype.in:'front-left' || true; jack_connect dante_in:capture_2 skype.in:'front-right' || true; jack_connect dante_in:capture_2 slack.in:'front-left' || true; jack_connect dante_in:capture_2 slack.in:'front-right' || true; jack_connect dante_in:capture_2 xbox_chat.in:'front-left' || true; jack_connect dante_in:capture_2 xbox_chat.in:'front-right' || true;"
-
-ExecReload = /usr/bin/zsh -c "sleep 0.1 && jack_connect dante_in:capture_1 jack_in:'front-left' || true; jack_connect dante_in:capture_1 jack_in:'front-right' || true; jack_connect dante_in:capture_1 skype.in:'front-left' || true; jack_connect dante_in:capture_1 skype.in:'front-right' || true; jack_connect dante_in:capture_1 slack.in:'front-left' || true; jack_connect dante_in:capture_1 slack.in:'front-right' || true; jack_connect dante_in:capture_1 xbox_chat.in:'front-left' || true; jack_connect dante_in:capture_1 xbox_chat.in:'front-right' || true; jack_connect dante_in:capture_2 jack_in:'front-left' || true; jack_connect dante_in:capture_2 jack_in:'front-right' || true; jack_connect dante_in:capture_2 skype.in:'front-left' || true; jack_connect dante_in:capture_2 skype.in:'front-right' || true; jack_connect dante_in:capture_2 slack.in:'front-left' || true; jack_connect dante_in:capture_2 slack.in:'front-right' || true; jack_connect dante_in:capture_2 xbox_chat.in:'front-left' || true; jack_connect dante_in:capture_2 xbox_chat.in:'front-right' || true;"
-
-ExecStop = /usr/bin/zsh -c "sleep 0.1 && jack_connect dante_in:capture_1 jack_in:'front-left' || true; jack_connect dante_in:capture_1 jack_in:'front-right' || true; jack_connect dante_in:capture_1 skype.in:'front-left' || true; jack_connect dante_in:capture_1 skype.in:'front-right' || true; jack_connect dante_in:capture_1 slack.in:'front-left' || true; jack_connect dante_in:capture_1 slack.in:'front-right' || true; jack_connect dante_in:capture_1 xbox_chat.in:'front-left' || true; jack_connect dante_in:capture_1 xbox_chat.in:'front-right' || true; jack_connect dante_in:capture_2 jack_in:'front-left' || true; jack_connect dante_in:capture_2 jack_in:'front-right' || true; jack_connect dante_in:capture_2 skype.in:'front-left' || true; jack_connect dante_in:capture_2 skype.in:'front-right' || true; jack_connect dante_in:capture_2 slack.in:'front-left' || true; jack_connect dante_in:capture_2 slack.in:'front-right' || true; jack_connect dante_in:capture_2 xbox_chat.in:'front-left' || true; jack_connect dante_in:capture_2 xbox_chat.in:'front-right' || true;"
+ExecStart = /usr/bin/true

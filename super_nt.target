@@ -1,0 +1,10 @@
+
+[Unit]
+
+After = super_nt_video.service
+After = jack_client@kona_hdmi_4.service
+BindsTo = super_nt_video.service
+BindsTo = jack_client@kona_hdmi_4.service 
+Description = Super NT audio/video
+Wants = super_nt_video.service
+Wants = jack_client@kona_hdmi_4.service

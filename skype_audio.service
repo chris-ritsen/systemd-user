@@ -2,11 +2,17 @@
 [Unit]
 
 After = ecasound@jack.service
+After = skype_in_notify.service
+After = skype_out_notify.service
+BindsTo = skype_in_notify.service
+BindsTo = skype_out_notify.service
 DefaultDependencies = no
 Description = Skype audio
 Requires = ecasound@jack.service
 Requires = pulseaudio.service
 StopWhenUnneeded = yes
+Wants = skype_in_notify.service
+Wants = skype_out_notify.service
 
 [Service]
 
@@ -16,7 +22,5 @@ TimeoutStopSec=2s
 
 ExecStart = /usr/bin/zsh -c "pactl load-module module-jack-sink channels=2 client_name=skype.out sink_name=jack.out.skype"
 ExecStartPost = /usr/bin/zsh -c "pactl load-module module-jack-source channels=2 client_name=skype.in source_name=jack.in.skype"
-ExecStartPost = /usr/bin/zsh -c "jack_connect 'skype.out:front-left' 'jack_effects:in_1' && jack_connect 'skype.out:front-right' 'jack_effects:in_2'"
-ExecStartPost = /usr/bin/zsh -c "sleep 0.1 && jack_connect dante_in:capture_1 skype.in:'front-left' || true && jack_connect dante_in:capture_1 skype.in:'front-right' || true"
 ExecStop = /usr/bin/zsh -ic "pactl list short | grep module-jack-sink | grep client_name=skype.out | cut -f 1 | xargs -I{} pactl unload-module {}"
 ExecStop = /usr/bin/zsh -ic "pactl list short | grep module-jack-source | grep client_name=skype.in | cut -f 1 | xargs -I{} pactl unload-module {}"

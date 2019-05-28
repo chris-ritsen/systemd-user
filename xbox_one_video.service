@@ -1,0 +1,22 @@
+
+[Unit]
+
+Description = Xbox One video
+Requires = graphical-session.target
+PartOf = xbox_one.target
+
+[Service]
+
+# Nice=10
+
+ExecStart = /usr/bin/ffplay -f v4l2 -window_title 'kona_hdmi_1.xbox_one' -i /dev/kona_hdmi_1
+
+KillMode=process
+Restart=no
+RestartSec=6
+TimeoutStartSec=2s
+TimeoutStopSec=2s
+
+[Install]
+
+WantedBy = default.target

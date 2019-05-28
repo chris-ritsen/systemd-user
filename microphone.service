@@ -11,7 +11,7 @@ Description = DANTE Microphone
 StopWhenUnneeded = yes
 # RefuseManualStart = yes
 # RefuseManualStop = yes
-Requires = dante_in.service
+# Requires = dante_in.service
 Requires = outlet@3.service
 
 [Service]

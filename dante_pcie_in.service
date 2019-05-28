@@ -2,14 +2,19 @@
 [Unit]
 
 # Before = jack_client@dante_in.service
-DefaultDependencies = no
+# PartOf = microphone.target
+# Requires = jack_client@dante_in.service jackd.service
+
+After = radial_dinet_notify.service
 After = skype_audio.service
 After = xbox.service
 After = xbox_chat.service
+BindsTo = radial_dinet_notify.service
+DefaultDependencies = no
 Description = Dante input
-# PartOf = microphone.target
-Requires = jack_client@dante_in.service jackd.service
+Requires = jackd.service
 StopWhenUnneeded = yes
+Wants = radial_dinet_notify.service
 
 [Service]
 

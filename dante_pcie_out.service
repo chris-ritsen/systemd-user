@@ -2,12 +2,15 @@
 [Unit]
 
 # Before = jack_client@dante_out.service
+After = dante_pcie_out_notify.service
 After = ecasound@jack.service
+BindsTo = dante_pcie_out_notify.service
 DefaultDependencies = no
 Description = Dante output
 Requires = ecasound@jack.service
 Requires = jack_client@dante_pcie_out.service
 StopWhenUnneeded = yes
+Wants = dante_pcie_out_notify.service
 
 [Service]
 

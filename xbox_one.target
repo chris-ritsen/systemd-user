@@ -1,0 +1,10 @@
+
+[Unit]
+
+After = xbox_one_video.service
+After = jack_client@kona_hdmi_1.service
+BindsTo = xbox_one_video.service
+BindsTo = jack_client@kona_hdmi_1.service 
+Description = Xbox One audio/video
+Wants = xbox_one_video.service
+Wants = jack_client@kona_hdmi_1.service
