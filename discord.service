@@ -1,0 +1,23 @@
+
+[Unit]
+
+Description = Discord
+Requires = sound.target graphical-session.target
+# After = xbox_out.service
+
+[Service]
+
+Nice=10
+
+ExecStart = /usr/bin/discord
+ExecStop = /usr/bin/killall -I -9 discord
+
+KillMode=process
+Restart=no
+RestartSec=6
+TimeoutStartSec=2s
+TimeoutStopSec=2s
+
+[Install]
+WantedBy = default.target
+

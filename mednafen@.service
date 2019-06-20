@@ -1,0 +1,12 @@
+
+[Unit]
+
+Description = Run game %i
+
+[Service]
+
+Type = simple
+
+# [Install]
+#
+# WantedBy=default.target
