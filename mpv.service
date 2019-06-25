@@ -31,9 +31,10 @@ Environment = DISPLAY=:0
 Environment = VDPAU_DRIVER=nvidia
 Environment = MPV_PAUSE=no
 
+# Environment = AUDIO_OUTPUT_DEVICE=pulse
+
 Environment = AUDIO_OUTPUT_DEVICE=jack
-Environment = AUDIO_OUTPUT_DEVICE=pulse
-# Environment = JACK_CLIENT_NAME=mpv
+Environment = JACK_CLIENT_NAME=mpv
 
 Environment = MPV_CURRENT=/home/chris/.scripts/media_player_state/path
 Environment = MPV_PAUSE=/home/chris/.scripts/media_player_state/pause

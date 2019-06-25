@@ -85,6 +85,7 @@ ExecReload = /usr/bin/zsh -c "/usr/bin/jack_bufsize $bufsize"
 ExecReload = /usr/bin/zsh -c "/usr/bin/jack_control dps period $period"
 ExecReload = /usr/bin/zsh -c "/usr/bin/jack_control dps rate $rate"
 
+ExecStartPre = -/usr/bin/zsh -c '/usr/bin/killall -9 pulseaudio'
 ExecStartPre = -/usr/bin/zsh -c '/usr/bin/killall -9 jackdbus'
 ExecStartPre = -/usr/bin/zsh -c '/usr/bin/killall -9 pavucontrol'
 
