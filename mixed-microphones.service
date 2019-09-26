@@ -22,14 +22,14 @@ Requires = outlet@7.service
 [Service]
 
 ExecStart = /usr/bin/sleep 0.2
-ExecStartPost = /bin/zsh -ic "dante_mic_both off"
-ExecStartPost = /bin/zsh -ic "dante_mic_both off"
-ExecStartPost = /bin/zsh -ic "dante_mic_both on"
-ExecStartPost = /bin/zsh -ic "dante_mic_both on"
-ExecStartPost = /bin/zsh -ic "sleep 0.2 && dante_mic_both on"
-ExecStartPost = /bin/zsh -ic "sleep 0.2 && dante_mic_both on"
+# ExecStartPost = /bin/zsh -ic "dante_mic_both off"
+# ExecStartPost = /bin/zsh -ic "dante_mic_both off"
+# ExecStartPost = /bin/zsh -ic "dante_mic_both on"
+# ExecStartPost = /bin/zsh -ic "dante_mic_both on"
+# ExecStartPost = /bin/zsh -ic "sleep 0.2 && dante_mic_both on"
+# ExecStartPost = /bin/zsh -ic "sleep 0.2 && dante_mic_both on"
 
-ExecStop = /bin/zsh -ic "dante_mic_both off"
+# ExecStop = /bin/zsh -ic "dante_mic_both off"
 
 RemainAfterExit = yes
 RestartSec=2

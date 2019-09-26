@@ -1,0 +1,33 @@
+
+[Unit]
+
+After = media-audio.mount
+After = mpd@%i.service
+ConditionPathIsDirectory = /media/audio
+Description = Run remote control music player daemon for %i
+Requires = media-audio.mount
+RequiresMountsFor = /media/audio
+
+[Service]
+
+Environment = MPD_HOST='%t/mpd_%i/socket'
+Environment = PULSE_PROP='media.role=music'
+
+CPUSchedulingPolicy = rr
+CPUSchedulingPriority = 90
+LimitCORE = infinity
+LimitMEMLOCK = infinity
+LimitRTPRIO = infinity
+LimitRTTIME = infinity
+Nice = 0
+PIDFile = %t/%p_%i/pid
+PassEnvironment = XDG_CONFIG_HOME
+PassEnvironment = MPD_HOST
+Restart = always
+RestartSec = 200
+RuntimeDirectory = %p_%i
+TimeoutStartSec = 10m
+TimeoutStopSec = 1
+# Type = notify
+
+ExecStart = /usr/bin/ympd -w "$YMPD_PORT" --host="%t/mpd_%i/socket" --port='0'

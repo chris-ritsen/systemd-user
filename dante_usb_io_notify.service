@@ -2,7 +2,8 @@
 [Unit]
 
 # Before = jack_client@dante_pcie_in.service
-# PartOf = jack_client@dante_pcie_in.service
+# Before = jack_client@dante_pcie_out.service
+
 StopWhenUnneeded = no
 
 [Service]
@@ -18,4 +19,4 @@ TimeoutStartSec = 20s
 TimeoutStopSec = 20s
 Type = notify
 
-ExecStart = /usr/bin/node %h/home-control/dbus/radial_dinet.js
+ExecStart = /usr/bin/node %h/home-control/dbus/dante_usb_io.js

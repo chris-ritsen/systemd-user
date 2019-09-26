@@ -1,8 +1,8 @@
 
 [Unit]
 
-Before = jack_client@dante_pcie_in.service
-PartOf = jack_client@dante_pcie_in.service
+# Before = jack_client@dante_pcie_in.service
+# PartOf = jack_client@dante_pcie_in.service
 StopWhenUnneeded = no
 
 [Service]

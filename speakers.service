@@ -1,7 +1,6 @@
 
 [Unit]
 
-# Before = jack_client@main.service
 # RefuseManualStart = yes
 # RefuseManualStop = yes
 # StopWhenUnneeded = yes
@@ -23,5 +22,3 @@ TimeoutStopSec=2s
 Type=oneshot
 
 ExecStart = /usr/bin/true
-# ExecStartPost = /usr/bin/zsh -ic "jack_connect 'main:playback_1' 'speakers_effects:out_1'; jack_connect 'main:playback_2' 'speakers_effects:out_2'"
-# ExecStopPost = /usr/bin/zsh -ic "jack_disconnect 'main:playback_1' 'speakers_effects:out_2'; jack_disconnect 'main:playback_2' 'speakers_effects:out_2'"

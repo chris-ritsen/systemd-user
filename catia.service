@@ -1,7 +1,9 @@
 
 [Unit]
 
+After = jackd.service
 Description=Catia jackd patchbay
+# Requires = jackd.service
 Requires=sound.target graphical-session.target
 
 [Service]

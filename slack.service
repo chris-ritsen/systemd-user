@@ -1,17 +1,22 @@
 
 [Unit]
-After=graphical-session.target
-Requires=graphical-session.target
-Description=Slack
+
+Description = Slack
+Requires = sound.target graphical-session.target
+# After = xbox_out.service
 
 [Service]
-Environment=DISPLAY=:0
-ExecStart=/usr/lib/slack/slack -l /tmp/slack.log
-ExecStop=/usr/bin/killall -9 slack
-Restart=always
-RestartSec=1
-Type=simple
+
+Nice=10
+
+ExecStart = /usr/bin/slack
+ExecStop = /usr/bin/killall -I -9 slack
+
+KillMode=process
+Restart=no
+RestartSec=6
+TimeoutStartSec=2s
+TimeoutStopSec=2s
 
 [Install]
-WantedBy=default.target
-
+WantedBy = default.target

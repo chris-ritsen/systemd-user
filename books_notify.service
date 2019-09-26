@@ -1,8 +1,9 @@
 
 [Unit]
 
-Before = jack_client@skype_out.service
-PartOf = jack_client@skype_out.service
+Before = ecasound@books.service
+PartOf = ecasound@books.service
+
 StopWhenUnneeded = no
 
 [Service]
@@ -18,4 +19,4 @@ TimeoutStartSec = 20s
 TimeoutStopSec = 20s
 Type = notify
 
-ExecStart = /usr/bin/node %h/home-control/dbus/skype_out.js
+ExecStart = /usr/bin/node %h/home-control/dbus/books_out.js

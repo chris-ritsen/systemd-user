@@ -9,7 +9,9 @@ PartOf = xbox_one.target
 
 # Nice=10
 
-ExecStart = /usr/bin/ffplay -f v4l2 -window_title 'kona_hdmi_1.xbox_one' -i /dev/kona_hdmi_1
+# ExecStart = /usr/bin/ffplay -f v4l2 -window_title 'kona_hdmi_1.xbox_one' -i /dev/kona_hdmi_1
+ExecStart = /usr/bin/ffplay -fast -sws_flags +print_info -sws_flags +bicubic -x 2560 -y 1600 -v info -f v4l2 -pixel_format 0rgb -video_size 3840x2160 -window_title 'kona_hdmi_1.xbox_one' -i /dev/kona_hdmi_1
+
 
 KillMode=process
 Restart=no

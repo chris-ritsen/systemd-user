@@ -4,7 +4,6 @@
 # Before = jack_client@dante_in.service
 # PartOf = microphone.target
 
-After = skype_audio.service
 After = xbox.service
 After = xbox_chat.service
 DefaultDependencies = no

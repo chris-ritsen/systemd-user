@@ -1,0 +1,19 @@
+
+[Unit]
+
+Description = DisplayPort switch
+RefuseManualStart = no
+RefuseManualStop = no
+
+[Service]
+
+RemainAfterExit = no
+RestartSec=2
+TimeoutStopSec=2s
+Type=oneshot
+
+ExecStart = /usr/bin/igclient --quiet --send %h/.config/rc/siig.dp.4x1/KEY_%i
+
+# [Install]
+#
+# WantedBy = default.target

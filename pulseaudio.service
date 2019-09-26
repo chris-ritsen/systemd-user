@@ -18,7 +18,9 @@ CPUSchedulingPriority=90
 # IOSchedulingPriority=0
 LimitCORE=infinity
 LimitMEMLOCK=infinity
-TimeoutStartSec=2s
+
+TimeoutStartSec = 50s
+
 TimeoutStopSec=2s
 RestartSec=6
 LimitRTPRIO=infinity

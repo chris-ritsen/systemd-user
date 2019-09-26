@@ -2,14 +2,15 @@
 [Unit]
 
 After = media-audio.mount
-ConditionPathIsDirectory = /media/audio/%i
+ConditionPathIsDirectory = /media/audio
 Description = Run music player daemon for %i
 PartOf = jackd.service
 Requires = media-audio.mount
 Requires = ecasound@jack.service
 After = ecasound@jack.service
-Requires = ecasound@%i.service
-RequiresMountsFor = /media/audio/%i
+Wants = ecasound@%i.service
+Wants = ympd@%i.service
+RequiresMountsFor = /media/audio
 
 [Service]
 
@@ -39,28 +40,15 @@ ExecReload = -/usr/bin/zsh -c "mpc toggle"
 ExecReload = -/usr/bin/zsh -c "mpc toggle"
 ExecReload = -/usr/bin/zsh -c "mpc update --wait"
 
-# ExecReload = -/usr/bin/zsh -c "jack_connect %i:left main:playback_1"
-# ExecReload = -/usr/bin/zsh -c "jack_connect %i:right main:playback_2"
-# ExecReload = -/usr/bin/zsh -c "jack_connect %i:left dante_out:playback_1"
-# ExecReload = -/usr/bin/zsh -c "jack_connect %i:right dante_out:playback_2"
-
 ExecStartPre = /usr/bin/zsh -c "mkdir -p $MPD_PLAYLIST_DIR"
 ExecStartPre = /usr/bin/zsh -c "touch %t/%p_%i/{log,database,state}"
 
+ExecStartPre = /usr/bin/zsh -c 'echo "mpd --verbose --no-daemon $MPD_CONFIG_FILE"'
 ExecStart = /usr/bin/mpd --verbose --no-daemon $MPD_CONFIG_FILE
-# ExecStart = /usr/bin/mpd --no-daemon $MPD_CONFIG_FILE
 
-ExecStartPost = /usr/bin/zsh -c "mpc update --wait"
 ExecStartPost = -/usr/bin/zsh -c "sleep 2 && mpc toggle; mpc toggle"
-# ExecStartPost = /bin/zsh -ic "%h/.scripts/fixes/sidechain.zsh || true"
-# ExecStartPost = -/usr/bin/zsh -c "jack_connect '%i:left' '%i_effects:in_1' && jack_connect '%i:right' '%i_effects:in_2' && jack_connect '%i_effects:out_1' 'jack_effects:in_1' && jack_connect '%i_effects:out_2' 'jack_effects:in_2'"
 
 ExecStop = /usr/bin/zsh -c "mpc pause"
-
-# ExecStartPost = -/usr/bin/zsh -c "jack_connect %i:left main:playback_1"
-# ExecStartPost = -/usr/bin/zsh -c "jack_connect %i:right main:playback_2"
-# ExecStartPost = -/usr/bin/zsh -c "jack_connect %i:left dante_out:playback_1"
-# ExecStartPost = -/usr/bin/zsh -c "jack_connect %i:right dante_out:playback_2"
 
 # These break stuff now
 # PrivateTmp = yes

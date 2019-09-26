@@ -7,12 +7,12 @@ Description = Run jack client for %i
 StopWhenUnneeded = no
 
 Requires = jackd.service
-Requires = pulseaudio.service
+# Requires = pulseaudio.service
 
 After = jackd.service
 After = pulseaudio.service
 
-BindsTo = pulseaudio.service
+# BindsTo = pulseaudio.service
 # Wants = jack_out_notify.service
 Wants = ecasound@jack.service
 After = ecasound@jack.service
@@ -29,8 +29,8 @@ Type = oneshot
 
 Restart = no
 RestartSec = 10
-TimeoutStartSec = 10
-TimeoutStopSec = 10
+TimeoutStartSec = 20
+TimeoutStopSec = 20
 ExecStartPre = /usr/bin/zsh -c '/usr/bin/jack_control status'
 
 ExecStart = /usr/bin/zsh -c 'pactl load-module module-jack-sink channels=2 client_name=jack_out sink_name=jack_out'

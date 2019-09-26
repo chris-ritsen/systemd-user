@@ -6,8 +6,8 @@
 # Requires = jack_client@dante_in.service jackd.service
 
 After = dante_pcie_in_notify.service
+After = jackd.service
 After = radial_dinet_notify.service
-After = skype_audio.service
 After = xbox.service
 After = xbox_chat.service
 BindsTo = dante_pcie_in_notify.service

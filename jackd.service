@@ -14,7 +14,7 @@ After = jack_out_notify.service
 After = sound.target
 Before = chromium@default.service
 Before = pulseaudio.service
-BindsTo = pulseaudio.service
+# BindsTo = pulseaudio.service
 Requires = sound.target
 Wants = jack_out_notify.service
 
@@ -66,28 +66,48 @@ Environment=rate=48000
 
 # ExecStop = /usr/bin/zsh -c '/usr/bin/jack_control stop'
 
+# ExecStart = -"/usr/bin/zsh -c '/usr/bin/killall pulseaudio'"
+# ExecStart = -"/usr/bin/zsh -c '/usr/bin/killall jackd'"
+# ExecStart = -"/usr/bin/zsh -c '/usr/bin/killall jackdbus'"
+# ExecStart = -"/usr/bin/zsh -c '/usr/bin/killall ecasound'"
+
+# Generic dummy driver
+# ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control ds dummy'
+
+# ALSA driver
+ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control ds alsa'
+
+# ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps period $period"
+
+ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps capture 'hw:DantePCIe,0'" 
+ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps device 'hw:DantePCIe,0'" 
+ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps playback 'hw:DantePCIe,0'" 
+
+ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps period 16"
+ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps rate $rate"
+
+ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control dps inchannels 128'
+ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control dps outchannels 128'
+
+ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control eps realtime-priority 90'
+ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control epr self-connect-mode'
+# ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control eps self-connect-mode a'
 
 ExecStart = /usr/bin/jack_control start
 
-# Essential
+ExecStart = /usr/bin/zsh -c "/usr/bin/jack_bufsize 16"
 
-ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control ds dummy'
+# ExecStart = /usr/bin/zsh -c "/usr/bin/jack_bufsize $bufsize" 
 
-ExecStart = /usr/bin/zsh -c "/usr/bin/jack_bufsize $bufsize" 
-ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps period $period"
-ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps rate $rate"
-
-ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control eps realtime-priority 90'
-ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control eps self-connect-mode A'
+# ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control eps self-connect-mode A'
+# ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control eps self-connect-mode " "'
 ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control status'
+ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control ep'
+ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control dp'
 
 ExecReload = /usr/bin/zsh -c "/usr/bin/jack_bufsize $bufsize" 
 ExecReload = /usr/bin/zsh -c "/usr/bin/jack_control dps period $period"
 ExecReload = /usr/bin/zsh -c "/usr/bin/jack_control dps rate $rate"
-
-ExecStartPre = -/usr/bin/zsh -c '/usr/bin/killall -9 pulseaudio'
-ExecStartPre = -/usr/bin/zsh -c '/usr/bin/killall -9 jackdbus'
-ExecStartPre = -/usr/bin/zsh -c '/usr/bin/killall -9 pavucontrol'
 
 # ExecStartPre = /usr/bin/zsh -c "amixer -c II set 'Analog Output',0 'Headphones'"
 # ExecStartPre = /usr/bin/zsh -c "amixer -c II set 'DAC Filter',0 'Sharp Roll-off'"
@@ -107,9 +127,9 @@ ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'Surround',0 mute"
 ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'X-Bass',0 mute"
 
 
-# Test
-
-# ExecStopPost = /usr/bin/zsh -c '/usr/bin/jack_control stop'
+ExecStop = /usr/bin/zsh -c 'killall -9 catia'
+ExecStop = /usr/bin/zsh -c 'killall -9 cadence'
+ExecStop = /usr/bin/zsh -c '/usr/bin/jack_control stop'
 
 # ExecStartPost = +/usr/bin/zsh -c 'rtirq start'
 
@@ -126,7 +146,7 @@ ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'X-Bass',0 mute"
 # BusName = org.jackaudio.service
 RemainAfterExit = yes
 RestartSec = 1
-TimeoutStartSec = 5
+TimeoutStartSec = 15
 Type = oneshot
 # Type = dbus
 TimeoutStopSec=1

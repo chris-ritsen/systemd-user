@@ -4,7 +4,7 @@
 BindsTo = speakers.service
 Description = Speakers
 PropagatesReloadTo = speakers.service
-Requires = jack_client@main.service
+Requires = jack_client@speakers.service
 Requires = speakers.service
 
 [Install]

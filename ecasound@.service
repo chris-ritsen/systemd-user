@@ -12,7 +12,7 @@ AssertFileIsExecutable = /usr/bin/ecasound
 [Service]
 Restart = always
 RestartSec = 10
-TimeoutStartSec = 10
+TimeoutStartSec = 50s
 TimeoutStopSec = 10
 
 CPUSchedulingPolicy=rr

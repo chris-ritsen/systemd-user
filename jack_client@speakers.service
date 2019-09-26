@@ -2,7 +2,7 @@
 [Unit]
 
 DefaultDependencies = no
-Description = Main system audio
+Description = Speakers (motherboard line-out)
 StopWhenUnneeded = yes
 
 [Service]

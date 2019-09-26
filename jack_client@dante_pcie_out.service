@@ -1,9 +1,13 @@
 
 [Unit]
 
-After = sound.target basic.target dante_pcie_out.service
+After = basic.target
+After = dante_pcie_out.service
+After = sound.target
 Description = Main system audio
-Requires = sound.target basic.target jackd.service
+Requires = basic.target
+Requires = jackd.service
+Requires = sound.target
 StopWhenUnneeded = no
 Wants = dante_pcie_out_notify.service
 
@@ -22,7 +26,8 @@ ExecStart = /usr/bin/alsa_out -r 48000 -c 20 -p 1024 -n2 -j '%i' -d asym_dante0
 ExecStop = /usr/bin/true
 
 Restart = always
-RestartSec = 2
+RestartSec = 5
+TimeoutStartSec = 50
 
 [Install]
 

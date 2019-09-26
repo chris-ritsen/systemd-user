@@ -19,7 +19,8 @@ ExecStart = /usr/bin/alsa_in -r 48000 -c 16 -p 1024 -n2 -j '%i' -d asym_dante0
 # ExecStart = /usr/bin/zita-a2j -c 16 -p 256 -j dante_pcie_in -d hw:DantePCIe,0,0
 
 Restart = always
-RestartSec = 2
+RestartSec = 5
+TimeoutStartSec = 50
 
 [Install]
 

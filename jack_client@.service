@@ -7,6 +7,7 @@ Description=Run jack client
 PartOf = jack.target
 Requires = jackd.service
 Requisite = jackd.service
+After = jackd.service
 # PropagatesReloadTo = jackd.service
 
 AssertFileIsExecutable = /usr/bin/alsa_in

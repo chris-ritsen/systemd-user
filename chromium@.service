@@ -26,6 +26,7 @@ Environment=DISPLAY=:0
 Environment=disk_cache_dir=--disk-cache-dir=%t/chromium
 Environment=remote_debugging_port=9222
 Environment=user_data_dir=--user-data-dir=%h/.config/chromium
+PrivateTmp=no
 
 ExecStart = /usr/bin/chromium \
 ${disk_cache_dir} \
@@ -41,11 +42,10 @@ RuntimeDirectory = chromium
 # TODO: Watch file changes instead
 
 # ExecStartPost = /bin/zsh -c 'find . -type f -name "*.png" -exec gm convert {} -strip {} \;' 
-PrivateTmp = yes
 
 CPUQuota = 20%
-# MemoryHigh = 1G
-# MemoryMax = 2G
+MemoryHigh = 6G
+MemoryMax = 8G
 
 Restart = no
 RestartSec = 10
@@ -63,4 +63,3 @@ Type = simple
 
 DefaultInstance = default
 WantedBy = xmonad.target
-

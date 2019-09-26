@@ -1,0 +1,18 @@
+
+[Unit]
+
+# Requires = radial_dinet_notify.service
+# Requires = jack_client@dante_pcie_in.service
+# Requires = jack_client@dante_pcie_out.service
+
+# Requires = catia.service
+Requires = dante_pcie_in_notify.service
+Requires = dante_pcie_out_notify.service
+Requires = dante_usb_io_notify.service
+Requires = ecasound@jack.service
+Requires = jackd.service
+Requires = mixed-microphones.target
+Requires = shelford-channel.target
+Requires = shure-ad4d.target
+Requires = shure-p10t.target
+Requires = wireless-audio@2.service

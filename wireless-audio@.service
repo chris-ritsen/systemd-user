@@ -3,15 +3,17 @@
 
 # Before = dante_out.service
 After = outlet@2.service
+After = outlet@8.service
 DefaultDependencies = no
 Description = Wireless audio channel %i
 # Requires = dante_out.service
 Requires = outlet@2.service
 Requires = outlet@4.service
+Requires = outlet@8.service
 
 [Service]
 
-TimeoutStartSec = 20s
+TimeoutStartSec = 50s
 TimeoutStopSec = 1
 RestartSec = 1
 Restart = no
