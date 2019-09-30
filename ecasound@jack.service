@@ -3,6 +3,8 @@
 
 Description = ecasound %i effects
 Requires = jackd.service
+Wants = dante_pcie_out_notify.service
+After = dante_pcie_out_notify.service
 
 [Service]
 

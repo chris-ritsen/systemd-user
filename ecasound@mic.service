@@ -1,0 +1,15 @@
+
+[Unit]
+
+Description = ecasound %i effects
+Requires = jackd.service
+Requires = mic_notify.service
+After = mic_notify.service
+BindsTo = outlet@3.service
+BindsTo = outlet@8.service
+
+[Service]
+
+TimeoutStartSec = 50s
+Environment = TERM=xterm
+ExecStart = /usr/bin/zsh -ic "ecasound -G:jack,%i_effects -C -f:f32_le,1,48000 jack,,in -o jack,,out -a:1 -eadb:-10"

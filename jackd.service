@@ -11,12 +11,12 @@ Wants = jack_client@pulseaudio.service
 After = jack_client@dante_in.service
 After = jack_client@dante_out.service
 After = jack_out_notify.service
+Wants = jack_out_notify.service
 After = sound.target
 Before = chromium@default.service
 Before = pulseaudio.service
 # BindsTo = pulseaudio.service
 Requires = sound.target
-Wants = jack_out_notify.service
 
 AssertFileIsExecutable = /usr/bin/jackdbus
 Description = Run jackdbus
@@ -125,7 +125,6 @@ ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'Smart Volume' mute"
 ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'Smart Volume',0 mute"
 ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'Surround',0 mute"
 ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'X-Bass',0 mute"
-
 
 ExecStop = /usr/bin/zsh -c 'killall -9 catia'
 ExecStop = /usr/bin/zsh -c 'killall -9 cadence'

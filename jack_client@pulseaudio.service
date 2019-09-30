@@ -16,6 +16,8 @@ After = pulseaudio.service
 # Wants = jack_out_notify.service
 Wants = ecasound@jack.service
 After = ecasound@jack.service
+Wants = jack_in_notify.service
+Wants = jack_out_notify.service
 
 AssertFileIsExecutable = /usr/bin/jack_control
 AssertFileIsExecutable = /usr/bin/pactl

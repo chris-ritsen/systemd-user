@@ -1,0 +1,7 @@
+
+[Unit]
+
+After = outlet@8.service
+BindsTo = outlet@8.service
+Description = Ferrofish A32 Dante
+Requires = outlet@8.service 

@@ -8,3 +8,4 @@ Description=DANTE Microphone
 PropagatesReloadTo = microphone.service
 # Requires = jack_client@dante_pcie_in.service
 Requires = microphone.service
+BindsTo = microphone.service
