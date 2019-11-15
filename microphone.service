@@ -16,8 +16,8 @@ Requires = outlet@3.service
 Requires = outlet@8.service
 After = ecasound@mic.service
 Wants = ecasound@mic.service
-Wants = dante_usb_io_notify.service
-After = dante_usb_io_notify.service
+Wants = dante_usb_in_notify.service
+After = dante_usb_in_notify.service
 Before = jack_in_notify.service
 Requires = jack_client@pulseaudio.service
 

@@ -14,6 +14,7 @@ NotifyAccess = all
 RemainAfterExit = yes
 Restart = no
 RestartSec = 1
+Nice = 19
 StartLimitBurst = 0
 TimeoutStartSec = 20s
 TimeoutStopSec = 20s

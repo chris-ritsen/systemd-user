@@ -2,10 +2,10 @@
 [Unit]
 
 After = outlet@7.service
+After = outlet@8.service
 BindsTo = outlet@7.service
 Description = Receiver for wireless microphones
 Requires = outlet@7.service 
 
 PropagatesReloadTo = wireless-microphone.service
 # PropagatesReloadTo = wireless-microphone@2.service
-

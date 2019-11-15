@@ -6,17 +6,21 @@ RefuseManualStart = no
 RefuseManualStop = no
 Description=JACK Audio Connection Kit sound server
 
-Wants = jack_client@pulseaudio.service
-
-After = jack_client@dante_in.service
-After = jack_client@dante_out.service
-After = jack_out_notify.service
-Wants = jack_out_notify.service
+# After = jack_client@dante_in.service
+# After = jack_client@dante_out.service
 After = sound.target
-Before = chromium@default.service
-Before = pulseaudio.service
-# BindsTo = pulseaudio.service
+
+# Before = chromium@default.service
+# Before = dante_usb_out_notify.service
+# Before = jack_client@pulseaudio.service
+# Before = jack_out_notify.service
+# Before = pulseaudio.service
+
 Requires = sound.target
+
+Wants = dante_usb_out_notify.service
+Wants = jack_client@pulseaudio.service
+Wants = jack_out_notify.service
 
 AssertFileIsExecutable = /usr/bin/jackdbus
 Description = Run jackdbus
@@ -35,13 +39,14 @@ Description = Run jackdbus
 # IOSchedulingClass=realtime
 # IOSchedulingPriority=0
 
-CPUSchedulingPolicy=rr
-CPUSchedulingPriority=90
+# CPUSchedulingPolicy=rr
+# CPUSchedulingPriority=99
 LimitCORE=infinity
 LimitMEMLOCK=infinity
 LimitRTPRIO=infinity
+Slice = audio.slice
 LimitRTTIME=infinity
-Nice=0
+# Nice=0
 
 # MemoryLimit=512M 
 # MemorySoftLimit=512M 
@@ -66,13 +71,13 @@ Environment=rate=48000
 
 # ExecStop = /usr/bin/zsh -c '/usr/bin/jack_control stop'
 
-# ExecStart = -"/usr/bin/zsh -c '/usr/bin/killall pulseaudio'"
-# ExecStart = -"/usr/bin/zsh -c '/usr/bin/killall jackd'"
-# ExecStart = -"/usr/bin/zsh -c '/usr/bin/killall jackdbus'"
-# ExecStart = -"/usr/bin/zsh -c '/usr/bin/killall ecasound'"
+ExecStartPre = -/usr/bin/killall -9 jackd ecasound jackdbus catia cadence pulseaudio
 
 # Generic dummy driver
 # ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control ds dummy'
+
+ExecStart = /usr/bin/jack_control exit
+ExecStart = /usr/bin/jack_control start
 
 # ALSA driver
 ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control ds alsa'
@@ -83,19 +88,19 @@ ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps capture 'hw:DantePCIe,0'"
 ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps device 'hw:DantePCIe,0'" 
 ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps playback 'hw:DantePCIe,0'" 
 
-ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps period 16"
+# ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps period 128"
+ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps period 512"
 ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps rate $rate"
 
 ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control dps inchannels 128'
 ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control dps outchannels 128'
 
-ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control eps realtime-priority 90'
-ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control epr self-connect-mode'
+# ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control eps realtime-priority 99'
+# ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control epr self-connect-mode'
 # ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control eps self-connect-mode a'
 
-ExecStart = /usr/bin/jack_control start
-
-ExecStart = /usr/bin/zsh -c "/usr/bin/jack_bufsize 16"
+# ExecStart = /usr/bin/zsh -c "/usr/bin/jack_bufsize 32"
+# ExecStart = /usr/bin/zsh -c "/usr/bin/jack_bufsize 512"
 
 # ExecStart = /usr/bin/zsh -c "/usr/bin/jack_bufsize $bufsize" 
 
@@ -108,6 +113,7 @@ ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control dp'
 ExecReload = /usr/bin/zsh -c "/usr/bin/jack_bufsize $bufsize" 
 ExecReload = /usr/bin/zsh -c "/usr/bin/jack_control dps period $period"
 ExecReload = /usr/bin/zsh -c "/usr/bin/jack_control dps rate $rate"
+ExecReload = /usr/bin/zsh -c "/usr/bin/jack_control iload netmanager"
 
 # ExecStartPre = /usr/bin/zsh -c "amixer -c II set 'Analog Output',0 'Headphones'"
 # ExecStartPre = /usr/bin/zsh -c "amixer -c II set 'DAC Filter',0 'Sharp Roll-off'"
@@ -126,9 +132,10 @@ ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'Smart Volume',0 mute"
 ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'Surround',0 mute"
 ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'X-Bass',0 mute"
 
-ExecStop = /usr/bin/zsh -c 'killall -9 catia'
-ExecStop = /usr/bin/zsh -c 'killall -9 cadence'
-ExecStop = /usr/bin/zsh -c '/usr/bin/jack_control stop'
+# ExecStop = -/usr/bin/jack_control stop
+ExecStop = -/usr/bin/jack_control exit
+
+# ExecStopPost = -/usr/bin/killall -9 jackd ecasound jackdbus catia cadence pulseaudio
 
 # ExecStartPost = +/usr/bin/zsh -c 'rtirq start'
 

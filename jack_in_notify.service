@@ -1,25 +1,32 @@
 
 [Unit]
 
-Before = jack_client@pulseaudio.service
-Before = pulseaudio.service
-PartOf = jack_client@pulseaudio.service
-StopWhenUnneeded = no
-Conflicts = microphone.service
+StopWhenUnneeded = yes
+
+# Wants = microphone.service
+
+After = jack_client@pulseaudio.service
+After = jackd.service
 After = microphone.service
+After = pulseaudio.service
+PartOf = jack_client@pulseaudio.service
+PartOf = jackd.service
+Requires = jackd.service
 
 [Service]
 
-Environment = DISPLAY=:0
+Environment = JACK_NO_START_SERVER=1
 Environment = DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+Environment = DISPLAY=:0
+Nice = 19
 NotifyAccess = all
 RemainAfterExit = yes
 Restart = always
 RestartSec = 1
+Slice = audio.slice
 StartLimitBurst = 0
 TimeoutStartSec = 20s
 TimeoutStopSec = 20s
 Type = notify
-Slice = audio.slice
 
 ExecStart = /usr/bin/node %h/home-control/dbus/jack_in.js

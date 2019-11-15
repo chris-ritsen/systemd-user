@@ -2,10 +2,11 @@
 [Unit]
 
 Description = Ecasound effects
-PartOf = jack.target
-Requires = jackd.service
-Requisite = jackd.service
 StopWhenUnneeded = yes
+
+# PartOf = jack.target
+# Requires = jackd.service
+# Requisite = jackd.service
 
 AssertFileIsExecutable = /usr/bin/ecasound
 

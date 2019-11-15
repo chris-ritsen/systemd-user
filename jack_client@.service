@@ -1,14 +1,19 @@
 
 [Unit]
-# Before = pulseaudio.service
+
 # RefuseManualStart = yes
 # RefuseManualStop = yes
-Description=Run jack client
+
+Description = Run jack client
+
+# PropagatesReloadTo = jackd.service
+
+After = jackd.service
+After = pulseaudio.service
 PartOf = jack.target
 Requires = jackd.service
+Requires = pulseaudio.service
 Requisite = jackd.service
-After = jackd.service
-# PropagatesReloadTo = jackd.service
 
 AssertFileIsExecutable = /usr/bin/alsa_in
 AssertFileIsExecutable = /usr/bin/alsa_out

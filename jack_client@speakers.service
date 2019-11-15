@@ -1,15 +1,27 @@
 
 [Unit]
 
+StopWhenUnneeded = yes
 DefaultDependencies = no
 Description = Speakers (motherboard line-out)
-StopWhenUnneeded = yes
+
+After = jackd.service
+PartOf = jackd.service
+Requires = jackd.service
+Wants = node_notify.service
+Wants = ecasound@speakers.service
+Wants = speakers.target
 
 [Service]
 
 Restart = always
 
 ExecStart = /usr/bin/alsa_out -c2 -j '%i' -d hw:PCH
+
+# ExecStartPre = -/usr/bin/jack_unload %i default
+# ExecStart = /usr/bin/jack_load --server default %i audioadapter -i "-d hw:PCH -i0"
+# ExecStopPost = /usr/bin/jack_unload %i
+# RemainAfterExit = yes
 
 [Install]
 

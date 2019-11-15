@@ -13,13 +13,7 @@ RequiresMountsFor = /media/audio
 Environment = MPD_HOST='%t/mpd_%i/socket'
 Environment = PULSE_PROP='media.role=music'
 
-CPUSchedulingPolicy = rr
-CPUSchedulingPriority = 90
-LimitCORE = infinity
-LimitMEMLOCK = infinity
-LimitRTPRIO = infinity
-LimitRTTIME = infinity
-Nice = 0
+Nice = 19
 PIDFile = %t/%p_%i/pid
 PassEnvironment = XDG_CONFIG_HOME
 PassEnvironment = MPD_HOST

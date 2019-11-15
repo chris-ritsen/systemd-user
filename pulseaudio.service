@@ -3,13 +3,19 @@
 
 ConditionUser=!root
 Description=Sound Service
-Requires=pulseaudio.socket
+
+Requires = pulseaudio.socket
+PartOf = jackd.service
+# Before = jack_client@pulseaudio.service
+Requires = jackd.service
+After = jackd.service
 
 [Service]
 
 ExecStart=/usr/bin/pulseaudio --daemonize=no
 Restart=on-failure
 Type=notify
+Environment = JACK_NO_START_SERVER=1
 
 CPUSchedulingPolicy=rr
 CPUSchedulingPriority=90

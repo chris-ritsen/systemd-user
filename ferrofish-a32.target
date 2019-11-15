@@ -1,6 +1,7 @@
 
 [Unit]
 
+Before = outlet@7.service
 After = outlet@8.service
 BindsTo = outlet@8.service
 Description = Ferrofish A32 Dante

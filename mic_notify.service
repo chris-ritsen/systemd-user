@@ -10,12 +10,14 @@ StopWhenUnneeded = no
 
 [Service]
 
-Environment = DISPLAY=:0
 Environment = DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+Environment = DISPLAY=:0
+Nice = 19
 NotifyAccess = all
 RemainAfterExit = yes
 Restart = no
 RestartSec = 1
+Slice = audio.slice
 StartLimitBurst = 0
 TimeoutStartSec = 20s
 TimeoutStopSec = 20s

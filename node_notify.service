@@ -1,15 +1,18 @@
 
 [Unit]
 
-Before = speakers.service
-PartOf = speakers.service
 StopWhenUnneeded = yes
+
+# After = jackd.service
+# Before = speakers.service
+# PartOf = jackd.service
 
 [Service]
 
 Environment = DISPLAY=:0
 Environment = DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
 NotifyAccess = all
+Nice = 19
 RemainAfterExit = yes
 Restart = no
 RestartSec = 1

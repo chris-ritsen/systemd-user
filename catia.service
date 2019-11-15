@@ -1,19 +1,21 @@
 
 [Unit]
 
-After = jackd.service
 Description=Catia jackd patchbay
-# Requires = jackd.service
-Requires=sound.target graphical-session.target
+
+After = jackd.service
+Requires = jackd.service
+Requires = sound.target graphical-session.target
 
 [Service]
 
-Nice=10
+Environment = JACK_NO_START_SERVER=1
+Nice = 19
 
 ExecStart=/usr/bin/catia
 
 KillMode=process
-Restart=no
+Restart = yes
 RestartSec=6
 TimeoutStartSec=2s
 TimeoutStopSec=2s
@@ -21,4 +23,3 @@ Slice = audio.slice
 
 [Install]
 WantedBy = default.target
-

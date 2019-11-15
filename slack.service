@@ -7,7 +7,7 @@ Requires = sound.target graphical-session.target
 
 [Service]
 
-Nice=10
+Nice = 19
 
 ExecStart = /usr/bin/slack
 ExecStop = /usr/bin/killall -I -9 slack

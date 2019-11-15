@@ -1,23 +1,24 @@
 
 [Unit]
+
 # RefuseManualStart = yes
 # RefuseManualStop = yes
 
 Description = Run jack client for %i
 StopWhenUnneeded = no
 
-Requires = jackd.service
-# Requires = pulseaudio.service
-
-After = jackd.service
-After = pulseaudio.service
-
 # BindsTo = pulseaudio.service
+# Requires = pulseaudio.service
 # Wants = jack_out_notify.service
-Wants = ecasound@jack.service
-After = ecasound@jack.service
-Wants = jack_in_notify.service
-Wants = jack_out_notify.service
+
+# After = ecasound@jack.service
+# Wants = ecasound@jack.service
+# After = pulseaudio.service
+PartOf = pulseaudio.service
+# Requires = jackd.service
+Requires = pulseaudio.service
+# Wants = jack_in_notify.service
+# Wants = jack_out_notify.service
 
 AssertFileIsExecutable = /usr/bin/jack_control
 AssertFileIsExecutable = /usr/bin/pactl
@@ -25,6 +26,7 @@ AssertFileIsExecutable = /usr/bin/pulseaudio
 AssertFileIsExecutable = /usr/bin/zsh
 
 [Service]
+
 RemainAfterExit = yes
 
 Type = oneshot
@@ -33,13 +35,14 @@ Restart = no
 RestartSec = 10
 TimeoutStartSec = 20
 TimeoutStopSec = 20
+
 ExecStartPre = /usr/bin/zsh -c '/usr/bin/jack_control status'
 
 ExecStart = /usr/bin/zsh -c 'pactl load-module module-jack-sink channels=2 client_name=jack_out sink_name=jack_out'
 ExecStart = /usr/bin/zsh -c 'pactl load-module module-jack-source channels=2 client_name=jack_in source_name=jack_in'
 
-ExecStart = /usr/bin/zsh -c 'pactl set-default-sink jack_out'
-ExecStart = /usr/bin/zsh -c 'pactl set-default-source jack_in'
+ExecStart = /usr/bin/pactl set-default-sink jack_out
+ExecStart = /usr/bin/pactl set-default-source jack_in
 ExecStop = -/usr/bin/zsh -ic "pactl list short | grep module-jack-sink | grep client_name=jack_out | cut -f 1 | xargs -I{} pactl unload-module {}"
 ExecStopPost = -/usr/bin/zsh -ic "pactl list short | grep module-jack-source | grep client_name=jack_in | cut -f 1 | xargs -I{} pactl unload-module {}"
 
