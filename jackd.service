@@ -1,55 +1,50 @@
 
 [Unit]
 
-BindsTo = jackd.target
+# RefuseManualStart = yes
+# RefuseManualStop = yes
+
+AssertFileIsExecutable = /usr/bin/jackdbus
+Description = JACK Audio Connection Kit sound server
 RefuseManualStart = no
 RefuseManualStop = no
-Description=JACK Audio Connection Kit sound server
 
 # After = jack_client@dante_in.service
 # After = jack_client@dante_out.service
-After = sound.target
-
 # Before = chromium@default.service
 # Before = dante_usb_out_notify.service
 # Before = jack_client@pulseaudio.service
 # Before = jack_out_notify.service
 # Before = pulseaudio.service
+# Wants = dante_usb_out_notify.service
 
+After = sound.target
+BindsTo = jackd.target
 Requires = sound.target
 
-Wants = dante_usb_out_notify.service
-Wants = jack_client@pulseaudio.service
-Wants = jack_out_notify.service
-
-AssertFileIsExecutable = /usr/bin/jackdbus
-Description = Run jackdbus
-# RefuseManualStart = yes
-# RefuseManualStop = yes
+# Disabled
+# Requires = jack_client@pulseaudio.service
+# Requires = jack_out_notify.service
 
 [Service]
 
-# CPUSchedulingPolicy=rr
-# IOSchedulingClass=realtime
-# LimitNICE=-15
-# LimitNICESoft=-15
-# User=chris
-
-# CPUSchedulingResetOnFork=yes
-# IOSchedulingClass=realtime
-# IOSchedulingPriority=0
-
-# CPUSchedulingPolicy=rr
-# CPUSchedulingPriority=99
-LimitCORE=infinity
-LimitMEMLOCK=infinity
-LimitRTPRIO=infinity
-Slice = audio.slice
-LimitRTTIME=infinity
-# Nice=0
-
+# CPUSchedulingPolicy = rr
+# CPUSchedulingPriority = 99
+# CPUSchedulingResetOnFork = yes
+# IOSchedulingClass = realtime
+# IOSchedulingPriority = 0
+# LimitNICE = -15
+# LimitNICESoft = -15
 # MemoryLimit=512M 
 # MemorySoftLimit=512M 
+# Nice = 0
+# User = chris
+
+LimitCORE = infinity
+LimitMEMLOCK = infinity
+LimitRTPRIO = infinity
+LimitRTTIME = infinity
+Slice = audio.slice
 
 # Safe
 # Environment=bufsize=640
@@ -79,61 +74,67 @@ ExecStartPre = -/usr/bin/killall -9 jackd ecasound jackdbus catia cadence pulsea
 ExecStart = /usr/bin/jack_control exit
 ExecStart = /usr/bin/jack_control start
 
-# ALSA driver
-ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control ds alsa'
 
-# ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps period $period"
+# START ##################################
 
-ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps capture 'hw:DantePCIe,0'" 
-ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps device 'hw:DantePCIe,0'" 
-ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps playback 'hw:DantePCIe,0'" 
+# # ALSA driver
+# ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control ds alsa'
+#
+# # ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps period $period"
+#
+# ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps capture 'hw:DantePCIe,0'" 
+# ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps device 'hw:DantePCIe,0'" 
+# ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps playback 'hw:DantePCIe,0'" 
+#
+# # ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps period 128"
+# ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps period 16"
+# ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps rate $rate"
+#
+# ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control dps inchannels 128'
+# ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control dps outchannels 128'
+#
+# # ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control eps realtime-priority 99'
+# # ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control epr self-connect-mode'
+# # ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control eps self-connect-mode a'
+#
+# # ExecStart = /usr/bin/zsh -c "/usr/bin/jack_bufsize 32"
+# # ExecStart = /usr/bin/zsh -c "/usr/bin/jack_bufsize 512"
+#
+# # ExecStart = /usr/bin/zsh -c "/usr/bin/jack_bufsize $bufsize" 
+#
+# # ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control eps self-connect-mode A'
+# # ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control eps self-connect-mode " "'
+# ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control status'
+# ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control ep'
+# ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control dp'
+#
+# ExecReload = /usr/bin/zsh -c "/usr/bin/jack_bufsize $bufsize" 
+# ExecReload = /usr/bin/zsh -c "/usr/bin/jack_control dps period $period"
+# ExecReload = /usr/bin/zsh -c "/usr/bin/jack_control dps rate $rate"
+# ExecReload = /usr/bin/zsh -c "/usr/bin/jack_control iload netmanager"
+#
+# # ExecStartPre = /usr/bin/zsh -c "amixer -c II set 'Analog Output',0 'Headphones'"
+# # ExecStartPre = /usr/bin/zsh -c "amixer -c II set 'DAC Filter',0 'Sharp Roll-off'"
+# # ExecStartPre = /usr/bin/zsh -c "amixer -c II set 'Headphones Impedance',0 '300-600 ohms'"
+# # ExecStartPre = /usr/bin/zsh -c "amixer -c II set 'Line' cap"
+# # ExecStartPre = /usr/bin/zsh -c "amixer -c II set 'Master',0 255 unmute"
+#
+# ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'Capture',0 16 cap"
+# ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'Crystalizer',0 mute"
+# ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'Dialog Plus',0 mute"
+# ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'Equalizer',0 mute"
+# ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'Master',0 255 unmute"
+# ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'PlayEnhancement',0 mute"
+# ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'Smart Volume' mute"
+# ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'Smart Volume',0 mute"
+# ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'Surround',0 mute"
+# ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'X-Bass',0 mute"
+#
+# # ExecStop = -/usr/bin/jack_control stop
+# ExecStop = -/usr/bin/jack_control exit
+# # ExecStopPost = -/usr/bin/jack_control exit
 
-# ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps period 128"
-ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps period 512"
-ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps rate $rate"
-
-ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control dps inchannels 128'
-ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control dps outchannels 128'
-
-# ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control eps realtime-priority 99'
-# ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control epr self-connect-mode'
-# ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control eps self-connect-mode a'
-
-# ExecStart = /usr/bin/zsh -c "/usr/bin/jack_bufsize 32"
-# ExecStart = /usr/bin/zsh -c "/usr/bin/jack_bufsize 512"
-
-# ExecStart = /usr/bin/zsh -c "/usr/bin/jack_bufsize $bufsize" 
-
-# ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control eps self-connect-mode A'
-# ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control eps self-connect-mode " "'
-ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control status'
-ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control ep'
-ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control dp'
-
-ExecReload = /usr/bin/zsh -c "/usr/bin/jack_bufsize $bufsize" 
-ExecReload = /usr/bin/zsh -c "/usr/bin/jack_control dps period $period"
-ExecReload = /usr/bin/zsh -c "/usr/bin/jack_control dps rate $rate"
-ExecReload = /usr/bin/zsh -c "/usr/bin/jack_control iload netmanager"
-
-# ExecStartPre = /usr/bin/zsh -c "amixer -c II set 'Analog Output',0 'Headphones'"
-# ExecStartPre = /usr/bin/zsh -c "amixer -c II set 'DAC Filter',0 'Sharp Roll-off'"
-# ExecStartPre = /usr/bin/zsh -c "amixer -c II set 'Headphones Impedance',0 '300-600 ohms'"
-# ExecStartPre = /usr/bin/zsh -c "amixer -c II set 'Line' cap"
-# ExecStartPre = /usr/bin/zsh -c "amixer -c II set 'Master',0 255 unmute"
-
-ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'Capture',0 16 cap"
-ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'Crystalizer',0 mute"
-ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'Dialog Plus',0 mute"
-ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'Equalizer',0 mute"
-ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'Master',0 255 unmute"
-ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'PlayEnhancement',0 mute"
-ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'Smart Volume' mute"
-ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'Smart Volume',0 mute"
-ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'Surround',0 mute"
-ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'X-Bass',0 mute"
-
-# ExecStop = -/usr/bin/jack_control stop
-ExecStop = -/usr/bin/jack_control exit
+# END ##################################
 
 # ExecStopPost = -/usr/bin/killall -9 jackd ecasound jackdbus catia cadence pulseaudio
 
@@ -151,13 +152,13 @@ ExecStop = -/usr/bin/jack_control exit
 
 # BusName = org.jackaudio.service
 RemainAfterExit = yes
-RestartSec = 1
+# Restart = no
+RestartSec = 10
 TimeoutStartSec = 15
 Type = oneshot
 # Type = dbus
-TimeoutStopSec=1
+TimeoutStopSec = 3
 
 [Install]
 
 WantedBy = default.target
-

@@ -1,7 +1,6 @@
 
 [Unit]
 
-Description=JACK Audio Connection Kit sound server
+Description = JACK Audio Connection Kit sound server
 PropagatesReloadTo = jackd.service
 Wants = jackd.service
-

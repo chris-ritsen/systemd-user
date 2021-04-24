@@ -5,7 +5,8 @@
 After = dante_pcie_in.service
 Description = Main system audio
 BindsTo = dante_pcie_in.service
-Requires = sound.target basic.target jackd.service
+Requires = sound.target basic.target
+# Requires = sound.target basic.target jackd.service
 StopWhenUnneeded = no
 
 [Service]

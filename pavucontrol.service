@@ -1,20 +1,21 @@
 
 [Unit]
 
-Description=PulseAudio Volume Control
-Requires=sound.target graphical-session.target
+Description = PulseAudio Volume Control
+Requires = sound.target graphical-session.target
+StopWhenUnneeded = yes
 
 [Service]
 
 Nice = 19
 
-ExecStart=/usr/bin/pavucontrol
+ExecStart = /usr/bin/pavucontrol
 
-KillMode=process
-Restart=no
-RestartSec=6
-TimeoutStartSec=1s
-TimeoutStopSec=1s
+KillMode = process
+Restart = no
+RestartSec = 6
+TimeoutStartSec = 1s
+TimeoutStopSec = 1s
 Slice = audio.slice
 
 [Install]

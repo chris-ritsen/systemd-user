@@ -10,12 +10,12 @@ After = jackd.service
 After = radial_dinet_notify.service
 After = xbox.service
 After = xbox_chat.service
-BindsTo = dante_pcie_in_notify.service
+# BindsTo = dante_pcie_in_notify.service
 DefaultDependencies = no
 Description = Dante input
 Requires = jackd.service
 StopWhenUnneeded = yes
-Wants = dante_pcie_in_notify.service
+# Wants = dante_pcie_in_notify.service
 
 [Service]
 

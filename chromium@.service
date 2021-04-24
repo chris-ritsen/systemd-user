@@ -18,7 +18,7 @@ RefuseManualStop = no
 # LimitMEMLOCK=infinity
 # LimitRTPRIO=infinity
 # LimitRTTIME=1000
-Nice=10
+# Nice=10
 
 Environment=DISPLAY=:0
 # Environment=PULSE_SINK=jack_out
@@ -28,13 +28,21 @@ Environment=remote_debugging_port=9222
 Environment=user_data_dir=--user-data-dir=%h/.config/chromium
 PrivateTmp=no
 
+# ExecStart = /usr/bin/chromium \
+# ${disk_cache_dir} \
+# ${user_data_dir} \
+# --remote-debugging-address=0.0.0.0 \
+# --remote-debugging-port=9222 \
+# --enable-dom-distiller \
+# --keep-alive-for-test \
+# --silent-launch \
+
 ExecStart = /usr/bin/chromium \
-${disk_cache_dir} \
+# ${disk_cache_dir} \
 ${user_data_dir} \
-'--remote-debugging-address=0.0.0.0' \
-'--remote-debugging-port=9222' \
---enable-dom-distiller \
 --keep-alive-for-test \
+# --remote-debugging-address=0.0.0.0 \
+# --remote-debugging-port=9222 \
 --silent-launch \
 
 RuntimeDirectory = chromium
@@ -44,8 +52,8 @@ RuntimeDirectory = chromium
 # ExecStartPost = /bin/zsh -c 'find . -type f -name "*.png" -exec gm convert {} -strip {} \;' 
 
 CPUQuota = 20%
-MemoryHigh = 6G
-MemoryMax = 8G
+# MemoryHigh = 6G
+# MemoryMax = 8G
 
 Restart = no
 RestartSec = 10

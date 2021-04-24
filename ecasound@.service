@@ -22,7 +22,7 @@ LimitCORE=infinity
 LimitMEMLOCK=infinity
 LimitRTPRIO=infinity
 LimitRTTIME=infinity
-Nice=0
+# Nice=0
 Slice = audio.slice
 
 [Install]

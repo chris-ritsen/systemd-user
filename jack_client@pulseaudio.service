@@ -50,4 +50,3 @@ ExecStopPost = -/usr/bin/zsh -ic "pactl list short | grep module-jack-source | g
 
 [Install]
 WantedBy=default.target
-

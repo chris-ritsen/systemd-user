@@ -1,0 +1,8 @@
+
+[Unit]
+
+Description = Audio control panels
+
+Wants = cadence.service
+Wants = catia.service
+Wants = pavucontrol.service

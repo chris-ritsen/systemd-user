@@ -9,4 +9,3 @@ PropagatesReloadTo = jack_clients.target
 [Install]
 
 WantedBy = default.target
-

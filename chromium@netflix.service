@@ -17,4 +17,3 @@ ${scale} \
 --keep-alive-for-test
 
 RuntimeDirectory = %p_%i
-
