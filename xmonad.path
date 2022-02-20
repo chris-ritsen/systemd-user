@@ -15,4 +15,3 @@ PathChanged = %h/.xmonad/xmonad.hs
 PathModified = %h/.xmonad/xmonad.hs 
 
 Unit = xmonad.service
-

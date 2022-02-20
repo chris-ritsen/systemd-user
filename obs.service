@@ -1,8 +1,8 @@
 
 [Unit]
 
-Description = OBS
-Requires = sound.target graphical-session.target
+Description = Open Broadcaster Software
+Requires = sound.target graphical-session.target obs_notify.service
 # After = xbox_out.service
 
 [Service]

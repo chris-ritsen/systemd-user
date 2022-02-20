@@ -3,7 +3,6 @@
 
 Description = Discord
 Requires = sound.target graphical-session.target
-# After = xbox_out.service
 Wants = discord_notify.service
 Wants = jack_client@discord.service
 After = jack_client@discord.service
@@ -23,4 +22,3 @@ TimeoutStopSec=2s
 
 [Install]
 WantedBy = default.target
-

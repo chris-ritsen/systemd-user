@@ -17,6 +17,7 @@ StopWhenUnneeded = no
 PartOf = pulseaudio.service
 # Requires = jackd.service
 Requires = pulseaudio.service
+After = jackd.service
 # Wants = jack_in_notify.service
 # Wants = jack_out_notify.service
 

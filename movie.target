@@ -8,4 +8,3 @@ PropagatesReloadTo = movie.service
 [Install]
 
 WantedBy=default.target
-

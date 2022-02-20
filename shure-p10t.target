@@ -8,4 +8,3 @@ Requires = outlet@2.service
 
 PropagatesReloadTo = wireless-audio@1.service
 PropagatesReloadTo = wireless-audio@2.service
-

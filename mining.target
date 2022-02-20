@@ -1,0 +1,8 @@
+
+[Unit]
+
+Wants = ethminer.service
+# Wants = ethminer@windows-gaming.service
+
+# Requires = ethminer.service
+# Requires = ethminer@windows-gaming.service

@@ -1,0 +1,22 @@
+
+[Unit]
+
+Description = ecasound %i effects
+StopWhenUnneeded = yes
+
+# After = ecasound@jack.service
+# After = jackd.service
+# PartOf = jackd.service
+# Requires = ecasound@jack.service
+# Requires = jackd.service
+
+[Service]
+
+Environment = JACK_NO_START_SERVER=1
+Environment = TERM=xterm
+
+# Volume needs to be lower
+ExecStart = /usr/bin/true
+
+[Install]
+WantedBy=jack_clients.target

@@ -7,7 +7,7 @@ Description = JACK toolbox for audio production
 # Requires = jackd.service
 # Requires = sound.target graphical-session.target
 
-StopWhenUnneeded = yes
+StopWhenUnneeded = no
 
 [Service]
 

@@ -1,0 +1,17 @@
+
+[Unit]
+
+# RefuseManualStart = yes
+# RefuseManualStop = yes
+
+DefaultDependencies = no
+Description = Ensure transmission runs under a vpn
+# PropagatesReloadTo =  transmission.service
+
+[Path]
+
+DirectoryNotEmpty = /sys/class/net/tun0
+PathChanged = /sys/class/net/tun0
+
+Unit = vpn_transmission_check.service
+MakeDirectory = no

@@ -9,7 +9,6 @@ Description = Run %i
 CPUQuota=5%
 ExecStart = /usr/bin/npm start
 WorkingDirectory = %h/home-control/%i/
-
 EnvironmentFile = %h/home-control/%i/.env
 
 [Install]

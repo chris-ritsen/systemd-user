@@ -7,7 +7,7 @@ After = jackd.service
 Requires = jackd.service
 Requires = sound.target graphical-session.target
 
-StopWhenUnneeded = yes
+StopWhenUnneeded = no
 
 [Service]
 
@@ -18,7 +18,7 @@ ExecStart=/usr/bin/catia
 
 KillMode=process
 # Restart = yes
-RestartSec=6
+RestartSec=20
 TimeoutStartSec=2s
 TimeoutStopSec=2s
 Slice = audio.slice

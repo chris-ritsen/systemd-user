@@ -1,8 +1,8 @@
 
 [Unit]
 
-Before = jack_client@kona_hdmi_4.service
-PartOf = jack_client@kona_hdmi_4.service
+Before = jack_client@kona_hdmi_3.service
+PartOf = jack_client@kona_hdmi_3.service
 StopWhenUnneeded = no
 
 [Service]

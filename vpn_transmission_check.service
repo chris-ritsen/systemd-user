@@ -1,0 +1,9 @@
+
+[Unit]
+
+Description=Start transmission under a vpn
+
+[Service]
+ExecStart = /usr/bin/sudo systemctl restart transmission.service
+Type = oneshot
+RemainAfterExit = no

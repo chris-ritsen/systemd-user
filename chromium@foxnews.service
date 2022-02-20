@@ -1,0 +1,18 @@
+
+[Service]
+
+Environment=DISPLAY=:0
+# Environment=PULSE_SINK='jack.out.%i'
+# Environment=PULSE_SOURCE='jack.in.%i' 
+Environment=app=--app='https://tv.youtube.com/watch/3m7EkjKuO3E'
+
+ExecStart = /usr/bin/chromium \
+${disk_cache_dir} \
+${user_data_dir} \
+${app} \
+${scale} \
+--enable-dom-distiller \
+--keep-alive-for-test
+ExecStartPost = /bin/sleep 0.4
+
+RuntimeDirectory = %p_%i

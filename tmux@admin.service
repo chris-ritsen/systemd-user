@@ -59,4 +59,3 @@ ExecReload = /bin/zsh -c "${respawn_window} -t '%i:org' || true"
 
 DefaultInstance = default
 WantedBy = default.target
-

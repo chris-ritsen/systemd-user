@@ -14,12 +14,12 @@ Before = ecasound@jack.service
 Before = ecasound@mpv.service
 DefaultDependencies = no
 Requires = ecasound@mpv.service
-Wants = mpv_notify.service
+Wants = mpv_scripted_notify.service
 
 [Service]
 
 RemainAfterExit = no
-Restart = always
+Restart = no
 RestartSec = 5
 RuntimeDirectory = mpv
 StartLimitBurst = 0
@@ -34,7 +34,7 @@ Environment = MPV_PAUSE=no
 # Environment = AUDIO_OUTPUT_DEVICE=pulse
 
 Environment = AUDIO_OUTPUT_DEVICE=jack
-Environment = JACK_CLIENT_NAME=mpv
+Environment = JACK_CLIENT_NAME=mpv_scripted
 
 Environment = MPV_CURRENT=/home/chris/.scripts/media_player_state/path
 Environment = MPV_PAUSE=/home/chris/.scripts/media_player_state/pause
@@ -44,7 +44,7 @@ Environment = MPV_TIME_POS=/home/chris/.scripts/media_player_state/time-pos
 EnvironmentFile = /home/chris/.config/systemd/user/default_env
 
 # ExecStart = /usr/bin/zsh -ic "/usr/bin/mpv --input-ipc-server=%t/mpv/video --ao=jack --jack-name=mpv --jack-autostart=no --jack-connect=no --x11-name MPV_SCRIPTED --x11-bypass-compositor=never --volume-max=200 --no-resume-playback --force-window=yes --keep-open=yes --idle=yes"
-ExecStart = /usr/bin/zsh -ic "/usr/bin/mpv --input-ipc-server=%t/mpv/video --ao=$AUDIO_OUTPUT_DEVICE --jack-name=$JACK_CLIENT_NAME --jack-autostart=no --jack-connect=no --x11-name $WINDOW_TITLE --x11-bypass-compositor=never --volume-max=200 --no-resume-playback --force-window=yes --keep-open=yes --idle=yes"
+ExecStart = /usr/bin/zsh -ic "/usr/bin/mpv --input-ipc-server=%t/mpv/video --ao=$AUDIO_OUTPUT_DEVICE --jack-name=$JACK_CLIENT_NAME --jack-autostart=no --jack-connect=no --x11-name=$WINDOW_TITLE --x11-bypass-compositor=never --volume-max=200 --no-resume-playback --force-window=yes --keep-open=yes --idle=yes"
 ExecStartPost = /usr/bin/zsh -ic "media_player --prop vid=0 || true"
 ExecStartPost = /usr/bin/zsh -ic 'redis-cli -s /run/redis/redis.sock lrange video_playlist 0 -1 > %t/%p_playlist'
 ExecStartPost = /usr/bin/zsh -ic "media_player --prop pause=yes || true"

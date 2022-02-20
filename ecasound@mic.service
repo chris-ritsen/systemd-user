@@ -12,4 +12,4 @@ BindsTo = outlet@8.service
 
 TimeoutStartSec = 50s
 Environment = TERM=xterm
-ExecStart = /usr/bin/zsh -ic "ecasound -G:jack,%i_effects -C -f:f32_le,1,48000 jack,,in -o jack,,out -a:1 -eadb:-6"
+ExecStart = /usr/bin/zsh -ic "ecasound -G:jack,%i_effects -C -f:f32_le,1,48000 jack,,in -o jack,,out -a:1 -eadb:-1"

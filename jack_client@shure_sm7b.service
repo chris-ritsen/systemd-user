@@ -7,4 +7,3 @@ ExecStart=/usr/bin/alsa_in -c1 -j '%i' -d hw:Digital
 
 [Install]
 WantedBy=jack_clients.target
-

@@ -71,7 +71,8 @@ STEAM_APPS=/media/games/steam/steamapps/
 VBOX_USER_HOME=/dev/null
 VDPAU_DRIVER=nvidia
 VIDIR_EDITOR_ARGS=-c :set nolist | :set ft=vidir-ls
-VIM=/usr/local/share/vim
+# VIM=/usr/local/share/vim
+# VIM=/usr/bin/vim
 VIMRC=/home/chris/.vimrc
 VIMRC_DIR=/home/chris/.config/vim/bundle/vimrc
 VIMRC_PLUGIN_DIR=/home/chris/.config/vim/bundle/vimrc/plugin

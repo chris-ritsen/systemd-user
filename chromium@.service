@@ -41,6 +41,7 @@ ExecStart = /usr/bin/chromium \
 # ${disk_cache_dir} \
 ${user_data_dir} \
 --keep-alive-for-test \
+--force-dark-mode \
 # --remote-debugging-address=0.0.0.0 \
 # --remote-debugging-port=9222 \
 --silent-launch \
@@ -51,7 +52,7 @@ RuntimeDirectory = chromium
 
 # ExecStartPost = /bin/zsh -c 'find . -type f -name "*.png" -exec gm convert {} -strip {} \;' 
 
-CPUQuota = 20%
+# CPUQuota = 20%
 # MemoryHigh = 6G
 # MemoryMax = 8G
 

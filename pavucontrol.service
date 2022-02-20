@@ -3,7 +3,7 @@
 
 Description = PulseAudio Volume Control
 Requires = sound.target graphical-session.target
-StopWhenUnneeded = yes
+StopWhenUnneeded = no
 
 [Service]
 
@@ -20,4 +20,3 @@ Slice = audio.slice
 
 [Install]
 WantedBy = default.target
-

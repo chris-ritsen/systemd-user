@@ -9,12 +9,13 @@ StopWhenUnneeded = yes
 
 [Service]
 
+Environment = JACK_NO_START_SERVER=1
 Environment = DISPLAY=:0
 Environment = DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
 NotifyAccess = all
 Nice = 19
 RemainAfterExit = yes
-Restart = no
+Restart = always
 RestartSec = 1
 StartLimitBurst = 0
 TimeoutStartSec = 20s
@@ -23,4 +24,3 @@ Type = notify
 Slice = audio.slice
 
 ExecStart = /usr/bin/node %h/home-control/dbus/speakers.js
-

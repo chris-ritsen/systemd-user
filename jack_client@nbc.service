@@ -1,0 +1,47 @@
+
+[Unit]
+
+# RefuseManualStart = yes
+# RefuseManualStop = yes
+
+Description = Run jack client for %i
+StopWhenUnneeded = no
+
+# BindsTo = pulseaudio.service
+# Requires = pulseaudio.service
+# Wants = nbc_out_notify.service
+
+# After = ecasound@jack.service
+# Wants = ecasound@jack.service
+# After = pulseaudio.service
+# PartOf = chromium@nbc.service
+# Requires = jackd.service
+Requires = pulseaudio.service
+
+AssertFileIsExecutable = /usr/bin/jack_control
+AssertFileIsExecutable = /usr/bin/pactl
+AssertFileIsExecutable = /usr/bin/pulseaudio
+AssertFileIsExecutable = /usr/bin/zsh
+
+[Service]
+
+RemainAfterExit = yes
+
+Type = oneshot
+
+Restart = no
+RestartSec = 10
+TimeoutStartSec = 20
+TimeoutStopSec = 20
+
+ExecStartPre = /usr/bin/zsh -c '/usr/bin/jack_control status'
+
+ExecStart = /usr/bin/zsh -c 'pactl load-module module-jack-sink channels=2 client_name=nbc_out sink_name=nbc_out'
+
+ExecStart = /usr/bin/pactl set-default-sink nbc_out
+ExecStop = -/usr/bin/zsh -ic "pactl list short | grep module-jack-sink | grep client_name=nbc_out | cut -f 1 | xargs -I{} pactl unload-module {}"
+
+# TODO: unload pulse modules after stop
+
+[Install]
+WantedBy=default.target

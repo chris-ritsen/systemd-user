@@ -10,21 +10,23 @@ RefuseManualStart = no
 RefuseManualStop = no
 Requires = urxvtd.service
 StopWhenUnneeded = no
+StartLimitBurst=5
+StartLimitIntervalSec=1
 
 [Service]
 
 Environment = DISPLAY=:0
 EnvironmentFile = %h/.config/systemd/user/default_env
 Restart = no
-RestartSec = 1
+RestartSec = 2
 SendSIGKILL = yes
 TimeoutStartSec = 10
-TimeoutStopSec = 0
+TimeoutStopSec = 10
 Type = forking
 
 ExecStart = /bin/zsh -c "tmux -u2 -L %i new-session -d -n 'clock' -s clock '/home/chris/.scripts/zsh/name.zsh clock; clock.py'"
-ExecStartPost =     /bin/tmux -L %i has-session -t %i
-ExecStartPost =   /bin/zsh -c "/bin/urxvtc -title clockurxvt -name clockurxvt -e zsh -c '/home/chris/.scripts/zsh/name.zsh clock; zsh -ic %i'"
+ExecStartPost = /bin/tmux -L %i has-session -t %i
+ExecStartPost = /bin/zsh -c "/bin/urxvtc -title clockurxvt -name clockurxvt -e zsh -c '/home/chris/.scripts/zsh/name.zsh clock; zsh -ic %i'"
 
 ExecReload = /bin/zsh -c '/bin/tmux -L %i respawn-window -t %i'
 
@@ -32,4 +34,3 @@ ExecReload = /bin/zsh -c '/bin/tmux -L %i respawn-window -t %i'
 
 DefaultInstance = default
 WantedBy = xmonad.target
-

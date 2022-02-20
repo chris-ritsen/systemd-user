@@ -30,4 +30,3 @@ ExecStop = /usr/bin/zsh -c emacsclient --eval "(setq kill-emacs-hook 'nil (kill-
 
 [Install]
 WantedBy = default.target
-

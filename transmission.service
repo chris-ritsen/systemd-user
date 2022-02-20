@@ -1,14 +1,16 @@
 
 [Unit]
 Description=Transmission BitTorrent Daemon
+ConditionPathExists=/sys/class/net/wgnord/
+# Wants = transmission_vpn.path
+# Conflicts = vpn_transmission_check.service
 
 [Service]
 ExecReload=/bin/kill -s HUP $MAINPID
 ExecStart=/usr/bin/transmission-daemon -f --log-error
 TimeoutStopSec=1
-Restart=always
+Restart=no
 Type=notify
 
 [Install]
 WantedBy=multi-user.target
-

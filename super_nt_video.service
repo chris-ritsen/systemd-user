@@ -9,7 +9,7 @@ Requires = graphical-session.target
 
 # Nice=10
 
-ExecStart = /usr/bin/ffplay -f v4l2 -window_title 'kona_hdmi_4.super_nt' -i /dev/kona_hdmi_4
+ExecStart = /usr/bin/ffplay -f v4l2 -window_title 'kona_hdmi_3.super_nt' -i /dev/kona_hdmi_3
 
 KillMode=process
 Restart=no
