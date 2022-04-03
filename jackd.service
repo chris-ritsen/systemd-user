@@ -48,8 +48,8 @@ Slice = audio.slice
 # Environment=period=256
 
 # Medium latency
-Environment=bufsize=128
-Environment=period=256
+Environment=bufsize=256
+Environment=period=512
 
 # Low latency
 # Environment=bufsize=32

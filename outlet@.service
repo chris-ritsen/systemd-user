@@ -5,7 +5,7 @@ DefaultDependencies = no
 Description = Power outlet %i
 
 [Service]
-TimeoutStartSec = 1
+TimeoutStartSec = 5
 TimeoutStopSec = 1
 RestartSec = 1
 Restart = no

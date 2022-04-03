@@ -8,65 +8,31 @@ Documentation = man:chromium(1)
 PartOf=graphical-session.target
 RefuseManualStart = no
 RefuseManualStop = no
-# Wants = jackd.service
 
 [Service]
 
-# CPUSchedulingPolicy=rr
-# CPUSchedulingPriority=51
-# LimitCORE=infinity
-# LimitMEMLOCK=infinity
-# LimitRTPRIO=infinity
-# LimitRTTIME=1000
-# Nice=10
-
 Environment=DISPLAY=:0
-# Environment=PULSE_SINK=jack_out
-# Environment=PULSE_SOURCE=jack_in
 Environment=disk_cache_dir=--disk-cache-dir=%t/chromium
 Environment=remote_debugging_port=9222
+Environment=scale=--force-device-scale-factor='1.0'
 Environment=user_data_dir=--user-data-dir=%h/.config/chromium
 PrivateTmp=no
-
-# ExecStart = /usr/bin/chromium \
-# ${disk_cache_dir} \
-# ${user_data_dir} \
-# --remote-debugging-address=0.0.0.0 \
-# --remote-debugging-port=9222 \
-# --enable-dom-distiller \
-# --keep-alive-for-test \
-# --silent-launch \
+RemainAfterExit = no
+Restart = no
+RestartSec = 10
+RuntimeDirectory = chromium
+Slice = chromium.slice
+TimeoutStartSec = 10
+TimeoutStopSec = 10
+Type = simple
 
 ExecStart = /usr/bin/chromium \
 # ${disk_cache_dir} \
 ${user_data_dir} \
+${scale} \
 --keep-alive-for-test \
 --force-dark-mode \
-# --remote-debugging-address=0.0.0.0 \
-# --remote-debugging-port=9222 \
 --silent-launch \
-
-RuntimeDirectory = chromium
-
-# TODO: Watch file changes instead
-
-# ExecStartPost = /bin/zsh -c 'find . -type f -name "*.png" -exec gm convert {} -strip {} \;' 
-
-# CPUQuota = 20%
-# MemoryHigh = 6G
-# MemoryMax = 8G
-
-Restart = no
-RestartSec = 10
-
-Slice = chromium.slice
-
-TimeoutStartSec = 10
-TimeoutStopSec = 10
-
-RemainAfterExit = no
-
-Type = simple
 
 [Install]
 

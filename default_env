@@ -1,8 +1,7 @@
-
 AUTOSSH_PORT=0
 BEMENU_BACKEND=curses
 BROWSER=chromium
-CHROMIUM_USER_FLAGS=--disable-new-avatar-menu --disk-cache-dir=/tmp --disk-cache-size=50000000 --enable-print-preview --enable-webgl --force-device-scale-factor=1 --remote-debugging-port= --scroll-pixels=1601
+CHROMIUM_USER_FLAGS='--disable-new-avatar-menu --disk-cache-dir=/tmp --disk-cache-size=50000000 --enable-print-preview --enable-webgl --force-device-scale-factor=1 --remote-debugging-port= --scroll-pixels=1601'
 CONFIG_DIR=/home/chris/.config
 CS_GO_CFG=/common/counter-strike\ global\ offensive/csgo/cfg/
 DISPLAY=:0
@@ -49,12 +48,12 @@ ODBCINI=/home/chris/.config/odbc/cache.ini
 PAGER=less
 PATH=/home/chris/.rbenv/shims:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/chris/.go/bin:/usr/bin/sbin:/home/chris/.scripts/py
 PHANTOMJS_BIN=/usr/lib/node_modules/phantomjs/bin/phantomjs
-PROMPT=%n@%m: %~%# 
+# PROMPT='%n@%m: %~%#'
 PYTHONSTARTUP=/home/chris/.config/python/startup
 QT_IM_MODULE=ibus
 RBENV_SHELL=zsh
 RXVT_SOCKET=/run/user/1000/urxvtd-www
-SABNZBD_ARGS=-f /home/chris/.config/sabnzbd/sabnzbd.ini -s : -d
+SABNZBD_ARGS='-f /home/chris/.config/sabnzbd/sabnzbd.ini -s : -d'
 SABNZBD_DIR=/opt/sabnzbd/
 SABNZBD_IP=0.0.0.0
 SABNZBD_PORT=8089
