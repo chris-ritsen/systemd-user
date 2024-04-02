@@ -1,0 +1,23 @@
+[Unit]
+
+StopWhenUnneeded = yes
+DefaultDependencies = no
+Description = TV speakers
+
+After = jackd.service
+PartOf = jackd.service
+Requires = jackd.service
+Wants = tv_speakers_notify.service
+Wants = ecasound@speakers.service
+Wants = tv_speakers.target
+
+[Service]
+
+Restart = always
+
+# ExecStart = /usr/bin/alsa_out -c2 -j '%i' -d 'hdmi:CARD=NVidia,DEV=0'
+ExecStart = /usr/bin/alsa_out -c2 -j '%i' -d 'hdmi:CARD=HDMI,DEV=0'
+
+[Install]
+
+WantedBy=jack_clients.target

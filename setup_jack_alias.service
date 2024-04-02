@@ -1,0 +1,11 @@
+[Unit]
+Description=Setup Jack Alias
+After=graphical.target
+Before=audio-control-panels.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/zsh -c '~/scripts/setup_jack_alias.zsh'
+
+[Install]
+WantedBy=default.target

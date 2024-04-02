@@ -1,0 +1,11 @@
+[Unit]
+Description = Path for HHKB
+
+[Path]
+
+# PathExists = /dev/hhkb
+PathChanged = /dev/hhkb
+Unit = setup_keyboard.service
+
+[Install]
+WantedBy=default.target

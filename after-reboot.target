@@ -1,0 +1,24 @@
+[Unit]
+
+After = graphical.target
+
+Description = Stuff to run after rebooting
+
+Wants = audio-control-panels.target
+# Wants = chromium@gmail.service
+Wants = dante_avio_bt_1.service
+Wants = dante_usb_io_macbook_notify.service
+Wants = dante_usb_io_notify.service
+# Wants = discord.service
+Wants = jack_client@pulseaudio.service
+# Wants = rebuild_node_dbus.service
+Wants = setup_jack_alias.service
+Wants = setup_keyboard.service
+Wants = setup_mouse.service
+# Wants = slack.service
+Wants = tv_speakers.target
+Wants = vrroom_notify.service
+
+[Install]
+
+WantedBy = default.target

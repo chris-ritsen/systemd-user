@@ -2,13 +2,15 @@
 [Unit]
 
 Description = Slack
-Requires = sound.target graphical-session.target
-# After = xbox_out.service
+Requires = graphical-session.target
 
 [Service]
 
 Nice = 19
 
+Environment=DISPLAY=:0
+# Environment=PULSE_SINK='slack_out'
+# Environment=PULSE_SOURCE='slack_in'
 ExecStart = /usr/bin/slack
 ExecStop = /usr/bin/killall -I -9 slack
 

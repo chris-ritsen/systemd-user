@@ -1,0 +1,10 @@
+[Unit]
+Description=Emacs Shutdown Tasks
+Before=shutdown.target reboot.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/emacsclient -a "" --eval '(progn (org-clock-out) (save-some-buffers t nil))' 1>/dev/null
+
+[Install]
+WantedBy=default.target

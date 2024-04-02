@@ -1,0 +1,17 @@
+[Service]
+
+Environment=DISPLAY=:0
+Environment=app=--app='https://192.168.1.1/protect/devices/6466610602bc9903e4004ea1'
+Environment=scale=--force-device-scale-factor='1.0'
+
+ExecStart = /usr/bin/chromium \
+${disk_cache_dir} \
+${user_data_dir} \
+--force-dark-mode \
+${app} \
+${scale} \
+--enable-dom-distiller \
+--keep-alive-for-test \
+--silent-launch \
+
+RuntimeDirectory = %p_%i

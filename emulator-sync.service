@@ -1,0 +1,6 @@
+[Unit]
+Description=Synchronize emulator save states
+
+[Service]
+ExecStart=/usr/bin/rsync -az /home/chris/.config/retroarch/states/ deck@steam-deck:/home/deck/.var/app/org.libretro.RetroArch/config/retroarch/states/
+Type=oneshot

@@ -1,8 +1,8 @@
 
 [Unit]
 
-Before = outlet@8.service
 Before = outlet@3.service
+Before = outlet@7.service
 PartOf = microphone.service
 Wants = microphone.service
 

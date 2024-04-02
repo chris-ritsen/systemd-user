@@ -1,11 +1,10 @@
 
 [Unit]
 
-After = outlet@7.service
-After = outlet@8.service
-BindsTo = outlet@7.service
+After = outlet@2.service
+Before = wireless-audio@2.service
+BindsTo = outlet@2.service
+BindsTo = wireless-audio@2.service
 Description = Receiver for wireless microphones
-Requires = outlet@7.service 
-
-PropagatesReloadTo = wireless-microphone.service
-# PropagatesReloadTo = wireless-microphone@2.service
+BindsTo = wireless-microphone.target
+Requires = outlet@2.service

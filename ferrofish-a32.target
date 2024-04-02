@@ -1,8 +1,8 @@
 
 [Unit]
 
-Before = outlet@7.service
-After = outlet@8.service
-BindsTo = outlet@8.service
+BindsTo = outlet@3.service
 Description = Ferrofish A32 Dante
-Requires = outlet@8.service 
+PartOf = wireless-audio@1.service
+PartOf = wireless-audio@2.service
+Requires = outlet@3.service

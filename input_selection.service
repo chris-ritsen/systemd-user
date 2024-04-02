@@ -1,0 +1,17 @@
+# /etc/systemd/system/check_status.service
+[Unit]
+Description=Set desired input and check status
+
+[Service]
+Type=simple
+# ExecStartPre=/usr/bin/zsh -c 'echo -e "set inseltx0 1\r" | nc -w0 192.168.1.59 2222'
+# ExecStart=/usr/bin/zsh -c 'while true; do echo -e \"get status spd0\r\" | nc -w1 192.168.1.59 2222 | tee -a /tmp/check_status.log; if grep -q "SPD0: SCEI PS5" /tmp/check_status.log; then break; fi; sleep 1; done'
+ExecStartPre=/usr/bin/zsh -c 'echo -e "set inseltx0 1\r" | nc -w0 192.168.1.59 2222'
+ExecStart=/usr/bin/zsh -c 'while true; do output=$(echo -e \"get status spd0\r\" | nc -w1 192.168.1.59 2222); if echo "$output" | grep -q "SPD0: SCEI PS5"; then break; fi; sleep 1; done'
+
+RemainAfterExit=yes
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

@@ -1,15 +1,13 @@
 
 [Unit]
 
-# Before = dante_out.service
-After = outlet@2.service
-After = outlet@8.service
+After = outlet@1.service
+After = outlet@3.service
 DefaultDependencies = no
 Description = Wireless audio channel %i
-# Requires = dante_out.service
-Requires = outlet@2.service
-Requires = outlet@4.service
-Requires = outlet@8.service
+Requires = outlet@1.service
+Requires = satellite-5059.target
+Requires = outlet@3.service
 
 [Service]
 

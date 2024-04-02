@@ -1,0 +1,11 @@
+[Service]
+
+RemainAfterExit = no
+Restart = no
+RestartSec = 1
+StartLimitBurst = 0
+TimeoutStartSec = 20s
+TimeoutStopSec = 20s
+
+ExecStart = /usr/bin/zsh -c 'curl --silent https://api.coindesk.com/v1/bpi/currentprice/BTC.json | underscore extract bpi.USD.rate_float print --outfmt text | xargs redis-cli --raw set btc_price_float'
+ExecStartPost = /usr/bin/zsh -c "redis-cli --raw get btc_price_float | xargs -I{} printf %.0f {} | numfmt --grouping | xargs -I@ echo '$@' | xargs redis-cli --raw set btc_price"

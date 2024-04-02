@@ -1,39 +1,26 @@
-
 [Unit]
 
-Conflicts = wireless-microphone.service
-After = outlet@3.service
+After = dante_usb_in_notify.service
+After = ecasound@mic.service
+After = outlet@7.service
 Before = dante_in.service
+Before = jack_in_notify.service
 BindsTo = microphone.target
-BindsTo = outlet@3.service
+BindsTo = outlet@7.service
 DefaultDependencies = no
 Description = DANTE Microphone
-StopWhenUnneeded = yes
-# RefuseManualStart = yes
-# RefuseManualStop = yes
-# Requires = dante_in.service
-Requires = outlet@3.service
-Requires = outlet@8.service
-After = ecasound@mic.service
-Wants = ecasound@mic.service
-Wants = dante_usb_in_notify.service
-After = dante_usb_in_notify.service
-Before = jack_in_notify.service
 Requires = jack_client@pulseaudio.service
+Requires = outlet@7.service
+Requires = outlet@3.service
+StopWhenUnneeded = yes
+Wants = dante_usb_in_notify.service
+Wants = ecasound@mic.service
+PartOf=audio-full.target
+PartOf=microphone.target
 
 [Service]
 
 ExecStart = /usr/bin/true
-# ExecStartPost = /bin/zsh -ic "dante_mic off"
-# ExecStartPost = /bin/zsh -ic "dante_mic on"
-# ExecStartPost = /bin/zsh -ic "dante_mic on"
-# ExecStartPost = /bin/zsh -ic "sleep 0.2 && dante_mic_1 on"
-# ExecStartPost = /bin/zsh -ic "sleep 0.2 && dante_mic_1 on"
-#
-# ExecStopPost = /bin/zsh -ic "dante_mic off"
-
 RemainAfterExit = yes
 RestartSec=2
 TimeoutStopSec=2s
-# Type = oneshot
-

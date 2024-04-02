@@ -46,7 +46,7 @@ Environment = sc_route=0
 Environment = sc_level=1
 Environment = mix=1
 
-ExecStart = /usr/bin/zsh -ic "ecasound -C -f:f32_le,2,48000 -G:jack,%i_effects -a:1 -i jack,,in -o jack,,out -a:1 -elv2:$plugin,$bypass,$level_in,$meter_in,$meter_out,$clip_in,$clip_out,$threshold,$ratio,$attack,$release,$makeup,$knee,$detection,$stereo_link,$compression,9,$f1_freq,$f2_freq,$f1_level,$f2_level,$sc_listen,$f1_active,$f2_active,$sc_route,$sc_level,$mix"
+ExecStart = /usr/bin/zsh -ic "ecasound --no-server -C -f:f32_le,2,48000 -G:jack,%i_effects -a:1 -i jack,,in -o jack,,out -a:1 -elv2:$plugin,$bypass,$level_in,$meter_in,$meter_out,$clip_in,$clip_out,$threshold,$ratio,$attack,$release,$makeup,$knee,$detection,$stereo_link,$compression,9,$f1_freq,$f2_freq,$f1_level,$f2_level,$sc_listen,$f1_active,$f2_active,$sc_route,$sc_level,$mix"
 
 [Install]
 WantedBy=jack_clients.target

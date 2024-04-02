@@ -1,0 +1,7 @@
+
+[Unit]
+
+Requires = outlet@6.service
+BindsTo = outlet@6.service
+Description=Satelite 5059
+PropagatesReloadTo = outlet@6.service

@@ -20,4 +20,3 @@ ExecStart = /usr/bin/zsh -ic "ecasound -C -f:f32_le,2,48000 -G:jack,%i_effects -
 
 [Install]
 WantedBy=jack_clients.target
-

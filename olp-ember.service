@@ -1,0 +1,13 @@
+[Unit]
+Description=OLP Ember Service
+
+[Service]
+WorkingDirectory=%h/work/olp-ember
+ExecStartPre=/usr/bin/zsh -c "git checkout staging"
+ExecStartPre=/usr/bin/zsh -c "git pull --autostash"
+ExecStartPre=/usr/bin/zsh -c "npm install"
+ExecStart=/usr/bin/zsh -c "ember serve --port 4201"
+Restart=always
+
+[Install]
+WantedBy=default.target

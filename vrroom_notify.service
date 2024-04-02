@@ -1,0 +1,28 @@
+
+[Unit]
+
+# Before = jack_client@dante_pcie_in.service
+# Before = jack_client@dante_pcie_out.service
+
+After = jackd.service
+PartOf = jackd.service
+BindsTo = jackd.service
+Requires = jackd.service
+
+StopWhenUnneeded = no
+
+[Service]
+
+Environment = DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+Environment = DISPLAY=:0
+Nice = 19
+NotifyAccess = all
+RemainAfterExit = yes
+Restart = no
+RestartSec = 1
+StartLimitBurst = 0
+TimeoutStartSec = 20s
+TimeoutStopSec = 20s
+Type = notify
+
+ExecStart = /usr/bin/node %h/home-control/dbus/vrroom_out.js

@@ -19,9 +19,15 @@ After = sound.target
 BindsTo = jackd.target
 Requires = sound.target
 
-# Wants = jack_client@pulseaudio.service
+# Wants = audio-control-panels.target
+Wants = dante_avio_bt_1.service
+Wants = dante_usb_io_macbook_notify.service
+Wants = dante_usb_io_notify.service
 Wants = ecasound@jack.service
+Wants = jack_client@pulseaudio.service
 Wants = jack_out_notify.service
+Wants = tv_speakers.target
+Wants = vrroom_notify.service
 
 [Service]
 
@@ -32,8 +38,8 @@ Wants = jack_out_notify.service
 # IOSchedulingPriority = 0
 # LimitNICE = -15
 # LimitNICESoft = -15
-# MemoryLimit=512M 
-# MemorySoftLimit=512M 
+# MemoryLimit=512M
+# MemorySoftLimit=512M
 # Nice = 0
 # User = chris
 
@@ -74,9 +80,9 @@ ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control ds alsa'
 
 # ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps period $period"
 
-ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps capture 'hw:DantePCIe,0'" 
-ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps device 'hw:DantePCIe,0'" 
-ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps playback 'hw:DantePCIe,0'" 
+ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps capture 'hw:DantePCIe,0'"
+ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps device 'hw:DantePCIe,0'"
+ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps playback 'hw:DantePCIe,0'"
 
 # ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps period 128"
 # ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps period 16"
@@ -96,7 +102,7 @@ ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control dps inchannels 24'
 # ExecStart = /usr/bin/zsh -c "/usr/bin/jack_bufsize 32"
 # ExecStart = /usr/bin/zsh -c "/usr/bin/jack_bufsize 512"
 
-# ExecStart = /usr/bin/zsh -c "/usr/bin/jack_bufsize $bufsize" 
+# ExecStart = /usr/bin/zsh -c "/usr/bin/jack_bufsize $bufsize"
 
 # ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control eps self-connect-mode A'
 # ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control eps self-connect-mode " "'
@@ -105,7 +111,7 @@ ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control status'
 ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control ep'
 ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control dp'
 
-ExecReload = /usr/bin/zsh -c "/usr/bin/jack_bufsize $bufsize" 
+ExecReload = /usr/bin/zsh -c "/usr/bin/jack_bufsize $bufsize"
 ExecReload = /usr/bin/zsh -c "/usr/bin/jack_control dps period $period"
 ExecReload = /usr/bin/zsh -c "/usr/bin/jack_control dps rate $rate"
 # ExecReload = /usr/bin/zsh -c "/usr/bin/jack_control iload netmanager"

@@ -1,0 +1,21 @@
+[Unit]
+
+After = graphical.target
+StopWhenUnneeded = yes
+Description = Setup Keyboard
+Wants = keyboard-device.path
+BindsTo = keyboard-device.path
+PartOf = keyboard-device.path
+ConditionPathExists = /dev/hhkb
+
+[Service]
+
+StartLimitInterval=2s
+StartLimitBurst=5
+ExecStart = /bin/zsh -c '~/.scripts/fixes/keyboard.zsh'
+Type = oneshot
+# RemainAfterExit = yes
+
+[Install]
+
+WantedBy = default.target

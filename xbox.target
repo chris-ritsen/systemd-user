@@ -1,0 +1,8 @@
+[Unit]
+
+BindsTo = hdmi_input@3.service
+Conflicts=hdmi_input@0.service
+Conflicts=hdmi_input@1.service
+Conflicts=hdmi_input@2.service
+Description = Xbox Series X
+Requires = hdmi_input@3.service

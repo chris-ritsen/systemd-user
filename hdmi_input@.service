@@ -1,0 +1,21 @@
+[Unit]
+
+DefaultDependencies = no
+Description = HDMI input %i
+Description=Set desired HDMI input for %i
+
+[Service]
+
+ExecStartPre=/usr/bin/zsh -c 'echo -e "set inseltx0 %i\r" | nc -w0 192.168.1.59 2222'
+ExecStart=/usr/bin/zsh -c 'if [ -z "$SOURCE" ]; then true; else while true; do output=$(echo -e "get status spd0\r" | nc -w1 192.168.1.59 2222); if echo "$output" | grep -iq "$SOURCE"; then break; fi; sleep 1; done; fi'
+
+RemainAfterExit = no
+# Restart=on-failure
+# RestartSec = 3
+TimeoutStartSec = 3
+TimeoutStopSec = 3
+Type = oneshot
+
+[Install]
+
+WantedBy=default.target

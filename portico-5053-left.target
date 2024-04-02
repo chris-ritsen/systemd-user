@@ -1,0 +1,6 @@
+[Unit]
+
+After = outlet@4.service
+BindsTo = outlet@4.service
+Description = Rupert Neve Portico 5043 (Left)
+PartOf = wireless-audio@1.service

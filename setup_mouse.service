@@ -1,0 +1,10 @@
+[Unit]
+Description=Setup Mouse
+After=graphical.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/xdotool mousemove 3840 2160
+
+[Install]
+WantedBy=default.target

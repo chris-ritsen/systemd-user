@@ -1,0 +1,10 @@
+[Unit]
+Description=Record audio with Ecasound
+
+[Service]
+Environment=TERM=xterm
+ExecStart=/usr/bin/zsh -c "/usr/bin/ecasound -G:jack,record -C -f:s16_le,4,48000 -i jack_multi,system:capture_1,system:capture_2,system:capture_3,system:capture_4 -o /home/chris/$(date +%%Y-%%m-%%dT%%H-%%M-%%S).ogg"
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

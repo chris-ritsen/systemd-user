@@ -2,16 +2,18 @@
 [Unit]
 
 After = graphical-session.target
-After = urxvtd.service  
+After = urxvtd.service
 BindsTo = clock.target
+BindsTo = urxvtd.service
 ConditionFileNotEmpty = %h/.scripts/zsh/%p/%i.zsh
 Description = %i %p session
 RefuseManualStart = no
 RefuseManualStop = no
 Requires = urxvtd.service
-StopWhenUnneeded = no
 StartLimitBurst=5
 StartLimitIntervalSec=1
+StopWhenUnneeded = no
+Wants = urxvtd.service
 
 [Service]
 

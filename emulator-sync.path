@@ -1,0 +1,9 @@
+[Unit]
+Description=Monitor emulator save state changes
+
+[Path]
+PathChanged=/home/chris/.config/retroarch/states
+Unit=emulator-sync.service
+
+[Install]
+WantedBy=default.target

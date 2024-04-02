@@ -3,8 +3,8 @@
 
 # Before = jack_client@dante_pcie_in.service
 # Before = jack_client@dante_pcie_out.service
-PartOf = microphone.service
-BindsTo = microphone.service
+# PartOf = microphone.service
+# BindsTo = microphone.service
 
 StopWhenUnneeded = no
 

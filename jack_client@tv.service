@@ -1,0 +1,28 @@
+
+[Unit]
+
+StopWhenUnneeded = no
+DefaultDependencies = no
+Description = Speakers (DisplayPort)
+
+After = jackd.service
+PartOf = jackd.service
+Requires = jackd.service
+# Wants = node_notify.service
+# Wants = ecasound@speakers.service
+# Wants = speakers.target
+
+[Service]
+
+Restart = always
+
+ExecStart = /usr/bin/alsa_out -c2 -j '%i' -d hw:NVidia
+
+# ExecStartPre = -/usr/bin/jack_unload %i default
+# ExecStart = /usr/bin/jack_load --server default %i audioadapter -i "-d hw:PCH -i0"
+# ExecStopPost = /usr/bin/jack_unload %i
+# RemainAfterExit = yes
+
+[Install]
+
+WantedBy=jack_clients.target

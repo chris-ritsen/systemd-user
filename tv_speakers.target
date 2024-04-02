@@ -1,0 +1,11 @@
+
+[Unit]
+
+BindsTo = tv_speakers.service
+Description = TV speakers
+PropagatesReloadTo = tv_speakers.service
+Requires = tv_speakers.service
+
+[Install]
+
+WantedBy = jack.target

@@ -1,10 +1,8 @@
 
 [Unit]
 
-After = outlet@7.service
-BindsTo = outlet@7.service
-Description=DANTE Wireless microphone
-PropagatesReloadTo = wireless-microphone.service
-Requires = wireless-microphone.service
-# Requires = jack_client@dante_in.service 
-# Requires = dante_in.service
+After = outlet@2.service
+BindsTo = outlet@2.service
+Description = Wireless microphone
+Requires = outlet@2.service
+Requires = shure-ad4d.target

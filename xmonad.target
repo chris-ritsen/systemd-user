@@ -14,13 +14,11 @@ Description = Graphical session
 # Wants = xrdb.service
 
 
+# Wants = tv.target
 BindsTo = graphical-session.target
-Wants = chromium@default.service
+Requires = urxvtd.service
 Wants = clock.target
-Wants = chromium@deafult.service
+Wants = display-monitors.target
 Wants = hhkb.service
 Wants = tmux@admin.service
-Requires = urxvtd.service
-Wants = display-monitors.target
 Wants = xmonad.service
-# Wants = tv.target

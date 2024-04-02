@@ -1,11 +1,8 @@
-
 [Unit]
 
-# Requires = dante_in.service
-After = outlet@3.service
-BindsTo = outlet@3.service
+After = outlet@7.service
+BindsTo = outlet@7.service
 Description=DANTE Microphone
 PropagatesReloadTo = microphone.service
-# Requires = jack_client@dante_pcie_in.service
 Requires = microphone.service
 BindsTo = microphone.service

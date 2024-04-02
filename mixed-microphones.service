@@ -3,21 +3,19 @@
 
 Conflicts = microphone.service
 Conflicts = speakers.service
-Conflicts = wireless-microphone.service
-After = outlet@3.service
 After = outlet@7.service
+After = outlet@2.service
 Before = dante_in.service
-BindsTo = mixed-microphones.target
-BindsTo = outlet@3.service
 BindsTo = outlet@7.service
+BindsTo = outlet@2.service
 DefaultDependencies = no
 Description = Mixed microphones
 StopWhenUnneeded = yes
 # RefuseManualStart = yes
 # RefuseManualStop = yes
 # Requires = dante_in.service
-Requires = outlet@3.service
 Requires = outlet@7.service
+Requires = outlet@2.service
 
 [Service]
 
@@ -35,4 +33,3 @@ RemainAfterExit = yes
 RestartSec=2
 TimeoutStopSec=2s
 # Type = oneshot
-
