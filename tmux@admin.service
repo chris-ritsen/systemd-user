@@ -1,7 +1,6 @@
-
 [Unit]
 
-After = basic.target 
+After = basic.target
 After = emacs.service
 Description = %i %p session
 RefuseManualStart = no
@@ -10,6 +9,8 @@ Requires = basic.target
 StopWhenUnneeded = no
 
 [Service]
+
+# ~/.config/systemd/user/admin.env
 
 EnvironmentFile = %h/.config/systemd/user/default_env
 EnvironmentFile = %h/.config/systemd/user/admin.env
@@ -41,7 +42,7 @@ Environment = 'unbind_key=tmux -L %i unbind-key'
 Environment = 'vim_script=VIM_ABBREV=0 vim -c ${vim_options}'
 Environment = 'vim_server_arg=--servername ${vim_server_name}'
 
-ExecStart = /bin/zsh -c "tmux -u2 -L %i new-session -d -n %i -s %i"
+ExecStart = /bin/zsh -c "tmux -L %i new-session -d -n %i -s %i"
 
 ExecStartPost = /bin/zsh -c %h/.scripts/zsh/tmux/admin.zsh
 

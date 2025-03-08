@@ -3,7 +3,12 @@
 
 After = sound.target basic.target dante_out.service
 Description = Main system audio
-Requires = sound.target basic.target jackd.service
+Requires = sound.target
+Requires = basic.target
+
+After = jackd.service
+BindsTo = jackd.service
+
 StopWhenUnneeded = yes
 
 [Service]

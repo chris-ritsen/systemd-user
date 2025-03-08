@@ -1,0 +1,12 @@
+[Unit]
+Description=Handler to Switch Between Critical and Normal Music Services
+PartOf=critical_music.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/bin/true
+ExecStop=/bin/zsh -c "/bin/systemctl --user start music.target"
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,20 @@
+[Unit]
+Description=Shure P10T Wireless Transmitter Service
+Requires=outlet@3.service
+After=outlet@3.service
+BindsTo=outlet@3.service
+PartOf=shure-p10t.target
+StopWhenUnneeded=yes
+RefuseManualStart=yes
+RefuseManualStop=yes
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/zsh -ic "sleep 4.5"
+ExecStart=/usr/bin/zsh -ic "until nc -vzw 1 'shure-p10t' 2202 2>/dev/null; do sleep 0.5; done"
+ExecStart=/usr/bin/zsh -ic "%h/.scripts/zsh/maybe_mute.zsh"
+
+TimeoutStartSec=40s
+TimeoutStopSec=5s
+RestartSec=5s

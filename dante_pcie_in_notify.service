@@ -1,11 +1,9 @@
-
 [Unit]
 
 StopWhenUnneeded = yes
 
-# After = jackd.service
-# PartOf = jackd.service
-# Requires = jackd.service
+After = jackd.service
+BindsTo = jackd.service
 
 [Service]
 

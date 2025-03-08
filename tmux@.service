@@ -1,4 +1,3 @@
-
 [Unit]
 
 Description = %i %p session
@@ -8,10 +7,9 @@ StopWhenUnneeded = no
 
 [Service]
 
-# ExecReload = /usr/bin/tmux -L %i display-message testing
 EnvironmentFile = /home/chris/.config/systemd/user/default_env
-ExecReload = /usr/bin/tmux -u2 -L %i -f %h/.config/%p/sessions/%i start-server
-ExecStart = /usr/bin/tmux -u2 -L %i -f %h/.config/%p/sessions/%i start-server 
+ExecReload = /usr/bin/tmux -L %i -f %h/.config/%p/sessions/%i start-server
+ExecStart = /usr/bin/tmux -L %i -f %h/.config/%p/sessions/%i start-server
 ExecStartPost = /usr/bin/tmux -L %i has-session -t %i
 ExecStartPost = /usr/bin/tmux -L %i set-option @status 'started'
 Restart = no
@@ -25,4 +23,3 @@ Type = forking
 
 DefaultInstance = default
 WantedBy = default.target
-

@@ -1,4 +1,3 @@
-
 [Unit]
 
 # After = chromium.service
@@ -32,11 +31,11 @@ Type = simple
 
 Environment = DISPLAY=:0
 # Environment = MPV_CURRENT=%h/media_player_state/path-%i
-# Environment = MPV_PAUSE=%h/media_player_state/pause-%i 
+# Environment = MPV_PAUSE=%h/media_player_state/pause-%i
 # Environment = MPV_PAUSE=no
 Environment = MPV_PLAYLIST=%t/%p-%i-playlist
-# Environment = MPV_PLAYLIST=%h/media_player_state/playlist-%i 
-# Environment = MPV_TIME_POS=%h/media_player_state/time-pos-%i 
+# Environment = MPV_PLAYLIST=%h/media_player_state/playlist-%i
+# Environment = MPV_TIME_POS=%h/media_player_state/time-pos-%i
 # EnvironmentFile = %h/.config/systemd/user/default_env
 Environment = MPV_SOCKET=%t/%p-%i-video
 
@@ -77,4 +76,3 @@ ExecStartPost = /usr/bin/zsh -c "echo $(xclip -o) > $MPV_PLAYLIST"
 
 [Install]
 WantedBy = graphical-session.target
-

@@ -1,11 +1,22 @@
 [Unit]
-Description=Setup Jack Alias
-After=graphical.target
-Before=audio-control-panels.target
+
+Description=Setup Jack Aliases
+
+After=jackd.service
+BindsTo=jackd.service
 
 [Service]
-Type=oneshot
-ExecStart=/bin/zsh -c '~/scripts/setup_jack_alias.zsh'
 
-[Install]
-WantedBy=default.target
+Environment = DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+Environment = DISPLAY=:0
+Nice = 19
+NotifyAccess = all
+RemainAfterExit = yes
+Restart = no
+RestartSec = 1
+StartLimitBurst = 0
+TimeoutStartSec = 20s
+TimeoutStopSec = 20s
+Type = notify
+
+ExecStart = /usr/bin/node %h/home-control/dbus/jack_alias_notify.js

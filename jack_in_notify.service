@@ -1,4 +1,3 @@
-
 [Unit]
 
 StopWhenUnneeded = yes
@@ -10,8 +9,7 @@ After = jackd.service
 After = microphone.service
 After = pulseaudio.service
 PartOf = jack_client@pulseaudio.service
-PartOf = jackd.service
-Requires = jackd.service
+BindsTo = jackd.service
 
 [Service]
 

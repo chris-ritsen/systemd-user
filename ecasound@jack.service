@@ -1,12 +1,10 @@
-
 [Unit]
 
 Description = ecasound %i effects
 
 After = dante_pcie_out_notify.service
 After = jackd.service
-PartOf = jackd.service
-Requires = jackd.service
+BindsTo = jackd.service
 Wants = dante_pcie_out_notify.service
 
 [Service]

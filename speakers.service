@@ -1,4 +1,3 @@
-
 [Unit]
 
 # RefuseManualStart = yes
@@ -19,8 +18,12 @@ Description = Speakers
 
 # After = ecasound@jack.service
 # After = ecasound@speakers.service
+
 BindsTo = speakers.target
-PartOf = jackd.service
+
+After = jackd.service
+BindsTo = jackd.service
+
 Requires = ecasound@jack.service
 Requires = ecasound@speakers.service
 Requires = jack_client@speakers.service

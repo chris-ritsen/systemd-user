@@ -1,0 +1,21 @@
+[Unit]
+Description=Ferrofish A32 Dante Service
+Requires=outlet@4.service
+After=outlet@4.service
+BindsTo=outlet@4.service
+PartOf=ferrofish-a32.target
+StopWhenUnneeded=yes
+RefuseManualStart=yes
+RefuseManualStop=yes
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/zsh -ic "sleep 4.5"
+ExecStart=/usr/bin/zsh -ic "until nc -vzw 1 'ferrofish-a32' 23 2>/dev/null; do sleep 0.5; done"
+
+ExecStop=/usr/bin/zsh -ic "echo 'Shutting down Ferrofish A32...'"
+
+TimeoutStartSec=25s
+TimeoutStopSec=10s
+RestartSec=10s

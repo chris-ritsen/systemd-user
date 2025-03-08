@@ -1,0 +1,17 @@
+[Unit]
+
+Description=Clipboard Sync Service
+After=network.target
+
+[Service]
+
+Environment = DISPLAY=:0
+Restart=always
+RestartSec=10
+Type=simple
+
+ExecStart=/usr/bin/env python3 %h/.scripts/py/clipboard_sync.py --redis-host 127.0.0.1
+
+[Install]
+
+WantedBy=default.target

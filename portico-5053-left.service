@@ -1,0 +1,18 @@
+[Unit]
+Description=Rupert Neve Portico 5043 (Left) Service
+Requires=outlet@5.service
+After=outlet@5.service
+BindsTo=outlet@5.service
+PartOf=portico-5053-left.target
+StopWhenUnneeded=yes
+RefuseManualStart=yes
+RefuseManualStop=yes
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStop=/usr/bin/zsh -ic "echo 'Shutting down Portico 5043 Left...'"
+
+TimeoutStartSec=40s
+TimeoutStopSec=5s
+RestartSec=5s

@@ -1,13 +1,14 @@
 
 [Unit]
 
-After = outlet@1.service
-After = outlet@3.service
+After = satellite-5059.target
+After = shure-p10t.target
+After = ferrofish-a32.target
 DefaultDependencies = no
 Description = Wireless audio channel %i
-Requires = outlet@1.service
+Requires = shure-p10t.target
 Requires = satellite-5059.target
-Requires = outlet@3.service
+Requires = ferrofish-a32.target
 
 [Service]
 

@@ -1,0 +1,7 @@
+[Unit]
+Description=Run pdflatex on resume.tex
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/latex_resume
+ExecStart=/usr/bin/pdflatex resume.tex

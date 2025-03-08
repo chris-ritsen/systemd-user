@@ -1,15 +1,10 @@
-
 [Unit]
 
-# Before = jack_client@dante_pcie_in.service
-# Before = jack_client@dante_pcie_out.service
+Description = Watch jack over dbus to connect Dante AVIO Bluetooth automatically
 
-After = jackd.service
-PartOf = jackd.service
-BindsTo = jackd.service
-Requires = jackd.service
-
-StopWhenUnneeded = no
+After=jackd.service
+BindsTo=jackd.service
+StopWhenUnneeded = yes
 
 [Service]
 

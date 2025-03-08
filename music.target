@@ -1,0 +1,11 @@
+[Unit]
+Description = Critical Listening Target for Music
+Requires = mpd@music.service
+Requires = music_notify.service
+Conflicts = music_direct_notify.service
+Conflicts = critical_music.target
+After = mpd@music.service
+After = music_notify.service
+
+[Install]
+WantedBy = multi-user.target

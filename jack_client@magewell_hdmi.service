@@ -1,0 +1,10 @@
+[Unit]
+After = sound.target basic.target
+Description = Magewell Pro Capture HDMI audio input
+Requires = sound.target basic.target
+
+[Service]
+ExecStart=/usr/bin/alsa_in -j "magewell_hdmi" -d sysdefault:CARD=HDMI_1 -c 2
+
+[Install]
+WantedBy=jack_clients.target

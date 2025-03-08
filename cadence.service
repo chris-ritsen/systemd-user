@@ -1,17 +1,16 @@
-
 [Unit]
 
 Description = JACK toolbox for audio production
 
-# After = jackd.service
-# Requires = jackd.service
-# Requires = sound.target graphical-session.target
+After = jackd.service
+BindsTo = jackd.service
 
 StopWhenUnneeded = no
 
 [Service]
 
 Environment = JACK_NO_START_SERVER=1
+Environment = DISPLAY=:0
 
 ExecStart = /usr/bin/cadence
 
@@ -25,4 +24,3 @@ TimeoutStopSec = 2s
 
 [Install]
 WantedBy = default.target
-

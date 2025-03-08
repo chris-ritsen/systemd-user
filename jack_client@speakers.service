@@ -6,8 +6,8 @@ DefaultDependencies = no
 Description = Speakers (motherboard line-out)
 
 After = jackd.service
-PartOf = jackd.service
-Requires = jackd.service
+BindsTo = jackd.service
+
 Wants = node_notify.service
 Wants = ecasound@speakers.service
 Wants = speakers.target

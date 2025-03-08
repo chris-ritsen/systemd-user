@@ -1,8 +1,8 @@
-
 [Unit]
 
 Before = ecasound@music.service
 PartOf = ecasound@music.service
+Conflicts = music_direct_notify.service
 
 StopWhenUnneeded = no
 

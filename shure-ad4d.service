@@ -1,0 +1,19 @@
+[Unit]
+After=outlet@6.service
+BindsTo=outlet@6.service
+Description=Shure AD4D Wireless Microphone Receiver Service
+PartOf=shure-ad4d.target
+RefuseManualStart=yes
+RefuseManualStop=yes
+Requires=outlet@6.service
+StopWhenUnneeded=yes
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStartPost = /usr/bin/zsh -ic "until nc -vzw 1 'shure-ad4d' 2202 2>/dev/null; do echo 'wait'; sleep 0.5; done"
+ExecStop=/usr/bin/zsh -ic "echo 'Shutting down Shure AD4D...'"
+
+TimeoutStartSec=40s
+TimeoutStopSec=5s
+RestartSec=5s

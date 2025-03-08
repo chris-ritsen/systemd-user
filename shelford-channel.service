@@ -1,0 +1,17 @@
+[Unit]
+Description=Shelford Channel Service
+Requires=outlet@2.service
+After=outlet@2.service
+BindsTo=outlet@2.service
+PartOf=shelford-channel.target
+StopWhenUnneeded=yes
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStartPost = /usr/bin/sleep 3.0
+
+ExecStop=/usr/bin/zsh -ic "echo 'Stopping Shelford Channel...'"
+TimeoutStartSec=40s
+TimeoutStopSec=5s
+RestartSec=5s

@@ -1,7 +1,7 @@
 [Unit]
 
-After = outlet@7.service
-BindsTo = outlet@7.service
-Description = Shelford channel
-Requires = outlet@7.service
-BindsTo = microphone.target
+After=shelford-channel.service
+BindsTo=microphone.target
+BindsTo=shelford-channel.service
+Description=Shelford Channel
+Requires=shelford-channel.service

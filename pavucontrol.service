@@ -1,9 +1,13 @@
-
 [Unit]
 
 Description = PulseAudio Volume Control
 Requires = sound.target graphical-session.target
 StopWhenUnneeded = no
+
+After = jackd.service
+BindsTo = jackd.service
+
+# Requires = sound.target graphical-session.target
 
 [Service]
 

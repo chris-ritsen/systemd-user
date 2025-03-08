@@ -1,13 +1,8 @@
-
 [Unit]
 
-# After = jack_client@pulseaudio.service
 After = jackd.service
-# Before = pulseaudio.service
-# PartOf = jack_client@pulseaudio.service
-PartOf = jackd.service
 BindsTo = jackd.service
-Requires = jackd.service
+
 StopWhenUnneeded = no
 
 [Service]

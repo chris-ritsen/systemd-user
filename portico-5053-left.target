@@ -1,6 +1,11 @@
 [Unit]
 
-After = outlet@4.service
-BindsTo = outlet@4.service
+After = portico-5053-left.service 
+BindsTo = portico-5053-left.service
+Requires = portico-5053-left.service
 Description = Rupert Neve Portico 5043 (Left)
-PartOf = wireless-audio@1.service
+
+Before=wireless-audio@1.service
+Before=wireless-audio@2.service
+BindsTo=wireless-audio@1.service
+BindsTo=wireless-audio@2.service

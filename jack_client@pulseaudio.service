@@ -21,8 +21,8 @@ Type = oneshot
 
 ExecStartPre = /usr/bin/zsh -c '/usr/bin/jack_control status'
 
-ExecStart = /usr/bin/zsh -c 'pactl load-module module-jack-sink channels=2 client_name=jack_out sink_name=jack_out'
-ExecStart = /usr/bin/zsh -c 'pactl load-module module-jack-source channels=2 client_name=jack_in source_name=jack_in'
+ExecStart = /usr/bin/zsh -c 'pactl load-module module-jack-sink channels=2 client_name=jack_out sink_name=jack_out connect=no'
+ExecStart = /usr/bin/zsh -c 'pactl load-module module-jack-source channels=2 client_name=jack_in source_name=jack_in connect=no'
 
 ExecStart = /usr/bin/pactl set-default-sink jack_out
 ExecStart = /usr/bin/pactl set-default-source jack_in

@@ -1,13 +1,15 @@
 [Unit]
+
 # Requires = radial_dinet_notify.service
 # Requires = catia.service
 
 Conflicts = speakers.service
 
-Wants = cadence.service
-Wants = catia.service
+# Wants = cadence.service
+# Wants = catia.service
+# Wants = pavucontrol.service
+
 Wants = dante_usb_io_notify.service
-Wants = pavucontrol.service
 
 After = dante_pcie_in_notify.service
 After = dante_pcie_out_notify.service
@@ -21,7 +23,7 @@ After = microphone.target
 After = satellite-5059.target
 After = shelford-channel.target
 After = shure-p10t.target
-After = wireless-audio@2.service
+After = wireless-audio@1.service
 After = wireless-microphone.target
 
 # Requires = dante_usb_out_notify.service
@@ -36,7 +38,7 @@ Requires = microphone.target
 Requires = satellite-5059.target
 Requires = shelford-channel.target
 Requires = shure-p10t.target
-Requires = wireless-audio@2.service
+Requires = wireless-audio@1.service
 Requires = wireless-microphone.target
 
 # BindsTo=dante_usb_out_notify.service

@@ -1,5 +1,6 @@
 [Unit]
 
+Description = Watch jack over dbus to connect to the HDMI output for TV speakers
 StopWhenUnneeded = yes
 
 [Service]

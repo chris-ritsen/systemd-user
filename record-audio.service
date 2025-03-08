@@ -2,11 +2,10 @@
 Description=Record multi-channel audio through ecasound and encode with opusenc
 
 [Service]
-Type=forking
-# ExecStart=/bin/sh -c "ecasound -G:jack,record -C -f:s16_le,6,48000 -i jack_multi,system:capture_4,system:capture_2,system:capture_17,jack_out:front-left,discord_out:front-left,avio-bt-1:left -o stdout | opusenc --raw --raw-rate 48000 --raw-chan 6 --bitrate 128 - \"%h/$(date +%%Y-%%m-%%dT%%H-%%M-%%S).opus\""
+Type=simple
 ExecStart=%h/.scripts/record-audio.zsh
-ExecStop=/bin/kill -s SIGINT $MAINPID
-TimeoutStopSec=5
+ExecStop=/usr/bin/zsh -c 'sleep 4.0 && kill -SIGTERM $MAINPID'
+TimeoutStopSec=60
 
 [Install]
 WantedBy=default.target

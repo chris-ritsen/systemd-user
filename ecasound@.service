@@ -4,9 +4,8 @@
 Description = Ecasound effects
 StopWhenUnneeded = yes
 
-# PartOf = jack.target
-# Requires = jackd.service
-# Requisite = jackd.service
+After = jackd.service
+BindsTo = jackd.service
 
 AssertFileIsExecutable = /usr/bin/ecasound
 

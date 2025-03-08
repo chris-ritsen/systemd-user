@@ -19,8 +19,14 @@ After = sound.target
 BindsTo = jackd.target
 Requires = sound.target
 
+After = dbus.service
+Requires = dbus.service
+
 # Wants = audio-control-panels.target
+# Wants = jack_client@magewell_hdmi.service
+
 Wants = dante_avio_bt_1.service
+Wants = dante_pcie_out_notify.service
 Wants = dante_usb_io_macbook_notify.service
 Wants = dante_usb_io_notify.service
 Wants = ecasound@jack.service
@@ -28,6 +34,7 @@ Wants = jack_client@pulseaudio.service
 Wants = jack_out_notify.service
 Wants = tv_speakers.target
 Wants = vrroom_notify.service
+Wants = setup_jack_alias.service
 
 [Service]
 
@@ -55,6 +62,7 @@ Slice = audio.slice
 
 # Medium latency
 Environment=bufsize=256
+Environment = DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
 Environment=period=512
 
 # Low latency
@@ -68,7 +76,7 @@ Environment=rate=48000
 
 # ExecStop = /usr/bin/zsh -c '/usr/bin/jack_control stop'
 
-ExecStartPre = -/usr/bin/killall -9 jackd ecasound jackdbus catia cadence pulseaudio
+# ExecStartPre = -/usr/bin/killall -9 jackd ecasound jackdbus catia cadence pulseaudio
 
 # Generic dummy driver
 # ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control ds dummy'
@@ -106,7 +114,10 @@ ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control dps inchannels 24'
 
 # ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control eps self-connect-mode A'
 # ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control eps self-connect-mode " "'
-ExecStart = /usr/bin/jack_control start
+
+# ExecStart = /usr/bin/jack_control start
+ExecStart = /usr/bin/qdbus org.jackaudio.service /org/jackaudio/Controller StartServer
+
 ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control status'
 ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control ep'
 ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control dp'

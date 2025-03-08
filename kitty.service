@@ -1,0 +1,18 @@
+[Unit]
+
+After=graphical-session.target
+After=graphical.target
+BindsTo=graphical-session.target
+Description=Kitty Terminal Daemon
+PartOf=graphical-session.target
+ConditionEnvironment=DISPLAY
+
+[Service]
+ExecStart=/usr/local/bin/kitty --override pointer_shape_when_grabbed=arrow --override default_pointer_shape=arrow --single-instance --title "kitty-daemon" --listen-on "unix:%t/kitty.socket"
+Environment = DISPLAY=:0
+Environment = XCURSOR_SIZE=16
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target

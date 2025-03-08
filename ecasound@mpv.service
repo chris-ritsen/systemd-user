@@ -1,14 +1,13 @@
-
 [Unit]
 
-# BindsTo = xbox_out.service
 After = ecasound@jack.service
 After = mpv.service
 Description = ecasound %i effects
 Requires = ecasound@jack.service
-Requires = jackd.service
-# Requires = mpv.service
-# Requisite = mpv.service
+
+After = jackd.service
+BindsTo = jackd.service
+
 StopWhenUnneeded = no
 
 [Service]

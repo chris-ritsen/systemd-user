@@ -1,5 +1,6 @@
 
 [Unit]
+
 StopWhenUnneeded = yes
 
 # RefuseManualStart = yes
@@ -20,11 +21,15 @@ Description = TV Speakers
 # After = ecasound@jack.service
 # After = ecasound@speakers.service
 BindsTo = tv_speakers.target
-PartOf = jackd.service
+
+After = jackd.service
+BindsTo = jackd.service
+
 Requires = ecasound@jack.service
 Requires = ecasound@speakers.service
 Requires = jack_client@tv_speakers.service
 Requires = node_notify.service
+
 Conflicts = vrroom_notify.service
 
 [Service]

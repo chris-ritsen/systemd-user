@@ -1,8 +1,8 @@
 [Unit]
 
-After = outlet@7.service
-BindsTo = outlet@7.service
-Description=DANTE Microphone
+After = shelford-channel.target
+BindsTo = shelford-channel.target
+Description=Microphone
 PropagatesReloadTo = microphone.service
 Requires = microphone.service
 BindsTo = microphone.service

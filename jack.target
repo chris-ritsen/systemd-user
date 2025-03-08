@@ -1,10 +1,10 @@
-
 [Unit]
 
 Description = Jack sound service
-Requires = jackd.service 
-Wants = jack_clients.target
-# PropagatesReloadTo = jack_clients.target
+After = jackd.service
+BindsTo = jackd.service
+After = sound.target
+# Wants = jack_clients.target
 
 [Install]
 

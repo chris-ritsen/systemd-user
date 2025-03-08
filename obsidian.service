@@ -1,0 +1,19 @@
+
+[Unit]
+
+Description = Obsidian
+
+[Service]
+
+Environment = DISPLAY=:0
+ExecStart = /usr/bin/obsidian
+ExecStop = /usr/bin/killall -I -9 obsidian
+
+KillMode=process
+Restart=no
+RestartSec=6
+TimeoutStartSec=2s
+TimeoutStopSec=2s
+
+[Install]
+WantedBy = default.target

@@ -1,12 +1,10 @@
-
 [Unit]
 
-# Before = jack_client@dante_pcie_in.service
-# Before = jack_client@dante_pcie_out.service
-# PartOf = microphone.service
-# BindsTo = microphone.service
+After=jackd.service
+BindsTo=jackd.service
+Description = Watch jack over dbus to connect Dante AVIO connections for Windows PC automatically
 
-StopWhenUnneeded = no
+StopWhenUnneeded = yes
 
 [Service]
 

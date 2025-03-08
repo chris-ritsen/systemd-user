@@ -7,8 +7,10 @@ After = ecasound@jack.service
 DefaultDependencies = no
 Description = Dante output
 Requires = ecasound@jack.service
-Requires = jack_client@dante_out.service jackd.service
+Requires = jack_client@dante_out.service
 StopWhenUnneeded = yes
+After=jackd.service
+BindsTo=jackd.service
 
 [Service]
 

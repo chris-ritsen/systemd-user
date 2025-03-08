@@ -1,11 +1,10 @@
-
 [Unit]
 
+Description = Watch jack over dbus to connect to the speakers ecasound effects
 StopWhenUnneeded = yes
 
-# After = jackd.service
-# Before = speakers.service
-# PartOf = jackd.service
+After = jackd.service
+BindsTo = jackd.service
 
 [Service]
 

@@ -1,10 +1,10 @@
-
 [Unit]
 
 # Requires = xmonad-instance.service
 
 After = sockets.target
-After = urxtvtd.service
+After = urxvtd.service
+Before = jack.target
 
 Description = Graphical session
 
@@ -18,7 +18,9 @@ Description = Graphical session
 BindsTo = graphical-session.target
 Requires = urxvtd.service
 Wants = clock.target
-Wants = display-monitors.target
+# Wants = display-monitors.target
 Wants = hhkb.service
 Wants = tmux@admin.service
 Wants = xmonad.service
+Wants = kitty.service
+Wants = jack.target

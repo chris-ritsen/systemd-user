@@ -1,8 +1,10 @@
-
 [Unit]
 
-BindsTo = tv_speakers.service
 Description = TV speakers
+
+After = jackd.service
+BindsTo = jackd.service
+BindsTo = tv_speakers.service
 PropagatesReloadTo = tv_speakers.service
 Requires = tv_speakers.service
 

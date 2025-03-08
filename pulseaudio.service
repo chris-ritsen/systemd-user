@@ -1,23 +1,13 @@
-
 [Unit]
 
 ConditionUser=!root
 Description=Sound Service
 
-# Before = jack_client@pulseaudio.service
-
 After = jackd.service
 BindsTo = jackd.service
-PartOf = jackd.service
-Requires = jackd.service
-Requires = pulseaudio.socket
+# Requires = pulseaudio.socket
 
 [Service]
-
-# CPUSchedulingResetOnFork=yes
-# IOSchedulingClass=realtime
-# IOSchedulingPriority=0
-# Nice=0
 
 CPUSchedulingPolicy=rr
 CPUSchedulingPriority=90
@@ -30,8 +20,6 @@ Environment = JACK_NO_START_SERVER=1
 
 ExecStart=/usr/bin/pulseaudio --daemonize=no
 
-# Restart = no
-
 Restart = on-failure
 RestartSec=6
 TimeoutStartSec = 50s
@@ -39,8 +27,3 @@ TimeoutStopSec=2s
 
 Type=notify
 Slice = audio.slice
-
-[Install]
-
-Also=pulseaudio.socket
-WantedBy=default.target

@@ -1,4 +1,3 @@
-
 [Unit]
 
 # ConditionPathExists = !%h/.xmonad/xmonad-x86_64-linux
@@ -12,6 +11,6 @@ RefuseManualStop = yes
 [Path]
 
 PathChanged = %h/.xmonad/xmonad.hs
-PathModified = %h/.xmonad/xmonad.hs 
+PathModified = %h/.xmonad/xmonad.hs
 
 Unit = xmonad.service

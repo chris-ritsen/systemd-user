@@ -1,7 +1,11 @@
-
 [Unit]
+Description=Satellite 5059
+Requires=satellite-5059.service
+After=satellite-5059.service
+BindsTo=satellite-5059.service
+Before=wireless-audio@1.service
+Before=wireless-audio@2.service
+BindsTo=wireless-audio@1.service
+BindsTo=wireless-audio@2.service
 
-Requires = outlet@6.service
-BindsTo = outlet@6.service
-Description=Satelite 5059
-PropagatesReloadTo = outlet@6.service
+PropagatesReloadTo=satellite-5059.service

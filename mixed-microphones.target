@@ -1,11 +1,11 @@
 
 [Unit]
 
-After = outlet@7.service
-BindsTo = outlet@7.service
-After = outlet@2.service
-BindsTo = outlet@2.service
-Description=Mixed microphones
+After = shelford-channel.target
+BindsTo = shelford-channel.target
+After = shure-ad4d.target
+BindsTo = shure-ad4d.target
+Description = Mixed microphones
 PropagatesReloadTo = mixed-microphones.service
 Requires = mixed-microphones.service
 Requires = jack_client@dante_in.service

@@ -11,7 +11,7 @@ Description = Run jack client
 After = jackd.service
 After = pulseaudio.service
 PartOf = jack.target
-Requires = jackd.service
+BindsTo = jackd.service
 Requires = pulseaudio.service
 Requisite = jackd.service
 

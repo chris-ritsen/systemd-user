@@ -1,10 +1,9 @@
-
 [Unit]
 
-Description=Catia jackd patchbay
+Description=Catia jack patchbay
 
 After = jackd.service
-Requires = jackd.service
+BindsTo = jackd.service
 Requires = sound.target graphical-session.target
 
 StopWhenUnneeded = no
@@ -17,7 +16,6 @@ Nice = 19
 ExecStart=/usr/bin/catia
 
 KillMode=process
-# Restart = yes
 RestartSec=20
 TimeoutStartSec=2s
 TimeoutStopSec=2s

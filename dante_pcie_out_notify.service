@@ -1,11 +1,10 @@
-
 [Unit]
 
 StopWhenUnneeded = yes
+Description = Watch jack over dbus to connect Digigram LX-Dante PCIe outputs automatically
 
 After = jackd.service
-PartOf = jackd.service
-Requires = jackd.service
+BindsTo = jackd.service
 
 [Service]
 

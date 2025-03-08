@@ -1,18 +1,19 @@
-
 [Unit]
 
 # AssertPathIsReadWrite = /run/user/1000/emacs/
 # PropagatesReloadTo = tmux@admin.service
 # ReloadPropagatedFrom = tmux@admin.service
 
-After = basic.target 
-After = graphical-session.target 
+After = basic.target
+After = graphical-session.target
+After = default.target
 Description = Emacs; a text-editor
 RefuseManualStart = no
 RefuseManualStop = no
+Requires=default.target
 StopWhenUnneeded = no
 Wants = basic.target
-Wants = graphical-session.target 
+Wants = graphical-session.target
 
 [Service]
 

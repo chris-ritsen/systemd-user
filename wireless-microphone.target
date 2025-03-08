@@ -1,8 +1,7 @@
 
 [Unit]
 
-After = outlet@2.service
-BindsTo = outlet@2.service
+After = shure-ad4d.target
+BindsTo = shure-ad4d.target
 Description = Wireless microphone
-Requires = outlet@2.service
 Requires = shure-ad4d.target

@@ -1,14 +1,12 @@
-
 [Unit]
 
 Description = ecasound %i effects
 StopWhenUnneeded = yes
 
 # After = ecasound@jack.service
-# After = jackd.service
-# PartOf = jackd.service
+After = jackd.service
+BindsTo = jackd.service
 # Requires = ecasound@jack.service
-# Requires = jackd.service
 
 [Service]
 

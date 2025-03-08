@@ -1,0 +1,10 @@
+[Unit]
+
+Description=Rebuild native npm modules for dbus project
+
+[Service]
+
+Type=oneshot
+WorkingDirectory=%h/home-control/dbus
+
+ExecStart=/usr/bin/npm rebuild

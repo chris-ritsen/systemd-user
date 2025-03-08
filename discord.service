@@ -6,11 +6,13 @@ Requires = sound.target graphical-session.target
 Wants = discord_notify.service
 Wants = jack_client@discord.service
 After = jack_client@discord.service
+After = discord_notify.service
 
 [Service]
 
 Nice = 19
 
+Environment = DISPLAY=:0
 ExecStart = /usr/bin/discord
 ExecStop = /usr/bin/killall -I -9 discord
 

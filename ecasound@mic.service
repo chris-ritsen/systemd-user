@@ -2,7 +2,10 @@
 [Unit]
 
 Description = ecasound %i effects
-Requires = jackd.service
+
+After = jackd.service
+BindsTo = jackd.service
+
 Requires = mic_notify.service
 After = mic_notify.service
 BindsTo = outlet@7.service

@@ -1,12 +1,9 @@
-
 [Unit]
 
-# Before = jack_client@dante_pcie_in.service
-# Before = jack_client@dante_pcie_out.service
-# PartOf = microphone.service
-# BindsTo = microphone.service
-
-StopWhenUnneeded = no
+Description = Watch jack over dbus to connect Dante AVIO connections for Macbook automatically
+After=jackd.service
+BindsTo=jackd.service
+StopWhenUnneeded = yes
 
 [Service]
 

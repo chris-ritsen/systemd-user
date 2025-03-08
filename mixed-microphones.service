@@ -3,19 +3,19 @@
 
 Conflicts = microphone.service
 Conflicts = speakers.service
-After = outlet@7.service
-After = outlet@2.service
+# After = outlet@7.service
+# After = outlet@2.service
 Before = dante_in.service
-BindsTo = outlet@7.service
-BindsTo = outlet@2.service
+# BindsTo = outlet@7.service
+# BindsTo = outlet@2.service
 DefaultDependencies = no
 Description = Mixed microphones
 StopWhenUnneeded = yes
 # RefuseManualStart = yes
 # RefuseManualStop = yes
 # Requires = dante_in.service
-Requires = outlet@7.service
-Requires = outlet@2.service
+# Requires = outlet@7.service
+# Requires = outlet@2.service
 
 [Service]
 

@@ -1,24 +1,11 @@
-
 [Unit]
-
-# RefuseManualStart = yes
-# RefuseManualStop = yes
 
 Description = Run jack client for %i
 StopWhenUnneeded = no
 
-# BindsTo = pulseaudio.service
-# Requires = pulseaudio.service
-# Wants = discord_out_notify.service
-
-# After = ecasound@jack.service
-# Wants = ecasound@jack.service
-# After = pulseaudio.service
 PartOf = discord.service
-# Requires = jackd.service
-Requires = pulseaudio.service
-# Wants = discord_in_notify.service
-# Wants = discord_out_notify.service
+BindsTo = pulseaudio.service
+After = pulseaudio.service
 
 AssertFileIsExecutable = /usr/bin/jack_control
 AssertFileIsExecutable = /usr/bin/pactl

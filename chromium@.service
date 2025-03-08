@@ -1,4 +1,3 @@
-
 [Unit]
 
 AssertFileIsExecutable = /usr/lib/chromium/chromium
@@ -8,12 +7,13 @@ Documentation = man:chromium(1)
 PartOf=graphical-session.target
 RefuseManualStart = no
 RefuseManualStop = no
+ConditionEnvironment=DISPLAY
 
 [Service]
 
 Environment=LIBVA_DRI3_DISABLE=1
 Environment=LIBVA_DRIVER_NAME=nvidia
-Environment=DISPLAY=:0
+# Environment=DISPLAY=:0
 Environment=disk_cache_dir=--disk-cache-dir=%t/chromium
 Environment=remote_debugging_port=9222
 Environment=scale=--force-device-scale-factor='1.0'

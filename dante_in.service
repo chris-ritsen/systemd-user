@@ -8,7 +8,10 @@ After = xbox.service
 After = xbox_chat.service
 DefaultDependencies = no
 Description = Dante input
-Requires = jack_client@dante_in.service jackd.service
+Requires = jack_client@dante_in.service
+After=jackd.service
+BindsTo=jackd.service
+
 StopWhenUnneeded = yes
 
 [Service]

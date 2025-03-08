@@ -1,13 +1,9 @@
-
 [Unit]
 
-# Before = jack_client@dante_pcie_in.service
-# Before = jack_client@dante_pcie_out.service
-
 After = jackd.service
-PartOf = jackd.service
 BindsTo = jackd.service
-Requires = jackd.service
+
+Wants = jack_client@magewell_hdmi.service
 
 StopWhenUnneeded = no
 

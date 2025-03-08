@@ -1,12 +1,21 @@
+# [Unit]
+#
+# After = outlet@1.service
+# BindsTo = outlet@1.service
+# Description = Transmitter for wireless audio monitoring
+# Requires = outlet@1.service
+# Before = wireless-audio@2.service
+# BindsTo = wireless-audio@2.service
 
 [Unit]
-
-After = outlet@1.service
-BindsTo = outlet@1.service
-Description = Transmitter for wireless audio monitoring
-Requires = outlet@1.service
-Before = wireless-audio@2.service
-BindsTo = wireless-audio@2.service
+Description=Transmitter for wireless audio monitoring
+Requires=shure-p10t.service
+After=shure-p10t.service
+BindsTo=shure-p10t.service
+Before=wireless-audio@1.service
+Before=wireless-audio@2.service
+BindsTo=wireless-audio@1.service
+BindsTo=wireless-audio@2.service
 
 # PropagatesReloadTo = wireless-audio@1.service
 # PropagatesReloadTo = wireless-audio@2.service
