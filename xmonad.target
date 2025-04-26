@@ -24,3 +24,4 @@ Wants = tmux@admin.service
 Wants = xmonad.service
 Wants = kitty.service
 Wants = jack.target
+Wants = xbanish.service

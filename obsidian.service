@@ -1,4 +1,3 @@
-
 [Unit]
 
 Description = Obsidian
@@ -9,6 +8,8 @@ Environment = DISPLAY=:0
 ExecStart = /usr/bin/obsidian
 ExecStop = /usr/bin/killall -I -9 obsidian
 
+Nice=19
+UMask=0002
 KillMode=process
 Restart=no
 RestartSec=6

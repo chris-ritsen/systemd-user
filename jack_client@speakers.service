@@ -8,7 +8,6 @@ Description = Speakers (motherboard line-out)
 After = jackd.service
 BindsTo = jackd.service
 
-Wants = node_notify.service
 Wants = ecasound@speakers.service
 Wants = speakers.target
 

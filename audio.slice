@@ -1,0 +1,6 @@
+[Slice]
+
+CPUAccounting = yes
+CPUAffinity = 24-27
+CPUAffinity = 2-3
+MemoryAccounting = yes

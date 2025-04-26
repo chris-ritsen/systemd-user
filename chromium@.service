@@ -35,7 +35,10 @@ ${scale} \
 --enable-chrome-browser-cloud-management \
 --keep-alive-for-test \
 --force-dark-mode \
---silent-launch \
+--enable-features=WebUIDarkMode
+
+# No longer working correctly; causes it to exit early
+# --silent-launch
 
 [Install]
 

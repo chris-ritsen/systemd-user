@@ -1,21 +1,14 @@
 [Unit]
 
-# Requires = radial_dinet_notify.service
-# Requires = catia.service
-
 Conflicts = speakers.service
 
-# Wants = cadence.service
-# Wants = catia.service
-# Wants = pavucontrol.service
-
-Wants = dante_usb_io_notify.service
+Wants = dante_usb_io.target
 
 After = dante_pcie_in_notify.service
-After = dante_pcie_out_notify.service
+After = dante_pcie_out.target
 After = dante_usb_in_notify.service
-After = dante_usb_io_macbook_notify.service
-After = dante_usb_io_notify.service
+After = dante_usb_io_macbook.target
+After = dante_usb_io.target
 After = ecasound@jack.service
 After = ferrofish-a32.target
 After = jackd.service
@@ -26,11 +19,10 @@ After = shure-p10t.target
 After = wireless-audio@1.service
 After = wireless-microphone.target
 
-# Requires = dante_usb_out_notify.service
 Requires = dante_pcie_in_notify.service
-Requires = dante_pcie_out_notify.service
+Requires = dante_pcie_out.target
 Requires = dante_usb_in_notify.service
-Requires = dante_usb_io_macbook_notify.service
+Requires = dante_usb_io_macbook.target
 Requires = ecasound@jack.service
 Requires = ferrofish-a32.target
 Requires = jackd.service
@@ -41,14 +33,10 @@ Requires = shure-p10t.target
 Requires = wireless-audio@1.service
 Requires = wireless-microphone.target
 
-# BindsTo=dante_usb_out_notify.service
-# BindsTo=shure-ad4d.target
-
 BindsTo = dante_pcie_in_notify.service
-BindsTo = dante_pcie_out_notify.service
+BindsTo = dante_pcie_out.target
 BindsTo = dante_usb_in_notify.service
-BindsTo = dante_usb_io_macbook_notify.service
-# BindsTo = dante_usb_io_notify.service
+BindsTo = dante_usb_io_macbook.target
 BindsTo = ecasound@jack.service
 BindsTo = ferrofish-a32.target
 BindsTo = jackd.service

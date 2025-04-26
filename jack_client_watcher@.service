@@ -1,0 +1,9 @@
+[Unit]
+After=jackd.service
+BindsTo=jackd.service
+Description=Watch JACK client %I
+StopWhenUnneeded = yes
+
+[Service]
+Type=notify
+ExecStart = /home/chris/home-control/dbus/jack_client.py "%I"

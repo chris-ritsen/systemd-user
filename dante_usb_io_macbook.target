@@ -1,0 +1,20 @@
+[Unit]
+
+Description=DANTE USB I/O (MacBook) JACK Connections
+After=jackd.service
+BindsTo=jackd.service
+StopWhenUnneeded=no
+
+After=jack_connection@system.capture_11\x2cjack_effects.in_1.service
+After=jack_connection@system.capture_12\x2cjack_effects.in_2.service
+After=jack_connection@system.capture_17\x2cjack_effects.in_1.service
+After=jack_connection@system.capture_18\x2cjack_effects.in_2.service
+After=jack_connection@system.capture_2\x2csystem.playback_13.service
+After=jack_connection@system.capture_4\x2csystem.playback_13.service
+
+Requires=jack_connection@system.capture_11\x2cjack_effects.in_1.service
+Requires=jack_connection@system.capture_12\x2cjack_effects.in_2.service
+Requires=jack_connection@system.capture_17\x2cjack_effects.in_1.service
+Requires=jack_connection@system.capture_18\x2cjack_effects.in_2.service
+Requires=jack_connection@system.capture_2\x2csystem.playback_13.service
+Requires=jack_connection@system.capture_4\x2csystem.playback_13.service

@@ -1,13 +1,23 @@
 [Unit]
 
 Description = TV speakers
+StopWhenUnneeded = no
 
 After = jackd.service
 BindsTo = jackd.service
-BindsTo = tv_speakers.service
-PropagatesReloadTo = tv_speakers.service
-Requires = tv_speakers.service
 
-[Install]
+After = alsa_out@nvidia.service
+Wants = alsa_out@nvidia.service
 
-WantedBy = jack.target
+efter = jack_client_watcher@tv_speakers.service
+Wants = jack_client_watcher@tv_speakers.service
+
+Wants = speaker_effects.target
+After = speaker_effects.target
+Conflicts = vrroom.target
+
+After=jack_connection@speakers_effects.out_1\x2ctv_speakers.playback_1.service
+After=jack_connection@speakers_effects.out_2\x2ctv_speakers.playback_2.service
+
+Requires=jack_connection@speakers_effects.out_1\x2ctv_speakers.playback_1.service
+Requires=jack_connection@speakers_effects.out_2\x2ctv_speakers.playback_2.service

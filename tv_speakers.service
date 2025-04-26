@@ -1,4 +1,3 @@
-
 [Unit]
 
 StopWhenUnneeded = yes
@@ -27,10 +26,15 @@ BindsTo = jackd.service
 
 Requires = ecasound@jack.service
 Requires = ecasound@speakers.service
-Requires = jack_client@tv_speakers.service
-Requires = node_notify.service
 
-Conflicts = vrroom_notify.service
+# Requires = jack_client@tv_speakers.service
+Requires = alsa_out@nvidia.service
+Requires = alsa_out@amd.service
+Requires = tv_speakers_notify.service
+
+Requires = speaker_effects.target
+
+Conflicts = vrroom.target
 
 [Service]
 

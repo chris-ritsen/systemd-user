@@ -1,0 +1,16 @@
+[Unit]
+Description=Bridge ALSA device to JACK as client ('%i')
+StopWhenUnneeded=yes
+DefaultDependencies=no
+After=jackd.service
+BindsTo=jackd.service
+
+[Service]
+ExecCondition=/bin/sh -c "aplay -L | grep -q '${ALSA_DEVICE}'"
+# ExecStart=/usr/bin/sudo /usr/bin/taskset -c 1 /usr/bin/chrt -f 90 /usr/bin/alsa_out -c2 -j $JACK_CLIENT_NAME -d $ALSA_DEVICE
+ExecStart=/usr/bin/alsa_out -c ${JACK_CLIENT_CHANNEL_COUNT} -j ${JACK_CLIENT_NAME} -d ${ALSA_DEVICE}
+
+Restart=no
+
+[Install]
+WantedBy=jack_clients.target

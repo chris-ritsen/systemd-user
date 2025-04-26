@@ -2,16 +2,27 @@
 
 Description = ecasound %i effects
 
-After = dante_pcie_out_notify.service
 After = jackd.service
 BindsTo = jackd.service
-Wants = dante_pcie_out_notify.service
+BindsTo = jack_effects.target
+
+# After = dante_pcie_out.target
+# Wants = dante_pcie_out.target
+
+StopWhenUnneeded = yes
 
 [Service]
 Environment = JACK_NO_START_SERVER=1
 
 TimeoutStartSec = 3s
 Environment = TERM=xterm
+
+CPUSchedulingResetOnFork = no
+
+CPUAffinity=1-4
+CPUSchedulingPolicy=fifo
+CPUSchedulingPriority=90
+CPUSchedulingResetOnFork=no
 
 Environment = plugin=http://calf.sourceforge.net/plugins/SidechainCompressor
 

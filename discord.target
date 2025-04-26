@@ -1,0 +1,6 @@
+[Unit]
+
+Description=Discord
+StopWhenUnneeded = no
+
+Wants = discord.service

@@ -1,4 +1,3 @@
-
 [Unit]
 
 After = basic.target
@@ -9,7 +8,7 @@ Requires = basic.target
 Requires = jackd.service
 Requires = sound.target
 StopWhenUnneeded = no
-Wants = dante_pcie_out_notify.service
+Wants = dante_pcie_out.target
 
 [Service]
 

@@ -1,0 +1,9 @@
+[Unit]
+Description=8BitDo Pro 2 Gamepad
+BindsTo=dev-8bitdo\x2dpro2.device
+After=dev-8bitdo\x2dpro2.device
+Wants=8bitdo-pro2.service
+StopWhenUnneeded=yes
+
+[Install]
+WantedBy=dev-8bitdo\x2dpro2.device

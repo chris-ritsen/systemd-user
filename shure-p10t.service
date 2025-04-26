@@ -5,8 +5,8 @@ After=outlet@3.service
 BindsTo=outlet@3.service
 PartOf=shure-p10t.target
 StopWhenUnneeded=yes
-RefuseManualStart=yes
-RefuseManualStop=yes
+# RefuseManualStart=yes
+# RefuseManualStop=yes
 
 [Service]
 Type=oneshot

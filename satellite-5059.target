@@ -1,5 +1,5 @@
 [Unit]
-Description=Satellite 5059
+Description=Rupert Neve Satellite 5059
 Requires=satellite-5059.service
 After=satellite-5059.service
 BindsTo=satellite-5059.service

@@ -27,7 +27,7 @@ BindsTo = jackd.service
 Requires = ecasound@jack.service
 Requires = ecasound@speakers.service
 Requires = jack_client@speakers.service
-Requires = node_notify.service
+Requires = speaker_effects.target
 
 [Service]
 

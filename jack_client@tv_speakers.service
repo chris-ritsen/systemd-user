@@ -15,8 +15,10 @@ Wants = tv_speakers.target
 
 Restart = always
 
-# ExecStart = /usr/bin/alsa_out -c2 -j '%i' -d 'hdmi:CARD=NVidia,DEV=0'
-ExecStart = /usr/bin/alsa_out -c2 -j '%i' -d 'hdmi:CARD=HDMI,DEV=0'
+ExecStart = /usr/bin/alsa_out -p 1024 -n 3-c2 -j '%i' -d 'hdmi:CARD=NVidia,DEV=0'
+# ExecStart = /usr/bin/alsa_out -c2 -j '%i' -d 'hdmi:CARD=HDMI,DEV=0'
+
+# speaker-test -D hw:2,3 -c2
 
 [Install]
 

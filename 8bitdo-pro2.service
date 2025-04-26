@@ -1,0 +1,12 @@
+[Unit]
+Description=8BitDo Pro 2 Gamepad
+Requires=8bitdo-pro2.target
+After=8bitdo-pro2.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/bluetoothctl connect e4:17:d8:67:c9:af
+RemainAfterExit=yes
+
+[Install]
+WantedBy=dev-8bitdo\x2dpro2.device

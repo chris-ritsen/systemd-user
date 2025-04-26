@@ -1,4 +1,3 @@
-
 [Unit]
 
 # After=graphical-session.target
@@ -12,4 +11,3 @@ Description=Happy Hacking Keyboard is attached
 PropagatesReloadTo=hhkb.service
 # Wants=dev-hhkb.device
 Requires=hhkb.service
-

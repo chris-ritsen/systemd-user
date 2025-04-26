@@ -3,8 +3,7 @@ Description = Path for HHKB
 
 [Path]
 
-# PathExists = /dev/hhkb
-PathChanged = /dev/hhkb
+PathChanged = /dev/input/hhkb
 Unit = setup_keyboard.service
 
 [Install]

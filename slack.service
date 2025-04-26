@@ -1,11 +1,10 @@
-
 [Unit]
 
 Description = Slack
 Requires = graphical-session.target
 
 [Service]
-
+IOSchedulingClass=idle
 Nice = 19
 
 Environment=DISPLAY=:0

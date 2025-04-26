@@ -1,0 +1,4 @@
+[Unit]
+Description=Watch JACK over DBus to connect the default pulseaudio jack_in
+After = jackd.service
+BindsTo = jackd.service

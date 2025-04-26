@@ -1,0 +1,4 @@
+[Unit]
+Description=Gaming Mode Active
+Wants=8bitdo-pro2.target
+StopWhenUnneeded=no

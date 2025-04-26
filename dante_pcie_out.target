@@ -1,0 +1,21 @@
+[Unit]
+
+Description = DANTE PCIe Out JACK Connections
+StopWhenUnneeded = yes
+
+After=jackd.service
+BindsTo=jackd.service
+
+After = jack_effects.target
+Wants = jack_effects.target
+
+After=jack_connection@jack_effects.out_1\x2csystem.playback_11.service
+After=jack_connection@jack_effects.out_2\x2csystem.playback_12.service
+
+Requires=jack_connection@jack_effects.out_1\x2csystem.playback_11.service
+Requires=jack_connection@jack_effects.out_2\x2csystem.playback_12.service
+
+# After=jack_connection@jack2_effects.out_1\x2csystem.playback_15.service
+# After=jack_connection@jack2_effects.out_2\x2csystem.playback_16.service
+# Requires=jack_connection@jack2_effects.out_1\x2csystem.playback_15.service
+# Requires=jack_connection@jack2_effects.out_2\x2csystem.playback_16.service

@@ -1,11 +1,23 @@
 [Unit]
-Description = Critical Listening Target for Music
-Requires = mpd@music.service
-Requires = music_notify.service
-Conflicts = music_direct_notify.service
-Conflicts = critical_music.target
-After = mpd@music.service
-After = music_notify.service
 
-[Install]
-WantedBy = multi-user.target
+Description=Music JACK Connections
+After=jackd.service
+BindsTo=jackd.service
+StopWhenUnneeded=no
+
+After=jack_connection@music.left\x2cmusic_effects.in_1.service
+After=jack_connection@music.right\x2cmusic_effects.in_2.service
+After=jack_connection@music_effects.out_1\x2cspeakers_effects.in_1.service
+After=jack_connection@music_effects.out_2\x2cspeakers_effects.in_2.service
+After=jack_disconnection@music.left\x2csystem.playback_1.service
+After=jack_disconnection@music.right\x2csystem.playback_2.service
+After=jack_disconnection@music.left\x2csystem.playback_15.service
+After=jack_disconnection@music.right\x2csystem.playback_16.service
+Requires=jack_connection@music.left\x2cmusic_effects.in_1.service
+Requires=jack_connection@music.right\x2cmusic_effects.in_2.service
+Requires=jack_connection@music_effects.out_1\x2cspeakers_effects.in_1.service
+Requires=jack_connection@music_effects.out_2\x2cspeakers_effects.in_2.service
+Requires=jack_disconnection@music.left\x2csystem.playback_1.service
+Requires=jack_disconnection@music.right\x2csystem.playback_2.service
+Requires=jack_disconnection@music.left\x2csystem.playback_15.service
+Requires=jack_disconnection@music.right\x2csystem.playback_16.service

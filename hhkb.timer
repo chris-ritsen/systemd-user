@@ -1,4 +1,3 @@
-
 [Unit]
 
 # After=dev-hhkb.device
@@ -9,10 +8,11 @@
 # DefaultDependencies=no
 # Requisite=dev-hhkb.device
 # Requisite=graphical-session.target
+# PartOf=hhkb.target
+
+BindsTo=hhkb.target
 Description=keyboard settings
 PartOf=dev-hhkb.device
-BindsTo=hhkb.target
-# PartOf=hhkb.target
 RefuseManualStart=yes
 RefuseManualStop=yes
 StopWhenUnneeded=yes
@@ -25,4 +25,3 @@ RandomizedDelaySec=30
 [Install]
 
 WantedBy=timers.target
-

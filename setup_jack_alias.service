@@ -2,6 +2,9 @@
 
 Description=Setup Jack Aliases
 
+After=setup_jack_alias.service
+Requires=setup_jack_alias.service
+
 After=jackd.service
 BindsTo=jackd.service
 

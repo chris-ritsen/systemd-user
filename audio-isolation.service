@@ -1,0 +1,13 @@
+# sudo visudo -f /etc/sudoers.d/audio_isolation
+
+[Unit]
+Description=Apply CPU and RT isolation for JACK audio
+After = jackd.service
+Requires = jackd.service
+
+[Service]
+Type=oneshot
+ExecStart = /home/chris/bin/audio_isolation.zsh
+
+[Install]
+WantedBy=default.target

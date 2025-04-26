@@ -1,19 +1,9 @@
-
 [Unit]
 
 AssertFileIsExecutable = /usr/bin/jackdbus
 Description = JACK Audio Connection Kit sound server
 RefuseManualStart = no
 RefuseManualStop = no
-
-# After = jack_client@dante_in.service
-# After = jack_client@dante_out.service
-# Before = chromium@default.service
-# Before = dante_usb_out_notify.service
-# Before = jack_client@pulseaudio.service
-# Before = jack_out_notify.service
-# Before = pulseaudio.service
-# Wants = dante_usb_out_notify.service
 
 After = sound.target
 BindsTo = jackd.target
@@ -22,34 +12,25 @@ Requires = sound.target
 After = dbus.service
 Requires = dbus.service
 
-# Wants = audio-control-panels.target
-# Wants = jack_client@magewell_hdmi.service
-
-Wants = dante_avio_bt_1.service
-Wants = dante_pcie_out_notify.service
-Wants = dante_usb_io_macbook_notify.service
-Wants = dante_usb_io_notify.service
-Wants = ecasound@jack.service
+Wants = dante_avio_bt_1.target
+Wants = dante_pcie_out.target
+Wants = dante_usb_io_macbook.target
+Wants = dante_usb_io.target
 Wants = jack_client@pulseaudio.service
-Wants = jack_out_notify.service
+Wants = jack_out.target
+Wants = jack_in.target
 Wants = tv_speakers.target
-Wants = vrroom_notify.service
+Wants = vrroom.target
 Wants = setup_jack_alias.service
 
 [Service]
 
-# CPUSchedulingPolicy = rr
-# CPUSchedulingPriority = 99
-# CPUSchedulingResetOnFork = yes
+CPUSchedulingPolicy = rr
+CPUSchedulingPriority = 95
+CPUSchedulingResetOnFork = no
 # IOSchedulingClass = realtime
-# IOSchedulingPriority = 0
-# LimitNICE = -15
-# LimitNICESoft = -15
-# MemoryLimit=512M
-# MemorySoftLimit=512M
-# Nice = 0
-# User = chris
 
+CPUAffinity = 0
 LimitCORE = infinity
 LimitMEMLOCK = infinity
 LimitRTPRIO = infinity
@@ -62,17 +43,18 @@ Slice = audio.slice
 
 # Medium latency
 Environment=bufsize=256
-Environment = DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
-Environment=period=512
+Environment=period=256
 
 # Low latency
-# Environment=bufsize=32
+# Environment=bufsize=128
+# Environment=period=128
 
 # Ultra low latency
 # Environment=bufsize=24
 # Environment=period=16
 
 Environment=rate=48000
+Environment = DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
 
 # ExecStop = /usr/bin/zsh -c '/usr/bin/jack_control stop'
 
@@ -86,7 +68,6 @@ ExecStart = /usr/bin/jack_control exit
 # ALSA driver
 ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control ds alsa'
 
-# ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps period $period"
 
 ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps capture 'hw:DantePCIe,0'"
 ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps device 'hw:DantePCIe,0'"
@@ -95,6 +76,8 @@ ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps playback 'hw:DantePCIe,0'
 # ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps period 128"
 # ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps period 16"
 # ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps period 64"
+ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps period $period"
+
 ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps rate $rate"
 
 # ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control dps inchannels 128'
@@ -103,7 +86,7 @@ ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps rate $rate"
 ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control dps outchannels 24'
 ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control dps inchannels 24'
 
-# ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control eps realtime-priority 99'
+ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control eps realtime-priority 99'
 # ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control epr self-connect-mode'
 # ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control eps self-connect-mode a'
 

@@ -1,4 +1,3 @@
-
 [Unit]
 
 Description = Happy Hacking Keyboard
@@ -6,7 +5,7 @@ StopWhenUnneeded = no
 
 [Service]
 
-ExecStart = /usr/bin/sh -c '/usr/bin/xset r rate 200 125 || true' 
+ExecStart = /usr/bin/sh -c '/usr/bin/xset r rate 200 125 || true'
 ExecReload = /usr/bin/sh -c '/usr/bin/xset r rate 200 125 || true'
 RemainAfterExit = no
 Restart = no
@@ -18,4 +17,3 @@ Type = simple
 [Install]
 
 WantedBy = default.target
-

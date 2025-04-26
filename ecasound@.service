@@ -1,29 +1,29 @@
-
 [Unit]
 
-Description = Ecasound effects
-StopWhenUnneeded = yes
-
-After = jackd.service
-BindsTo = jackd.service
-
-AssertFileIsExecutable = /usr/bin/ecasound
+Description=Ecasound effects
+StopWhenUnneeded=yes
+After=jackd.service
+BindsTo=jackd.service
+AssertFileIsExecutable=/usr/bin/ecasound
 
 [Service]
-Restart = always
-RestartSec = 10
-TimeoutStartSec = 50s
-TimeoutStopSec = 10
 
-CPUSchedulingPolicy=rr
+Restart=always
+RestartSec=5
+TimeoutStartSec=50s
+TimeoutStopSec=10s
+
+Slice=audio-rt.slice
+
+CPUAffinity=1-4
+CPUSchedulingPolicy=fifo
 CPUSchedulingPriority=90
+CPUSchedulingResetOnFork=no
+
 LimitCORE=infinity
 LimitMEMLOCK=infinity
-LimitRTPRIO=infinity
+LimitRTPRIO=90
 LimitRTTIME=infinity
-# Nice=0
-Slice = audio.slice
 
 [Install]
 WantedBy=default.target
-
