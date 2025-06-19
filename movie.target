@@ -1,8 +1,7 @@
-
 [Unit]
 
 Description = Video player
-Requires = movie.service 
+Requires = movie.service
 PropagatesReloadTo = movie.service
 
 [Install]

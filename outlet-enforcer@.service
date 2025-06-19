@@ -1,0 +1,8 @@
+[Unit]
+Description=Enforce outlet %i state via SNMP
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=%h/bin/enforce_outlet.py %i

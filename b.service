@@ -1,0 +1,7 @@
+[Unit]
+Description=Service B
+# Requires=a.service
+After=a.service
+
+[Service]
+ExecStart=/usr/bin/sleep infinity

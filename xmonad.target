@@ -23,5 +23,5 @@ Wants = hhkb.service
 Wants = tmux@admin.service
 Wants = xmonad.service
 Wants = kitty.service
-Wants = jack.target
+# Wants = audio-baseline.target
 Wants = xbanish.service

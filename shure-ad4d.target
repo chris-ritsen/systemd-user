@@ -1,8 +1,8 @@
 [Unit]
 Description=Receiver for Wireless Microphones
-Requires=shure-ad4d.service
+Requires = shure-ad4d.service
 After=shure-ad4d.service
 BindsTo=shure-ad4d.service
-BindsTo=wireless-audio@2.service
+# BindsTo=wireless-audio@2.service
 BindsTo=wireless-microphone.target
-Before=wireless-audio@2.service
+# Before=wireless-audio@2.service

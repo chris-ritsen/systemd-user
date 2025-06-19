@@ -39,15 +39,14 @@ Environment = 'session_name=%i'
 Environment = 'set_option=tmux -L %i set-option'
 Environment = 'source_file=tmux -L %i source-file'
 Environment = 'unbind_key=tmux -L %i unbind-key'
-Environment = 'vim_script=VIM_ABBREV=0 vim -c ${vim_options}'
-Environment = 'vim_server_arg=--servername ${vim_server_name}'
+Environment = 'vim_script=nvim --listen /run/user/1000/nvim-admin-notes -c ${vim_options}'
 
 ExecStart = /bin/zsh -c "tmux -L %i new-session -d -n %i -s %i"
 
 ExecStartPost = /bin/zsh -c %h/.scripts/zsh/tmux/admin.zsh
-
 ExecStartPost = /bin/zsh -c "${new_session} -d -s '%i@1' -t '%i'"
 ExecStartPost = /bin/zsh -c "${new_session} -d -s '%i@2' -t '%i'"
+ExecStartPost=-/usr/bin/emacsclient --eval "(ignore-errors (org-agenda-list))"
 
 ExecReload = /bin/zsh -c "${has_session} -t %i"
 

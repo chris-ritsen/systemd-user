@@ -1,0 +1,7 @@
+[Unit]
+Description=Service A
+Wants=b.service
+After=b.service
+
+[Service]
+ExecStart=/usr/bin/sleep infinity

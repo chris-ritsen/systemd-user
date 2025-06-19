@@ -6,6 +6,7 @@ StopWhenUnneeded = no
 PartOf = discord.service
 BindsTo = pulseaudio.service
 After = pulseaudio.service
+Wants = discord_out.target
 
 AssertFileIsExecutable = /usr/bin/jack_control
 AssertFileIsExecutable = /usr/bin/pactl
@@ -25,8 +26,8 @@ TimeoutStopSec = 20
 
 ExecStartPre = /usr/bin/zsh -c '/usr/bin/jack_control status'
 
-ExecStart = /usr/bin/zsh -c 'pactl load-module module-jack-sink channels=2 client_name=discord_out sink_name=discord_out'
-ExecStart = /usr/bin/zsh -c 'pactl load-module module-jack-source channels=2 client_name=discord_in source_name=discord_in'
+ExecStart = /usr/bin/zsh -c 'pactl load-module module-jack-sink channels=2 client_name=discord_out sink_name=discord_out connect=no'
+ExecStart = /usr/bin/zsh -c 'pactl load-module module-jack-source channels=2 client_name=discord_in source_name=discord_in connect=no'
 
 ExecStart = /usr/bin/pactl set-default-sink discord_out
 ExecStart = /usr/bin/pactl set-default-source discord_in

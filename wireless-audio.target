@@ -1,0 +1,5 @@
+[Unit]
+Description=Minimum required for wireless audio monitoring of the main mix with IEMs
+
+Requires = wireless-audio@1.service
+Requires = satellite-5059.target

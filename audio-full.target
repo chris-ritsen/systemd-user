@@ -1,6 +1,7 @@
 [Unit]
 
 Conflicts = speakers.service
+Conflicts = audio-baseline.target
 
 Wants = dante_usb_io.target
 
@@ -41,10 +42,10 @@ BindsTo = ecasound@jack.service
 BindsTo = ferrofish-a32.target
 BindsTo = jackd.service
 BindsTo = microphone.target
-BindsTo = satellite-5059.target
-BindsTo = shelford-channel.target
-BindsTo = shure-ad4d.target
-BindsTo = shure-p10t.target
+# BindsTo = satellite-5059.target
+# BindsTo = shelford-channel.target
+# BindsTo = shure-ad4d.target
+# BindsTo = shure-p10t.target
 BindsTo = wireless-audio@2.service
 BindsTo = wireless-microphone.target
 

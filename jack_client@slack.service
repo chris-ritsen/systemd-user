@@ -36,7 +36,7 @@ TimeoutStopSec = 20
 
 ExecStartPre = /usr/bin/zsh -c '/usr/bin/jack_control status'
 
-ExecStart = /usr/bin/zsh -c 'pactl load-module module-jack-sink channels=2 client_name=slack_out sink_name=slack_out'
+ExecStart = /usr/bin/zsh -c 'pactl load-module module-jack-sink channels=2 client_name=slack_out sink_name=slack_out connect=no'
 
 ExecStart = /usr/bin/pactl set-default-sink slack_out
 ExecStop = -/usr/bin/zsh -ic "pactl list short | grep module-jack-sink | grep client_name=slack_out | cut -f 1 | xargs -I{} pactl unload-module {}"

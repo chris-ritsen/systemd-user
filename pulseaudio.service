@@ -9,19 +9,21 @@ BindsTo = jackd.service
 
 [Service]
 
-CPUAffinity=1-4
-CPUSchedulingPolicy=fifo
-CPUSchedulingPriority=90
+# CPUAffinity=1-4
+# CPUSchedulingPolicy=fifo
+# CPUAffinity=5-27
+CPUSchedulingPolicy=rr
+# CPUSchedulingPriority=60
 LimitCORE=infinity
 LimitMEMLOCK=infinity
 LimitRTPRIO=infinity
 LimitRTTIME=infinity
-Slice=audio-rt.slice
+Slice=audio.slice
+# Slice=audio.slice
 
 Environment = JACK_NO_START_SERVER=1
 
 ExecStart=/usr/bin/pulseaudio --daemonize=no
-ExecStartPost=/usr/bin/chrt -f -p 90 $MAINPID
 
 Restart = on-failure
 RestartSec=6

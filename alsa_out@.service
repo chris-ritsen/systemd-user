@@ -6,9 +6,12 @@ After=jackd.service
 BindsTo=jackd.service
 
 [Service]
+Environment=JACK_PERIOD=128
+Environment=JACK_NPERIODS=3
+Environment=JACK_SAMPLE_RATE=48000
+
 ExecCondition=/bin/sh -c "aplay -L | grep -q '${ALSA_DEVICE}'"
-# ExecStart=/usr/bin/sudo /usr/bin/taskset -c 1 /usr/bin/chrt -f 90 /usr/bin/alsa_out -c2 -j $JACK_CLIENT_NAME -d $ALSA_DEVICE
-ExecStart=/usr/bin/alsa_out -c ${JACK_CLIENT_CHANNEL_COUNT} -j ${JACK_CLIENT_NAME} -d ${ALSA_DEVICE}
+ExecStart=/usr/bin/alsa_out -v -c ${JACK_CLIENT_CHANNEL_COUNT} -j ${JACK_CLIENT_NAME} -d ${ALSA_DEVICE} -p ${JACK_PERIOD} -n ${JACK_NPERIODS} -r ${JACK_SAMPLE_RATE} -q 1
 
 Restart=no
 

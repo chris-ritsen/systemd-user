@@ -1,0 +1,18 @@
+[Unit]
+Description=Scripted MPV IPC control for %i
+
+After=mpv@%i.service
+PartOf=mpv-session@%i.target
+Requires=mpv@%i.service
+StopWhenUnneeded=yes
+
+[Service]
+Type=notify
+ExecStart=%h/bin/mpv/.venv/bin/python3 %h/bin/mpv/mpv_ipc.py --name=%i
+Restart=always
+RestartSec=2
+TimeoutStartSec=15
+TimeoutStopSec=5
+
+[Install]
+WantedBy=default.target

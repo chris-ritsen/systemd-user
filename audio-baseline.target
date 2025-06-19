@@ -1,0 +1,14 @@
+[Unit]
+Description=Represents the baseline audio being established
+
+After = jackd.service
+After = pulseaudio.service
+After = tv_speakers.target
+After= jack_client@pulseaudio.service
+
+Requires = ecasound@jack.service
+Requires = jackd.service
+Requires = pulseaudio.service
+
+Wants = jack_client@pulseaudio.service
+Wants = tv_speakers.target

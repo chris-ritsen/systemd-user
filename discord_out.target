@@ -1,0 +1,19 @@
+[Unit]
+Description=Watch JACK over DBus to connect the default pulseaudio discord_out
+After = jackd.service
+BindsTo = jackd.service
+
+After = jack_connection@discord_out.front\x2dleft\x2cjack_effects.in_1.service
+After = jack_connection@discord_out.front\x2dright\x2cjack_effects.in_2.service
+After = jack_disconnection@discord_out.front\x2dleft\x2csystem.playback_1.service
+After = jack_disconnection@discord_out.front\x2dright\x2csystem.playback_2.service
+
+Requires = jack_connection@discord_out.front\x2dleft\x2cjack_effects.in_1.service
+Requires = jack_connection@discord_out.front\x2dright\x2cjack_effects.in_2.service
+Requires = jack_disconnection@discord_out.front\x2dleft\x2csystem.playback_1.service
+Requires = jack_disconnection@discord_out.front\x2dright\x2csystem.playback_2.service
+
+# Wants=jack_connection@discord_out.front-left\x2cobs_jack_out.in_1.service
+# Wants=jack_connection@discord_out.front-right\x2cobs_jack_out.in_2.service
+# After=jack_connection@discord_out.front-left\x2cobs_jack_out.in_1.service
+# After=jack_connection@discord_out.front-right\x2cobs_jack_out.in_2.service

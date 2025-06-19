@@ -6,9 +6,10 @@ AssertFileIsExecutable = /usr/bin/pactl
 AssertFileIsExecutable = /usr/bin/pulseaudio
 AssertFileIsExecutable = /usr/bin/zsh
 Description = Run jack client for %i
-PartOf = pulseaudio.service
-Requires = pulseaudio.service
 StopWhenUnneeded = no
+Wants = jack_out.target
+After = jackd.service
+After = pulseaudio.service
 
 [Service]
 

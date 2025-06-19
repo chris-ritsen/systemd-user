@@ -1,14 +1,15 @@
-
 [Unit]
 
-After = satellite-5059.target
-After = shure-p10t.target
-After = ferrofish-a32.target
-DefaultDependencies = no
 Description = Wireless audio channel %i
+DefaultDependencies = no
+
+# After = satellite-5059.target
+After = shure-p10t.target
+# After = ferrofish-a32.target
+
 Requires = shure-p10t.target
-Requires = satellite-5059.target
-Requires = ferrofish-a32.target
+# Requires = satellite-5059.target
+# Requires = ferrofish-a32.target
 
 [Service]
 

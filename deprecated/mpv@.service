@@ -1,0 +1,78 @@
+[Unit]
+
+# After = chromium.service
+# After = xmonad.target
+# BindsTo = movie.service
+# PartOf = movie.service
+# PartOf = xmonad.target
+# Wants = xmonad.target
+
+Description = mpv player
+# RefuseManualStart = no
+# RefuseManualStop = no
+# RequiresMountsFor = %h/.scripts/media_player_state
+# RequiresMountsFor = /media
+StopWhenUnneeded = no
+
+[Service]
+
+RemainAfterExit = yes
+Restart = always
+RestartSec = 10
+# RuntimeDirectory = mpv
+# StartLimitBurst = 0
+TimeoutStartSec=4s
+TimeoutStopSec=2s
+Type = simple
+
+# RestartSec = 0
+# TimeoutStartSec=0.5s
+# TimeoutStopSec=0.1s
+
+Environment = DISPLAY=:0
+# Environment = MPV_CURRENT=%h/media_player_state/path-%i
+# Environment = MPV_PAUSE=%h/media_player_state/pause-%i
+# Environment = MPV_PAUSE=no
+Environment = MPV_PLAYLIST=%t/%p-%i-playlist
+# Environment = MPV_PLAYLIST=%h/media_player_state/playlist-%i
+# Environment = MPV_TIME_POS=%h/media_player_state/time-pos-%i
+# EnvironmentFile = %h/.config/systemd/user/default_env
+Environment = MPV_SOCKET=%t/%p-%i-video
+
+# ExecStartPre = /usr/bin/zsh -ic "$(xclip -o) > %t/%p-%i-playlist"
+ExecStart = /usr/bin/zsh -c "mpv --input-ipc-server=$MPV_SOCKET --force-window=yes --keep-open=yes --idle=yes"
+ExecStartPost = /usr/bin/zsh -c "echo $(xclip -o) > $MPV_PLAYLIST"
+# ExecStartPost = /usr/bin/zsh -c "media_player --socket $MPV_SOCKET --playlist $MPV_PLAYLIST"
+# ExecStartPost = /usr/bin/zsh -ic "media_player --socket $MPV_SOCKET --prop pause=no || true"
+# --input-ipc-server=%t/%p-%i --volume-max=200 --no-resume-playback --force-window=yes --keep-open=yes --idle=yes
+# ExecStartPost = /usr/bin/zsh -ic "transset-df --name 'No file - mpv' 0"
+# ExecStartPost = /usr/bin/zsh -ic "media_player --prop brightness=-100"
+# ExecStartPost = /usr/bin/zsh -ic "media_player --prop contrast=-100"
+# ExecStartPost = /usr/bin/zsh -ic "media_player --prop saturation=-100"
+# ExecStartPost = /usr/bin/zsh -ic "media_player --prop gamma=-100"
+# ExecStartPost = /usr/bin/zsh -ic "media_player --socket %t/%p/%i --playlist $MPV_PLAYLIST --current $(cat $MPV_CURRENT)"
+# ExecStartPost = /usr/bin/zsh -ic "media_player --prop path"
+# ExecStartPost = /usr/bin/zsh -ic "media_player --socket %t/%p/%i --prop pause=yes || true"
+# ExecStartPost = /usr/bin/zsh -ic "media_player --socket %t/%p/%i --prop time-pos=$(cat $MPV_TIME_POS)"
+# ExecStartPost = /usr/bin/zsh -ic "media_player --socket %t/%p/%i --prop pause=yes || true"
+
+# ExecStartPost = /usr/bin/zsh -ic "media_player --prop brightness=0"
+# ExecStartPost = /usr/bin/zsh -ic "media_player --prop contrast=0"
+# ExecStartPost = /usr/bin/zsh -ic "media_player --prop saturation=0"
+# ExecStartPost = /usr/bin/zsh -ic "media_player --prop gamma=0"
+
+# ExecStartPost = /usr/bin/zsh -ic "transset-df --name $(basename $(cat $MPV_CURRENT)) 1"
+# ExecStartPost = /usr/bin/zsh -ic "media_player --prop pause=$(cat $MPV_PAUSE) || true"
+
+# ExecStop = /usr/bin/zsh -ic "media_player --socket %t/%p/%i --prop pause=yes || true"
+# ExecStop = /usr/bin/zsh -ic "transset-df --name $(basename $(cat $MPV_CURRENT)) 0"
+# ExecStop = /usr/bin/zsh -ic "media_player --socket %t/%p/%i --prop time-pos && media_player --socket %t/%p/%i --prop time-pos > $MPV_TIME_POS || true"
+# ExecStop = /usr/bin/zsh -ic "media_player --socket %t/%p/%i --prop path && media_player --socket %t/%p/%i --prop path > $MPV_CURRENT || true"
+# ExecStop = /bin/kill -HUP $MAINPID || true
+
+# ExecReload = /bin/kill -HUP $MAINPID
+
+# ExecReload = /usr/bin/zsh -ic "%h/xmonadctl screen0 || true"
+
+[Install]
+WantedBy = graphical-session.target

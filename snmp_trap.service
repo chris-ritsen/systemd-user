@@ -1,0 +1,7 @@
+[Unit]
+Description=SNMP Trap Handler
+
+[Service]
+ExecStart=/home/chris/bin/python-snmp/bin/python3.13 /home/chris/bin/snmp_trap.py
+Restart=always
+Type=notify

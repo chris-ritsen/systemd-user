@@ -3,13 +3,12 @@
 Description = TV speakers
 StopWhenUnneeded = no
 
-After = jackd.service
 BindsTo = jackd.service
 
 After = alsa_out@nvidia.service
 Wants = alsa_out@nvidia.service
 
-efter = jack_client_watcher@tv_speakers.service
+After = jack_client_watcher@tv_speakers.service
 Wants = jack_client_watcher@tv_speakers.service
 
 Wants = speaker_effects.target

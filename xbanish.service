@@ -1,12 +1,11 @@
 [Unit]
 Description=Hide mouse cursor while typing (xbanish)
-After=graphical-session.target
-Requires=graphical-session.target
 PartOf=xmonad.target
+After=graphical-session.target
 
 [Service]
 Environment=DISPLAY=:0
 ExecStart=/usr/bin/xbanish
-ExecStop=/bin/kill -SIGINT $MAINPID
 KillMode=mixed
+ExecStop=/bin/kill -SIGINT $MAINPID
 Restart=no

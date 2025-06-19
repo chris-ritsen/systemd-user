@@ -2,24 +2,14 @@
 
 Description=Setup Jack Aliases
 
-After=setup_jack_alias.service
-Requires=setup_jack_alias.service
-
 After=jackd.service
 BindsTo=jackd.service
 
 [Service]
+Type=notify
+RemainAfterExit=yes
 
-Environment = DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
-Environment = DISPLAY=:0
-Nice = 19
-NotifyAccess = all
-RemainAfterExit = yes
-Restart = no
-RestartSec = 1
-StartLimitBurst = 0
-TimeoutStartSec = 20s
-TimeoutStopSec = 20s
-Type = notify
-
-ExecStart = /usr/bin/node %h/home-control/dbus/jack_alias_notify.js
+ExecStartPre = /usr/bin/uv sync
+ExecStart = %h/bin/jack_alias/.venv/bin/jack-dante-alias --alias
+ExecStop = %h/bin/jack_alias/.venv/bin/jack-dante-alias --unalias
+WorkingDirectory = %h/bin/jack_alias

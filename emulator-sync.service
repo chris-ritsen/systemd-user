@@ -1,6 +1,10 @@
 [Unit]
-Description=Synchronize emulator save states
+Description=Watch and sync RetroArch states and saves
 
 [Service]
-ExecStart=/usr/bin/rsync -az /home/chris/.config/retroarch/states/ deck@steam-deck:/home/deck/.var/app/org.libretro.RetroArch/config/retroarch/states/
-Type=oneshot
+ExecStart=%h/bin/emulator-sync
+Restart=always
+RestartSec=1
+
+[Install]
+WantedBy=default.target

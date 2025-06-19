@@ -5,7 +5,7 @@ Requires = sound.target graphical-session.target
 Wants = jack_client@discord.service
 After = jack_client@discord.service
 BindsTo = discord.target
-StopWhenUnneeded = yes
+# StopWhenUnneeded = yes
 
 [Service]
 Nice = 19

@@ -1,0 +1,9 @@
+[Unit]
+Description = Resets everything to the baseline audio setup
+
+Requires = audio-baseline.target
+Conflicts = audio-full.target
+Conflicts = wireless-microphone.target
+Conflicts = wireless-audio.target
+Conflicts = shure-p10t.target
+Conflicts = shure-ad4d.target

@@ -1,8 +1,9 @@
 [Unit]
+Description=Microphone
 
 After = shelford-channel.target
+After = shure-p10t.target
+BindsTo = microphone.service
 BindsTo = shelford-channel.target
-Description=Microphone
 PropagatesReloadTo = microphone.service
 Requires = microphone.service
-BindsTo = microphone.service

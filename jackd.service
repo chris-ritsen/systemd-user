@@ -25,21 +25,25 @@ Wants = setup_jack_alias.service
 
 [Service]
 
-CPUSchedulingPolicy = rr
 CPUSchedulingPriority = 95
 CPUSchedulingResetOnFork = no
 # IOSchedulingClass = realtime
 
-CPUAffinity = 0
+CPUAffinity = 0-3
+CPUSchedulingPolicy=fifo
 LimitCORE = infinity
 LimitMEMLOCK = infinity
 LimitRTPRIO = infinity
 LimitRTTIME = infinity
-Slice = audio.slice
+Slice = audio-rt.slice
 
 # Safe
 # Environment=bufsize=640
 # Environment=period=256
+
+# High latency
+# Environment=bufsize=512
+# Environment=period=512
 
 # Medium latency
 Environment=bufsize=256
@@ -50,8 +54,8 @@ Environment=period=256
 # Environment=period=128
 
 # Ultra low latency
-# Environment=bufsize=24
-# Environment=period=16
+# Environment=bufsize=64
+# Environment=period=64
 
 Environment=rate=48000
 Environment = DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
@@ -77,14 +81,15 @@ ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps playback 'hw:DantePCIe,0'
 # ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps period 16"
 # ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps period 64"
 ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps period $period"
+ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control dps nperiods 2'
 
 ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps rate $rate"
 
 # ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control dps inchannels 128'
 # ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control dps inchannels 128'
 
-ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control dps outchannels 24'
-ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control dps inchannels 24'
+ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control dps outchannels 128'
+ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control dps inchannels 128'
 
 ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control eps realtime-priority 99'
 # ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control epr self-connect-mode'
@@ -104,6 +109,8 @@ ExecStart = /usr/bin/qdbus org.jackaudio.service /org/jackaudio/Controller Start
 ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control status'
 ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control ep'
 ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control dp'
+
+# ExecStartPost = /usr/bin/zsh -c 'for T in /proc/$(pidof jackdbus)/task/*; do /usr/bin/taskset -pc 0 "$T:t"; done'
 
 ExecReload = /usr/bin/zsh -c "/usr/bin/jack_bufsize $bufsize"
 ExecReload = /usr/bin/zsh -c "/usr/bin/jack_control dps period $period"
@@ -144,7 +151,6 @@ ExecStop = -/usr/bin/jack_control exit
 
 # ExecStartPost = +/usr/bin/zsh -c 'rtirq start'
 
-# ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control dps nperiods 2'
 # ExecStartPre = -/usr/bin/zsh -c '/usr/bin/killall -9 catia'
 # ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control dps period 64'
 # ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control ds alsa'

@@ -1,0 +1,9 @@
+[Unit]
+
+After = movie.target
+After = mpd@music.service
+After = mpd@books.service
+
+Wants = movie.target
+Wants = mpd@music.service
+Wants = mpd@books.service

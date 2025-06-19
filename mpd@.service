@@ -22,6 +22,8 @@ Environment = MPD_PLAYLIST_DIR='%t/%p_%i/playlists'
 Environment = PULSE_PROP='media.role=music'
 Environment = XDG_CONFIG_HOME=%h/.config/%p/%i/
 
+Slice = audio.slice
+
 # CPUSchedulingPolicy = rr
 # CPUSchedulingPriority = 90
 # LimitCORE = infinity
