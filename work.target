@@ -1,0 +1,10 @@
+[Unit]
+
+After = tmux@work.service
+Description = work
+StopWhenUnneeded = no
+
+Wants = tmux@work.service
+
+[Install]
+WantedBy=default.target

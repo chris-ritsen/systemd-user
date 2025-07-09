@@ -1,0 +1,21 @@
+[Unit]
+
+Description = Etherium miner
+StopWhenUnneeded = no
+
+[Service]
+
+EnvironmentFile=/home/chris/.config/systemd/user/secrets.env
+Environment = hostname=us1.ethermine.org
+Environment = port=5555
+
+ExecStart=/usr/bin/zsh -ic "/usr/bin/ethminer -U --opencl-device 1 --report-hashrate -P stratum1+ssl://${ETHEREUM_WALLET}.${ETHEREUM_WORKER_QUADRO}@$hostname:$port"
+
+KillMode=process
+Restart=no
+RestartSec=6
+TimeoutStartSec=2s
+TimeoutStopSec=2s
+
+[Install]
+WantedBy = default.target

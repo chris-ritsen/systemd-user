@@ -1,0 +1,25 @@
+[Service]
+
+Nice = 19
+IOSchedulingClass=idle
+
+EnvironmentFile=/home/chris/.config/systemd/user/secrets.env
+Environment=DISPLAY=:0
+Environment=app=--app='https://mail.google.com/mail/u/${GMAIL_EMAIL}/'
+Environment=disk_cache_dir=--disk-cache-dir=%t/%p
+Environment=scale=--force-device-scale-factor='1.0'
+Environment=user_data_dir=--user-data-dir='%h/.config/%p-apps/%i'
+
+ExecStart = /usr/bin/chromium \
+${disk_cache_dir} \
+${user_data_dir} \
+--force-dark-mode \
+${app} \
+${scale} \
+--enable-dom-distiller \
+--keep-alive-for-test \
+--silent-launch \
+
+ExecStartPost = /bin/sleep 0.4
+
+RuntimeDirectory = %p_%i

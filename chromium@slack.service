@@ -1,0 +1,29 @@
+
+[Unit]
+
+# Requires = slack_audio.service
+# Before = slack_audio.service
+
+[Service]
+
+EnvironmentFile=/home/chris/.config/systemd/user/secrets.env
+Environment=DISPLAY=:0
+Environment=PULSE_SINK='jack.out.%i'
+Environment=PULSE_SOURCE='jack.in.%i'
+Environment=disk_cache_dir=--disk-cache-dir=%t/chromium
+Environment=user_data_dir=--user-data-dir=%h/.config/chromium-apps/%i
+
+ExecStart = /usr/bin/chromium \
+${disk_cache_dir} \
+${user_data_dir} \
+--app='https://${SLACK_WORKSPACE}.slack.com/unreads/' \
+--force-device-scale-factor=1.0 \
+--enable-dom-distiller \
+--keep-alive-for-test
+
+RuntimeDirectory = %p_%i
+
+[Install]
+
+DefaultInstance = default
+WantedBy = work.target
