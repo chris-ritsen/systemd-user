@@ -30,7 +30,7 @@ Requires = ecasound@speakers.service
 # Requires = jack_client@tv_speakers.service
 Requires = alsa_out@nvidia.service
 Requires = alsa_out@amd.service
-Requires = tv_speakers_notify.service
+# Requires = tv_speakers_notify.service
 
 Requires = speaker_effects.target
 

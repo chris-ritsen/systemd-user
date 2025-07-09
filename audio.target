@@ -1,11 +1,11 @@
 [Unit]
 
-Requires = dante_pcie_in_notify.service
+# Requires = dante_pcie_in_notify.service
 Requires = dante_pcie_out.target
-Requires = dante_usb_in_notify.service
-Requires = dante_usb_out_notify.service
+# Requires = dante_usb_in_notify.service
+# Requires = dante_usb_out_notify.service
 Requires = microphone.target
-Requires = radial_dinet_notify.service
+# Requires = radial_dinet_notify.service
 Requires = shelford-channel.target
 Requires = shure-p10t.target
 Requires = wireless-audio@2.service

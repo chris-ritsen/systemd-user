@@ -6,10 +6,10 @@
 # PartOf = nintendo_switch.target
 # Wants = nintendo_switch_notify.service
 
-After = super_nt_notify.service
-BindsTo = super_nt_notify.service
+# After = super_nt_notify.service
+# BindsTo = super_nt_notify.service
 PartOf = super_nt.target
-Wants = super_nt_notify.service
+# Wants = super_nt_notify.service
 
 Description = AJA Kona HDMI 3 input
 Requires = sound.target basic.target jackd.service

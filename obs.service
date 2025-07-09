@@ -1,12 +1,12 @@
 [Unit]
 
 After = graphical-session.target
-After = obs_notify.service
+# After = obs_notify.service
 After = sound.target
 Description = Open Broadcaster Software
 Requires = graphical-session.target
 Requires = sound.target
-Wants = obs_notify.service
+# Wants = obs_notify.service
 
 # After = xbox_out.service
 

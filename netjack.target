@@ -4,5 +4,5 @@
 Description = JACK network audio
 PropagatesReloadTo = netjack.service
 Wants = netjack.service
-Wants = vm_notify.service
+# Wants = vm_notify.service
 Wants = ecasound@jack2.service

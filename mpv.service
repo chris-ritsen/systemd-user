@@ -13,7 +13,7 @@ Before = ecasound@jack.service
 Before = ecasound@mpv.service
 DefaultDependencies = no
 Requires = ecasound@mpv.service
-Wants = mpv_scripted_notify.service
+# Wants = mpv_scripted_notify.service
 
 [Service]
 

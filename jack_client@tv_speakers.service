@@ -7,7 +7,7 @@ Description = Binds alsa_out jack client for HDMI output to TV speakers
 After = jackd.service
 BindsTo = jackd.service
 
-Wants = tv_speakers_notify.service
+# Wants = tv_speakers_notify.service
 Wants = ecasound@speakers.service
 Wants = tv_speakers.target
 

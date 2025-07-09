@@ -5,9 +5,9 @@ Conflicts = audio-baseline.target
 
 Wants = dante_usb_io.target
 
-After = dante_pcie_in_notify.service
+# After = dante_pcie_in_notify.service
 After = dante_pcie_out.target
-After = dante_usb_in_notify.service
+# After = dante_usb_in_notify.service
 After = dante_usb_io_macbook.target
 After = dante_usb_io.target
 After = ecasound@jack.service
@@ -20,9 +20,9 @@ After = shure-p10t.target
 After = wireless-audio@1.service
 After = wireless-microphone.target
 
-Requires = dante_pcie_in_notify.service
+# Requires = dante_pcie_in_notify.service
 Requires = dante_pcie_out.target
-Requires = dante_usb_in_notify.service
+# Requires = dante_usb_in_notify.service
 Requires = dante_usb_io_macbook.target
 Requires = ecasound@jack.service
 Requires = ferrofish-a32.target
@@ -34,9 +34,9 @@ Requires = shure-p10t.target
 Requires = wireless-audio@1.service
 Requires = wireless-microphone.target
 
-BindsTo = dante_pcie_in_notify.service
+# BindsTo = dante_pcie_in_notify.service
 BindsTo = dante_pcie_out.target
-BindsTo = dante_usb_in_notify.service
+# BindsTo = dante_usb_in_notify.service
 BindsTo = dante_usb_io_macbook.target
 BindsTo = ecasound@jack.service
 BindsTo = ferrofish-a32.target
