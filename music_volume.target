@@ -1,0 +1,25 @@
+[Unit]
+Description=Music with volume control
+Conflicts=music_direct.target
+Conflicts=music.target
+After=jackd.service
+BindsTo=jackd.service
+
+Requires=mpd@music.service
+After=mpd@music.service
+Requires=jack_volume@music.service
+After=jack_volume@music.service
+Requires=jack_disconnection@music.left\x2cmusic_effects.in_1.service
+Requires=jack_disconnection@music.right\x2cmusic_effects.in_2.service
+After=jack_disconnection@music.left\x2cmusic_effects.in_1.service
+After=jack_disconnection@music.right\x2cmusic_effects.in_2.service
+
+Requires=jack_connection@music.left\x2cmusic_volume.in_1.service
+Requires=jack_connection@music.right\x2cmusic_volume.in_2.service
+Requires=jack_connection@music_volume.out_1\x2csystem.playback_15.service
+Requires=jack_connection@music_volume.out_2\x2csystem.playback_16.service
+
+After=jack_connection@music.left\x2cmusic_volume.in_1.service
+After=jack_connection@music.right\x2cmusic_volume.in_2.service
+After=jack_connection@music_volume.out_1\x2csystem.playback_15.service
+After=jack_connection@music_volume.out_2\x2csystem.playback_16.service

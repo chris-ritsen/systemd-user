@@ -1,7 +1,12 @@
 [Unit]
+
 Description=Ferrofish A32 Dante
-Requires=ferrofish-a32.service
-After=ferrofish-a32.service
+
+# After=dante-device@a32.service
+After= ferrofish-a32.service
+# BindsTo=dante-device@a32.service
 BindsTo=ferrofish-a32.service
 PartOf=wireless-audio@1.service
 PartOf=wireless-audio@2.service
+# Requires=dante-device@a32.service
+Requires=ferrofish-a32.service

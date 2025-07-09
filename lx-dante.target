@@ -1,0 +1,9 @@
+[Unit]
+Description=LX-Dante Device Configuration Target
+Documentation=https://github.com/netaudio/dante-device
+Requires=dante-device-sample-rate@lx-dante\x2c48000.service
+After=dante-device-sample-rate@lx-dante\x2c48000.service
+AllowIsolate=yes
+
+[Install]
+WantedBy=default.target

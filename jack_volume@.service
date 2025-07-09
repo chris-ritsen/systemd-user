@@ -1,0 +1,33 @@
+[Unit]
+Description=JACK volume control processor for %i
+After=jackd.service
+BindsTo=jackd.service
+
+[Service]
+Type=notify
+NotifyAccess=all
+Restart=always
+RestartSec=3
+TimeoutStartSec=30s
+TimeoutStopSec=10s
+
+Slice=audio.slice
+CPUAffinity=1-4
+CPUSchedulingPolicy=fifo
+CPUSchedulingPriority=85
+CPUSchedulingResetOnFork=no
+
+LimitCORE=infinity
+LimitMEMLOCK=infinity
+LimitRTPRIO=85
+LimitRTTIME=infinity
+
+Environment=JACK_NO_START_SERVER=1
+Environment=TERM=xterm
+Environment=CHANNELS=2
+
+# Start jack-volume processor
+ExecStart=uv run --project /home/chris/bin/jack_effects jack-volume --name %i_volume --daemon --channels ${CHANNELS}
+
+[Install]
+WantedBy=audio.target

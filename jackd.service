@@ -19,7 +19,7 @@ Wants = dante_usb_io.target
 Wants = jack_client@pulseaudio.service
 Wants = jack_out.target
 Wants = jack_in.target
-Wants = tv_speakers.target
+# Wants = tv_speakers.target
 Wants = vrroom.target
 Wants = setup_jack_alias.service
 

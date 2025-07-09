@@ -1,5 +1,4 @@
 [Unit]
-Description=Ferrofish A32 Dante Service
 Requires=outlet@4.service
 After=outlet@4.service
 BindsTo=outlet@4.service

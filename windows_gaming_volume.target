@@ -1,0 +1,24 @@
+[Unit]
+Description=Windows Gaming with volume control
+Conflicts=windows_gaming_direct.target
+After=jackd.service
+BindsTo=jackd.service
+
+# Require the JACK volume control processor
+Requires=jack_volume@windows_gaming.service
+After=jack_volume@windows_gaming.service
+
+# Stop the existing direct connections 
+Conflicts=jack_connection@system.capture_7\x2cjack_effects.in_1.service
+Conflicts=jack_connection@system.capture_8\x2cjack_effects.in_2.service
+
+# Create new routing: system → volume_control → jack_effects
+Requires=jack_connection@system.capture_7\x2cwindows_gaming_volume.in_1.service
+Requires=jack_connection@system.capture_8\x2cwindows_gaming_volume.in_2.service
+Requires=jack_connection@windows_gaming_volume.out_1\x2cjack_effects.in_1.service
+Requires=jack_connection@windows_gaming_volume.out_2\x2cjack_effects.in_2.service
+
+After=jack_connection@system.capture_7\x2cwindows_gaming_volume.in_1.service
+After=jack_connection@system.capture_8\x2cwindows_gaming_volume.in_2.service
+After=jack_connection@windows_gaming_volume.out_1\x2cjack_effects.in_1.service
+After=jack_connection@windows_gaming_volume.out_2\x2cjack_effects.in_2.service

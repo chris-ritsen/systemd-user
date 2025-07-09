@@ -7,3 +7,4 @@ Conflicts = wireless-microphone.target
 Conflicts = wireless-audio.target
 Conflicts = shure-p10t.target
 Conflicts = shure-ad4d.target
+Conflicts = satellite-5059.target

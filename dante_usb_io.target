@@ -5,16 +5,12 @@ After=jackd.service
 BindsTo=jackd.service
 StopWhenUnneeded=no
 
-After=jack_connection@system.capture_7\x2cjack_effects.in_1.service
-After=jack_connection@system.capture_8\x2cjack_effects.in_2.service
-After=jack_connection@system.capture_11\x2cjack_effects.in_1.service
-After=jack_connection@system.capture_12\x2cjack_effects.in_2.service
+After=windows_gaming_direct.target
+After=macbook_personal_direct.target
 After=jack_connection@system.capture_2\x2csystem.playback_13.service
 After=jack_connection@system.capture_4\x2csystem.playback_13.service
 
-Requires=jack_connection@system.capture_7\x2cjack_effects.in_1.service
-Requires=jack_connection@system.capture_8\x2cjack_effects.in_2.service
-Requires=jack_connection@system.capture_11\x2cjack_effects.in_1.service
-Requires=jack_connection@system.capture_12\x2cjack_effects.in_2.service
+Wants=windows_gaming_direct.target
+Wants=macbook_personal_direct.target
 Requires=jack_connection@system.capture_2\x2csystem.playback_13.service
 Requires=jack_connection@system.capture_4\x2csystem.playback_13.service

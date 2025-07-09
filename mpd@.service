@@ -10,9 +10,9 @@ BindsTo = jackd.service
 # Requires = media-audio.mount
 Requires = ecasound@jack.service
 After = ecasound@jack.service
-Wants = ecasound@%i.service
 Wants = ympd@%i.service
 RequiresMountsFor = /media/audio
+StopWhenUnneeded = yes
 
 [Service]
 

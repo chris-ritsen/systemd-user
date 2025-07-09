@@ -2,7 +2,6 @@
 After=jackd.service
 BindsTo=jackd.service
 Description=Watch JACK client %I
-StopWhenUnneeded = yes
 
 [Service]
 Type=notify

@@ -1,0 +1,21 @@
+[Unit]
+Description=Monitor Dante Device %i
+After=network.target
+
+[Service]
+Type=notify
+ExecStart=/home/chris/bin/dante_device/.venv/bin/python3 -m dante_device %i
+Restart=no
+Environment=PYTHONPATH=/home/chris/projects/netaudio/netaudio:/home/chris/bin/dante_device/src
+NotifyAccess=main
+TimeoutStartSec=0
+
+MemoryAccounting=no
+TasksAccounting=no
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=dante-device-%i
+
+[Install]
+WantedBy=default.target

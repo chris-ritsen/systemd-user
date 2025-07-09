@@ -8,8 +8,8 @@ BindsTo = jackd.service
 After = alsa_out@nvidia.service
 Wants = alsa_out@nvidia.service
 
-After = jack_client_watcher@tv_speakers.service
-Wants = jack_client_watcher@tv_speakers.service
+# After = jack_client_watcher@tv_speakers.service
+# Wants = jack_client_watcher@tv_speakers.service
 
 Wants = speaker_effects.target
 After = speaker_effects.target

@@ -1,0 +1,17 @@
+[Unit]
+Description=Bluetooth AVIO with volume control
+After=jackd.service
+BindsTo=jackd.service
+
+Requires=jack_volume@bluetooth.service
+After=jack_volume@bluetooth.service
+
+Requires=jack_connection@system.capture_21\x2cbluetooth_volume.in_1.service
+Requires=jack_connection@system.capture_22\x2cbluetooth_volume.in_2.service
+Requires=jack_connection@bluetooth_volume.out_1\x2cjack_effects.in_1.service
+Requires=jack_connection@bluetooth_volume.out_2\x2cjack_effects.in_2.service
+
+After=jack_connection@system.capture_21\x2cbluetooth_volume.in_1.service
+After=jack_connection@system.capture_22\x2cbluetooth_volume.in_2.service
+After=jack_connection@bluetooth_volume.out_1\x2cjack_effects.in_1.service
+After=jack_connection@bluetooth_volume.out_2\x2cjack_effects.in_2.service

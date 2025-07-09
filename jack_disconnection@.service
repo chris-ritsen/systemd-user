@@ -1,10 +1,9 @@
 [Unit]
-
 After=jackd.service
 BindsTo=jackd.service
 Description=Ensure JACK disconnection %I
-StopWhenUnneeded = yes
 
 [Service]
 Type=notify
-ExecStart=/home/chris/home-control/dbus/jack_connection.py --disconnect "%I"
+NotifyAccess=all
+ExecStart=uv run --project /home/chris/bin/jack_connection jack-connection --disconnect "%I"
