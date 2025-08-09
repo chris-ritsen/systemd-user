@@ -1,0 +1,22 @@
+[Unit]
+Description=Dante subscription %i
+
+[Service]
+Type=notify
+ExecStart=/bin/bash -c 'cd /home/chris/bin/dante_device && exec uv run dante-device --mode assert-subscription %I'
+Restart=no
+Environment=PYTHONPATH=/home/chris/projects/netaudio/netaudio/packages/netaudio-lib/src:/home/chris/bin/dante_device/src
+NotifyAccess=all
+TimeoutStartSec=0
+WatchdogSec=0
+TimeoutStopSec=10
+
+MemoryAccounting=no
+TasksAccounting=no
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=dante-subscription-%I
+
+[Install]
+WantedBy=default.target

@@ -4,7 +4,6 @@ Requires=outlet@2.service
 After=outlet@2.service
 BindsTo=outlet@2.service
 PartOf=shelford-channel.target
-StopWhenUnneeded=yes
 
 [Service]
 Type=oneshot

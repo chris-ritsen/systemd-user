@@ -7,12 +7,13 @@ After = tv_speakers.target
 After= jack_client@pulseaudio.service
 
 Requires = ecasound@jack.service
+Requires = jack_client@pulseaudio.service
 Requires = jackd.service
 Requires = pulseaudio.service
 
-Wants = jack_client@pulseaudio.service
 # Wants = tv_speakers.target
-Wants = music_volume.target
-Wants = windows_gaming_volume.target
-Wants = vrroom_with_volume.target
 Wants = bluetooth_with_volume.target
+Wants = jack_client@pulseaudio.service
+Wants = music_volume.target
+Wants = vrroom_with_volume.target
+Wants = windows_gaming_volume.target

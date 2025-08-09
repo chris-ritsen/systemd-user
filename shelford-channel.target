@@ -1,7 +1,6 @@
 [Unit]
 
 After=shelford-channel.service
-BindsTo=microphone.target
 BindsTo=shelford-channel.service
 Description=Shelford Channel
 Requires=shelford-channel.service

@@ -1,0 +1,25 @@
+● dante-manager.service - Dante Device Manager Daemon                                                                                                       
+     Loaded: loaded (]8;;file://www/home/chris/.config/systemd/user/dante-manager.service\/home/chris/.config/systemd/user/dante-manager.service]8;;\; 5:185
+mdisabled; preset: enabled)                                                                                                                                 
+     Active: active (running) since Tue 2025-07-29 16:24:18 EDT; 1min 39s ago                                                                               
+ Invocation: fbf4e65eb04e4774af187d42cfb3962e                                                                                                               
+   Main PID: 3336388 (uv)                                                                                                                                   
+     Status: "Managing 6 devices, 0 enforcements active"                                                                                                    
+        CPU: 2.710s                                                                                                                                         
+     CGroup: /user.slice/user-1000.slice/user@1000.service/app.slice/dante-manager.service                                                                  
+             ├─3336388 uv run python /home/chris/bin/dante_device/src/dante_device/__main__.py --mode manager                                               
+             └─3336394 /home/chris/bin/dante_device/.venv/bin/python3 /home/chris/bin/dante_device/src/dante_device/__main__.py --mode manager              
+                                                                                                                                                            
+Jul 29 16:24:18 www manager[3336394]: Starting Dante Manager Daemon                                                                                         
+Jul 29 16:24:18 www manager[3336394]: Manager listening on /tmp/dante-manager.sock                                                                          
+Jul 29 16:24:18 www manager[3336394]: Dante Manager ready - accepting requests                                                                              
+Jul 29 16:24:18 www systemd[1650]: Started Dante Device Manager Daemon.                                                                                     
+Jul 29 16:24:26 www manager[3336394]: Device discovered: avio-bt-1 (192.168.1.61)                                                                           
+Jul 29 16:24:26 www manager[3336394]: Device discovered: avio-usb-3 (192.168.1.94)                                                                          
+Jul 29 16:24:26 www manager[3336394]: Device discovered: avio-usb-2 (192.168.1.36)                                                                          
+Jul 29 16:24:26 www manager[3336394]: Device discovered: avio-aes3-1 (192.168.1.18)                                                                         
+Jul 29 16:24:26 www manager[3336394]: Device discovered: avio-usb-1 (192.168.1.247)                                                                         
+Jul 29 16:24:26 www manager[3336394]: Device discovered: lx-dante (192.168.1.108)                                                                           
+                                                                                                                                                            
+                                                                                                                                                            
+                                                                                                                                                            

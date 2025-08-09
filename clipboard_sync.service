@@ -10,7 +10,7 @@ Restart=always
 RestartSec=10
 Type=simple
 
-ExecStart=/usr/bin/env python3 %h/.scripts/py/clipboard_sync.py --redis-host 127.0.0.1
+ExecStart=/bin/bash -c 'cd %h/bin/clipboard_sync && exec uv run clipboard-sync --redis-host 127.0.0.1'
 
 [Install]
 

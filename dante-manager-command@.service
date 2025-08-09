@@ -1,21 +1,12 @@
 [Unit]
-Description=Monitor Dante Device %i
-After=network.target
+Description=Send command to Dante Manager %i
+After=dante-manager.service
+Requires=dante-manager.service
 
 [Service]
 Type=oneshot
 ExecStart=/bin/bash -c 'cd /home/chris/bin/dante_device && exec uv run python /home/chris/bin/dante_device/src/dante_device/__main__.py --mode manager %i'
-Restart=no
 Environment=PYTHONPATH=/home/chris/projects/netaudio/netaudio:/home/chris/bin/dante_device/src
-NotifyAccess=main
-TimeoutStartSec=0
-
-MemoryAccounting=no
-TasksAccounting=no
-
-StandardOutput=journal
-StandardError=journal
-SyslogIdentifier=dante-device-%i
 
 [Install]
 WantedBy=default.target

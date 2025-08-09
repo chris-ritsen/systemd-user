@@ -5,6 +5,12 @@ Requires = audio-baseline.target
 Conflicts = audio-full.target
 Conflicts = wireless-microphone.target
 Conflicts = wireless-audio.target
+
+After = shure-p10t.target
+After = satellite-5059.target
+After = shelford-channel.target
 Conflicts = shure-p10t.target
+Conflicts = outlet@3.service
 Conflicts = shure-ad4d.target
 Conflicts = satellite-5059.target
+Conflicts = shelford-channel.target

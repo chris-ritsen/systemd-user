@@ -5,4 +5,4 @@ Wants=network-online.target
 
 [Service]
 Type=oneshot
-ExecStart=%h/bin/enforce_outlet.py %i
+ExecStart=/usr/bin/uv run --project /home/chris/bin/pdu_snmp pdu-systemd-enforcer %i

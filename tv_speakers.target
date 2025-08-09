@@ -13,7 +13,7 @@ Wants = alsa_out@nvidia.service
 
 Wants = speaker_effects.target
 After = speaker_effects.target
-Conflicts = vrroom.target
+Conflicts = vrroom.target vrroom_with_volume.target
 
 After=jack_connection@speakers_effects.out_1\x2ctv_speakers.playback_1.service
 After=jack_connection@speakers_effects.out_2\x2ctv_speakers.playback_2.service

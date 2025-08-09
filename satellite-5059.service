@@ -2,7 +2,7 @@
 Description=Rupert Neve Satellite 5059 Mixer Service
 Requires=outlet@1.service
 After=outlet@1.service
-BindsTo=outlet@1.service
+BindsTo = outlet@1.service
 PartOf=satellite-5059.target
 StopWhenUnneeded=yes
 RefuseManualStart=yes

@@ -11,9 +11,8 @@ Restart = no
 RemainAfterExit = yes
 Type = oneshot
 
-ExecStart = /usr/bin/zsh -ic 'pdu_snmp_command pdu-7901-1 %i on'
-ExecStop = /usr/bin/zsh -ic 'pdu_snmp_command pdu-7901-1 %i off'
-ExecStop = /usr/bin/zsh -ic 'pdu_snmp_command pdu-7901-1 %i off'
+ExecStart = /usr/bin/uv run --project /home/chris/bin/pdu_snmp pdu-enforcer pdu-7901-1 %i on
+ExecStop = /usr/bin/uv run --project /home/chris/bin/pdu_snmp pdu-enforcer pdu-7901-1 %i off
 
 [Install]
 

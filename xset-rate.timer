@@ -1,0 +1,10 @@
+[Unit]
+Description=Run xset rate enforcement every minute
+Requires=xset-rate.service
+
+[Timer]
+OnBootSec=30s
+OnUnitActiveSec=1min
+
+[Install]
+WantedBy=timers.target

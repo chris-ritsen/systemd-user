@@ -1,0 +1,8 @@
+[Unit]
+Description=Set keyboard repeat rate
+After=graphical-session.target
+
+[Service]
+Type=oneshot
+Environment="DISPLAY=:0"
+ExecStart=/usr/bin/xset r rate 200 125

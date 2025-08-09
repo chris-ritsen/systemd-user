@@ -2,8 +2,8 @@
 
 AssertFileIsExecutable = /home/chris/.xmonad/xmonad-x86_64-linux
 Description = Build Xmonad
-RefuseManualStart = yes
-RefuseManualStop = yes
+RefuseManualStart = no
+RefuseManualStop = no
 Wants = xmonad.path
 
 [Service]
