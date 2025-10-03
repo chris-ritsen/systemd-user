@@ -3,6 +3,7 @@
 Description = Discord
 Requires = sound.target graphical-session.target
 Wants = jack_client@discord.service
+Wants = discord_in.target
 After = jack_client@discord.service
 BindsTo = discord.target
 # StopWhenUnneeded = yes

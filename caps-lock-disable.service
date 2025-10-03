@@ -1,0 +1,8 @@
+[Unit]
+Description=Disable Caps Lock
+After=graphical-session.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/xdotool key --clearmodifiers Caps_Lock
+Environment=DISPLAY=:0

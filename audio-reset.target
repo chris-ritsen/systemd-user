@@ -12,5 +12,5 @@ After = shelford-channel.target
 Conflicts = shure-p10t.target
 Conflicts = outlet@3.service
 Conflicts = shure-ad4d.target
-Conflicts = satellite-5059.target
+Conflicts = satellite-5059.target outlet@1.service
 Conflicts = shelford-channel.target

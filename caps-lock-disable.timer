@@ -1,0 +1,10 @@
+[Unit]
+Description=Run Caps Lock disable every 30 seconds
+Requires=caps-lock-disable.service
+
+[Timer]
+OnCalendar=*:*:00,30
+Persistent=true
+
+[Install]
+WantedBy=timers.target

@@ -1,8 +1,8 @@
 [Unit]
 
-After = portico-5053-left.service 
-BindsTo = portico-5053-left.service
-Requires = portico-5053-left.service
+After = portico-5043-left.service 
+BindsTo = portico-5043-left.service
+Requires = portico-5043-left.service
 Description = Rupert Neve Portico 5043 (Left)
 
 Before=wireless-audio@1.service
