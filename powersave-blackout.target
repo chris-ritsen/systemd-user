@@ -1,0 +1,5 @@
+[Unit]
+Description=Maximum power saving for blackout conditions
+Conflicts=powersave.target
+Wants=cpu-blackout.target gpu-blackout.target
+After=cpu-blackout.target gpu-blackout.target

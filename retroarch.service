@@ -1,0 +1,10 @@
+[Unit]
+Description=RetroArch
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/retroarch --verbose
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

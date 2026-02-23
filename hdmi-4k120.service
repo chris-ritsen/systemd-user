@@ -1,0 +1,8 @@
+[Unit]
+Description=Enforce HDMI 4K120
+After=graphical-session.target
+
+[Service]
+Type=oneshot
+ExecStart=/home/chris/bin/hdmi-4k120
+Environment=DISPLAY=:0

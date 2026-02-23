@@ -1,0 +1,6 @@
+[Unit]
+Description=Stop night recording
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/systemctl --user stop night-recording.target

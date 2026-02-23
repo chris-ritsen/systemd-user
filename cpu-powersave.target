@@ -1,0 +1,6 @@
+[Unit]
+Description=CPU power saving mode
+Conflicts=cpu-normal.target
+PartOf=powersave.target
+Wants=cpu-powersave.service
+After=cpu-powersave.service

@@ -1,0 +1,14 @@
+[Unit]
+Description=Set audio cores to powersave
+Conflicts=cpu-normal.service
+PartOf=cpu-powersave.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/sudo /usr/bin/cpupower -c 0-2,14-16 frequency-set -g powersave -d 1200MHz -u 4300MHz
+ExecStart=/usr/bin/sudo /usr/bin/bash -c 'echo balance_performance | tee /sys/devices/system/cpu/cpu{0,1,2,14,15,16}/cpufreq/energy_performance_preference'
+ExecStart=/usr/bin/bash -c 'paste <(echo cpu{0,1,2,14,15,16} | tr " " "\\n") <(cat /sys/devices/system/cpu/cpu{0,1,2,14,15,16}/cpufreq/scaling_governor) <(cat /sys/devices/system/cpu/cpu{0,1,2,14,15,16}/cpufreq/scaling_min_freq) <(cat /sys/devices/system/cpu/cpu{0,1,2,14,15,16}/cpufreq/scaling_cur_freq)'
+ExecStop=/usr/bin/sudo /usr/bin/cpupower -c 0-2,14-16 frequency-set -g performance -d 4300MHz -u 4300MHz
+ExecStop=/usr/bin/sudo /usr/bin/bash -c 'echo performance | tee /sys/devices/system/cpu/cpu{0,1,2,14,15,16}/cpufreq/energy_performance_preference'
+ExecStop=/usr/bin/bash -c 'paste <(echo cpu{0,1,2,14,15,16} | tr " " "\\n") <(cat /sys/devices/system/cpu/cpu{0,1,2,14,15,16}/cpufreq/scaling_governor) <(cat /sys/devices/system/cpu/cpu{0,1,2,14,15,16}/cpufreq/scaling_min_freq) <(cat /sys/devices/system/cpu/cpu{0,1,2,14,15,16}/cpufreq/scaling_cur_freq)'

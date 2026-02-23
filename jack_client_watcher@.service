@@ -5,4 +5,4 @@ Description=Watch JACK client %I
 
 [Service]
 Type=notify
-ExecStart = /home/chris/home-control/dbus/jack_client.py "%I"
+ExecStart=%h/home-control/dbus/jack_client.py "%I"

@@ -25,3 +25,4 @@ Wants = xmonad.service
 Wants = kitty.service
 Wants = audio-baseline.target
 Wants = xbanish.service
+Wants = video.target

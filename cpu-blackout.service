@@ -1,0 +1,15 @@
+[Unit]
+Description=Extreme CPU power saving for blackout
+Conflicts=cpu-normal.service cpu-powersave.service
+PartOf=cpu-blackout.target
+StopWhenUnneeded=yes
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+# Set ALL cores to powersave with minimum frequencies and most aggressive EPP
+ExecStart=/usr/bin/sudo /usr/bin/cpupower frequency-set -g powersave -d 800MHz -u 1200MHz
+ExecStart=/usr/bin/sudo /usr/bin/bash -c 'echo power | tee /sys/devices/system/cpu/cpu*/cpufreq/energy_performance_preference'
+ExecStart=/usr/bin/bash -c 'for c in /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor; do echo "$(dirname $c | xargs basename): $(cat $c) $(cat $(dirname $c)/scaling_cur_freq)"; done | head -8'
+ExecStop=/usr/bin/sudo /usr/bin/cpupower frequency-set -g performance -d 4300MHz -u 4300MHz
+ExecStop=/usr/bin/sudo /usr/bin/bash -c 'echo performance | tee /sys/devices/system/cpu/cpu*/cpufreq/energy_performance_preference'

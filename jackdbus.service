@@ -1,0 +1,23 @@
+[Unit]
+Description=JACK D-Bus daemon
+After=dbus.service
+Requires=dbus.service
+
+[Service]
+Type=dbus
+BusName=org.jackaudio.service
+ExecStart=/usr/bin/jackdbus auto
+Restart=on-failure
+RestartSec=5
+
+# Capture all output to systemd journal
+StandardOutput=journal
+StandardError=journal
+
+# Realtime scheduling
+LimitRTPRIO=infinity
+LimitRTTIME=infinity
+LimitMEMLOCK=infinity
+
+[Install]
+WantedBy=default.target

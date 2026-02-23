@@ -1,0 +1,6 @@
+[Unit]
+Description=Enforce outlet %i state via SNMP
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/pdu-systemd-enforcer %i

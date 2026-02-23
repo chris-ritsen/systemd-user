@@ -6,7 +6,7 @@ StopWhenUnneeded = no
 PartOf = discord.service
 BindsTo = pulseaudio.service
 After = pulseaudio.service
-Wants = discord_out.target
+Wants = discord_out_volume.target
 
 AssertFileIsExecutable = /usr/bin/jack_control
 AssertFileIsExecutable = /usr/bin/pactl

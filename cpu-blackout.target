@@ -1,0 +1,6 @@
+[Unit]
+Description=Extreme CPU power saving mode
+Conflicts=cpu-normal.target cpu-powersave.target
+PartOf=powersave-blackout.target
+Wants=cpu-blackout.service
+After=cpu-blackout.service

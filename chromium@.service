@@ -13,6 +13,7 @@ ConditionEnvironment=DISPLAY
 
 Environment=LIBVA_DRI3_DISABLE=1
 Environment=LIBVA_DRIVER_NAME=nvidia
+Environment=GNOME_KEYRING_CONTROL=
 # Environment=DISPLAY=:0
 Environment=disk_cache_dir=--disk-cache-dir=%t/chromium
 Environment=remote_debugging_port=9222
@@ -32,10 +33,12 @@ ExecStart = /usr/bin/chromium \
 # ${disk_cache_dir} \
 ${user_data_dir} \
 ${scale} \
---enable-chrome-browser-cloud-management \
---keep-alive-for-test \
+--disable-features=ExtensionManifestV2Unsupported,ExtensionManifestV2Disabled \
+--enable-features=WebUIDarkMode \
 --force-dark-mode \
---enable-features=WebUIDarkMode
+--keep-alive-for-test \
+--password-store=basic \
+--use-mock-keychain
 
 # No longer working correctly; causes it to exit early
 # --silent-launch

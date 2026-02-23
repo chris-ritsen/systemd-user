@@ -1,0 +1,10 @@
+[Unit]
+Description=Game CPU Affinity Daemon
+
+[Service]
+Type=simple
+ExecStart=/home/chris/.local/bin/game-affinity
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

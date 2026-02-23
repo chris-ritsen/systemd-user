@@ -5,8 +5,7 @@ Requires=dante-manager.service
 
 [Service]
 Type=oneshot
-ExecStart=/bin/bash -c 'cd /home/chris/bin/dante_device && exec uv run python /home/chris/bin/dante_device/src/dante_device/__main__.py --mode manager %i'
-Environment=PYTHONPATH=/home/chris/projects/netaudio/netaudio:/home/chris/bin/dante_device/src
+ExecStart=%h/.local/bin/dante-device --mode manager %i
 
 [Install]
 WantedBy=default.target

@@ -1,0 +1,12 @@
+[Unit]
+Description=PDU Outlet Manager
+
+[Service]
+Type=notify
+ExecStart=%h/.local/bin/pdu-manager
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target

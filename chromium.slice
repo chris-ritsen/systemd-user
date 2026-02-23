@@ -1,0 +1,4 @@
+[Slice]
+# Limit all chromium instances combined to 64GB
+MemoryMax=64G
+MemoryHigh=60G

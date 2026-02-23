@@ -4,9 +4,8 @@ After=network.target
 
 [Service]
 Type=notify
-ExecStart=/bin/bash -c 'echo "Args: %I" && cd /home/chris/bin/dante_device && exec uv run python /home/chris/bin/dante_device/src/dante_device/__main__.py --mode assert-sample-rate %I'
+ExecStart=%h/.local/bin/dante-device --mode assert-sample-rate %I
 Restart=no
-Environment=PYTHONPATH=/home/chris/projects/netaudio/netaudio:/home/chris/bin/dante_device/src
 NotifyAccess=all
 TimeoutStartSec=0
 WatchdogSec=0

@@ -1,5 +1,8 @@
 [Unit]
-Description=Minimum required for wireless audio monitoring of the main mix with IEMs
+Description=Wireless audio
 
 Requires = wireless-audio@1.service
 Requires = satellite-5059.target
+
+Wants = cpu-normal.service
+Wants = dante-microphone-out-off.target

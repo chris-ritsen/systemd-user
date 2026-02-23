@@ -7,7 +7,7 @@ Requires = jackd.service
 
 [Service]
 Type=oneshot
-ExecStart = /home/chris/bin/audio_isolation.zsh
+ExecStart=%h/bin/audio_tuning.zsh set
 
 [Install]
 WantedBy=default.target

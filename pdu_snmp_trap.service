@@ -1,0 +1,10 @@
+[Unit]
+Description=PDU SNMP Trap Handler
+
+[Service]
+ExecStart=%h/.local/bin/pdu-snmp-trap
+Restart=always
+Type=notify
+
+[Install]
+WantedBy=default.target

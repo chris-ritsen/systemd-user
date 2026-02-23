@@ -1,0 +1,12 @@
+[Unit]
+Description = Microphone monitoring
+
+Requires = microphone.target
+After = microphone.target
+
+Requires = dante-microphone-output-state.service
+After = dante-microphone-output-state.service
+
+PartOf = microphone.target
+
+Wants = wireless-audio.target

@@ -1,9 +1,11 @@
 [Unit]
-After=jackd.service
-BindsTo=jackd.service
+After=jack-connection-manager.service
+Requires=jack-connection-manager.service
+BindsTo=jack.target
 Description=Ensure JACK connection %I
 
 [Service]
-Type=notify
-NotifyAccess=all
-ExecStart = uv run --project /home/chris/bin/jack_connection jack-connection --connect "%I"
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=%h/.local/bin/jack-connection manager --connect "%I"
+ExecStop=%h/.local/bin/jack-connection manager --remove "%I"

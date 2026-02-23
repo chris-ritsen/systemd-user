@@ -1,10 +1,12 @@
 [Service]
+Slice=chromium.slice
 
 Nice = 19
 IOSchedulingClass=idle
 
-EnvironmentFile=/home/chris/.config/systemd/user/secrets.env
+EnvironmentFile=%h/.config/systemd/user/secrets.env
 Environment=DISPLAY=:0
+Environment=GNOME_KEYRING_CONTROL=
 Environment=app=--app='https://mail.google.com/mail/u/${GMAIL_EMAIL}/'
 Environment=disk_cache_dir=--disk-cache-dir=%t/%p
 Environment=scale=--force-device-scale-factor='1.0'
@@ -17,6 +19,8 @@ ${user_data_dir} \
 ${app} \
 ${scale} \
 --enable-dom-distiller \
+--password-store=basic \
+--use-mock-keychain \
 --keep-alive-for-test \
 --silent-launch \
 

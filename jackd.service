@@ -12,12 +12,15 @@ Requires = sound.target
 After = dbus.service
 Requires = dbus.service
 
+After = jackdbus.service
+Wants = jackdbus.service
+
 Wants = dante_avio_bt_1.target
 Wants = dante_pcie_out.target
 Wants = dante_usb_io_macbook.target
 Wants = dante_usb_io.target
 Wants = jack_client@pulseaudio.service
-Wants = jack_out.target
+Wants = jack_out_volume.target
 Wants = jack_in.target
 # Wants = tv_speakers.target
 Wants = vrroom.target
@@ -37,27 +40,9 @@ LimitRTPRIO = infinity
 LimitRTTIME = infinity
 Slice = audio-rt.slice
 
-# Safe
-# Environment=bufsize=640
-# Environment=period=256
+# Load shared JACK configuration
+EnvironmentFile=%h/.config/systemd/user/jack.env
 
-# High latency
-# Environment=bufsize=512
-# Environment=period=512
-
-# Medium latency
-Environment=bufsize=256
-Environment=period=256
-
-# Low latency
-# Environment=bufsize=128
-# Environment=period=128
-
-# Ultra low latency
-# Environment=bufsize=64
-# Environment=period=64
-
-Environment=rate=48000
 Environment = DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
 
 # ExecStop = /usr/bin/zsh -c '/usr/bin/jack_control stop'
@@ -81,7 +66,7 @@ ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps playback 'hw:DantePCIe,0'
 # ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps period 16"
 # ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps period 64"
 ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps period $period"
-ExecStart = /usr/bin/zsh -c '/usr/bin/jack_control dps nperiods 2'
+ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps nperiods $nperiods"
 
 ExecStart = /usr/bin/zsh -c "/usr/bin/jack_control dps rate $rate"
 

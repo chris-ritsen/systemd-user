@@ -1,0 +1,12 @@
+[Unit]
+Description=Generate waveform image from night recording
+After=night-recording-stop.service
+Requires=night-recording-stop.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/zsh -c 'latest=$(ls -t %h/*.opus 2>/dev/null | head -1); [ -n "$latest" ] && %h/bin/wav-waveform "$latest" -ch 1'
+ExecStartPre=/usr/bin/sleep 10
+
+[Install]
+WantedBy=night-recording-stop.service

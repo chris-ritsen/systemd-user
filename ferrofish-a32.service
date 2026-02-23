@@ -3,9 +3,9 @@ Requires=outlet@4.service
 After=outlet@4.service
 BindsTo=outlet@4.service
 PartOf=ferrofish-a32.target
-StopWhenUnneeded=yes
-RefuseManualStart=yes
-RefuseManualStop=yes
+StopWhenUnneeded=no
+RefuseManualStart=no
+RefuseManualStop=no
 
 [Service]
 Type=oneshot

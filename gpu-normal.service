@@ -1,0 +1,10 @@
+[Unit]
+Description=Reset GPU to normal clocks
+Conflicts=gpu-powersave.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/sudo /usr/bin/nvidia-smi -rgc
+ExecStart=/usr/bin/sudo /usr/bin/nvidia-smi -rmc
+ExecStart=/usr/bin/nvidia-settings -a '[gpu:0]/GpuPowerMizerMode=0'
+ExecStart=/usr/bin/nvidia-smi --query-gpu=clocks.gr,clocks.mem,power.draw --format=csv

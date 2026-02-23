@@ -6,6 +6,6 @@ Requires = ferrofish-a32.target
 Requires=dante-device-subscription@a32\x2cshelford\x2dchannel\x2ca32\x2csatellite\x2d08_desktop\x2dmic.service
 Requires=dante-device-subscription@a32\x2cshelford\x2dchannel\x2ca32\x2csatellite\x2d16_desktop\x2dmic.service
 
-Conflicts=dante-device-disconnection@a32\x2cshelford\x2dchannel\x2ca32\x2csatellite\x2d08_desktop\x2dmic.service
-Conflicts=dante-device-disconnection@a32\x2cshelford\x2dchannel\x2ca32\x2csatellite\x2d16_desktop\x2dmic.service
 Conflicts = dante-microphone-out-off.target
+Conflicts = dante-device-disconnection@a32\x2cshelford\x2dchannel\x2ca32\x2csatellite\x2d08_desktop\x2dmic.service
+Conflicts = dante-device-disconnection@a32\x2cshelford\x2dchannel\x2ca32\x2csatellite\x2d16_desktop\x2dmic.service

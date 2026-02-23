@@ -2,14 +2,13 @@
 
 Description=Setup Jack Aliases
 
-After=jackd.service
+After=jackd.service jackdbus.service
 BindsTo=jackd.service
 
 [Service]
 Type=notify
 RemainAfterExit=yes
+TimeoutStartSec=infinity
 
-ExecStartPre = /usr/bin/uv sync
-ExecStart = %h/bin/jack_alias/.venv/bin/jack-dante-alias --alias
-ExecStop = %h/bin/jack_alias/.venv/bin/jack-dante-alias --unalias
-WorkingDirectory = %h/bin/jack_alias
+ExecStart=%h/.local/bin/jack-dante-alias --alias
+ExecStop=%h/.local/bin/jack-dante-alias --unalias

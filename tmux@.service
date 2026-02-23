@@ -7,7 +7,7 @@ StopWhenUnneeded = no
 
 [Service]
 
-EnvironmentFile = /home/chris/.config/systemd/user/default_env
+EnvironmentFile=%h/.config/systemd/user/default_env
 ExecReload = /usr/bin/tmux -L %i -f %h/.config/%p/sessions/%i start-server
 ExecStart = /usr/bin/tmux -L %i -f %h/.config/%p/sessions/%i start-server
 ExecStartPost = /usr/bin/tmux -L %i has-session -t %i

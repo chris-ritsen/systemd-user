@@ -1,6 +1,6 @@
 [Unit]
 
-After=shelford-channel.service
-BindsTo=shelford-channel.service
-Description=Shelford Channel
-Requires=shelford-channel.service
+After = shelford-channel.service
+BindsTo = shelford-channel.service
+Description = Shelford Channel
+Requires = shelford-channel.service

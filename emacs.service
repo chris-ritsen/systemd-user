@@ -13,13 +13,14 @@ Type=notify
 ExecStart=/usr/bin/emacs --fg-daemon
 ExecStop=/usr/bin/emacsclient --eval "(setq kill-emacs-hook 'nil) (kill-emacs)"
 ExecStartPost=/usr/bin/zsh -c 'tmux -S /run/user/1000/tmux-1000/admin list-panes -a -F "#{session_name}:#{window_index}.#{pane_index} #{pane_current_command} #{pane_pid}" | awk '\''$2 == "emacsclient" { print $1; exit }'\'' | xargs -r tmux -S /run/user/1000/tmux-1000/admin respawn-pane -k -t'
-ExecStartPost=/usr/bin/emacsclient --eval "(ignore-errors (bh/punch-in nil))"
-ExecStartPost=/usr/bin/emacsclient --eval "(ignore-errors (org-agenda-list))"
+# Temporarily disabled - causing startup hangs
+#ExecStartPost=/usr/bin/emacsclient --eval "(ignore-errors (bh/punch-in nil))"
+#ExecStartPost=/usr/bin/emacsclient --eval "(ignore-errors (org-agenda-list))"
 ExecReload=/bin/kill -HUP $MAINPID
 
 Restart=on-failure
 RestartSec=15
-TimeoutStartSec=15s
+TimeoutStartSec=60s
 TimeoutStopSec=15s
 
 [Install]

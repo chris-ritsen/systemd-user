@@ -5,7 +5,8 @@ StopWhenUnneeded=yes
 
 [Service]
 Type=notify
-ExecStart=%h/bin/mpv/.venv/bin/python3 %h/bin/mpv/daemon.py --name=%i
+Environment="DISPLAY=:0"
+ExecStart=%h/.local/bin/mpv-daemon --name=%i
 Restart=always
 RestartSec=2
 TimeoutStartSec=10

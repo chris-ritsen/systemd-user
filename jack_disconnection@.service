@@ -1,9 +1,12 @@
 [Unit]
-After=jackd.service
-BindsTo=jackd.service
+After=jack-connection-manager.service
+After=jack_connection@%i.service
+Requires=jack-connection-manager.service
+BindsTo=jack.target
 Description=Ensure JACK disconnection %I
 
 [Service]
-Type=notify
-NotifyAccess=all
-ExecStart=uv run --project /home/chris/bin/jack_connection jack-connection --disconnect "%I"
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=%h/.local/bin/jack-connection manager --disconnect "%I"
+ExecStop=%h/.local/bin/jack-connection manager --remove "%I"

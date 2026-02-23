@@ -1,0 +1,22 @@
+[Unit]
+Description=Enforce Dante Device Disconnection %i
+After=network.target
+
+[Service]
+Type=notify
+ExecStart=%h/.local/bin/dante-device --mode assert-disconnection %I
+Restart=no
+NotifyAccess=all
+TimeoutStartSec=0
+WatchdogSec=0
+TimeoutStopSec=10
+
+MemoryAccounting=no
+TasksAccounting=no
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=dante-device-disconnection-%I
+
+[Install]
+WantedBy=default.target

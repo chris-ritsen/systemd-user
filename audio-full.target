@@ -1,4 +1,5 @@
 [Unit]
+Description = Audio full
 
 Conflicts = speakers.service
 Conflicts = audio-baseline.target
@@ -12,7 +13,7 @@ After = dante_usb_io_macbook.target
 After = dante_usb_io.target
 After = ecasound@jack.service
 After = ferrofish-a32.target
-After = microphone.target
+After = microphone-monitoring.target
 After = satellite-5059.target
 After = shelford-channel.target
 After = shure-p10t.target
@@ -26,7 +27,7 @@ Requires = dante_usb_io_macbook.target
 Requires = ecasound@jack.service
 Requires = ferrofish-a32.target
 Requires = jackd.service
-Requires = microphone.target
+Requires = microphone-monitoring.target
 Requires = satellite-5059.target
 Requires = shelford-channel.target
 Requires = shure-p10t.target
@@ -40,13 +41,15 @@ BindsTo = dante_usb_io_macbook.target
 BindsTo = ecasound@jack.service
 BindsTo = ferrofish-a32.target
 After = jackd.service
-BindsTo = microphone.target
+BindsTo = microphone-monitoring.target
 # BindsTo = satellite-5059.target
 # BindsTo = shelford-channel.target
 # BindsTo = shure-ad4d.target
 # BindsTo = shure-p10t.target
 BindsTo = wireless-audio@2.service
 BindsTo = wireless-microphone.target
+
+Wants = cpu-normal.service
 
 [Install]
 WantedBy=default.target

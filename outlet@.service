@@ -2,6 +2,8 @@
 
 DefaultDependencies = no
 Description = Power outlet %i
+Wants = pdu-manager.service
+After = pdu-manager.service
 
 [Service]
 TimeoutStartSec = 5
@@ -11,8 +13,8 @@ Restart = no
 RemainAfterExit = yes
 Type = oneshot
 
-ExecStart = /usr/bin/uv run --project /home/chris/bin/pdu_snmp pdu-enforcer pdu-7901-1 %i on
-ExecStop = /usr/bin/uv run --project /home/chris/bin/pdu_snmp pdu-enforcer pdu-7901-1 %i off
+ExecStart=%h/.local/bin/pdu-outlet-command on %i outlet@%i.service
+ExecStop=%h/.local/bin/pdu-outlet-command off %i outlet@%i.service
 
 [Install]
 

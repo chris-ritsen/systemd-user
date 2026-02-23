@@ -27,7 +27,7 @@ ExecStart=/usr/bin/pulseaudio --daemonize=no
 
 Restart = on-failure
 RestartSec=6
-TimeoutStartSec = 50s
+TimeoutStartSec = 30s
 TimeoutStopSec=2s
 
 Type=notify

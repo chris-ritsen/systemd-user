@@ -1,0 +1,6 @@
+[Unit]
+Description=GPU power saving mode
+Conflicts=gpu-normal.target
+PartOf=powersave.target
+Wants=gpu-powersave.service
+After=gpu-powersave.service

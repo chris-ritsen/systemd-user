@@ -1,19 +1,15 @@
 [Unit]
 Description=Enforce Dante Device Subscription %i
-After=network.target
+After=dante-manager.service
+Requires=dante-manager.service
 
 [Service]
-Type=notify
-ExecStart=/bin/bash -c 'echo "Args: %I" && cd /home/chris/bin/dante_device && exec uv run python /home/chris/bin/dante_device/src/dante_device/__main__.py --mode assert-subscription %I'
-Restart=no
-Environment=PYTHONPATH=/home/chris/projects/netaudio/netaudio:/home/chris/bin/dante_device/src
-NotifyAccess=all
-TimeoutStartSec=0
-WatchdogSec=0
-TimeoutStopSec=10
-
-MemoryAccounting=no
-TasksAccounting=no
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=%h/.local/bin/dante-device --mode manager "subscription:connect,%I"
+ExecStartPost=/usr/bin/systemctl --user reload dante-manager.service
+ExecStop=%h/.local/bin/dante-device --mode manager "subscription:disconnect,%I"
+ExecStopPost=/usr/bin/systemctl --user reload dante-manager.service
 
 StandardOutput=journal
 StandardError=journal

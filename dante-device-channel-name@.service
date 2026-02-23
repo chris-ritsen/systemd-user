@@ -1,0 +1,17 @@
+[Unit]
+Description=Enforce Dante Channel Name %i
+After=dante-manager.service
+Requires=dante-manager.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=%h/.local/bin/dante-device --mode manager "channel-name:%i"
+ExecStop=%h/.local/bin/dante-device --mode manager "remove-channel-name:%i"
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=dante-channel-name-%I
+
+[Install]
+WantedBy=default.target

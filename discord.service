@@ -12,6 +12,14 @@ BindsTo = discord.target
 Nice = 19
 IOSchedulingClass=idle
 
+# Limit Discord memory usage to prevent system freezes
+MemoryMax=8G
+MemoryHigh=6G
+
+# Redirect logs to volatile tmpfs
+StandardOutput=file:/run/user/%U/discord.log
+StandardError=file:/run/user/%U/discord.log
+
 Environment = DISPLAY=:0
 ExecStart = /usr/bin/discord
 ExecStop = /usr/bin/killall -I -9 discord

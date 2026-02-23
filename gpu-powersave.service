@@ -1,0 +1,15 @@
+[Unit]
+Description=Lock GPU to minimum clocks
+Conflicts=gpu-normal.service
+PartOf=gpu-powersave.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/sudo /usr/bin/nvidia-smi -lgc 180
+ExecStart=/usr/bin/sudo /usr/bin/nvidia-smi -lmc 405
+ExecStart=/usr/bin/nvidia-smi --query-gpu=clocks.gr,clocks.mem,power.draw --format=csv
+ExecStop=/usr/bin/sudo /usr/bin/nvidia-smi -rgc
+ExecStop=/usr/bin/sudo /usr/bin/nvidia-smi -rmc
+ExecStop=/usr/bin/nvidia-settings -a '[gpu:0]/GpuPowerMizerMode=0'
+ExecStop=/usr/bin/nvidia-smi --query-gpu=clocks.gr,clocks.mem,power.draw --format=csv

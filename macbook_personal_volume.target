@@ -1,0 +1,21 @@
+[Unit]
+Description=MacBook Personal with volume control
+After=jackd.service
+BindsTo=jackd.service
+Conflicts=macbook_personal_direct.target
+
+Requires=jack_volume@macbook_personal.service
+After=jack_volume@macbook_personal.service
+
+Conflicts=jack_connection@system.capture_11\x2cjack_effects.in_1.service
+Conflicts=jack_connection@system.capture_12\x2cjack_effects.in_2.service
+
+Requires=jack_connection@system.capture_11\x2cmacbook_personal_volume.in_1.service
+Requires=jack_connection@system.capture_12\x2cmacbook_personal_volume.in_2.service
+Requires=jack_connection@macbook_personal_volume.out_1\x2cjack_effects.in_1.service
+Requires=jack_connection@macbook_personal_volume.out_2\x2cjack_effects.in_2.service
+
+After=jack_connection@system.capture_11\x2cmacbook_personal_volume.in_1.service
+After=jack_connection@system.capture_12\x2cmacbook_personal_volume.in_2.service
+After=jack_connection@macbook_personal_volume.out_1\x2cjack_effects.in_1.service
+After=jack_connection@macbook_personal_volume.out_2\x2cjack_effects.in_2.service

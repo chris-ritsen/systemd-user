@@ -6,13 +6,9 @@ After=jackd.service
 BindsTo=jackd.service
 
 [Service]
-Environment=JACK_PERIOD=128
-Environment=JACK_NPERIODS=3
-Environment=JACK_SAMPLE_RATE=48000
-
+EnvironmentFile=%h/.config/systemd/user/jack.env
 ExecCondition=/bin/sh -c "aplay -L | grep -q '${ALSA_DEVICE}'"
-ExecStart=/usr/bin/alsa_out -v -c ${JACK_CLIENT_CHANNEL_COUNT} -j ${JACK_CLIENT_NAME} -d ${ALSA_DEVICE} -p ${JACK_PERIOD} -n ${JACK_NPERIODS} -r ${JACK_SAMPLE_RATE} -q 1
-
+ExecStart=/bin/sh -c 'exec /usr/bin/alsa_out -c ${JACK_CLIENT_CHANNEL_COUNT} -j ${JACK_CLIENT_NAME} -d ${ALSA_DEVICE} -p $(jack_bufsize) -n ${nperiods} -r $(jack_samplerate) -q 1'
 Restart=no
 
 [Install]

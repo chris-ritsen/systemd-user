@@ -1,0 +1,5 @@
+[Unit]
+Description=CPU normal performance mode
+Conflicts=cpu-powersave.target
+Wants=cpu-normal.service
+After=cpu-normal.service

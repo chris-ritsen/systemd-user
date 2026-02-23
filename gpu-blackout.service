@@ -1,0 +1,19 @@
+[Unit]
+Description=Extreme GPU power saving for blackout
+Conflicts=gpu-normal.service gpu-powersave.service
+PartOf=gpu-blackout.target
+StopWhenUnneeded=yes
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+# Minimum clocks (power limit already at minimum 250W for this GPU)
+ExecStart=/usr/bin/sudo /usr/bin/nvidia-smi -pm 1
+ExecStart=/usr/bin/sudo /usr/bin/nvidia-smi -lgc 210
+ExecStart=/usr/bin/sudo /usr/bin/nvidia-smi -lmc 405
+ExecStart=/usr/bin/nvidia-smi --query-gpu=clocks.gr,clocks.mem,power.draw,power.limit --format=csv
+ExecStop=/usr/bin/sudo /usr/bin/nvidia-smi -rgc
+ExecStop=/usr/bin/sudo /usr/bin/nvidia-smi -rmc
+ExecStop=/usr/bin/sudo /usr/bin/nvidia-smi -pl 360
+ExecStop=/usr/bin/nvidia-settings -a '[gpu:0]/GpuPowerMizerMode=0'
+ExecStop=/usr/bin/nvidia-smi --query-gpu=clocks.gr,clocks.mem,power.draw,power.limit --format=csv

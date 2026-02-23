@@ -1,0 +1,10 @@
+[Unit]
+Description=Microphone output state manager
+PartOf=microphone-monitoring.target
+PartOf=shelford-channel.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/systemctl --user start dante-microphone-out-on.target
+ExecStop=/usr/bin/systemctl --user start dante-microphone-out-off.target

@@ -3,10 +3,65 @@
 Description=Ferrofish A32 Dante
 
 # After=dante-device@a32.service
-After= ferrofish-a32.service
+After=ferrofish-a32.service
+After=dante-device-name@A32-107332.local.\x2ca32.service
 # BindsTo=dante-device@a32.service
 BindsTo=ferrofish-a32.service
+# dante-device-name is now oneshot - just registers rule with manager, no need for BindsTo
+Wants=dante-device-name@A32-107332.local.\x2ca32.service
 PartOf=wireless-audio@1.service
 PartOf=wireless-audio@2.service
 # Requires=dante-device@a32.service
 Requires=ferrofish-a32.service
+
+# Channel name enforcement
+Requires=dante-device-channel-name@a32\x2ctx\x2c17\x2cshelford-channel.service
+Requires=dante-device-channel-name@a32\x2ctx\x2c18\x2cshelford-channel-minus-6db.service
+Requires=dante-device-channel-name@a32\x2ctx\x2c33\x2cmain-mix-left.service
+Requires=dante-device-channel-name@a32\x2ctx\x2c34\x2cmain-mix-right.service
+Requires=dante-device-channel-name@a32\x2ctx\x2c49\x2cadat-1.service
+Requires=dante-device-channel-name@a32\x2ctx\x2c50\x2cadat-2.service
+Requires=dante-device-channel-name@a32\x2ctx\x2c51\x2cadat-3.service
+Requires=dante-device-channel-name@a32\x2ctx\x2c52\x2cadat-4.service
+Requires=dante-device-channel-name@a32\x2ctx\x2c53\x2cadat-5.service
+Requires=dante-device-channel-name@a32\x2ctx\x2c54\x2cadat-6.service
+Requires=dante-device-channel-name@a32\x2ctx\x2c55\x2cadat-7.service
+Requires=dante-device-channel-name@a32\x2ctx\x2c56\x2cadat-8.service
+Requires=dante-device-channel-name@a32\x2ctx\x2c57\x2cadat-25.service
+Requires=dante-device-channel-name@a32\x2ctx\x2c58\x2cadat-26.service
+Requires=dante-device-channel-name@a32\x2ctx\x2c59\x2cadat-27.service
+Requires=dante-device-channel-name@a32\x2ctx\x2c60\x2cadat-28.service
+Requires=dante-device-channel-name@a32\x2ctx\x2c61\x2cadat-29.service
+Requires=dante-device-channel-name@a32\x2ctx\x2c62\x2cadat-30.service
+Requires=dante-device-channel-name@a32\x2ctx\x2c63\x2cadat-31.service
+Requires=dante-device-channel-name@a32\x2ctx\x2c64\x2cadat-32.service
+Requires=dante-device-channel-name@a32\x2crx\x2c1\x2csatellite-01_main-mix-right.service
+Requires=dante-device-channel-name@a32\x2crx\x2c2\x2csatellite-02_main_mix_left.service
+Requires=dante-device-channel-name@a32\x2crx\x2c3\x2csatellite-03_music_left.service
+Requires=dante-device-channel-name@a32\x2crx\x2c4\x2csatellite-04_music_right.service
+Requires=dante-device-channel-name@a32\x2crx\x2c5\x2csatellite-05_hdmi_left.service
+Requires=dante-device-channel-name@a32\x2crx\x2c6\x2csatellite-06_hdmi_right.service
+Requires=dante-device-channel-name@a32\x2crx\x2c7\x2csatellite-07_wireless-mic-2.service
+Requires=dante-device-channel-name@a32\x2crx\x2c8\x2csatellite-08_desktop-mic.service
+Requires=dante-device-channel-name@a32\x2crx\x2c9\x2csatellite-09_bluetooth-left.service
+Requires=dante-device-channel-name@a32\x2crx\x2c10\x2csatellite-10_bluetooth-right.service
+Requires=dante-device-channel-name@a32\x2crx\x2c11\x2csatellite-11_windows-left.service
+Requires=dante-device-channel-name@a32\x2crx\x2c12\x2csatellite-12_windows-right.service
+Requires=dante-device-channel-name@a32\x2crx\x2c13\x2csatellite-13_macbook-left.service
+Requires=dante-device-channel-name@a32\x2crx\x2c14\x2csatellite-14_macbook_right.service
+Requires=dante-device-channel-name@a32\x2crx\x2c15\x2csatellite-15_wireless-mic-2.service
+Requires=dante-device-channel-name@a32\x2crx\x2c16\x2csatellite-16_desktop-mic.service
+
+# Subscription enforcement
+Requires=dante-device-subscription@lx-dante\x2clinux-main\x3aright\x2ca32\x2csatellite-01_main-mix-right.service
+Requires=dante-device-subscription@lx-dante\x2clinux-main\x3aleft\x2ca32\x2csatellite-02_main_mix_left.service
+Requires=dante-device-subscription@lx-dante\x2clinux-music\x3aleft\x2ca32\x2csatellite-03_music_left.service
+Requires=dante-device-subscription@lx-dante\x2clinux-music\x3aright\x2ca32\x2csatellite-04_music_right.service
+Requires=dante-device-subscription@avio-aes3-1\x2cvrroom\x3aleft\x2ca32\x2csatellite-05_hdmi_left.service
+Requires=dante-device-subscription@avio-aes3-1\x2cvrroom\x3aright\x2ca32\x2csatellite-06_hdmi_right.service
+Requires=dante-device-subscription@avio-bt-1\x2cbluetooth\x3aleft\x2ca32\x2csatellite-09_bluetooth-left.service
+Requires=dante-device-subscription@avio-bt-1\x2cbluetooth\x3aright\x2ca32\x2csatellite-10_bluetooth-right.service
+Requires=dante-device-subscription@avio-usb-1\x2cwindows-gaming\x3aleft\x2ca32\x2csatellite-11_windows-left.service
+Requires=dante-device-subscription@avio-usb-1\x2cwindows-gaming\x3aright\x2ca32\x2csatellite-12_windows-right.service
+Requires=dante-device-subscription@avio-usb-2\x2cmacbook-personal\x3aleft\x2ca32\x2csatellite-13_macbook-left.service
+Requires=dante-device-subscription@avio-usb-2\x2cmacbook-personal\x3aright\x2ca32\x2csatellite-14_macbook_right.service

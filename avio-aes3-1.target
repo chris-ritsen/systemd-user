@@ -1,0 +1,12 @@
+[Unit]
+Description=AVIO AES3-1 Device Configuration Target
+
+# Device name: AVIOAES3-53ef37.local. -> avio-aes3-1
+Wants=dante-device-name@AVIOAES3-53ef37.local.\x2cavio-aes3-1.service
+
+# TX Channel names
+Requires=dante-device-channel-name@avio-aes3-1\x2ctx\x2c1\x2cvrroom:left.service
+Requires=dante-device-channel-name@avio-aes3-1\x2ctx\x2c2\x2cvrroom:right.service
+
+[Install]
+WantedBy=audio-baseline.target

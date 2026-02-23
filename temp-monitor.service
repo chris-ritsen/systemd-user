@@ -1,0 +1,6 @@
+[Unit]
+Description=Check system temperatures
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/temp-monitor alert s00pcan@gmail.com --threshold 90.0 --hdd-threshold 60.0 --cooldown 1

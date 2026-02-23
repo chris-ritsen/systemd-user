@@ -1,6 +1,6 @@
 [Unit]
 
-AssertFileIsExecutable = /home/chris/.xmonad/xmonad-x86_64-linux
+AssertFileIsExecutable=%h/.xmonad/xmonad-x86_64-linux
 Description = Build Xmonad
 RefuseManualStart = no
 RefuseManualStop = no

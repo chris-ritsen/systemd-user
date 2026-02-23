@@ -1,0 +1,6 @@
+[Unit]
+Description=Check btrfs free space on /media
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/btrfs-monitor /media s00pcan@gmail.com --threshold 1.0 --cooldown 24

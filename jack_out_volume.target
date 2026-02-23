@@ -1,0 +1,26 @@
+[Unit]
+Description=PulseAudio jack_out with volume control
+After=jackd.service
+BindsTo=jackd.service
+Conflicts=jack_out.target
+
+Requires=jack_volume@jack_out.service
+After=jack_volume@jack_out.service
+
+Conflicts=jack_connection@jack_out.front\x2dleft\x2cjack_effects.in_1.service
+Conflicts=jack_connection@jack_out.front\x2dright\x2cjack_effects.in_2.service
+
+Requires=jack_connection@jack_out.front\x2dleft\x2cjack_out_volume.in_1.service
+Requires=jack_connection@jack_out.front\x2dright\x2cjack_out_volume.in_2.service
+Requires=jack_connection@jack_out_volume.out_1\x2cjack_effects.in_1.service
+Requires=jack_connection@jack_out_volume.out_2\x2cjack_effects.in_2.service
+
+Requires=jack_disconnection@jack_out.front\x2dleft\x2csystem.playback_1.service
+Requires=jack_disconnection@jack_out.front\x2dright\x2csystem.playback_2.service
+
+After=jack_connection@jack_out.front\x2dleft\x2cjack_out_volume.in_1.service
+After=jack_connection@jack_out.front\x2dright\x2cjack_out_volume.in_2.service
+After=jack_connection@jack_out_volume.out_1\x2cjack_effects.in_1.service
+After=jack_connection@jack_out_volume.out_2\x2cjack_effects.in_2.service
+After=jack_disconnection@jack_out.front\x2dleft\x2csystem.playback_1.service
+After=jack_disconnection@jack_out.front\x2dright\x2csystem.playback_2.service

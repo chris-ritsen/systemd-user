@@ -1,5 +1,5 @@
 [Unit]
-Description=Record multi-channel audio through ecasound and encode with opusenc
+Description=Record audio
 
 [Service]
 Type=simple

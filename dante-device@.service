@@ -4,9 +4,8 @@ After=network.target
 
 [Service]
 Type=oneshot
-ExecStart=/bin/bash -c 'cd /home/chris/bin/dante_device && exec uv run python /home/chris/bin/dante_device/src/dante_device/__main__.py --mode manager %i'
+ExecStart=%h/.local/bin/dante-device --mode manager %i
 Restart=no
-Environment=PYTHONPATH=/home/chris/projects/netaudio/netaudio:/home/chris/bin/dante_device/src
 NotifyAccess=main
 TimeoutStartSec=0
 

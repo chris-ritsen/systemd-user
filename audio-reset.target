@@ -1,5 +1,5 @@
 [Unit]
-Description = Resets everything to the baseline audio setup
+Description = Audio reset
 
 Requires = audio-baseline.target
 Conflicts = audio-full.target
@@ -14,3 +14,8 @@ Conflicts = outlet@3.service
 Conflicts = shure-ad4d.target
 Conflicts = satellite-5059.target outlet@1.service
 Conflicts = shelford-channel.target
+Conflicts = ferrofish-a32.target
+Conflicts = portico-5043-left.target
+Conflicts = portico-5043-right.target
+
+Wants = cpu-powersave.service

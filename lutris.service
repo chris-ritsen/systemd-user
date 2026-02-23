@@ -1,0 +1,11 @@
+[Unit]
+Description=Lutris Gaming Platform
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/lutris
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target

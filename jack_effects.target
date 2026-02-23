@@ -3,4 +3,4 @@
 Description = Watch jack over dbus to connect to the speakers ecasound effects
 StopWhenUnneeded = yes
 
-Wants = jack_out.target
+Wants = jack_out_volume.target

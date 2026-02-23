@@ -1,0 +1,4 @@
+[Unit]
+Description=Night Recording
+Requires=shelford-channel.target ferrofish-a32.target ecasound-record.service
+After=shelford-channel.target ferrofish-a32.target

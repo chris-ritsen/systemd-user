@@ -6,7 +6,7 @@
 
 [Service]
 
-EnvironmentFile=/home/chris/.config/systemd/user/secrets.env
+EnvironmentFile=%h/.config/systemd/user/secrets.env
 Environment=DISPLAY=:0
 Environment=PULSE_SINK='jack.out.%i'
 Environment=PULSE_SOURCE='jack.in.%i'

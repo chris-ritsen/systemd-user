@@ -1,0 +1,4 @@
+[Slice]
+# Limit app-chromium instances to 64GB
+MemoryMax=64G
+MemoryHigh=60G

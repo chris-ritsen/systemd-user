@@ -27,7 +27,7 @@ Environment=TERM=xterm
 Environment=CHANNELS=2
 
 # Start jack-volume processor
-ExecStart=uv run --project /home/chris/bin/jack_effects jack-volume --name %i_volume --daemon --channels ${CHANNELS}
+ExecStart=%h/.local/bin/jack-volume --name %i_volume --daemon --channels ${CHANNELS}
 
 [Install]
 WantedBy=audio.target

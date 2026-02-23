@@ -1,0 +1,15 @@
+[Unit]
+Description=Shure AD4D Wireless Receiver Device Configuration Target
+
+# Device name: AD4D-fd4e13.local. -> ad4d
+Wants=dante-device-name@AD4D-fd4e13.local.\x2cad4d.service
+
+# RX Channel names
+Requires=dante-device-channel-name@ad4d\x2crx\x2c1\x2crx-listen.service
+
+# TX Channel names
+Requires=dante-device-channel-name@ad4d\x2ctx\x2c1\x2c01.service
+Requires=dante-device-channel-name@ad4d\x2ctx\x2c2\x2c02.service
+
+[Install]
+WantedBy=multi-user.target

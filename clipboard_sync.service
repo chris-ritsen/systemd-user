@@ -10,7 +10,7 @@ Restart=always
 RestartSec=10
 Type=simple
 
-ExecStart=/bin/bash -c 'cd %h/bin/clipboard_sync && exec uv run clipboard-sync --redis-host 127.0.0.1'
+ExecStart=%h/.local/bin/clipboard-sync --redis-host 127.0.0.1
 
 [Install]
 

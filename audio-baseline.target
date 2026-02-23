@@ -16,4 +16,15 @@ Wants = bluetooth_with_volume.target
 Wants = jack_client@pulseaudio.service
 Wants = music_volume.target
 Wants = vrroom_with_volume.target
+Wants = macbook_personal_volume.target
+Wants = macbook_work_volume.target
+Wants = jack_out_volume.target
 Wants = windows_gaming_volume.target
+
+Wants = avio-aes3-1.target
+Wants = avio-bt-1.target
+Wants = avio-usb-1.target
+Wants = avio-usb-2.target
+Wants = avio-usb-3.target
+
+Wants = cpu-powersave.service

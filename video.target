@@ -1,0 +1,4 @@
+[Unit]
+Description=Video/HDMI infrastructure
+
+Wants=hdmi_input_detect.service

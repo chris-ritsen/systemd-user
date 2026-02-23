@@ -1,0 +1,13 @@
+[Unit]
+Description=JACK Volume Mixer Web UI
+After=jackd.service
+BindsTo=jackd.service
+
+[Service]
+Type=simple
+ExecStart=%h/.local/bin/jack-mixer-web
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=audio.target

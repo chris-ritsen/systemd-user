@@ -1,0 +1,4 @@
+[Unit]
+Description=Combined CPU and GPU power saving mode
+Wants=cpu-powersave.target gpu-powersave.target
+After=cpu-powersave.target gpu-powersave.target

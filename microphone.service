@@ -2,15 +2,15 @@
 
 # After = dante_usb_in_notify.service
 After = ecasound@mic.service
-After = outlet@7.service
+After = outlet@2.service
 Before = dante_in.service
 # Before = jack_in_notify.service
 BindsTo = microphone.target
-BindsTo = outlet@7.service
+BindsTo = outlet@2.service
 DefaultDependencies = no
 Description = DANTE Microphone
 Requires = jack_client@pulseaudio.service
-Requires = outlet@7.service
+Requires = outlet@2.service
 Requires = outlet@3.service
 StopWhenUnneeded = yes
 # Wants = dante_usb_in_notify.service

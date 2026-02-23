@@ -1,5 +1,5 @@
 [Unit]
-AssertFileIsExecutable=/home/chris/.xmonad/xmonad-x86_64-linux
+AssertFileIsExecutable=%h/.xmonad/xmonad-x86_64-linux
 Description = xmonad instance
 
 [Service]
