@@ -1,12 +1,13 @@
 [Unit]
-Description=Represents the baseline audio being established
+Description=Audio baseline — software audio stack, no rack hardware powered
 
 After = jackd.service
 After = pulseaudio.service
 After = tv_speakers.target
 After= jack_client@pulseaudio.service
 
-Requires = ecasound@jack.service
+Requires = jack_volume@speakers_bus.service
+Requires = jack_volume@linux_main.service
 Requires = jack_client@pulseaudio.service
 Requires = jackd.service
 Requires = pulseaudio.service
@@ -26,5 +27,13 @@ Wants = avio-bt-1.target
 Wants = avio-usb-1.target
 Wants = avio-usb-2.target
 Wants = avio-usb-3.target
+Wants = lx-dante.target
+
+Wants = jack-mixer-web.target
 
 Wants = cpu-powersave.service
+
+Wants = jack_disconnection@vrroom_volume.out_1\x2cspeakers_bus_volume.in_1.service
+Wants = jack_disconnection@vrroom_volume.out_1\x2cspeakers_bus_volume.in_2.service
+Wants = jack_disconnection@vrroom_volume.out_2\x2cspeakers_bus_volume.in_1.service
+Wants = jack_disconnection@vrroom_volume.out_2\x2cspeakers_bus_volume.in_2.service

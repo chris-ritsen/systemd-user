@@ -1,5 +1,6 @@
 [Unit]
 Description=JACK volume control processor for %i
+Documentation=file://%h/bin/jack_effects
 After=jackd.service
 BindsTo=jackd.service
 
@@ -7,6 +8,7 @@ BindsTo=jackd.service
 Type=notify
 NotifyAccess=all
 Restart=always
+RestartMode=direct
 RestartSec=3
 TimeoutStartSec=30s
 TimeoutStopSec=10s

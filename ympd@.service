@@ -4,7 +4,8 @@
 After = media-audio.mount
 After = mpd@%i.service
 ConditionPathIsDirectory = /media/audio
-Description = Run remote control music player daemon for %i
+Description = ympd — web-based MPD client for %i instance
+Documentation = man:ympd(1)
 Requires = media-audio.mount
 RequiresMountsFor = /media/audio
 

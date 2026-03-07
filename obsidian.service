@@ -1,6 +1,7 @@
 [Unit]
 
-Description = Obsidian
+Description = Obsidian notes app
+Documentation=https://obsidian.md
 
 [Service]
 

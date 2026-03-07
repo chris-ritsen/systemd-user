@@ -1,6 +1,6 @@
 [Unit]
 
-Description=Discord
+Description=Discord — app with audio routing
 StopWhenUnneeded = no
 
 Wants = discord.service

@@ -1,18 +1,13 @@
 [Unit]
-Description=Enforce Dante Device Sample Rate %i
-After=network.target
+Description=Dante sample rate: %i
+Documentation=file://%h/bin/dante_device
+After=dante-manager.service
+Requires=dante-manager.service
 
 [Service]
-Type=notify
-ExecStart=%h/.local/bin/dante-device --mode assert-sample-rate %I
-Restart=no
-NotifyAccess=all
-TimeoutStartSec=0
-WatchdogSec=0
-TimeoutStopSec=10
-
-MemoryAccounting=no
-TasksAccounting=no
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=%h/.local/bin/dante-device --mode manager "sample-rate:%i"
 
 StandardOutput=journal
 StandardError=journal

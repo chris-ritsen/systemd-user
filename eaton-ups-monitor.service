@@ -1,5 +1,6 @@
 [Unit]
-Description=Eaton UPS Power Monitor
+Description=Eaton UPS Power Monitor — SNMP polling and trap handling
+Documentation=file://%h/bin/eaton_ups_snmp
 After=network-online.target
 
 [Service]

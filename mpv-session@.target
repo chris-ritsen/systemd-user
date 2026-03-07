@@ -1,19 +1,29 @@
 [Unit]
-Description=MPV session with IPC for %i
+Description=mpv session: %i
 
 After=mpv@%i.service
 After=mpv_ipc@%i.service
 Requires=mpv@%i.service
 Requires=mpv_ipc@%i.service
 
+Wants=gpu-normal.target
+
 # Basic stereo
-Requires=jack_connection@mpv_%i.out_0\x2cjack_effects.in_1.service
-Requires=jack_connection@mpv_%i.out_1\x2cjack_effects.in_2.service
-After=jack_connection@mpv_%i.out_0\x2cjack_effects.in_1.service
-After=jack_connection@mpv_%i.out_1\x2cjack_effects.in_2.service
+Requires=jack_connection@mpv_%i.out_0\x2cspeakers_bus_volume.in_1.service
+Requires=jack_connection@mpv_%i.out_1\x2cspeakers_bus_volume.in_2.service
+Requires=jack_connection@mpv_%i.out_0\x2clinux_main_volume.in_1.service
+Requires=jack_connection@mpv_%i.out_1\x2clinux_main_volume.in_2.service
+After=jack_connection@mpv_%i.out_0\x2cspeakers_bus_volume.in_1.service
+After=jack_connection@mpv_%i.out_1\x2cspeakers_bus_volume.in_2.service
+After=jack_connection@mpv_%i.out_0\x2clinux_main_volume.in_1.service
+After=jack_connection@mpv_%i.out_1\x2clinux_main_volume.in_2.service
 
 # 5.1
-Wants=jack_connection@mpv_%i.out_2\x2cjack_effects.in_1.service
-Wants=jack_connection@mpv_%i.out_2\x2cjack_effects.in_2.service
-After=jack_connection@mpv_%i.out_2\x2cjack_effects.in_1.service
-After=jack_connection@mpv_%i.out_2\x2cjack_effects.in_2.service
+Wants=jack_connection@mpv_%i.out_2\x2cspeakers_bus_volume.in_1.service
+Wants=jack_connection@mpv_%i.out_2\x2cspeakers_bus_volume.in_2.service
+Wants=jack_connection@mpv_%i.out_2\x2clinux_main_volume.in_1.service
+Wants=jack_connection@mpv_%i.out_2\x2clinux_main_volume.in_2.service
+After=jack_connection@mpv_%i.out_2\x2cspeakers_bus_volume.in_1.service
+After=jack_connection@mpv_%i.out_2\x2cspeakers_bus_volume.in_2.service
+After=jack_connection@mpv_%i.out_2\x2clinux_main_volume.in_1.service
+After=jack_connection@mpv_%i.out_2\x2clinux_main_volume.in_2.service

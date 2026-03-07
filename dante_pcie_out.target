@@ -1,19 +1,19 @@
 [Unit]
 
-Description = DANTE PCIe Out JACK Connections
+Description = Dante PCIe output
 StopWhenUnneeded = yes
 
 After=jackd.service
 BindsTo=jackd.service
 
-After = jack_effects.target
-Wants = jack_effects.target
+After = jack_volume@linux_main.service
+Wants = jack_volume@linux_main.service
 
-After=jack_connection@jack_effects.out_1\x2csystem.playback_11.service
-After=jack_connection@jack_effects.out_2\x2csystem.playback_12.service
+After=jack_connection@linux_main_volume.out_1\x2csystem.playback_11.service
+After=jack_connection@linux_main_volume.out_2\x2csystem.playback_12.service
 
-Requires=jack_connection@jack_effects.out_1\x2csystem.playback_11.service
-Requires=jack_connection@jack_effects.out_2\x2csystem.playback_12.service
+Requires=jack_connection@linux_main_volume.out_1\x2csystem.playback_11.service
+Requires=jack_connection@linux_main_volume.out_2\x2csystem.playback_12.service
 
 # After=jack_connection@jack2_effects.out_1\x2csystem.playback_15.service
 # After=jack_connection@jack2_effects.out_2\x2csystem.playback_16.service

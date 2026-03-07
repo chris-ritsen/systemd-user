@@ -1,6 +1,8 @@
 [Unit]
 
-Description = JACK toolbox for audio production
+Description = Cadence — JACK configuration and monitoring GUI
+Documentation=https://kx.studio/Applications:Cadence
+Documentation=https://kx.studio/Applications:Cadence
 
 After = jackd.service
 BindsTo = jackd.service

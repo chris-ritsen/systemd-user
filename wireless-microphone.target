@@ -2,5 +2,5 @@
 
 After = shure-ad4d.target
 BindsTo = shure-ad4d.target
-Description = Wireless microphone
+Description = Wireless microphone — Shure AD4D receiver
 Requires = shure-ad4d.target

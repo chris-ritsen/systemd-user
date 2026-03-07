@@ -1,5 +1,6 @@
 [Unit]
-Description=Dante Device Manager Daemon
+Description=Dante Device Manager — manages Dante network audio device configuration
+Documentation=file://%h/bin/dante_device
 After=network.target
 # StopWhenUnneeded=yes  # Disabled - stopping manager can disrupt devices
 

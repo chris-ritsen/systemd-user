@@ -1,15 +1,19 @@
 [Unit]
-Description=Watch JACK over DBus to connect the default pulseaudio jack_out
+Description=PulseAudio default sink routing
 After = jackd.service
 BindsTo = jackd.service
 
-After = jack_connection@jack_out.front\x2dleft\x2cjack_effects.in_1.service
-After = jack_connection@jack_out.front\x2dright\x2cjack_effects.in_2.service
+After = jack_connection@jack_out.front\x2dleft\x2cspeakers_bus_volume.in_1.service
+After = jack_connection@jack_out.front\x2dright\x2cspeakers_bus_volume.in_2.service
+After = jack_connection@jack_out.front\x2dleft\x2clinux_main_volume.in_1.service
+After = jack_connection@jack_out.front\x2dright\x2clinux_main_volume.in_2.service
 After = jack_disconnection@jack_out.front\x2dleft\x2csystem.playback_1.service
 After = jack_disconnection@jack_out.front\x2dright\x2csystem.playback_2.service
 
-Requires = jack_connection@jack_out.front\x2dleft\x2cjack_effects.in_1.service
-Requires = jack_connection@jack_out.front\x2dright\x2cjack_effects.in_2.service
+Requires = jack_connection@jack_out.front\x2dleft\x2cspeakers_bus_volume.in_1.service
+Requires = jack_connection@jack_out.front\x2dright\x2cspeakers_bus_volume.in_2.service
+Requires = jack_connection@jack_out.front\x2dleft\x2clinux_main_volume.in_1.service
+Requires = jack_connection@jack_out.front\x2dright\x2clinux_main_volume.in_2.service
 Requires = jack_disconnection@jack_out.front\x2dleft\x2csystem.playback_1.service
 Requires = jack_disconnection@jack_out.front\x2dright\x2csystem.playback_2.service
 

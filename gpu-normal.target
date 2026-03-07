@@ -1,5 +1,7 @@
 [Unit]
 Description=GPU normal performance mode
 Conflicts=gpu-powersave.target
+StopWhenUnneeded=yes
+OnSuccess=gpu-powersave.target
 Wants=gpu-normal.service
 After=gpu-normal.service

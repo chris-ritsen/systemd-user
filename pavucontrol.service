@@ -1,6 +1,7 @@
 [Unit]
 
 Description = PulseAudio Volume Control
+Documentation=man:pavucontrol(1)
 Requires = sound.target graphical-session.target
 StopWhenUnneeded = no
 

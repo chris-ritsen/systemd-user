@@ -1,6 +1,7 @@
 [Unit]
 
-Description = Happy Hacking Keyboard
+Description = Happy Hacking Keyboard setup
+Documentation=man:xset(1)
 StopWhenUnneeded = no
 
 [Service]

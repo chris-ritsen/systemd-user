@@ -1,5 +1,6 @@
 [Unit]
-Description=Check btrfs free space on /media
+Description=Btrfs free space monitor
+Documentation=file://%h/bin/system_monitor
 
 [Service]
 Type=oneshot

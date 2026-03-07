@@ -1,0 +1,12 @@
+
+[Unit]
+
+After = shelford-channel.target
+BindsTo = shelford-channel.target
+After = shure-ad4d.target
+BindsTo = shure-ad4d.target
+Description = Mixed microphones — Shelford Channel + AD4D, dual-mic Dante routing
+PropagatesReloadTo = mixed-microphones.service
+Requires = mixed-microphones.service
+Requires = jack_client@dante_in.service
+Requires = dante_in.service

@@ -1,5 +1,6 @@
 [Unit]
-Description=Setup Mouse
+Description=Mouse initialization — move cursor out of the way
+Documentation=man:xdotool(1)
 After=graphical.target
 
 [Service]

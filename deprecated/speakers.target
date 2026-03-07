@@ -1,0 +1,11 @@
+
+[Unit]
+
+BindsTo = speakers.service
+Description = Speakers — motherboard line-out audio output path with ecasound effects
+PropagatesReloadTo = speakers.service
+Requires = speakers.service
+
+[Install]
+
+WantedBy = jack.target

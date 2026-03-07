@@ -1,5 +1,5 @@
 [Unit]
-Description=Wireless audio
+Description=Wireless audio — P10T and Satellite 5059 active
 
 Requires = wireless-audio@1.service
 Requires = satellite-5059.target

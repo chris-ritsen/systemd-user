@@ -1,5 +1,6 @@
 [Unit]
-Description=Bridge ALSA device to JACK as client ('%i')
+Description=ALSA-to-JACK output bridge for %i
+Documentation=man:alsa_out(1)
 StopWhenUnneeded=yes
 DefaultDependencies=no
 After=jackd.service

@@ -1,5 +1,5 @@
 [Unit]
-Description = Audio full
+Description = Audio full — all rack equipment powered and configured
 
 Conflicts = speakers.service
 Conflicts = audio-baseline.target
@@ -11,7 +11,8 @@ After = dante_pcie_out.target
 # After = dante_usb_in_notify.service
 After = dante_usb_io_macbook.target
 After = dante_usb_io.target
-After = ecasound@jack.service
+After = jack_volume@speakers_bus.service
+After = jack_volume@linux_main.service
 After = ferrofish-a32.target
 After = microphone-monitoring.target
 After = satellite-5059.target
@@ -24,7 +25,8 @@ After = wireless-microphone.target
 Requires = dante_pcie_out.target
 # Requires = dante_usb_in_notify.service
 Requires = dante_usb_io_macbook.target
-Requires = ecasound@jack.service
+Requires = jack_volume@speakers_bus.service
+Requires = jack_volume@linux_main.service
 Requires = ferrofish-a32.target
 Requires = jackd.service
 Requires = microphone-monitoring.target
@@ -38,7 +40,8 @@ Requires = wireless-microphone.target
 BindsTo = dante_pcie_out.target
 # BindsTo = dante_usb_in_notify.service
 BindsTo = dante_usb_io_macbook.target
-BindsTo = ecasound@jack.service
+BindsTo = jack_volume@speakers_bus.service
+BindsTo = jack_volume@linux_main.service
 BindsTo = ferrofish-a32.target
 After = jackd.service
 BindsTo = microphone-monitoring.target

@@ -1,6 +1,7 @@
 [Unit]
-Description=Check system temperatures
+Description=System temperature monitor
+Documentation=file://%h/bin/system_monitor
 
 [Service]
 Type=oneshot
-ExecStart=%h/.local/bin/temp-monitor alert s00pcan@gmail.com --threshold 90.0 --hdd-threshold 60.0 --cooldown 1
+ExecStart=%h/.local/bin/temp-monitor alert s00pcan@gmail.com --threshold 90.0 --cooldown 1

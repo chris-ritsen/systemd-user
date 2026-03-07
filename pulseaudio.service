@@ -1,7 +1,8 @@
 [Unit]
 
 ConditionUser=!root
-Description=Sound Service
+Description=PulseAudio
+Documentation=man:pulseaudio(1)
 
 After = jackd.service
 BindsTo = jackd.service

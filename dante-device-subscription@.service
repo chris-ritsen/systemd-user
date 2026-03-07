@@ -1,5 +1,6 @@
 [Unit]
-Description=Enforce Dante Device Subscription %i
+Description=Dante subscription: %i
+Documentation=file://%h/bin/dante_device
 After=dante-manager.service
 Requires=dante-manager.service
 
@@ -7,9 +8,7 @@ Requires=dante-manager.service
 Type=oneshot
 RemainAfterExit=yes
 ExecStart=%h/.local/bin/dante-device --mode manager "subscription:connect,%I"
-ExecStartPost=/usr/bin/systemctl --user reload dante-manager.service
 ExecStop=%h/.local/bin/dante-device --mode manager "subscription:disconnect,%I"
-ExecStopPost=/usr/bin/systemctl --user reload dante-manager.service
 
 StandardOutput=journal
 StandardError=journal

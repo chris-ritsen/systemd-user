@@ -1,5 +1,6 @@
 [Unit]
-Description=Enforce Dante Device Disconnection %i
+Description=Dante disconnection: %i
+Documentation=file://%h/bin/dante_device
 After=dante-manager.service
 Requires=dante-manager.service
 

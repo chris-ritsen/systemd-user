@@ -1,5 +1,5 @@
 [Unit]
-Description=Music direct to linux_music (bypassing all effects)
+Description=Music — MPD direct to dedicated Dante output, no volume or effects
 After=jackd.service
 BindsTo=jackd.service
 Conflicts=music_direct.target

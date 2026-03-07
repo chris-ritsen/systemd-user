@@ -1,6 +1,7 @@
 [Unit]
 
-Description=Catia jack patchbay
+Description=Catia — JACK patchbay GUI
+Documentation=https://kx.studio/Applications:Catia
 
 After = jackd.service
 BindsTo = jackd.service

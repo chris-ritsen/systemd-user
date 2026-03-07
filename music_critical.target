@@ -1,5 +1,5 @@
 [Unit]
-Description = Critical Listening Target for Music
+Description = Music critical listening
 Requires = mpd@music.service
 # Requires = music_notify.service
 # Conflicts = music_direct_notify.service

@@ -1,5 +1,6 @@
 [Unit]
-Description=JACK Connection Manager
+Description=JACK connection manager
+Documentation=file://%h/bin/jack_connection
 After=jackdbus.service
 BindsTo=jack.target
 StopWhenUnneeded=yes

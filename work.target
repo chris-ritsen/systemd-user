@@ -1,7 +1,7 @@
 [Unit]
 
 After = tmux@work.service
-Description = work
+Description = Work session — tmux work session
 StopWhenUnneeded = no
 
 Wants = tmux@work.service

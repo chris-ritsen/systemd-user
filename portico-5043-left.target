@@ -1,9 +1,10 @@
 [Unit]
 
-After = portico-5043-left.service 
+After = ferrofish-a32.target
+After = portico-5043-left.service
 BindsTo = portico-5043-left.service
 Requires = portico-5043-left.service
-Description = Rupert Neve Portico 5043 (Left)
+Description = Rupert Neve Designs Portico 5043 Left — stereo compressor
 
 Before=wireless-audio@1.service
 Before=wireless-audio@2.service

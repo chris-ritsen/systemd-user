@@ -1,6 +1,7 @@
 
 [Unit]
-Description=Transmission BitTorrent Daemon
+Description=Transmission BitTorrent
+Documentation=man:transmission-daemon(1)
 ConditionPathExists=/sys/class/net/wgnord/
 # Wants = transmission_vpn.path
 # Conflicts = vpn_transmission_check.service

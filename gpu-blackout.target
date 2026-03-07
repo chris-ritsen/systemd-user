@@ -1,6 +1,8 @@
 [Unit]
 Description=Extreme GPU power saving mode
 Conflicts=gpu-normal.target gpu-powersave.target
+StopWhenUnneeded=yes
+OnSuccess=gpu-powersave.target
 PartOf=powersave-blackout.target
 Wants=gpu-blackout.service
 After=gpu-blackout.service

@@ -1,0 +1,6 @@
+[Unit]
+Description=HDD spindown for blackout
+Conflicts=hdd-normal.target
+PartOf=powersave-blackout.target
+Wants=hdd-blackout.service
+After=hdd-blackout.service

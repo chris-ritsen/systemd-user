@@ -1,0 +1,20 @@
+
+[Unit]
+
+# Before = jack_client@dante_out.service
+
+DefaultDependencies = no
+Description = Dante output
+Requires = jack_client@dante_out.service
+StopWhenUnneeded = yes
+After=jackd.service
+BindsTo=jackd.service
+
+[Service]
+
+RemainAfterExit=yes
+RestartSec=2
+Slice = audio.slice
+TimeoutStopSec=2s
+
+ExecStart = /usr/bin/true

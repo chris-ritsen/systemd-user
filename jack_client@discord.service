@@ -1,6 +1,7 @@
 [Unit]
 
-Description = Run jack client for %i
+Description = Discord JACK client
+Documentation=man:pactl(1)
 StopWhenUnneeded = no
 
 PartOf = discord.service

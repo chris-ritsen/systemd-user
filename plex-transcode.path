@@ -1,0 +1,9 @@
+[Unit]
+Description=Watch for Plex transcode sessions
+
+[Path]
+DirectoryNotEmpty=/var/lib/plex/Plex Media Server/Cache/Transcode/Sessions
+Unit=plex-transcode-watch.service
+
+[Install]
+WantedBy=default.target

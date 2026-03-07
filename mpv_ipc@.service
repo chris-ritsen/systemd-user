@@ -1,5 +1,6 @@
 [Unit]
-Description=Scripted MPV IPC control for %i
+Description=mpv IPC controller for %i
+Documentation=file://%h/bin/mpv
 
 After=mpv@%i.service
 PartOf=mpv-session@%i.target

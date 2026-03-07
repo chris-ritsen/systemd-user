@@ -1,7 +1,7 @@
 
 [Unit]
 
-Description=Start transmission under a vpn
+Description=Verify transmission-daemon is running under VPN
 
 [Service]
 ExecStart = /usr/bin/sudo systemctl restart transmission.service

@@ -1,0 +1,6 @@
+[Unit]
+Description=Windows gaming PC desired state: awake
+Conflicts=windows-sleep.target
+StopWhenUnneeded=yes
+Wants=wol@58:11:22:BF:2E:5A.service
+After=wol@58:11:22:BF:2E:5A.service

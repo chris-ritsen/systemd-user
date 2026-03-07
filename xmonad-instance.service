@@ -1,6 +1,7 @@
 [Unit]
 AssertFileIsExecutable=%h/.xmonad/xmonad-x86_64-linux
-Description = xmonad instance
+Description = XMonad window manager process
+Documentation=man:xmonad(1)
 
 [Service]
 

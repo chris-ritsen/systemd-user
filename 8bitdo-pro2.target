@@ -1,5 +1,5 @@
 [Unit]
-Description=8BitDo Pro 2 Gamepad
+Description=8BitDo Pro 2 — Bluetooth gamepad
 BindsTo=dev-8bitdo\x2dpro2.device
 After=dev-8bitdo\x2dpro2.device
 Wants=8bitdo-pro2.service

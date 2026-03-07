@@ -1,6 +1,7 @@
 [Unit]
 
-Description=Clipboard Sync Service
+Description=Clipboard sync
+Documentation=file://%h/bin/clipboard_sync
 After=network.target
 
 [Service]

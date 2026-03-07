@@ -1,9 +1,10 @@
 [Unit]
 DefaultDependencies=no
-Description=HDFury VRRoom HDMI switcher - set input to %i
+Description=HDMI input %i — HDFury VRRoom HDMI switcher
+Documentation=file://%h/bin/hdfury_vrroom
 
 [Service]
-ExecStart=/home/chris/.local/bin/vrroom input set %i --tx 0
+ExecStart=%h/.local/bin/vrroom input set %i --tx 0
 RemainAfterExit=yes
 TimeoutStartSec=10
 TimeoutStopSec=3

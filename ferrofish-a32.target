@@ -1,6 +1,7 @@
 [Unit]
 
-Description=Ferrofish A32 Dante
+Description=Ferrofish A32 — Dante/ADAT/analog audio interface
+Documentation=file://%h/bin/dante_device
 
 # After=dante-device@a32.service
 After=ferrofish-a32.service

@@ -1,5 +1,6 @@
 [Unit]
-Description=Monitor Dante Device %i
+Description=Dante device monitor: %i
+Documentation=file://%h/bin/dante_device
 After=network.target
 
 [Service]

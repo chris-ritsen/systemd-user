@@ -1,0 +1,14 @@
+[Unit]
+Description=Eaton UPS Redis cache daemon
+Documentation=file://%h/bin/eaton_ups_snmp
+After=network-online.target
+
+[Service]
+Type=notify
+ExecStart=%h/.local/bin/eaton-ups-cache
+Restart=always
+Environment=UPS_HOST=192.168.1.6
+Environment=POLL_INTERVAL=30
+
+[Install]
+WantedBy=default.target

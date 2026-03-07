@@ -1,7 +1,7 @@
 [Unit]
 After=outlet@6.service
 BindsTo=outlet@6.service
-Description=Shure AD4D Wireless Microphone Receiver Service
+Description=Shure AD4D — Axient Digital wireless mic receiver
 PartOf=shure-ad4d.target
 RefuseManualStart=yes
 RefuseManualStop=yes

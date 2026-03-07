@@ -1,5 +1,6 @@
 [Unit]
-Description=RetroArch
+Description=RetroArch — multi-system emulator frontend
+Documentation=man:retroarch(6)
 
 [Service]
 Type=simple

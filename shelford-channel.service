@@ -1,5 +1,5 @@
 [Unit]
-Description=Shelford Channel Service
+Description=Rupert Neve Designs Shelford Channel — mic preamp/EQ/compressor, PDU outlet 2
 Requires=outlet@2.service
 After=outlet@2.service
 BindsTo=outlet@2.service

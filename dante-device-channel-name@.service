@@ -1,5 +1,6 @@
 [Unit]
-Description=Enforce Dante Channel Name %i
+Description=Dante channel name: %i
+Documentation=file://%h/bin/dante_device
 After=dante-manager.service
 Requires=dante-manager.service
 

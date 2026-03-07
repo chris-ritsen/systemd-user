@@ -1,5 +1,6 @@
 [Unit]
-Description=Reset GPU to normal clocks
+Description=GPU normal — remove clock limits
+Documentation=man:nvidia-smi(1)
 Conflicts=gpu-powersave.service
 
 [Service]

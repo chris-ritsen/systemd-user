@@ -1,4 +1,4 @@
 [Unit]
-Description=Watch JACK over DBus to connect the default pulseaudio jack_in
+Description=PulseAudio default source routing — jack_in capture path for generic Linux apps
 After = jackd.service
 BindsTo = jackd.service

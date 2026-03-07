@@ -1,5 +1,6 @@
 [Unit]
-Description=Microphone output state manager
+Description=Dante microphone output state
+Documentation=file://%h/bin/dante_device
 PartOf=microphone-monitoring.target
 PartOf=shelford-channel.target
 

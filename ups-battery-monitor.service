@@ -1,5 +1,6 @@
 [Unit]
-Description=Check UPS battery status
+Description=UPS battery status monitor
+Documentation=file://%h/bin/system_monitor
 
 [Service]
 Type=oneshot

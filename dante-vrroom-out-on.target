@@ -1,5 +1,5 @@
 [Unit]
-Description=HDFury VRRoom HDMI audio on (avio-aes3-1 → lx-dante stereo pair)
+Description=HDFury VRRoom HDMI audio on
 
 Conflicts=dante-vrroom-out-off.target
 

@@ -1,0 +1,10 @@
+[Unit]
+Description=Windows gaming PC GPU power mode: normal
+Documentation=man:ssh(1)
+Conflicts=windows-gpu-power-powersave.service windows-gpu-power-blackout.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStartPre=/usr/bin/zsh -c "until nc -vzw 1 192.168.1.194 22 2>/dev/null; do sleep 0.5; done"
+ExecStart=/usr/bin/ssh windows-pwsh "nvidia-smi -pl 450"

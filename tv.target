@@ -1,6 +1,8 @@
 
 [Unit]
 
+Description = TV/media display
+
 # PropagatesReloadTo = movie.service
 
 After = xmonad.target

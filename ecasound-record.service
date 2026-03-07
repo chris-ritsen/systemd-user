@@ -1,5 +1,6 @@
 [Unit]
-Description=Record audio with Ecasound
+Description=Record JACK audio via Ecasound
+Documentation=man:ecasound(1)
 
 [Service]
 Environment=TERM=xterm

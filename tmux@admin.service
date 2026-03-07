@@ -2,7 +2,8 @@
 
 After = basic.target
 After = emacs.service
-Description = %i %p session
+Description = tmux admin session service
+Documentation=man:tmux(1)
 RefuseManualStart = no
 RefuseManualStop = no
 Requires = basic.target
@@ -23,7 +24,7 @@ Type = forking
 
 Environment = 'bind_key=tmux -L %i bind-key'
 Environment = 'clock_args=-c %h -n clock'
-Environment = 'clock_script=clock.py'
+Environment = 'clock_script=dashboard'
 Environment = 'documents_dir=%h/.documents'
 Environment = 'has_session=tmux -L %i has-session'
 Environment = 'kill_window=tmux -L %i kill-window'

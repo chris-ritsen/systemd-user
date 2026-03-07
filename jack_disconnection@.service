@@ -3,7 +3,8 @@ After=jack-connection-manager.service
 After=jack_connection@%i.service
 Requires=jack-connection-manager.service
 BindsTo=jack.target
-Description=Ensure JACK disconnection %I
+Description=JACK disconnection: %I
+Documentation=file://%h/bin/jack_connection
 
 [Service]
 Type=oneshot

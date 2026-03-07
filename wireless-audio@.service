@@ -1,6 +1,6 @@
 [Unit]
 
-Description = Wireless audio channel %i
+Description = Wireless audio channel %i — Shure P10T channel control
 DefaultDependencies = no
 
 # After = satellite-5059.target

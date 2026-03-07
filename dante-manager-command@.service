@@ -1,5 +1,6 @@
 [Unit]
-Description=Send command to Dante Manager %i
+Description=Dante manager command: %i
+Documentation=file://%h/bin/dante_device
 After=dante-manager.service
 Requires=dante-manager.service
 

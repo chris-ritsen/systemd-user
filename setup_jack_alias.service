@@ -1,6 +1,7 @@
 [Unit]
 
-Description=Setup Jack Aliases
+Description=JACK port alias setup
+Documentation=file://%h/bin/jack_alias
 
 After=jackd.service jackdbus.service
 BindsTo=jackd.service

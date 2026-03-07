@@ -1,5 +1,7 @@
 [Unit]
 
+Description = Clock and stats dashboard
+
 After = tmux@clock.service
 BindsTo = xmonad.target
 PropagatesReloadTo = tmux@clock.service

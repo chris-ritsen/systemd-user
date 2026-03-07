@@ -1,0 +1,10 @@
+[Unit]
+Description=Picom compositor
+Documentation=man:picom(1)
+Requires=graphical-session.target
+BindsTo=steam.service
+
+[Service]
+ExecStart=/usr/bin/picom --backend=xrender --unredir-if-possible
+Restart=on-failure
+RestartSec=3

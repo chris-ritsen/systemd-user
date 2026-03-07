@@ -1,5 +1,6 @@
 [Unit]
-Description=JACK D-Bus daemon
+Description=Mask JACK D-Bus daemon to prevent auto-start
+Documentation=man:jackdbus(1)
 After=dbus.service
 Requires=dbus.service
 

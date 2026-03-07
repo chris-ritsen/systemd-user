@@ -1,20 +1,26 @@
 [Unit]
-Description=MacBook Work with volume control
+Description=MacBook work audio input with volume control
 After=jackd.service
 BindsTo=jackd.service
 
 Requires=jack_volume@macbook_work.service
 After=jack_volume@macbook_work.service
 
-Conflicts=jack_connection@system.capture_17\x2cjack_effects.in_1.service
-Conflicts=jack_connection@system.capture_18\x2cjack_effects.in_2.service
+Conflicts=jack_connection@system.capture_17\x2cspeakers_bus_volume.in_1.service
+Conflicts=jack_connection@system.capture_18\x2cspeakers_bus_volume.in_2.service
+Conflicts=jack_connection@system.capture_17\x2clinux_main_volume.in_1.service
+Conflicts=jack_connection@system.capture_18\x2clinux_main_volume.in_2.service
 
 Requires=jack_connection@system.capture_17\x2cmacbook_work_volume.in_1.service
 Requires=jack_connection@system.capture_18\x2cmacbook_work_volume.in_2.service
-Requires=jack_connection@macbook_work_volume.out_1\x2cjack_effects.in_1.service
-Requires=jack_connection@macbook_work_volume.out_2\x2cjack_effects.in_2.service
+Requires=jack_connection@macbook_work_volume.out_1\x2cspeakers_bus_volume.in_1.service
+Requires=jack_connection@macbook_work_volume.out_2\x2cspeakers_bus_volume.in_2.service
+Requires=jack_connection@macbook_work_volume.out_1\x2clinux_main_volume.in_1.service
+Requires=jack_connection@macbook_work_volume.out_2\x2clinux_main_volume.in_2.service
 
 After=jack_connection@system.capture_17\x2cmacbook_work_volume.in_1.service
 After=jack_connection@system.capture_18\x2cmacbook_work_volume.in_2.service
-After=jack_connection@macbook_work_volume.out_1\x2cjack_effects.in_1.service
-After=jack_connection@macbook_work_volume.out_2\x2cjack_effects.in_2.service
+After=jack_connection@macbook_work_volume.out_1\x2cspeakers_bus_volume.in_1.service
+After=jack_connection@macbook_work_volume.out_2\x2cspeakers_bus_volume.in_2.service
+After=jack_connection@macbook_work_volume.out_1\x2clinux_main_volume.in_1.service
+After=jack_connection@macbook_work_volume.out_2\x2clinux_main_volume.in_2.service

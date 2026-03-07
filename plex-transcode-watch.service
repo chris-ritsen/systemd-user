@@ -1,0 +1,7 @@
+[Unit]
+Description=Plex transcode session watcher
+Documentation=file://%h/bin/gpu_manager
+
+[Service]
+Type=notify
+ExecStart=%h/.local/bin/plex-transcode-watch

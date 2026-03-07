@@ -1,7 +1,7 @@
 [Unit]
 
 After = jackd.service
-Description = Jack clients
+Description = JACK audio clients — grouping target for all JACK client services
 BindsTo = jack.target
 
 [Install]

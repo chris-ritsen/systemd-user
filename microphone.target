@@ -1,5 +1,5 @@
 [Unit]
-Description = Microphone
+Description = Microphone — Shure SM7B through Neve Shelford Channel preamp, Shure P10T IEM transmitter ready
 
 After = shelford-channel.target
 After = shure-p10t.target

@@ -1,5 +1,7 @@
 
 [Unit]
+Description=Chromium Slack browser instance
+Documentation=man:chromium(1)
 
 # Requires = slack_audio.service
 # Before = slack_audio.service

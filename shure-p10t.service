@@ -1,5 +1,5 @@
 [Unit]
-Description=Shure P10T Wireless Transmitter Service
+Description=Shure P10T — wireless audio transmitter
 Requires=outlet@3.service
 After=outlet@3.service
 BindsTo=outlet@3.service

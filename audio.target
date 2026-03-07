@@ -1,5 +1,7 @@
 [Unit]
 
+Description = Full audio stack
+
 # Requires = dante_pcie_in_notify.service
 Requires = dante_pcie_out.target
 # Requires = dante_usb_in_notify.service

@@ -1,5 +1,5 @@
 [Unit]
-Description=Dante mic out off
+Description=Dante microphone monitoring off
 
 After=ferrofish-a32.target
 

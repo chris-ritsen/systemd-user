@@ -3,7 +3,8 @@
 
 # After = sound.target basic.target microphone.service
 After = dante_pcie_in.service
-Description = Main system audio
+Description = Dante PCIe capture — LX-Dante to JACK input bridge
+Documentation=man:alsa_in(1)
 BindsTo = dante_pcie_in.service
 Requires = sound.target basic.target
 # Requires = sound.target basic.target jackd.service

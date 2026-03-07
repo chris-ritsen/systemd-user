@@ -1,6 +1,7 @@
 [Unit]
 
-Description = %i %p session
+Description = tmux session: %i
+Documentation=man:tmux(1)
 RefuseManualStart = no
 RefuseManualStop = no
 StopWhenUnneeded = no

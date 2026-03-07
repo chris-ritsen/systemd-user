@@ -1,5 +1,5 @@
 [Unit]
-Description=Receiver for Wireless Microphones
+Description=Shure AD4D — Axient Digital wireless mic receiver
 Requires = shure-ad4d.service
 After=shure-ad4d.service
 BindsTo=shure-ad4d.service

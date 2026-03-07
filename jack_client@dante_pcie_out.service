@@ -3,7 +3,8 @@
 After = basic.target
 After = dante_pcie_out.service
 After = sound.target
-Description = Main system audio
+Description = Dante PCIe playback — JACK to LX-Dante output bridge
+Documentation=man:alsa_out(1)
 Requires = basic.target
 Requires = jackd.service
 Requires = sound.target

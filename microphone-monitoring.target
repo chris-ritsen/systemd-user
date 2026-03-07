@@ -1,5 +1,5 @@
 [Unit]
-Description = Microphone monitoring
+Description = Microphone monitoring — Shure SM7B to IEMs
 
 Requires = microphone.target
 After = microphone.target

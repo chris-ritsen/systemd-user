@@ -1,10 +1,12 @@
 [Unit]
-Description=HDFury VRRoom HDMI switcher - detect active input
+Description=HDMI input detection
+Documentation=file://%h/bin/hdfury_vrroom
 
 [Service]
-Type=oneshot
-ExecStart=/home/chris/.local/bin/vrroom systemd detect
-RemainAfterExit=no
+Type=notify
+ExecStart=%h/.local/bin/vrroom systemd watch
+Restart=always
+RestartSec=5
 
 [Install]
 WantedBy=default.target

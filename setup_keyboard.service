@@ -2,7 +2,8 @@
 
 After = graphical.target
 StopWhenUnneeded = yes
-Description = Setup Keyboard
+Description = Keyboard setup
+Documentation = file://%h/.scripts/fixes/keyboard.zsh
 Wants = keyboard-device.path
 BindsTo = keyboard-device.path
 PartOf = keyboard-device.path

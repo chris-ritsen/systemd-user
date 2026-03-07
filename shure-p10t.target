@@ -1,5 +1,6 @@
 [Unit]
-Description = Transmitter for wireless audio monitoring
+Description = Shure P10T — wireless audio transmitter
+After = ferrofish-a32.target
 Requires = shure-p10t.service
 After = shure-p10t.service
 BindsTo=  shure-p10t.service

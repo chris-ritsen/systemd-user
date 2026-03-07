@@ -1,6 +1,7 @@
 [Unit]
 
 Description = Slack
+Documentation=https://slack.com
 Requires = graphical-session.target
 
 [Service]

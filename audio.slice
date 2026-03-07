@@ -1,4 +1,5 @@
-[Slice]
+[Unit]
+Description = Audio processing slice
 
-CPUAccounting = yes
-MemoryAccounting = yes
+[Slice]
+IOWeight=200

@@ -1,0 +1,22 @@
+[Unit]
+Description=Enforce Dante Device Sample Rate %i
+After=network.target
+
+[Service]
+Type=notify
+ExecStart=%h/.local/bin/dante-device --mode assert-sample-rate %I
+Restart=no
+NotifyAccess=all
+TimeoutStartSec=0
+WatchdogSec=0
+TimeoutStopSec=10
+
+MemoryAccounting=no
+TasksAccounting=no
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=dante-device-sample-rate-%I
+
+[Install]
+WantedBy=default.target

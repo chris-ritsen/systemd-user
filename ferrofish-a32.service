@@ -1,4 +1,6 @@
 [Unit]
+Description=Ferrofish A32 — Dante/ADAT/analog audio interface
+Documentation=file://%h/bin/dante_device
 Requires=outlet@4.service
 After=outlet@4.service
 BindsTo=outlet@4.service

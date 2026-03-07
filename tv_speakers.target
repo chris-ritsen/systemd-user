@@ -4,9 +4,12 @@ Description = TV speakers
 StopWhenUnneeded = no
 
 BindsTo = jackd.service
+Conflicts = vrroom.target
 
 After = alsa_out@nvidia.service
+After = alsa_out@amd.service
 Wants = alsa_out@nvidia.service
+Wants = alsa_out@amd.service
 
 # After = jack_client_watcher@tv_speakers.service
 # Wants = jack_client_watcher@tv_speakers.service

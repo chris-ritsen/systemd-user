@@ -1,5 +1,5 @@
 [Unit]
-Description=HDFury VRRoom HDMI audio off (disconnect avio-aes3-1 → lx-dante stereo pair)
+Description=HDFury VRRoom HDMI audio off
 Conflicts=dante-vrroom-out-on.target
 Conflicts=dante-device-subscription@avio-aes3-1\x2cvrroom:left\x2clx-dante\x2cvrroom:left.service
 Conflicts=dante-device-subscription@avio-aes3-1\x2cvrroom:right\x2clx-dante\x2cvrroom:right.service

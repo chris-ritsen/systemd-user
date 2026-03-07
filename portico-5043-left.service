@@ -1,5 +1,5 @@
 [Unit]
-Description=Rupert Neve Portico 5043 (Left) Service
+Description=Rupert Neve Designs Portico 5043 Left — stereo compressor
 Requires=outlet@5.service
 After=outlet@5.service
 BindsTo=outlet@5.service

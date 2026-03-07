@@ -1,7 +1,8 @@
 
 [Unit]
 
-Description = xrdb
+Description = Load X resources from ~/.Xresources
+Documentation = man:xrdb(1)
 RefuseManualStart = no
 RefuseManualStop = no
 

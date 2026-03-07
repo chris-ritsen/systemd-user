@@ -1,5 +1,6 @@
 [Unit]
-Description=LX-Dante Device Configuration Target
+Description=Digigram LX-Dante PCIe card — Dante configuration
+Documentation=file://%h/bin/dante_device
 Documentation=https://github.com/netaudio/dante-device
 
 # Sample rate

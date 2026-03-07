@@ -2,5 +2,5 @@
 
 After = shelford-channel.service
 BindsTo = shelford-channel.service
-Description = Shelford Channel
+Description = Rupert Neve Designs Shelford Channel — mic preamp/EQ/compressor
 Requires = shelford-channel.service

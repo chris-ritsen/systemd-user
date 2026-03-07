@@ -1,0 +1,5 @@
+[Unit]
+Description=Windows gaming PC desired state: GPU blackout
+Conflicts=windows-gpu-power-normal.target windows-gpu-power-powersave.target
+Wants=windows-gpu-power-blackout.service
+After=windows-gpu-power-blackout.service

@@ -1,5 +1,5 @@
 [Unit]
-Description=Run pdflatex on resume.tex
+Description=Resume build service
 
 [Service]
 Type=oneshot

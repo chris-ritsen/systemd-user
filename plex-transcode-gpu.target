@@ -1,0 +1,5 @@
+[Unit]
+Description=Plex is transcoding — GPU encoding
+BindsTo=plex-transcode-watch.service
+Wants=gpu-normal.target
+After=gpu-normal.service

@@ -1,11 +1,10 @@
 [Unit]
 
 After = dante_pcie_out.target
-After = ecasound@jack.service
 BindsTo = dante_pcie_out.target
 DefaultDependencies = no
-Description = Dante output
-Requires = ecasound@jack.service
+Description = Dante PCIe output coordination
+Documentation = man:jack_control(1)
 Requires = jack_client@dante_pcie_out.service
 StopWhenUnneeded = yes
 Wants = dante_pcie_out.target

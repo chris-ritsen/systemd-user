@@ -1,0 +1,7 @@
+[Unit]
+Description=Wake on LAN — send magic packet to %i
+Documentation=man:wol(1)
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/wol %i

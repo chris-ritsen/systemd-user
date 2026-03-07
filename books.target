@@ -1,6 +1,6 @@
 [Unit]
 
-Description=Books JACK Connections
+Description=Audiobooks — MPD books instance with ecasound effects
 After=jackd.service
 BindsTo=jackd.service
 StopWhenUnneeded=no

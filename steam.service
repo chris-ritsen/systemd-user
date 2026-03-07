@@ -18,14 +18,15 @@
 
 [Unit]
 
-Description=Steam
-Requires=sound.target graphical-session.target
+Description=Steam game client
+Documentation=man:steam(6)
+Requires=sound.target graphical-session.target gpu-normal.target picom.service
 
 [Service]
 
 Nice=10
 
-ExecStart=/usr/bin/steam
+ExecStart=/usr/bin/steam -cef-force-gpu
 
 KillMode=process
 Restart=no
@@ -37,4 +38,3 @@ ExecStop = /usr/bin/killall -9 steam
 
 [Install]
 WantedBy = default.target
-

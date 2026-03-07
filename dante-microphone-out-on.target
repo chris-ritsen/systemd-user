@@ -1,5 +1,5 @@
 [Unit]
-Description=Enable Dante microphone output subscriptions
+Description=Dante microphone monitoring on
 After=ferrofish-a32.target
 Requires = ferrofish-a32.target
 

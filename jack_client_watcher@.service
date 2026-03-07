@@ -1,7 +1,8 @@
 [Unit]
 After=jackd.service
 BindsTo=jackd.service
-Description=Watch JACK client %I
+Description=JACK client D-Bus watcher for %I
+Documentation=file://%h/home-control/dbus/jack_client.py
 
 [Service]
 Type=notify

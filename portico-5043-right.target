@@ -2,5 +2,5 @@
 
 After = outlet@7.service
 BindsTo = outlet@7.service
-Description = Rupert Neve Portico 5043 (Right)
+Description = Rupert Neve Designs Portico 5043 Right — stereo compressor
 PartOf = wireless-audio@2.service

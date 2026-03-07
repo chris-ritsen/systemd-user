@@ -1,7 +1,8 @@
 [Unit]
 
 AssertFileIsExecutable=%h/.xmonad/xmonad-x86_64-linux
-Description = Build Xmonad
+Description = XMonad recompile
+Documentation=man:xmonad(1) file://%h/.xmonad/xmonad.hs
 RefuseManualStart = no
 RefuseManualStop = no
 Wants = xmonad.path

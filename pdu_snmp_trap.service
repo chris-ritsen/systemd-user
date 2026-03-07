@@ -1,5 +1,6 @@
 [Unit]
-Description=PDU SNMP Trap Handler
+Description=PDU SNMP trap handler
+Documentation=file://%h/bin/pdu_snmp
 
 [Service]
 ExecStart=%h/.local/bin/pdu-snmp-trap

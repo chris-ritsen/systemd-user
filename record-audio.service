@@ -1,5 +1,6 @@
 [Unit]
-Description=Record audio
+Description=Record audio — multichannel JACK recording
+Documentation=file://%h/.scripts/record-audio.zsh
 
 [Service]
 Type=simple

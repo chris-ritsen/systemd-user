@@ -1,4 +1,4 @@
 [Unit]
-Description=Gaming Mode Active
+Description=Gaming mode — 8BitDo Pro 2 controller connected
 Wants=8bitdo-pro2.target
 StopWhenUnneeded=no

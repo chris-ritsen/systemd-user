@@ -1,5 +1,5 @@
 [Unit]
-Description=Music with volume control
+Description=Music — MPD through volume to dedicated Dante output, no effects
 Conflicts=music_direct.target
 Conflicts=music.target
 After=jackd.service

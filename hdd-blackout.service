@@ -1,0 +1,10 @@
+[Unit]
+Description=HDD blackout — spin down all HDDs
+Documentation=man:hdparm(8)
+PartOf=hdd-blackout.target
+StopWhenUnneeded=yes
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/sudo /usr/bin/hdparm -y /dev/sda /dev/sdb /dev/sdc /dev/sdd /dev/sde /dev/sdf /dev/sdg /dev/sdh /dev/sdi /dev/sdj /dev/sdk /dev/sdl /dev/sdm

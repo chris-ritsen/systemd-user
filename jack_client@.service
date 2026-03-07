@@ -4,7 +4,8 @@
 # RefuseManualStart = yes
 # RefuseManualStop = yes
 
-Description = Run jack client
+Description = JACK ALSA bridge client — alsa_in/alsa_out bridge for hardware device
+Documentation=man:alsa_in(1)
 
 # PropagatesReloadTo = jackd.service
 

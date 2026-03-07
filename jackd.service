@@ -1,7 +1,8 @@
 [Unit]
 
 AssertFileIsExecutable = /usr/bin/jackdbus
-Description = JACK Audio Connection Kit sound server
+Description = JACK sound server — core audio infrastructure
+Documentation = man:jackd(1) man:jack_control(1)
 RefuseManualStart = no
 RefuseManualStop = no
 

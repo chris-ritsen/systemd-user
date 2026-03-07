@@ -2,7 +2,8 @@
 
 StopWhenUnneeded = no
 DefaultDependencies = no
-Description = Speakers (DisplayPort)
+Description = TV audio — DisplayPort output
+Documentation=man:alsa_out(1)
 
 After = jackd.service
 BindsTo = jackd.service

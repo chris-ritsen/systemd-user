@@ -2,7 +2,8 @@
 After=jack-connection-manager.service
 Requires=jack-connection-manager.service
 BindsTo=jack.target
-Description=Ensure JACK connection %I
+Description=JACK connection: %I
+Documentation=file://%h/bin/jack_connection
 
 [Service]
 Type=oneshot

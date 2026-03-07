@@ -1,0 +1,12 @@
+[Unit]
+Description=HDD power state and temperature monitor
+Documentation=file://%h/bin/system_monitor
+
+[Service]
+Type=notify
+ExecStart=%h/.local/bin/hdd-monitor
+Restart=always
+Environment=POLL_INTERVAL=60
+
+[Install]
+WantedBy=default.target

@@ -1,5 +1,6 @@
 [Unit]
-Description=AVIO AES3-1 Device Configuration Target
+Description=Audinate AVIO AES3-1 — AES3-to-Dante adapter connected to HDFury VRRoom HDMI audio output
+Documentation=file://%h/bin/dante_device
 
 # Device name: AVIOAES3-53ef37.local. -> avio-aes3-1
 Wants=dante-device-name@AVIOAES3-53ef37.local.\x2cavio-aes3-1.service

@@ -2,6 +2,7 @@
 
 [Unit]
 Description=Apply CPU and RT isolation for JACK audio
+Documentation=file://%h/bin/audio_tuning.zsh
 After = jackd.service
 Requires = jackd.service
 

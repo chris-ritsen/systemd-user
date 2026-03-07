@@ -1,5 +1,6 @@
 [Unit]
 Description=Set keyboard repeat rate
+Documentation=man:xset(1)
 After=graphical-session.target
 
 [Service]

@@ -1,5 +1,6 @@
 [Unit]
-Description=Watch and sync RetroArch states and saves
+Description=RetroArch save state sync
+Documentation=file://%h/bin/emulator-sync
 
 [Service]
 ExecStart=%h/bin/emulator-sync

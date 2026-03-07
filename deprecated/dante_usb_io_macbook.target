@@ -1,0 +1,17 @@
+[Unit]
+
+Description=Dante USB I/O MacBook JACK connections — pre-PCIe era, when AVIO USB 2x2 was the main audio interface (deprecated)
+After=jackd.service
+BindsTo=jackd.service
+StopWhenUnneeded=no
+
+Wants=macbook_personal_volume.target
+Wants=macbook_work_volume.target
+After=macbook_personal_volume.target
+After=macbook_work_volume.target
+
+After=jack_connection@system.capture_2\x2csystem.playback_13.service
+After=jack_connection@system.capture_4\x2csystem.playback_13.service
+
+Requires=jack_connection@system.capture_2\x2csystem.playback_13.service
+Requires=jack_connection@system.capture_4\x2csystem.playback_13.service

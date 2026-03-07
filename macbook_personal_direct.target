@@ -1,11 +1,14 @@
 [Unit]
-Description=MacBook Personal direct audio routing (system:capture_11/12 → jack_effects)
+Description=MacBook personal audio input direct to mix buses
 After=jackd.service
 BindsTo=jackd.service
 Conflicts=macbook_personal_volume.target
 
-# Direct routing: system:capture_11/12 → jack_effects (music:left/right aliases)
-Requires=jack_connection@system.capture_11\x2cjack_effects.in_1.service
-Requires=jack_connection@system.capture_12\x2cjack_effects.in_2.service
-After=jack_connection@system.capture_11\x2cjack_effects.in_1.service
-After=jack_connection@system.capture_12\x2cjack_effects.in_2.service
+Requires=jack_connection@system.capture_11\x2cspeakers_bus_volume.in_1.service
+Requires=jack_connection@system.capture_12\x2cspeakers_bus_volume.in_2.service
+Requires=jack_connection@system.capture_11\x2clinux_main_volume.in_1.service
+Requires=jack_connection@system.capture_12\x2clinux_main_volume.in_2.service
+After=jack_connection@system.capture_11\x2cspeakers_bus_volume.in_1.service
+After=jack_connection@system.capture_12\x2cspeakers_bus_volume.in_2.service
+After=jack_connection@system.capture_11\x2clinux_main_volume.in_1.service
+After=jack_connection@system.capture_12\x2clinux_main_volume.in_2.service

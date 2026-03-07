@@ -1,0 +1,5 @@
+[Unit]
+Description=JACK Mixer Web Dashboard
+BindsTo=jackd.service
+After=jackd.service
+Wants=jack-mixer-web.service

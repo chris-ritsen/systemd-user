@@ -1,5 +1,6 @@
 [Unit]
-Description=Set audio cores to performance
+Description=CPU normal — full clock speeds on non-isolated cores
+Documentation=man:cpupower(1)
 Conflicts=cpu-powersave.service
 
 [Service]

@@ -1,8 +1,9 @@
 [Unit]
-Description=Enforce HDMI 4K120
+Description=Enforce HDMI 4K 120Hz display mode
+Documentation=file://%h/bin/hdmi-4k120
 After=graphical-session.target
 
 [Service]
 Type=oneshot
-ExecStart=/home/chris/bin/hdmi-4k120
+ExecStart=%h/bin/hdmi-4k120
 Environment=DISPLAY=:0

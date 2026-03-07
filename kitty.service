@@ -3,12 +3,13 @@
 After=graphical-session.target
 After=graphical.target
 BindsTo=graphical-session.target
-Description=Kitty Terminal Daemon
+Description=Kitty terminal daemon
+Documentation=man:kitty(1)
 PartOf=graphical-session.target
 ConditionEnvironment=DISPLAY
 
 [Service]
-ExecStart=/usr/local/bin/kitty --override pointer_shape_when_grabbed=arrow --override default_pointer_shape=arrow --single-instance --title "kitty-daemon" --listen-on "unix:%t/kitty.socket"
+ExecStart=/usr/bin/kitty --override pointer_shape_when_grabbed=arrow --override default_pointer_shape=arrow --single-instance --title "kitty-daemon" --listen-on "unix:%t/kitty.socket"
 Environment = DISPLAY=:0
 Environment = XCURSOR_SIZE=16
 Restart=always

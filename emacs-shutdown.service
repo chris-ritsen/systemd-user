@@ -1,5 +1,6 @@
 [Unit]
-Description=Emacs Shutdown Tasks
+Description=Emacs shutdown — saves org-clock and buffers
+Documentation=man:emacsclient(1)
 Before=shutdown.target reboot.target halt.target poweroff.target
 DefaultDependencies=no
 

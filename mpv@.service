@@ -1,5 +1,6 @@
 [Unit]
-Description=Scripted MPV instance for %i
+Description=mpv daemon instance: %i
+Documentation=file://%h/bin/mpv
 PartOf=mpv-session@%i.target
 StopWhenUnneeded=yes
 

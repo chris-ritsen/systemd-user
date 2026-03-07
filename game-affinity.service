@@ -1,9 +1,10 @@
 [Unit]
-Description=Game CPU Affinity Daemon
+Description=Game CPU Affinity Daemon — pins game processes to isolated high-clock cores
+Documentation=file://%h/bin/game-affinity
 
 [Service]
 Type=simple
-ExecStart=/home/chris/.local/bin/game-affinity
+ExecStart=%h/.local/bin/game-affinity
 Restart=on-failure
 
 [Install]

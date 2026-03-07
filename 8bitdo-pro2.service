@@ -1,5 +1,6 @@
 [Unit]
-Description=8BitDo Pro 2 Gamepad
+Description=8BitDo Pro 2 — Bluetooth gamepad, auto-connect on udev device detection
+Documentation=man:bluetoothctl(1)
 Requires=8bitdo-pro2.target
 After=8bitdo-pro2.target
 

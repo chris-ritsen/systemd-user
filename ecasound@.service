@@ -1,6 +1,7 @@
 [Unit]
 
-Description=Ecasound effects
+Description=Ecasound effects processor — LADSPA compressor/effects chain for %I
+Documentation=man:ecasound(1)
 StopWhenUnneeded=yes
 After=jackd.service
 BindsTo=jackd.service
@@ -9,6 +10,7 @@ AssertFileIsExecutable=/usr/bin/ecasound
 [Service]
 
 Restart=always
+RestartMode=direct
 RestartSec=5
 TimeoutStartSec=50s
 TimeoutStopSec=10s

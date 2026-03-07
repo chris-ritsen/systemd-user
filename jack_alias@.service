@@ -1,7 +1,8 @@
 [Unit]
 After=jackd.service
 BindsTo=jackd.service
-Description=Ensure JACK alias %I
+Description=JACK port alias for %I
+Documentation=file://%h/home-control/dbus/jack_alias.py
 StopWhenUnneeded = yes
 
 [Service]

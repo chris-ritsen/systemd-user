@@ -1,5 +1,6 @@
 [Unit]
-Description=PDU Outlet Manager
+Description=PDU outlet manager
+Documentation=file://%h/bin/pdu_snmp
 
 [Service]
 Type=notify

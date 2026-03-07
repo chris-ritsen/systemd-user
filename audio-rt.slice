@@ -1,0 +1,7 @@
+[Unit]
+Description=Realtime audio processing — JACK, ecasound, high CPU weight and IO priority
+
+[Slice]
+CPUWeight=900
+IOWeight=900
+ManagedOOMPreference=avoid

@@ -1,5 +1,6 @@
 [Unit]
-Description=Set audio cores to powersave
+Description=CPU powersave — reduce clock speeds and power on non-isolated cores
+Documentation=man:cpupower(1)
 Conflicts=cpu-normal.service
 PartOf=cpu-powersave.target
 

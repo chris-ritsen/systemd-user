@@ -1,5 +1,7 @@
 [Unit]
 
+Description = Baseline multimedia services
+
 After = movie.target
 After = mpd@music.service
 After = mpd@books.service

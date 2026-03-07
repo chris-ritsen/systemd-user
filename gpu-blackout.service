@@ -1,5 +1,6 @@
 [Unit]
-Description=Extreme GPU power saving for blackout
+Description=GPU blackout — lock clocks to minimum with persistence mode
+Documentation=man:nvidia-smi(1)
 Conflicts=gpu-normal.service gpu-powersave.service
 PartOf=gpu-blackout.target
 StopWhenUnneeded=yes

@@ -1,6 +1,6 @@
 [Unit]
 
-Description = Jack sound service
+Description = JACK sound server
 After = jackd.service
 BindsTo = jackd.service
 After = sound.target

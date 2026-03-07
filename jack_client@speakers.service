@@ -3,7 +3,8 @@
 
 StopWhenUnneeded = yes
 DefaultDependencies = no
-Description = Speakers (motherboard line-out)
+Description = Speakers — motherboard line-out
+Documentation=man:alsa_out(1)
 
 After = jackd.service
 BindsTo = jackd.service

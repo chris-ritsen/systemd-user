@@ -1,5 +1,5 @@
 [Unit]
-Description=Music with volume control through effects
+Description=Music — MPD through volume and ecasound effects to dedicated Dante output
 After=jackd.service
 BindsTo=jackd.service
 Conflicts=music.target

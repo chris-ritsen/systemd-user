@@ -6,7 +6,8 @@ After = xbox.service
 After = xbox_chat.service
 
 DefaultDependencies = no
-Description = Dante input
+Description = Dante PCIe input coordination
+Documentation = man:jack_control(1)
 
 After = jackd.service
 BindsTo = jackd.service

@@ -2,14 +2,13 @@
 
 After = media-audio.mount
 ConditionPathIsDirectory = /media/audio
-Description = Run music player daemon for %i
+Description = MPD music player instance %i
+Documentation = man:mpd(1)
 
 After = jackd.service
 BindsTo = jackd.service
 
 # Requires = media-audio.mount
-Requires = ecasound@jack.service
-After = ecasound@jack.service
 Wants = ympd@%i.service
 RequiresMountsFor = /media/audio
 
@@ -51,6 +50,7 @@ ExecStartPre = /usr/bin/zsh -c 'echo "mpd --verbose --no-daemon $MPD_CONFIG_FILE
 ExecStart = /usr/bin/mpd --verbose --no-daemon $MPD_CONFIG_FILE
 
 ExecStartPost = -/usr/bin/zsh -c "sleep 2 && mpc toggle; mpc toggle"
+ExecStartPost = -/usr/bin/zsh -c 'tmux -S %t/tmux-%U/admin list-panes -a -F "#{session_name}:#{window_index}.#{pane_index} #{pane_current_command}" | awk '\''$2 == "vimpc" { print $1; exit }'\'' | xargs -rI{} tmux -S %t/tmux-%U/admin send-keys -t {} F1'
 
 ExecStop = /usr/bin/zsh -c "mpc pause"
 

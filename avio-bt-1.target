@@ -1,5 +1,6 @@
 [Unit]
-Description=AVIO Bluetooth-1 Device Configuration Target
+Description=Audinate AVIO BT-1 — Bluetooth-to-Dante adapter, receives phone/Switch/Steam Deck audio
+Documentation=file://%h/bin/dante_device
 
 # Device name: AVIOBT-5279b6.local. -> avio-bt-1
 Wants=dante-device-name@AVIOBT-5279b6.local.\x2cavio-bt-1.service

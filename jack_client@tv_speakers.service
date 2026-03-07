@@ -2,7 +2,8 @@
 
 StopWhenUnneeded = yes
 DefaultDependencies = no
-Description = Binds alsa_out jack client for HDMI output to TV speakers
+Description = TV speakers — HDMI audio output
+Documentation=man:alsa_out(1)
 
 After = jackd.service
 BindsTo = jackd.service

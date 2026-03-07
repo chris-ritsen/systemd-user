@@ -1,5 +1,5 @@
 [Unit]
-Description=Music direct audio routing (music → music_effects)
+Description=Music — MPD through ecasound effects to dedicated Dante output, no volume control
 After=jackd.service
 BindsTo=jackd.service
 Conflicts=music_volume.target

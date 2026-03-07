@@ -1,5 +1,6 @@
 [Unit]
-Description=Extreme CPU power saving for blackout
+Description=CPU blackout — minimum clock speeds and power on all cores
+Documentation=man:cpupower(1)
 Conflicts=cpu-normal.service cpu-powersave.service
 PartOf=cpu-blackout.target
 StopWhenUnneeded=yes

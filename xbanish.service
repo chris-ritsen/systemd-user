@@ -1,5 +1,6 @@
 [Unit]
-Description=Hide mouse cursor while typing (xbanish)
+Description=Hide mouse cursor while typing
+Documentation=man:xbanish(1)
 PartOf=xmonad.target
 After=graphical-session.target
 

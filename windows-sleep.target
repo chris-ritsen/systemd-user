@@ -1,0 +1,5 @@
+[Unit]
+Description=Windows gaming PC desired state: sleeping
+Conflicts=windows-wake.target
+Wants=windows-sleep.service
+After=windows-sleep.service

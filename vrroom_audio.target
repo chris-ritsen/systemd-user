@@ -1,12 +1,16 @@
 [Unit]
-Description=VRRoom audio routed to jack_effects
+Description=VRRoom audio routing
 After=vrroom_with_volume.target
 Requires=vrroom_with_volume.target
 
-Wants=jack_connection@vrroom_volume.out_1\x2cjack_effects.in_1.service
-Wants=jack_connection@vrroom_volume.out_2\x2cjack_effects.in_2.service
-After=jack_connection@vrroom_volume.out_1\x2cjack_effects.in_1.service
-After=jack_connection@vrroom_volume.out_2\x2cjack_effects.in_2.service
+Conflicts=hdmi_input@0.service
 
-Conflicts=jack_disconnection@vrroom_volume.out_1\x2cjack_effects.in_1.service
-Conflicts=jack_disconnection@vrroom_volume.out_2\x2cjack_effects.in_2.service
+Wants=jack_connection@vrroom_volume.out_1\x2clinux_main_volume.in_1.service
+Wants=jack_connection@vrroom_volume.out_2\x2clinux_main_volume.in_2.service
+After=jack_connection@vrroom_volume.out_1\x2clinux_main_volume.in_1.service
+After=jack_connection@vrroom_volume.out_2\x2clinux_main_volume.in_2.service
+
+Conflicts=jack_disconnection@vrroom_volume.out_1\x2clinux_main_volume.in_1.service
+Conflicts=jack_disconnection@vrroom_volume.out_1\x2clinux_main_volume.in_2.service
+Conflicts=jack_disconnection@vrroom_volume.out_2\x2clinux_main_volume.in_1.service
+Conflicts=jack_disconnection@vrroom_volume.out_2\x2clinux_main_volume.in_2.service

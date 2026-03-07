@@ -1,5 +1,6 @@
 [Unit]
-Description=Generate waveform image from night recording
+Description=Generate waveform image from most recent night recording
+Documentation=file://%h/bin/wav-waveform
 After=night-recording-stop.service
 Requires=night-recording-stop.service
 

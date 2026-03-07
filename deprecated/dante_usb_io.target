@@ -1,0 +1,16 @@
+[Unit]
+
+Description=Dante USB I/O JACK connections — pre-PCIe era, when AVIO USB 2x2 was the main audio interface (deprecated)
+After=jackd.service
+BindsTo=jackd.service
+StopWhenUnneeded=no
+
+After=windows_gaming_direct.target
+After=macbook_personal_direct.target
+After=jack_connection@system.capture_2\x2csystem.playback_13.service
+After=jack_connection@system.capture_4\x2csystem.playback_13.service
+
+Wants=windows_gaming_direct.target
+Wants=macbook_personal_direct.target
+Requires=jack_connection@system.capture_2\x2csystem.playback_13.service
+Requires=jack_connection@system.capture_4\x2csystem.playback_13.service

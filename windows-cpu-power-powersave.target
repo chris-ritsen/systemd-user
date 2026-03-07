@@ -1,0 +1,5 @@
+[Unit]
+Description=Windows gaming PC desired state: CPU powersave
+Conflicts=windows-cpu-power-normal.target windows-cpu-power-blackout.target
+Wants=windows-cpu-power-powersave.service
+After=windows-cpu-power-powersave.service

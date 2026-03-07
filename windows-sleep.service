@@ -1,0 +1,9 @@
+[Unit]
+Description=Sleep Windows gaming PC
+Documentation=man:ssh(1)
+Conflicts=windows-wake.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/ssh windows-pwsh "rundll32.exe powrprof.dll,SetSuspendState 0,0,0"

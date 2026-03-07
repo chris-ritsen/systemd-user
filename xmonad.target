@@ -6,7 +6,7 @@ After = sockets.target
 After = urxvtd.service
 Before = jack.target
 
-Description = Graphical session
+Description = XMonad graphical session
 
 # Wants = xmonad-instance.service
 # Wants = work.target

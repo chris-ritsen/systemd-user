@@ -1,5 +1,5 @@
 [Unit]
-Description=PulseAudio discord_out with volume control
+Description=Discord audio output with volume control
 After=jackd.service
 BindsTo=jackd.service
 Conflicts=discord_out.target
@@ -7,20 +7,20 @@ Conflicts=discord_out.target
 Requires=jack_volume@discord_out.service
 After=jack_volume@discord_out.service
 
-Conflicts=jack_connection@discord_out.front\x2dleft\x2cjack_effects.in_1.service
-Conflicts=jack_connection@discord_out.front\x2dright\x2cjack_effects.in_2.service
+Conflicts=jack_connection@discord_out.front\x2dleft\x2clinux_main_volume.in_1.service
+Conflicts=jack_connection@discord_out.front\x2dright\x2clinux_main_volume.in_2.service
 
 Requires=jack_connection@discord_out.front\x2dleft\x2cdiscord_out_volume.in_1.service
 Requires=jack_connection@discord_out.front\x2dright\x2cdiscord_out_volume.in_2.service
-Requires=jack_connection@discord_out_volume.out_1\x2cjack_effects.in_1.service
-Requires=jack_connection@discord_out_volume.out_2\x2cjack_effects.in_2.service
+Requires=jack_connection@discord_out_volume.out_1\x2clinux_main_volume.in_1.service
+Requires=jack_connection@discord_out_volume.out_2\x2clinux_main_volume.in_2.service
 
 Requires=jack_disconnection@discord_out.front\x2dleft\x2csystem.playback_1.service
 Requires=jack_disconnection@discord_out.front\x2dright\x2csystem.playback_2.service
 
 After=jack_connection@discord_out.front\x2dleft\x2cdiscord_out_volume.in_1.service
 After=jack_connection@discord_out.front\x2dright\x2cdiscord_out_volume.in_2.service
-After=jack_connection@discord_out_volume.out_1\x2cjack_effects.in_1.service
-After=jack_connection@discord_out_volume.out_2\x2cjack_effects.in_2.service
+After=jack_connection@discord_out_volume.out_1\x2clinux_main_volume.in_1.service
+After=jack_connection@discord_out_volume.out_2\x2clinux_main_volume.in_2.service
 After=jack_disconnection@discord_out.front\x2dleft\x2csystem.playback_1.service
 After=jack_disconnection@discord_out.front\x2dright\x2csystem.playback_2.service

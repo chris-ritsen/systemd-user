@@ -4,7 +4,8 @@
 # RefuseManualStart = yes
 # RefuseManualStop = yes
 
-Description = Run jack client for %i
+Description = Slack JACK client
+Documentation=man:pactl(1)
 StopWhenUnneeded = no
 
 # BindsTo = pulseaudio.service

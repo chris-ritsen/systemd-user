@@ -1,6 +1,7 @@
 [Unit]
 
-Description=Urxvt Terminal Daemon
+Description=urxvt terminal daemon
+Documentation=man:urxvtd(1)
 BindsTo=graphical-session.target
 PartOf=graphical-session.target
 ConditionEnvironment=DISPLAY

@@ -1,3 +1,7 @@
+[Unit]
+Description=Chromium Gmail — dedicated browser instance for Google Mail
+Documentation=man:chromium(1)
+
 [Service]
 Slice=chromium.slice
 

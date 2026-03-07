@@ -1,10 +1,12 @@
 
 [Unit]
 
-After = ecasound@jack.service
+After = jack_volume@speakers_bus.service
+After = jack_volume@linux_main.service
 DefaultDependencies = no
 Description = Slack audio
-Wants = ecasound@jack.service
+Wants = jack_volume@speakers_bus.service
+Wants = jack_volume@linux_main.service
 Wants = pulseaudio.service
 StopWhenUnneeded = yes
 
@@ -20,7 +22,7 @@ TimeoutStopSec = 2s
 
 ExecStart = /usr/bin/zsh -c "pactl load-module module-jack-sink channels=2 client_name=slack.out sink_name=jack.out.slack"
 ExecStartPost = /usr/bin/zsh -c "pactl load-module module-jack-source channels=2 client_name=slack.in source_name=jack.in.slack"
-ExecStartPost = /usr/bin/zsh -c "jack_connect 'slack.out:front-left' 'jack_effects:in_1' && jack_connect 'slack.out:front-right' 'jack_effects:in_2'"
+ExecStartPost = /usr/bin/zsh -c "jack_connect 'slack.out:front-left' 'speakers_bus_volume:in_1' && jack_connect 'slack.out:front-right' 'speakers_bus_volume:in_2' && jack_connect 'slack.out:front-left' 'linux_main_volume:in_1' && jack_connect 'slack.out:front-right' 'linux_main_volume:in_2'"
 ExecStartPost = /usr/bin/zsh -c "sleep 0.1 && jack_connect dante_in:capture_1 slack.in:'front-left' || true && jack_connect dante_in:capture_1 slack.in:'front-right' || true"
 ExecStop = /usr/bin/zsh -ic "pactl list short | grep module-jack-sink | grep client_name=slack.out | cut -f 1 | xargs -I{} pactl unload-module {}"
 ExecStop = /usr/bin/zsh -ic "pactl list short | grep module-jack-source | grep client_name=slack.in | cut -f 1 | xargs -I{} pactl unload-module {}"

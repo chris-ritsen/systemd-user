@@ -1,6 +1,7 @@
 [Unit]
 After = sound.target basic.target
-Description = Magewell Pro Capture HDMI audio input
+Description = Magewell Pro Capture HDMI — audio input
+Documentation=man:alsa_in(1)
 Requires = sound.target basic.target
 
 [Service]

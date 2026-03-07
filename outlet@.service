@@ -1,20 +1,19 @@
 [Unit]
 
 DefaultDependencies = no
-Description = Power outlet %i
+Description = PDU outlet %i
+Documentation=file://%h/bin/pdu_snmp
 Wants = pdu-manager.service
 After = pdu-manager.service
 
 [Service]
-TimeoutStartSec = 5
-TimeoutStopSec = 5
+TimeoutStartSec = 10
+TimeoutStopSec = 10
 RestartSec = 5
 Restart = no
-RemainAfterExit = yes
-Type = oneshot
+Type = notify
 
-ExecStart=%h/.local/bin/pdu-outlet-command on %i outlet@%i.service
-ExecStop=%h/.local/bin/pdu-outlet-command off %i outlet@%i.service
+ExecStart=%h/.local/bin/pdu-outlet-command run %i outlet@%i.service
 
 [Install]
 

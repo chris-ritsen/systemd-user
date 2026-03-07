@@ -1,5 +1,5 @@
 [Unit]
-Description=Watch JACK over DBus to connect the default pulseaudio discord_in
+Description=Discord mic input routing
 After = jackd.service
 BindsTo = jackd.service
 

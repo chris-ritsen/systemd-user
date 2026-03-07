@@ -1,5 +1,6 @@
 [Unit]
-Description=Shure AD4D Wireless Receiver Device Configuration Target
+Description=Shure AD4D — Axient Digital wireless mic receiver Dante configuration
+Documentation=file://%h/bin/dante_device
 
 # Device name: AD4D-fd4e13.local. -> ad4d
 Wants=dante-device-name@AD4D-fd4e13.local.\x2cad4d.service
