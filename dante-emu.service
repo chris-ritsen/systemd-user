@@ -1,0 +1,18 @@
+[Unit]
+Description=Dante Brooklyn II Emulator (QEMU MicroBlaze)
+
+[Service]
+Type=simple
+WorkingDirectory=/home/chris/netaudio/clean/emulation
+ExecStartPre=-/usr/bin/bash -c 'pgrep -f "qemu-system-microblaze.*dante-brooklyn" | xargs -r kill'
+ExecStartPre=/usr/bin/bash -c 'cd /home/chris/netaudio/clean/emulation/qemu-src/build && ninja qemu-system-microblaze'
+ExecStartPre=/usr/bin/bash -c '/home/chris/netaudio/clean/emulation/dante-ctl.sh build_image_only'
+ExecStartPre=-/usr/bin/bash -c 'ip link show dante0 &>/dev/null || { sudo ip tuntap add dev dante0 mode tap user chris; sudo ip link set dante0 master br0; sudo ip link set dante0 up; }'
+ExecStartPre=/usr/bin/truncate -s 0 /tmp/temac-trace.log
+ExecStart=/home/chris/netaudio/clean/emulation/qemu-src/build/qemu-system-microblaze -M dante-brooklyn -m 64M -kernel /home/chris/netaudio/clean/emulation/a32-kernel-combo.bin -nographic -no-reboot -monitor none -netdev tap,id=net0,ifname=dante0,script=no,downscript=no,vnet_hdr=off -drive if=mtd,format=raw,file=/home/chris/netaudio/clean/emulation/dante-flash.bin -D /tmp/temac-trace.log -d guest_errors
+Restart=no
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,6 @@
+[Unit]
+Description=Local LLM inference — GPU unlocked, Ollama running
+Conflicts=gpu-powersave.target
+Wants=gpu-normal.service
+After=gpu-normal.service
+BindsTo=gpu-normal.target

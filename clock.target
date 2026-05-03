@@ -1,8 +1,1 @@
-[Unit]
-
-Description = Clock and stats dashboard
-
-After = tmux@clock.service
-BindsTo = xmonad.target
-PropagatesReloadTo = tmux@clock.service
-Requires = tmux@clock.service
+/home/chris/bin/surface/systemd/clock.target

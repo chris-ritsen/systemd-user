@@ -3,60 +3,7 @@ Description=Digigram LX-Dante PCIe card — Dante configuration
 Documentation=file://%h/bin/dante_device
 Documentation=https://github.com/netaudio/dante-device
 
-# Sample rate
-Requires=dante-device-sample-rate@lx-dante\x2c48000.service
-After=dante-device-sample-rate@lx-dante\x2c48000.service
-
-# Device name: LX-DANTE-081258.local. -> lx-dante
-Wants=dante-device-name@LX-DANTE-081258.local.\x2clx-dante.service
-
-# RX Channel names (24 channels)
-Requires=dante-device-channel-name@lx-dante\x2crx\x2c1\x2cwireless-mic:1.service
-Requires=dante-device-channel-name@lx-dante\x2crx\x2c2\x2cwireless-mic:2.service
-Requires=dante-device-channel-name@lx-dante\x2crx\x2c3\x2cshelford-channel:minus-6db.service
-Requires=dante-device-channel-name@lx-dante\x2crx\x2c4\x2cshelford-channel:0dB.service
-Requires=dante-device-channel-name@lx-dante\x2crx\x2c5\x2cdi-box:left.service
-Requires=dante-device-channel-name@lx-dante\x2crx\x2c6\x2cdi-box:right.service
-Requires=dante-device-channel-name@lx-dante\x2crx\x2c7\x2cwindows-gaming:left.service
-Requires=dante-device-channel-name@lx-dante\x2crx\x2c8\x2cwindows-gaming:right.service
-Requires=dante-device-channel-name@lx-dante\x2crx\x2c9\x2cdinet:left.service
-Requires=dante-device-channel-name@lx-dante\x2crx\x2c10\x2cdinet:right.service
-Requires=dante-device-channel-name@lx-dante\x2crx\x2c11\x2cmacbook-personal:left.service
-Requires=dante-device-channel-name@lx-dante\x2crx\x2c12\x2cmacbook-personal:right.service
-Requires=dante-device-channel-name@lx-dante\x2crx\x2c15\x2cvrroom:left.service
-Requires=dante-device-channel-name@lx-dante\x2crx\x2c16\x2cvrroom:right.service
-Requires=dante-device-channel-name@lx-dante\x2crx\x2c17\x2cmacbook-work:left.service
-Requires=dante-device-channel-name@lx-dante\x2crx\x2c18\x2cmacbook-work:right.service
-Requires=dante-device-channel-name@lx-dante\x2crx\x2c19\x2cadat:left.service
-Requires=dante-device-channel-name@lx-dante\x2crx\x2c20\x2cadat:right.service
-Requires=dante-device-channel-name@lx-dante\x2crx\x2c21\x2cbluetooth:left.service
-Requires=dante-device-channel-name@lx-dante\x2crx\x2c22\x2cbluetooth:right.service
-
-# TX Channel names (6 channels)
-Requires=dante-device-channel-name@lx-dante\x2ctx\x2c11\x2clinux-main:left.service
-Requires=dante-device-channel-name@lx-dante\x2ctx\x2c12\x2clinux-main:right.service
-Requires=dante-device-channel-name@lx-dante\x2ctx\x2c13\x2cmic-mix-high.service
-Requires=dante-device-channel-name@lx-dante\x2ctx\x2c14\x2cmic-mix-low.service
-Requires=dante-device-channel-name@lx-dante\x2ctx\x2c15\x2clinux-music:left.service
-Requires=dante-device-channel-name@lx-dante\x2ctx\x2c16\x2clinux-music:right.service
-
-# Subscriptions (skip ones with tx_device=null)
-Requires=dante-device-subscription@ad4d\x2c01\x2clx-dante\x2cwireless-mic:1.service
-Requires=dante-device-subscription@ad4d\x2c02\x2clx-dante\x2cwireless-mic:2.service
-Requires=dante-device-subscription@a32\x2cshelford-channel-minus-6db\x2clx-dante\x2cshelford-channel:minus-6db.service
-Requires=dante-device-subscription@a32\x2cshelford-channel\x2clx-dante\x2cshelford-channel:0dB.service
-Requires=dante-device-subscription@avio-usb-1\x2cwindows-gaming:left\x2clx-dante\x2cwindows-gaming:left.service
-Requires=dante-device-subscription@avio-usb-1\x2cwindows-gaming:right\x2clx-dante\x2cwindows-gaming:right.service
-Requires=dante-device-subscription@avio-usb-2\x2cmacbook-personal:left\x2clx-dante\x2cmacbook-personal:left.service
-Requires=dante-device-subscription@avio-usb-2\x2cmacbook-personal:right\x2clx-dante\x2cmacbook-personal:right.service
-Requires=dante-device-subscription@avio-aes3-1\x2cvrroom:left\x2clx-dante\x2cvrroom:left.service
-Requires=dante-device-subscription@avio-aes3-1\x2cvrroom:right\x2clx-dante\x2cvrroom:right.service
-Requires=dante-device-subscription@avio-usb-3\x2cmacbook-work:left\x2clx-dante\x2cmacbook-work:left.service
-Requires=dante-device-subscription@avio-usb-3\x2cmacbook-work:right\x2clx-dante\x2cmacbook-work:right.service
-Requires=dante-device-subscription@a32\x2cadat-1\x2clx-dante\x2cadat:left.service
-Requires=dante-device-subscription@a32\x2cadat-2\x2clx-dante\x2cadat:right.service
-Requires=dante-device-subscription@avio-bt-1\x2cbluetooth:left\x2clx-dante\x2cbluetooth:left.service
-Requires=dante-device-subscription@avio-bt-1\x2cbluetooth:right\x2clx-dante\x2cbluetooth:right.service
+Wants=dante-config@lx-dante.target
 
 AllowIsolate=yes
 

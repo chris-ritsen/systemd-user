@@ -4,13 +4,13 @@ After = jackd.service
 BindsTo = jackd.service
 
 # Wired mic
-Requires=jack_connection@system.capture_4\x2cdiscord_in.front\x2dleft.service
-Requires=jack_connection@system.capture_4\x2cdiscord_in.front\x2dright.service
-After=jack_connection@system.capture_4\x2cdiscord_in.front\x2dleft.service
-After=jack_connection@system.capture_4\x2cdiscord_in.front\x2dright.service
+Requires=jack_connection@system.capture_4\x2cdiscord_in.front\x2dleft.target
+Requires=jack_connection@system.capture_4\x2cdiscord_in.front\x2dright.target
+After=jack_connection@system.capture_4\x2cdiscord_in.front\x2dleft.target
+After=jack_connection@system.capture_4\x2cdiscord_in.front\x2dright.target
 
 # Wireless mic
-Requires=jack_connection@system.capture_2\x2cdiscord_in.front\x2dleft.service
-Requires=jack_connection@system.capture_2\x2cdiscord_in.front\x2dright.service
-After=jack_connection@system.capture_2\x2cdiscord_in.front\x2dleft.service
-After=jack_connection@system.capture_2\x2cdiscord_in.front\x2dright.service
+Requires=jack_connection@system.capture_2\x2cdiscord_in.front\x2dleft.target
+Requires=jack_connection@system.capture_2\x2cdiscord_in.front\x2dright.target
+After=jack_connection@system.capture_2\x2cdiscord_in.front\x2dleft.target
+After=jack_connection@system.capture_2\x2cdiscord_in.front\x2dright.target

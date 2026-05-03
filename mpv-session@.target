@@ -9,21 +9,24 @@ Requires=mpv_ipc@%i.service
 Wants=gpu-normal.target
 
 # Basic stereo
-Requires=jack_connection@mpv_%i.out_0\x2cspeakers_bus_volume.in_1.service
-Requires=jack_connection@mpv_%i.out_1\x2cspeakers_bus_volume.in_2.service
-Requires=jack_connection@mpv_%i.out_0\x2clinux_main_volume.in_1.service
-Requires=jack_connection@mpv_%i.out_1\x2clinux_main_volume.in_2.service
-After=jack_connection@mpv_%i.out_0\x2cspeakers_bus_volume.in_1.service
-After=jack_connection@mpv_%i.out_1\x2cspeakers_bus_volume.in_2.service
-After=jack_connection@mpv_%i.out_0\x2clinux_main_volume.in_1.service
-After=jack_connection@mpv_%i.out_1\x2clinux_main_volume.in_2.service
+Requires=jack_connection@mpv_%i.out_0\x2cspeakers_bus_volume.in_1.target
+Requires=jack_connection@mpv_%i.out_1\x2cspeakers_bus_volume.in_2.target
+Requires=jack_connection@mpv_%i.out_0\x2clinux_main_volume.in_1.target
+Requires=jack_connection@mpv_%i.out_1\x2clinux_main_volume.in_2.target
+After=jack_connection@mpv_%i.out_0\x2cspeakers_bus_volume.in_1.target
+After=jack_connection@mpv_%i.out_1\x2cspeakers_bus_volume.in_2.target
+After=jack_connection@mpv_%i.out_0\x2clinux_main_volume.in_1.target
+After=jack_connection@mpv_%i.out_1\x2clinux_main_volume.in_2.target
 
 # 5.1
-Wants=jack_connection@mpv_%i.out_2\x2cspeakers_bus_volume.in_1.service
-Wants=jack_connection@mpv_%i.out_2\x2cspeakers_bus_volume.in_2.service
-Wants=jack_connection@mpv_%i.out_2\x2clinux_main_volume.in_1.service
-Wants=jack_connection@mpv_%i.out_2\x2clinux_main_volume.in_2.service
-After=jack_connection@mpv_%i.out_2\x2cspeakers_bus_volume.in_1.service
-After=jack_connection@mpv_%i.out_2\x2cspeakers_bus_volume.in_2.service
-After=jack_connection@mpv_%i.out_2\x2clinux_main_volume.in_1.service
-After=jack_connection@mpv_%i.out_2\x2clinux_main_volume.in_2.service
+Wants=jack_connection@mpv_%i.out_2\x2cspeakers_bus_volume.in_1.target
+Wants=jack_connection@mpv_%i.out_2\x2cspeakers_bus_volume.in_2.target
+Wants=jack_connection@mpv_%i.out_2\x2clinux_main_volume.in_1.target
+Wants=jack_connection@mpv_%i.out_2\x2clinux_main_volume.in_2.target
+After=jack_connection@mpv_%i.out_2\x2cspeakers_bus_volume.in_1.target
+After=jack_connection@mpv_%i.out_2\x2cspeakers_bus_volume.in_2.target
+After=jack_connection@mpv_%i.out_2\x2clinux_main_volume.in_1.target
+After=jack_connection@mpv_%i.out_2\x2clinux_main_volume.in_2.target
+
+[Install]
+WantedBy=default.target

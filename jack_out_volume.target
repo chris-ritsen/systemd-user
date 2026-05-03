@@ -7,26 +7,26 @@ Conflicts=jack_out.target
 Requires=jack_volume@jack_out.service
 After=jack_volume@jack_out.service
 
-Conflicts=jack_connection@jack_out.front\x2dleft\x2cspeakers_bus_volume.in_1.service
-Conflicts=jack_connection@jack_out.front\x2dright\x2cspeakers_bus_volume.in_2.service
-Conflicts=jack_connection@jack_out.front\x2dleft\x2clinux_main_volume.in_1.service
-Conflicts=jack_connection@jack_out.front\x2dright\x2clinux_main_volume.in_2.service
+Conflicts=jack_connection@jack_out.front\x2dleft\x2cspeakers_bus_volume.in_1.target
+Conflicts=jack_connection@jack_out.front\x2dright\x2cspeakers_bus_volume.in_2.target
+Conflicts=jack_connection@jack_out.front\x2dleft\x2clinux_main_volume.in_1.target
+Conflicts=jack_connection@jack_out.front\x2dright\x2clinux_main_volume.in_2.target
 
-Requires=jack_connection@jack_out.front\x2dleft\x2cjack_out_volume.in_1.service
-Requires=jack_connection@jack_out.front\x2dright\x2cjack_out_volume.in_2.service
-Requires=jack_connection@jack_out_volume.out_1\x2cspeakers_bus_volume.in_1.service
-Requires=jack_connection@jack_out_volume.out_2\x2cspeakers_bus_volume.in_2.service
-Requires=jack_connection@jack_out_volume.out_1\x2clinux_main_volume.in_1.service
-Requires=jack_connection@jack_out_volume.out_2\x2clinux_main_volume.in_2.service
+Requires=jack_connection@jack_out.front\x2dleft\x2cjack_out_volume.in_1.target
+Requires=jack_connection@jack_out.front\x2dright\x2cjack_out_volume.in_2.target
+Requires=jack_connection@jack_out_volume.out_1\x2cspeakers_bus_volume.in_1.target
+Requires=jack_connection@jack_out_volume.out_2\x2cspeakers_bus_volume.in_2.target
+Requires=jack_connection@jack_out_volume.out_1\x2clinux_main_volume.in_1.target
+Requires=jack_connection@jack_out_volume.out_2\x2clinux_main_volume.in_2.target
 
-Requires=jack_disconnection@jack_out.front\x2dleft\x2csystem.playback_1.service
-Requires=jack_disconnection@jack_out.front\x2dright\x2csystem.playback_2.service
+Requires=jack_disconnection@jack_out.front\x2dleft\x2csystem.playback_1.target
+Requires=jack_disconnection@jack_out.front\x2dright\x2csystem.playback_2.target
 
-After=jack_connection@jack_out.front\x2dleft\x2cjack_out_volume.in_1.service
-After=jack_connection@jack_out.front\x2dright\x2cjack_out_volume.in_2.service
-After=jack_connection@jack_out_volume.out_1\x2cspeakers_bus_volume.in_1.service
-After=jack_connection@jack_out_volume.out_2\x2cspeakers_bus_volume.in_2.service
-After=jack_connection@jack_out_volume.out_1\x2clinux_main_volume.in_1.service
-After=jack_connection@jack_out_volume.out_2\x2clinux_main_volume.in_2.service
-After=jack_disconnection@jack_out.front\x2dleft\x2csystem.playback_1.service
-After=jack_disconnection@jack_out.front\x2dright\x2csystem.playback_2.service
+After=jack_connection@jack_out.front\x2dleft\x2cjack_out_volume.in_1.target
+After=jack_connection@jack_out.front\x2dright\x2cjack_out_volume.in_2.target
+After=jack_connection@jack_out_volume.out_1\x2cspeakers_bus_volume.in_1.target
+After=jack_connection@jack_out_volume.out_2\x2cspeakers_bus_volume.in_2.target
+After=jack_connection@jack_out_volume.out_1\x2clinux_main_volume.in_1.target
+After=jack_connection@jack_out_volume.out_2\x2clinux_main_volume.in_2.target
+After=jack_disconnection@jack_out.front\x2dleft\x2csystem.playback_1.target
+After=jack_disconnection@jack_out.front\x2dright\x2csystem.playback_2.target

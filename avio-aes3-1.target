@@ -2,12 +2,7 @@
 Description=Audinate AVIO AES3-1 — AES3-to-Dante adapter connected to HDFury VRRoom HDMI audio output
 Documentation=file://%h/bin/dante_device
 
-# Device name: AVIOAES3-53ef37.local. -> avio-aes3-1
-Wants=dante-device-name@AVIOAES3-53ef37.local.\x2cavio-aes3-1.service
-
-# TX Channel names
-Requires=dante-device-channel-name@avio-aes3-1\x2ctx\x2c1\x2cvrroom:left.service
-Requires=dante-device-channel-name@avio-aes3-1\x2ctx\x2c2\x2cvrroom:right.service
+Wants=dante-config@avio-aes3-1.target
 
 [Install]
 WantedBy=audio-baseline.target

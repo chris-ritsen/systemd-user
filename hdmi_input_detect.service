@@ -1,10 +1,10 @@
 [Unit]
 Description=HDMI input detection
-Documentation=file://%h/bin/hdfury_vrroom
+Documentation=file://%h/bin/hdfury_vrroom http://192.168.1.59/
 
 [Service]
 Type=notify
-ExecStart=%h/.local/bin/vrroom systemd watch
+ExecStart=%h/.local/bin/surface video hdmi hdfury vrroom systemd watch
 Restart=always
 RestartSec=5
 

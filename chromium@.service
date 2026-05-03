@@ -38,6 +38,9 @@ ${scale} \
 --force-dark-mode \
 --keep-alive-for-test \
 --password-store=basic \
+--remote-allow-origins=* \
+--load-extension=%h/.local/share/surface/chrome-extension \
+--remote-debugging-port=${remote_debugging_port} \
 --use-mock-keychain
 
 # No longer working correctly; causes it to exit early

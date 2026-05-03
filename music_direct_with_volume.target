@@ -16,12 +16,12 @@ After=jack_volume@music.service
 Requires=ecasound@music.service
 After=ecasound@music.service
 
-Requires=jack_connection@music.left\x2cmusic.in_1.service
-Requires=jack_connection@music.right\x2cmusic.in_2.service
-Requires=jack_connection@music.out_1\x2cmusic_effects.in_1.service
-Requires=jack_connection@music.out_2\x2cmusic_effects.in_2.service
+Requires=jack_connection@music.left\x2cmusic.in_1.target
+Requires=jack_connection@music.right\x2cmusic.in_2.target
+Requires=jack_connection@music.out_1\x2cmusic_effects.in_1.target
+Requires=jack_connection@music.out_2\x2cmusic_effects.in_2.target
 
-After=jack_connection@music.left\x2cmusic.in_1.service
-After=jack_connection@music.right\x2cmusic.in_2.service
-After=jack_connection@music.out_1\x2cmusic_effects.in_1.service
-After=jack_connection@music.out_2\x2cmusic_effects.in_2.service
+After=jack_connection@music.left\x2cmusic.in_1.target
+After=jack_connection@music.right\x2cmusic.in_2.target
+After=jack_connection@music.out_1\x2cmusic_effects.in_1.target
+After=jack_connection@music.out_2\x2cmusic_effects.in_2.target

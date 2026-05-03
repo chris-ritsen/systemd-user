@@ -13,10 +13,11 @@ BindsTo = jackd.service
 # Wants = speakers.target
 
 [Service]
+Type = notify
 
 Restart = always
 
-ExecStart = /usr/bin/alsa_out -c2 -j '%i' -d hw:NVidia
+ExecStart = %h/.local/bin/surface bridge jack alsa playback %i --device hw:NVidia --channels 2
 
 # ExecStartPre = -/usr/bin/jack_unload %i default
 # ExecStart = /usr/bin/jack_load --server default %i audioadapter -i "-d hw:PCH -i0"

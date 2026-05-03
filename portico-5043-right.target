@@ -1,6 +1,5 @@
 [Unit]
-
-After = outlet@7.service
-BindsTo = outlet@7.service
-Description = Rupert Neve Designs Portico 5043 Right — stereo compressor
-PartOf = wireless-audio@2.service
+Description=Rupert Neve Designs Portico 5043 Right — stereo compressor
+Requires=portico-5043-right.service
+After=portico-5043-right.service
+BindsTo=portico-5043-right.service

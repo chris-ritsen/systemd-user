@@ -3,6 +3,8 @@ Description=Mask JACK D-Bus daemon to prevent auto-start
 Documentation=man:jackdbus(1)
 After=dbus.service
 Requires=dbus.service
+StartLimitIntervalSec=60
+StartLimitBurst=3
 
 [Service]
 Type=dbus

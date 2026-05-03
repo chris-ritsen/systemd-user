@@ -1,0 +1,13 @@
+[Unit]
+Description=HTML in Canvas demo (static http server)
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/bin/html-in-canvas-demo
+ExecStart=/usr/bin/python -m http.server 8765 --bind 0.0.0.0
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=default.target

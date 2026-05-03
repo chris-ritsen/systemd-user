@@ -10,8 +10,8 @@ BindsTo = tv_speakers.target
 After = jack_volume@speakers_bus.service
 Wants = jack_volume@speakers_bus.service
 
-After=jack_connection@speakers_bus_volume.out_1\x2cspeakers_effects.in_1.service
-After=jack_connection@speakers_bus_volume.out_2\x2cspeakers_effects.in_2.service
+After=jack_connection@speakers_bus_volume.out_1\x2cspeakers_effects.in_1.target
+After=jack_connection@speakers_bus_volume.out_2\x2cspeakers_effects.in_2.target
 
-Requires=jack_connection@speakers_bus_volume.out_1\x2cspeakers_effects.in_1.service
-Requires=jack_connection@speakers_bus_volume.out_2\x2cspeakers_effects.in_2.service
+Requires=jack_connection@speakers_bus_volume.out_1\x2cspeakers_effects.in_1.target
+Requires=jack_connection@speakers_bus_volume.out_2\x2cspeakers_effects.in_2.target

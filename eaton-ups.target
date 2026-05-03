@@ -1,0 +1,6 @@
+[Unit]
+Description=Eaton UPS — lithium iron 1350W uninterruptible power supply
+DefaultDependencies=no
+Requires=eaton-ups-monitor.service
+After=eaton-ups-monitor.service
+BindsTo=eaton-ups-monitor.service

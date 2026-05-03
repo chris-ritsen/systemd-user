@@ -1,0 +1,3 @@
+[Unit]
+Description=AC: Eaton UPS GROUP 1 PORT 2 → UGREEN USB charger
+DefaultDependencies=no

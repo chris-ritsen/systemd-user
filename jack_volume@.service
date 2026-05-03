@@ -3,6 +3,8 @@ Description=JACK volume control processor for %i
 Documentation=file://%h/bin/jack_effects
 After=jackd.service
 BindsTo=jackd.service
+StartLimitIntervalSec=30
+StartLimitBurst=5
 
 [Service]
 Type=notify
@@ -29,7 +31,7 @@ Environment=TERM=xterm
 Environment=CHANNELS=2
 
 # Start jack-volume processor
-ExecStart=%h/.local/bin/jack-volume --name %i_volume --daemon --channels ${CHANNELS}
+ExecStart=%h/.local/bin/surface audio jack volume --name %i_volume --daemon --channels ${CHANNELS}
 
 [Install]
 WantedBy=audio.target

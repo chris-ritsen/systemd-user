@@ -13,7 +13,9 @@ Type=oneshot
 RemainAfterExit=yes
 ExecStart=/usr/bin/zsh -ic "sleep 4.5"
 ExecStart=/usr/bin/zsh -ic "until nc -vzw 1 'shure-p10t' 2202 2>/dev/null; do sleep 0.5; done"
-ExecStart=/usr/bin/zsh -ic "%h/.scripts/zsh/maybe_mute.zsh"
+
+ExecStop=%h/.local/bin/surface audio shure p10t --host shure-p10t --set --channel 1 --key RF_MUTE --value 1
+ExecStop=%h/.local/bin/surface audio shure p10t --host shure-p10t --set --channel 2 --key RF_MUTE --value 1
 
 TimeoutStartSec=40s
 TimeoutStopSec=5s

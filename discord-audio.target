@@ -1,0 +1,8 @@
+[Unit]
+Description=Discord audio — pulse/jack bridge + routing
+Requires=pulse-jack-sink@discord_out.service
+Requires=pulse-jack-source@discord_in.service
+After=pulse-jack-sink@discord_out.service
+After=pulse-jack-source@discord_in.service
+Wants=discord_in.target
+Wants=discord_out_volume.target

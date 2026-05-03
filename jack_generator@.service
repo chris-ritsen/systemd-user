@@ -1,0 +1,33 @@
+[Unit]
+Description=JACK signal generator for %i
+Documentation=file://%h/bin/jack_effects
+After=jackd.service
+BindsTo=jackd.service
+
+[Service]
+Type=notify
+NotifyAccess=all
+Restart=always
+RestartMode=direct
+RestartSec=3
+TimeoutStartSec=30s
+TimeoutStopSec=10s
+Slice=audio.slice
+CPUAffinity=1-4
+CPUSchedulingPolicy=fifo
+CPUSchedulingPriority=85
+CPUSchedulingResetOnFork=no
+LimitCORE=infinity
+LimitMEMLOCK=infinity
+LimitRTPRIO=85
+LimitRTTIME=infinity
+Environment=JACK_NO_START_SERVER=1
+Environment=TERM=xterm
+Environment=CHANNELS=2
+Environment=MODE=tone
+Environment=FREQUENCY=440
+Environment=AMPLITUDE=0.1
+ExecStart=%h/.local/bin/surface audio jack generator --name %i --daemon --channels ${CHANNELS} --mode ${MODE} --frequency ${FREQUENCY} --amplitude ${AMPLITUDE}
+
+[Install]
+WantedBy=audio.target

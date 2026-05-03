@@ -2,3 +2,12 @@
 Description=PulseAudio default source routing — jack_in capture path for generic Linux apps
 After = jackd.service
 BindsTo = jackd.service
+
+Requires = jack_connection@system.capture_2\x2cjack_in.front\x2dleft.target
+Requires = jack_connection@system.capture_2\x2cjack_in.front\x2dright.target
+Requires = jack_connection@system.capture_4\x2cjack_in.front\x2dleft.target
+Requires = jack_connection@system.capture_4\x2cjack_in.front\x2dright.target
+After = jack_connection@system.capture_2\x2cjack_in.front\x2dleft.target
+After = jack_connection@system.capture_2\x2cjack_in.front\x2dright.target
+After = jack_connection@system.capture_4\x2cjack_in.front\x2dleft.target
+After = jack_connection@system.capture_4\x2cjack_in.front\x2dright.target

@@ -2,18 +2,7 @@
 Description=Audinate AVIO BT-1 — Bluetooth-to-Dante adapter, receives phone/Switch/Steam Deck audio
 Documentation=file://%h/bin/dante_device
 
-# Device name: AVIOBT-5279b6.local. -> avio-bt-1
-Wants=dante-device-name@AVIOBT-5279b6.local.\x2cavio-bt-1.service
-
-# RX Channel names
-Requires=dante-device-channel-name@avio-bt-1\x2crx\x2c1\x2cmic-mix.service
-
-# TX Channel names
-Requires=dante-device-channel-name@avio-bt-1\x2ctx\x2c1\x2cbluetooth:left.service
-Requires=dante-device-channel-name@avio-bt-1\x2ctx\x2c2\x2cbluetooth:right.service
-
-# Subscriptions
-Requires=dante-device-subscription@lx-dante\x2cmic-mix-high\x2cavio-bt-1\x2cmic-mix.service
+Wants=dante-config@avio-bt-1.target
 
 [Install]
 WantedBy=audio-baseline.target

@@ -1,0 +1,5 @@
+[Unit]
+Description=Dante disconnection: %I
+Documentation=file://%h/bin/dante_device
+Wants=dante-manager.service
+PartOf=dante-manager.service

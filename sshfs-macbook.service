@@ -1,0 +1,11 @@
+[Unit]
+Description=SSHFS mount personal MacBook
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStartPre=/usr/bin/mkdir -p %h/mnt/macbook
+ExecStart=/usr/bin/sshfs -f chris@macbook.local:/Users/chris %h/mnt/macbook -o reconnect,ServerAliveInterval=15,ServerAliveCountMax=3,follow_symlinks,auto_cache,compression=no,Ciphers=aes128-gcm@openssh.com
+ExecStop=/usr/bin/fusermount -u %h/mnt/macbook
+Restart=on-failure
+RestartSec=10

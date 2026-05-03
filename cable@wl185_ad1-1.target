@@ -1,0 +1,3 @@
+[Unit]
+Description=Lav cable: WL185 → AD1 bodypack
+DefaultDependencies=no

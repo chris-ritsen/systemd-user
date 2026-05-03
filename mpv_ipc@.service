@@ -9,7 +9,7 @@ StopWhenUnneeded=yes
 
 [Service]
 Type=notify
-ExecStart=%h/.local/bin/mpv-ipc --name=%i
+ExecStart=%h/.local/bin/surface media mpv ipc --name=%i
 Restart=always
 RestartSec=2
 TimeoutStartSec=15

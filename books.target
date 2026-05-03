@@ -10,12 +10,12 @@ After=mpd@books.service
 Requires=ecasound@books.service
 After=ecasound@books.service
 
-# After=jack_connection@books.left\x2cbooks_effects.in_1.service
-# After=jack_connection@books.right\x2cbooks_effects.in_2.service
-# After=jack_connection@books_effects.out_1\x2cjack_effects.in_1.service
-# After=jack_connection@books_effects.out_2\x2cjack_effects.in_2.service
+# After=jack_connection@books.left\x2cbooks_effects.in_1.target
+# After=jack_connection@books.right\x2cbooks_effects.in_2.target
+# After=jack_connection@books_effects.out_1\x2cjack_effects.in_1.target
+# After=jack_connection@books_effects.out_2\x2cjack_effects.in_2.target
 
-# Wants=jack_connection@books.left\x2cbooks_effects.in_1.service
-# Wants=jack_connection@books.right\x2cbooks_effects.in_2.service
-# Wants=jack_connection@books_effects.out_1\x2cjack_effects.in_1.service
-# Wants=jack_connection@books_effects.out_2\x2cjack_effects.in_2.service
+# Wants=jack_connection@books.left\x2cbooks_effects.in_1.target
+# Wants=jack_connection@books.right\x2cbooks_effects.in_2.target
+# Wants=jack_connection@books_effects.out_1\x2cjack_effects.in_1.target
+# Wants=jack_connection@books_effects.out_2\x2cjack_effects.in_2.target

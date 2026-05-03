@@ -11,7 +11,7 @@ Restart=always
 RestartSec=10
 Type=simple
 
-ExecStart=%h/.local/bin/clipboard-sync --redis-host 127.0.0.1
+ExecStart=%h/.local/bin/clipboard-sync agent --redis-host 127.0.0.1
 
 [Install]
 

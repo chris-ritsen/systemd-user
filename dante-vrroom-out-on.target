@@ -3,8 +3,8 @@ Description=HDFury VRRoom HDMI audio on
 
 Conflicts=dante-vrroom-out-off.target
 
-Wants=dante-device-subscription@avio-aes3-1\x2cvrroom:left\x2clx-dante\x2cvrroom:left.service
-Wants=dante-device-subscription@avio-aes3-1\x2cvrroom:right\x2clx-dante\x2cvrroom:right.service
+Wants=dante-device-subscription@avio-aes3-1\x2cvrroom:left\x2clx-dante\x2cvrroom:left.target
+Wants=dante-device-subscription@avio-aes3-1\x2cvrroom:right\x2clx-dante\x2cvrroom:right.target
 
 [Install]
 WantedBy=default.target

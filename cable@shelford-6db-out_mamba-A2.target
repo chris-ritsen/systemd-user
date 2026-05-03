@@ -1,0 +1,3 @@
+[Unit]
+Description=XLR: Shelford Channel -6dB LINE OUT → Mamba patchbay A2
+DefaultDependencies=no

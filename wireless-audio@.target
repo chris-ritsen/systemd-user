@@ -1,0 +1,9 @@
+[Unit]
+Description=Wireless audio channel %i — Shure P10T
+DefaultDependencies=no
+Requires=shure-p10t.target
+Requires=satellite-5059.target
+After=shure-p10t.target
+After=satellite-5059.target
+After=netaudio.service
+Wants=netaudio.service

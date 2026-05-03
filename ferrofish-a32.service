@@ -13,7 +13,6 @@ RefuseManualStop=no
 Type=oneshot
 RemainAfterExit=yes
 ExecStart=/usr/bin/zsh -ic "sleep 4.5"
-ExecStart=/usr/bin/zsh -ic "until nc -vzw 1 'ferrofish-a32' 23 2>/dev/null; do sleep 0.5; done"
 
 ExecStop=/usr/bin/zsh -ic "echo 'Shutting down Ferrofish A32...'"
 

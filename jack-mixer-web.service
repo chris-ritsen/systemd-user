@@ -4,9 +4,11 @@ Documentation=file://%h/bin/jack_mixer_web
 After=jackd.service
 BindsTo=jackd.service
 StopWhenUnneeded=yes
+StartLimitIntervalSec=30
+StartLimitBurst=5
 
 [Service]
 Type=simple
-ExecStart=%h/.local/bin/jack-mixer-web
+ExecStart=%h/.local/bin/surface audio jack mixer-web
 Restart=always
 RestartSec=3

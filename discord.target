@@ -4,5 +4,4 @@ Description=Discord — app with audio routing
 StopWhenUnneeded = no
 
 Wants = discord.service
-Wants = discord_in.target
-Wants = discord_out_volume.target
+Wants = discord-audio.target

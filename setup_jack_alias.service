@@ -10,6 +10,8 @@ BindsTo=jackd.service
 Type=notify
 RemainAfterExit=yes
 TimeoutStartSec=infinity
+TimeoutStopSec=15
+KillMode=mixed
 
-ExecStart=%h/.local/bin/jack-dante-alias --alias
-ExecStop=%h/.local/bin/jack-dante-alias --unalias
+ExecStart=%h/.local/bin/surface audio jack dante-alias --alias
+ExecStop=%h/.local/bin/surface audio jack dante-alias --unalias

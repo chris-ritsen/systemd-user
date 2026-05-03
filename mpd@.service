@@ -30,7 +30,6 @@ Slice = audio.slice
 # LimitRTTIME = infinity
 
 # Nice = 0
-PIDFile = %t/%p_%i/pid
 PassEnvironment = XDG_CONFIG_HOME
 Restart = always
 RestartSec = 200
@@ -47,7 +46,7 @@ ExecStartPre = /usr/bin/zsh -c "mkdir -p $MPD_PLAYLIST_DIR"
 ExecStartPre = /usr/bin/zsh -c "touch %t/%p_%i/{log,database,state}"
 
 ExecStartPre = /usr/bin/zsh -c 'echo "mpd --verbose --no-daemon $MPD_CONFIG_FILE"'
-ExecStart = /usr/bin/mpd --verbose --no-daemon $MPD_CONFIG_FILE
+ExecStart = %h/.local/bin/surface-mpd-daemon --name=%i
 
 ExecStartPost = -/usr/bin/zsh -c "sleep 2 && mpc toggle; mpc toggle"
 ExecStartPost = -/usr/bin/zsh -c 'tmux -S %t/tmux-%U/admin list-panes -a -F "#{session_name}:#{window_index}.#{pane_index} #{pane_current_command}" | awk '\''$2 == "vimpc" { print $1; exit }'\'' | xargs -rI{} tmux -S %t/tmux-%U/admin send-keys -t {} F1'

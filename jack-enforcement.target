@@ -1,0 +1,8 @@
+[Unit]
+Description=JACK connection enforcement
+BindsTo=jack.target
+After=jack.target
+Wants=jack-connection-manager.service
+
+[Install]
+WantedBy=jack.target

@@ -3,9 +3,9 @@
 Description = Discord
 Documentation=https://discord.com
 Requires = sound.target graphical-session.target
-Wants = jack_client@discord.service
+Wants = discord-audio.target
 Wants = discord_in.target
-After = jack_client@discord.service
+After = discord-audio.target
 BindsTo = discord.target
 # StopWhenUnneeded = yes
 

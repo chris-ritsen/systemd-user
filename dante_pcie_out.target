@@ -9,13 +9,13 @@ BindsTo=jackd.service
 After = jack_volume@linux_main.service
 Wants = jack_volume@linux_main.service
 
-After=jack_connection@linux_main_volume.out_1\x2csystem.playback_11.service
-After=jack_connection@linux_main_volume.out_2\x2csystem.playback_12.service
+After=jack_connection@linux_main_volume.out_1\x2csystem.playback_11.target
+After=jack_connection@linux_main_volume.out_2\x2csystem.playback_12.target
 
-Requires=jack_connection@linux_main_volume.out_1\x2csystem.playback_11.service
-Requires=jack_connection@linux_main_volume.out_2\x2csystem.playback_12.service
+Requires=jack_connection@linux_main_volume.out_1\x2csystem.playback_11.target
+Requires=jack_connection@linux_main_volume.out_2\x2csystem.playback_12.target
 
-# After=jack_connection@jack2_effects.out_1\x2csystem.playback_15.service
-# After=jack_connection@jack2_effects.out_2\x2csystem.playback_16.service
-# Requires=jack_connection@jack2_effects.out_1\x2csystem.playback_15.service
-# Requires=jack_connection@jack2_effects.out_2\x2csystem.playback_16.service
+# After=jack_connection@jack2_effects.out_1\x2csystem.playback_15.target
+# After=jack_connection@jack2_effects.out_2\x2csystem.playback_16.target
+# Requires=jack_connection@jack2_effects.out_1\x2csystem.playback_15.target
+# Requires=jack_connection@jack2_effects.out_2\x2csystem.playback_16.target

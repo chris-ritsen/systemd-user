@@ -1,10 +1,12 @@
 [Unit]
 Description = Shure P10T — wireless audio transmitter
 After = ferrofish-a32.target
+After = satellite-5059.target
+After = shelford-channel.target
+After = portico-5043-left.target
+After = portico-5043-right.target
 Requires = shure-p10t.service
 After = shure-p10t.service
 BindsTo=  shure-p10t.service
-Before=wireless-audio@1.service
-Before=wireless-audio@2.service
-# BindsTo=wireless-audio@1.service
-# BindsTo=wireless-audio@2.service
+Before=wireless-audio@1.target
+Before=wireless-audio@2.target

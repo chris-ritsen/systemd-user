@@ -1,0 +1,3 @@
+[Unit]
+Description = Infrastructure Map
+Wants = infrastructure-map.service

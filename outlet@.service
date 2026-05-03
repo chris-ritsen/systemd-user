@@ -13,7 +13,7 @@ RestartSec = 5
 Restart = no
 Type = notify
 
-ExecStart=%h/.local/bin/pdu-outlet-command run %i outlet@%i.service
+ExecStart=%h/.local/bin/surface power pdu control run %i outlet@%i.service
 
 [Install]
 

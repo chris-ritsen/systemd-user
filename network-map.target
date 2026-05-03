@@ -1,0 +1,3 @@
+[Unit]
+Description = Network Map
+Wants = network-map.service

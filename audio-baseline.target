@@ -4,17 +4,14 @@ Description=Audio baseline — software audio stack, no rack hardware powered
 After = jackd.service
 After = pulseaudio.service
 After = tv_speakers.target
-After= jack_client@pulseaudio.service
 
 Requires = jack_volume@speakers_bus.service
 Requires = jack_volume@linux_main.service
-Requires = jack_client@pulseaudio.service
 Requires = jackd.service
 Requires = pulseaudio.service
 
 # Wants = tv_speakers.target
 Wants = bluetooth_with_volume.target
-Wants = jack_client@pulseaudio.service
 Wants = music_volume.target
 Wants = vrroom_with_volume.target
 Wants = macbook_personal_volume.target
@@ -22,18 +19,17 @@ Wants = macbook_work_volume.target
 Wants = jack_out_volume.target
 Wants = windows_gaming_volume.target
 
-Wants = avio-aes3-1.target
-Wants = avio-bt-1.target
-Wants = avio-usb-1.target
-Wants = avio-usb-2.target
-Wants = avio-usb-3.target
-Wants = lx-dante.target
+Wants = dante-enforcement.target
 
 Wants = jack-mixer-web.target
+Wants = pulseaudio-jack.target
 
 Wants = cpu-powersave.service
 
-Wants = jack_disconnection@vrroom_volume.out_1\x2cspeakers_bus_volume.in_1.service
-Wants = jack_disconnection@vrroom_volume.out_1\x2cspeakers_bus_volume.in_2.service
-Wants = jack_disconnection@vrroom_volume.out_2\x2cspeakers_bus_volume.in_1.service
-Wants = jack_disconnection@vrroom_volume.out_2\x2cspeakers_bus_volume.in_2.service
+Wants = jack_connection@system.capture_2\x2csystem.playback_13.target
+Wants = jack_connection@system.capture_4\x2csystem.playback_13.target
+
+Wants = jack_disconnection@vrroom_volume.out_1\x2cspeakers_bus_volume.in_1.target
+Wants = jack_disconnection@vrroom_volume.out_1\x2cspeakers_bus_volume.in_2.target
+Wants = jack_disconnection@vrroom_volume.out_2\x2cspeakers_bus_volume.in_1.target
+Wants = jack_disconnection@vrroom_volume.out_2\x2cspeakers_bus_volume.in_2.target

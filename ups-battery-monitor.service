@@ -1,7 +1,7 @@
 [Unit]
 Description=UPS battery status monitor
-Documentation=file://%h/bin/system_monitor
+Documentation=file://%h/bin/surface
 
 [Service]
 Type=oneshot
-ExecStart=%h/.local/bin/ups-battery-monitor 192.168.1.6 s00pcan@gmail.com
+ExecStart=%h/.local/bin/surface-ups-monitor 192.168.1.6 s00pcan@gmail.com

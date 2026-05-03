@@ -5,7 +5,7 @@ After=network-online.target
 
 [Service]
 Type=notify
-ExecStart=%h/.local/bin/eaton-ups-cache
+ExecStart=%h/.local/bin/surface power ups cache
 Restart=always
 Environment=UPS_HOST=192.168.1.6
 Environment=POLL_INTERVAL=30

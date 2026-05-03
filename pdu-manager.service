@@ -4,7 +4,7 @@ Documentation=file://%h/bin/pdu_snmp
 
 [Service]
 Type=notify
-ExecStart=%h/.local/bin/pdu-manager
+ExecStart=%h/.local/bin/surface power pdu manager
 ExecReload=/bin/kill -HUP $MAINPID
 Restart=always
 RestartSec=5

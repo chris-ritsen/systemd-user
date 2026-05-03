@@ -7,3 +7,6 @@ After=graphical-session.target
 Type=oneshot
 Environment="DISPLAY=:0"
 ExecStart=/usr/bin/xset r rate 200 125
+
+[Install]
+WantedBy=graphical-session.target

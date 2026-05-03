@@ -7,5 +7,5 @@ Conflicts=windows-cpu-power-normal.service windows-cpu-power-blackout.service
 Type=oneshot
 RemainAfterExit=yes
 ExecStartPre=/usr/bin/zsh -c "until nc -vzw 1 192.168.1.194 22 2>/dev/null; do sleep 0.5; done"
-ExecStart=/usr/bin/ssh windows-pwsh "powercfg /setacvalueindex 381b4222-f694-41f0-9685-ff5bb260df2e 54533251-82be-4824-96c1-47b60b740d00 75b0ae3f-bce0-45a7-8c89-c9611c25e101 3800 && powercfg /setacvalueindex 381b4222-f694-41f0-9685-ff5bb260df2e 54533251-82be-4824-96c1-47b60b740d00 75b0ae3f-bce0-45a7-8c89-c9611c25e100 2200 && powercfg /setacvalueindex 381b4222-f694-41f0-9685-ff5bb260df2e 54533251-82be-4824-96c1-47b60b740d00 be337238-0d82-4146-a960-4f3749d470c7 0 && powercfg /setactive a1841308-3541-4fab-bc81-f71556f20b4a && powercfg /setactive 381b4222-f694-41f0-9685-ff5bb260df2e"
+ExecStart=/usr/bin/ssh windows-pwsh "powercfg /setacvalueindex SCHEME_BALANCED SUB_PROCESSOR 75b0ae3f-bce0-45a7-8c89-c9611c25e101 3800; powercfg /setacvalueindex SCHEME_BALANCED SUB_PROCESSOR 75b0ae3f-bce0-45a7-8c89-c9611c25e100 2200; powercfg /setacvalueindex SCHEME_BALANCED SUB_PROCESSOR PERFBOOSTMODE 0; powercfg /setactive SCHEME_BALANCED"
 ExecStartPost=/usr/bin/ssh windows-pwsh "powercfg /getactivescheme"

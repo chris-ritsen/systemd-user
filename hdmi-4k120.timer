@@ -1,9 +1,0 @@
-[Unit]
-Description=Enforce HDMI 4K120 periodically
-
-[Timer]
-OnCalendar=minutely
-Persistent=true
-
-[Install]
-WantedBy=timers.target

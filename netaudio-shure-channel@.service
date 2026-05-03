@@ -1,0 +1,19 @@
+[Unit]
+Description=Shure channel enforcement: %i
+After=netaudio.service
+Requires=netaudio.service
+PartOf=netaudio.service
+
+[Service]
+Type=notify
+ExecStart=%h/.local/bin/netaudio-enforce shure-channel %I
+NotifyAccess=all
+TimeoutStartSec=15
+TimeoutStopSec=5
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=netaudio-shure-channel-%I
+
+[Install]
+WantedBy=default.target

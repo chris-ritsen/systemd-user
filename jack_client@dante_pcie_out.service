@@ -12,18 +12,9 @@ StopWhenUnneeded = no
 Wants = dante_pcie_out.target
 
 [Service]
+Type = notify
 
-#zita-j2a caps out at 66 channels, alsa_out at 99
-
-# ExecStart = /usr/bin/alsa_out -r 48000 -c 16 -p 64 -j '%i' -d asym_dante0
-# ExecStart = /usr/bin/alsa_out -r 48000 -c 20 -p 256 -j '%i' -d asym_dante0
-
-ExecStart = /usr/bin/alsa_out -r 48000 -c 20 -p 1024 -n2 -j '%i' -d asym_dante0
-
-# ExecStart = /usr/bin/alsa_out -c 99 -p 64 -j '%i' -d asym_dante0
-# ExecStart = /usr/bin/zita-j2a -c 16 -p 64 -j dante_pcie_out -d hw:DantePCIe,0,0
-
-ExecStop = /usr/bin/true
+ExecStart = %h/.local/bin/surface bridge jack dante playback %i --channels 20 --rate 48000 --period 1024 --nperiods 2 --device asym_dante0
 
 Restart = always
 RestartSec = 5

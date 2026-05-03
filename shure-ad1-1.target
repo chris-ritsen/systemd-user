@@ -1,0 +1,3 @@
+[Unit]
+Description=Shure AD1 #1 — Axient Digital bodypack wireless transmitter
+DefaultDependencies=no

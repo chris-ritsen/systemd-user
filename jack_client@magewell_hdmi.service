@@ -5,7 +5,8 @@ Documentation=man:alsa_in(1)
 Requires = sound.target basic.target
 
 [Service]
-ExecStart=/usr/bin/alsa_in -j "magewell_hdmi" -d sysdefault:CARD=HDMI_1 -c 2
+Type=notify
+ExecStart=%h/.local/bin/surface bridge jack alsa capture magewell_hdmi --device sysdefault:CARD=HDMI_1 --channels 2
 
 [Install]
 WantedBy=jack_clients.target

@@ -1,0 +1,6 @@
+[Unit]
+Description=APC PDU — AP7901 switched rack power distribution
+DefaultDependencies=no
+Requires=pdu-manager.service
+After=pdu-manager.service
+BindsTo=pdu-manager.service

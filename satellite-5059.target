@@ -2,6 +2,7 @@
 Description=Rupert Neve Designs Satellite 5059 — summing mixer
 After = ferrofish-a32.target
 Requires=satellite-5059.service
+BindsTo=satellite-5059.service
 After = satellite-5059.service
 
 PropagatesReloadTo=satellite-5059.service

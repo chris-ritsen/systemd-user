@@ -4,7 +4,6 @@
 
 After = sockets.target
 After = urxvtd.service
-Before = jack.target
 
 Description = Default session
 
@@ -26,3 +25,8 @@ Wants = kitty.service
 Wants = audio-baseline.target
 Wants = xbanish.service
 Wants = video.target
+Wants = network-map.target
+Wants = infrastructure-map.target
+Wants = sshfs-macbook.service
+Wants = sshfs-work-macbook.service
+Wants = surface.target

@@ -10,4 +10,4 @@ Requires = microphone.target
 # Requires = radial_dinet_notify.service
 Requires = shelford-channel.target
 Requires = shure-p10t.target
-Requires = wireless-audio@2.service
+Requires = wireless-audio@2.target

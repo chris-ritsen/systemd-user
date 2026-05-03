@@ -3,6 +3,5 @@ Description = Microphone — Shure SM7B through Neve Shelford Channel preamp, Sh
 
 After = shelford-channel.target
 After = shure-p10t.target
-PropagatesReloadTo = microphone.service
 Requires = shelford-channel.target
 BindsTo = shelford-channel.target

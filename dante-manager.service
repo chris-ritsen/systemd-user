@@ -2,7 +2,7 @@
 Description=Dante Device Manager — manages Dante network audio device configuration
 Documentation=file://%h/bin/dante_device
 After=network.target
-# StopWhenUnneeded=yes  # Disabled - stopping manager can disrupt devices
+PartOf=dante-enforcement.target
 
 [Service]
 Type=notify
@@ -24,4 +24,3 @@ StandardError=journal
 SyslogIdentifier=dante-manager
 
 [Install]
-WantedBy=default.target

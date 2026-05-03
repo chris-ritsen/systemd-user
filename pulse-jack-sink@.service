@@ -1,0 +1,11 @@
+[Unit]
+Description=PulseAudio JACK sink: %i
+After=jackd.service
+After=pulseaudio.service
+BindsTo=jackd.service
+BindsTo=pulseaudio.service
+
+[Service]
+Type=notify
+ExecStart=%h/.local/bin/surface bridge pulse jack sink %i
+Slice=audio.slice

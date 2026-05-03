@@ -1,10 +1,10 @@
 [Unit]
 Description=HDD power state and temperature monitor
-Documentation=file://%h/bin/system_monitor
+Documentation=file://%h/bin/surface
 
 [Service]
 Type=notify
-ExecStart=%h/.local/bin/hdd-monitor
+ExecStart=%h/.local/bin/surface-hdd-monitor
 Restart=always
 Environment=POLL_INTERVAL=60
 

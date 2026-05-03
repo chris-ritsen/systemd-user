@@ -1,0 +1,3 @@
+[Unit]
+Description=IEM cable: P10R+ HEADPHONE → SE846 L
+DefaultDependencies=no

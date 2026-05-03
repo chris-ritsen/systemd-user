@@ -1,7 +1,6 @@
 [Unit]
 Description = Audio full — all rack equipment powered and configured
 
-Conflicts = speakers.service
 Conflicts = audio-baseline.target
 
 Wants = dante_usb_io.target
@@ -9,47 +8,54 @@ Wants = dante_usb_io.target
 # After = dante_pcie_in_notify.service
 After = dante_pcie_out.target
 # After = dante_usb_in_notify.service
-After = dante_usb_io_macbook.target
+After = macbook_personal_volume.target
+After = macbook_work_volume.target
+After = jack_connection@system.capture_2\x2csystem.playback_13.target
+After = jack_connection@system.capture_4\x2csystem.playback_13.target
 After = dante_usb_io.target
 After = jack_volume@speakers_bus.service
 After = jack_volume@linux_main.service
-After = ferrofish-a32.target
+# After = ferrofish-a32.target
 After = microphone-monitoring.target
-After = satellite-5059.target
-After = shelford-channel.target
-After = shure-p10t.target
-After = wireless-audio@1.service
+# After = satellite-5059.target
+# After = shelford-channel.target
+# After = shure-p10t.target
+After = wireless-audio@1.target
 After = wireless-microphone.target
 
 # Requires = dante_pcie_in_notify.service
 Requires = dante_pcie_out.target
 # Requires = dante_usb_in_notify.service
-Requires = dante_usb_io_macbook.target
+Requires = macbook_personal_volume.target
+Requires = macbook_work_volume.target
+Requires = jack_connection@system.capture_2\x2csystem.playback_13.target
+Requires = jack_connection@system.capture_4\x2csystem.playback_13.target
 Requires = jack_volume@speakers_bus.service
 Requires = jack_volume@linux_main.service
-Requires = ferrofish-a32.target
+# Requires = ferrofish-a32.target
 Requires = jackd.service
 Requires = microphone-monitoring.target
-Requires = satellite-5059.target
-Requires = shelford-channel.target
-Requires = shure-p10t.target
-Requires = wireless-audio@1.service
+# Requires = satellite-5059.target
+# Requires = shelford-channel.target
+# Requires = shure-p10t.target
+Requires = wireless-audio@1.target
 Requires = wireless-microphone.target
 
 # BindsTo = dante_pcie_in_notify.service
 BindsTo = dante_pcie_out.target
 # BindsTo = dante_usb_in_notify.service
-BindsTo = dante_usb_io_macbook.target
+BindsTo = macbook_personal_volume.target
+BindsTo = macbook_work_volume.target
 BindsTo = jack_volume@speakers_bus.service
 BindsTo = jack_volume@linux_main.service
-BindsTo = ferrofish-a32.target
+# BindsTo = ferrofish-a32.target
 After = jackd.service
 BindsTo = microphone-monitoring.target
 # BindsTo = satellite-5059.target
 # BindsTo = shelford-channel.target
 # BindsTo = shure-ad4d.target
 # BindsTo = shure-p10t.target
-BindsTo = wireless-audio@2.service
+# BindsTo = wireless-audio@2.target
 BindsTo = wireless-microphone.target
 
 Wants = cpu-normal.service

@@ -6,7 +6,5 @@ BindsTo = portico-5043-left.service
 Requires = portico-5043-left.service
 Description = Rupert Neve Designs Portico 5043 Left — stereo compressor
 
-Before=wireless-audio@1.service
-Before=wireless-audio@2.service
-BindsTo=wireless-audio@1.service
-BindsTo=wireless-audio@2.service
+Before=wireless-audio@1.target
+Before=wireless-audio@2.target

@@ -1,0 +1,8 @@
+[Unit]
+Description=PulseAudio JACK bridge (default sink/source)
+Requires=pulse-jack-sink@jack_out.service
+Requires=pulse-jack-source@jack_in.service
+After=pulse-jack-sink@jack_out.service
+After=pulse-jack-source@jack_in.service
+Wants=jack_in.target
+Wants=jack_out_volume.target

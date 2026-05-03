@@ -1,0 +1,3 @@
+[Unit]
+Description=AC: Eaton UPS OUTPUT 2 → www server
+DefaultDependencies=no

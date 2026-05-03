@@ -1,0 +1,6 @@
+[Unit]
+Wants=jack-connection-manager.service
+BindsTo=jack.target
+StopWhenUnneeded=yes
+Description=JACK connection: %I
+Documentation=file://%h/bin/jack_connection

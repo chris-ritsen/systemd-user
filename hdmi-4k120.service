@@ -1,9 +1,10 @@
 [Unit]
-Description=Enforce HDMI 4K 120Hz display mode
-Documentation=file://%h/bin/hdmi-4k120
-After=graphical-session.target
+Description=Surface HDMI 4K120 output enforcement
+ConditionEnvironment=DISPLAY
 
 [Service]
-Type=oneshot
-ExecStart=%h/bin/hdmi-4k120
+Type=notify
 Environment=DISPLAY=:0
+ExecStart=%h/.local/bin/surface-hdmi-enforce
+Restart=always
+RestartSec=5

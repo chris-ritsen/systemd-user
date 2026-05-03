@@ -6,4 +6,8 @@ Conflicts=windows-wake.target
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStart=/usr/bin/ssh windows-pwsh "rundll32.exe powrprof.dll,SetSuspendState 0,0,0"
+# Request Suspend explicitly. The legacy rundll32 SetSuspendState path can
+# hibernate instead when hibernation is enabled on the Windows host.
+# Launch a detached helper and delay briefly so SSH can return before the
+# Windows machine actually suspends.
+ExecStart=/usr/bin/ssh -F /home/chris/.ssh/config windows-pwsh "Start-Process pwsh -WindowStyle Hidden -ArgumentList '-NoProfile','-Command','Start-Sleep -Seconds 2; Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.Application]::SetSuspendState(\"Suspend\", [bool]0, [bool]0)'"

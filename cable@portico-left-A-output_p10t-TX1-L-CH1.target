@@ -1,0 +1,3 @@
+[Unit]
+Description=XLR: Portico 5043 Left A OUTPUT → P10T TX1 L/CH1
+DefaultDependencies=no

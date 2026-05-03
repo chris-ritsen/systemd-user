@@ -1,0 +1,7 @@
+[Unit]
+Description=Audinate AVIO USB — dynamically assigned to macbook slot 1
+
+Wants=dante-config@avio-usb-macbook-1.target
+
+[Install]
+WantedBy=audio-baseline.target

@@ -1,11 +1,8 @@
 [Unit]
-Description=Dante microphone monitoring on
-After=ferrofish-a32.target
-Requires = ferrofish-a32.target
-
-Requires=dante-device-subscription@a32\x2cshelford\x2dchannel\x2ca32\x2csatellite\x2d08_desktop\x2dmic.service
-Requires=dante-device-subscription@a32\x2cshelford\x2dchannel\x2ca32\x2csatellite\x2d16_desktop\x2dmic.service
+Description=Shelford Channel → Satellite (toggleable to avoid line noise when AC is cut)
+Wants=dante-device-subscription@a32\x2cshelford-channel\x3a0db\x2ca32\x2cdesktop-mic\x3a1.target
+Wants=dante-device-subscription@a32\x2cshelford-channel\x3a0db\x2ca32\x2cdesktop-mic\x3a2.target
 
 Conflicts = dante-microphone-out-off.target
-Conflicts = dante-device-disconnection@a32\x2cshelford\x2dchannel\x2ca32\x2csatellite\x2d08_desktop\x2dmic.service
-Conflicts = dante-device-disconnection@a32\x2cshelford\x2dchannel\x2ca32\x2csatellite\x2d16_desktop\x2dmic.service
+Conflicts = dante-device-disconnection@a32\x2cdesktop-mic\x3a1.target
+Conflicts = dante-device-disconnection@a32\x2cdesktop-mic\x3a2.target

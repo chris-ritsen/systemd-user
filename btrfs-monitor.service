@@ -1,7 +1,7 @@
 [Unit]
 Description=Btrfs free space monitor
-Documentation=file://%h/bin/system_monitor
+Documentation=file://%h/bin/surface
 
 [Service]
 Type=oneshot
-ExecStart=%h/.local/bin/btrfs-monitor /media s00pcan@gmail.com --threshold 1.0 --cooldown 24
+ExecStart=%h/.local/bin/surface-btrfs-monitor /media s00pcan@gmail.com --threshold 1.0 --cooldown 24

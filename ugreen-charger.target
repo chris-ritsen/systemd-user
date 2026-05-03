@@ -1,0 +1,3 @@
+[Unit]
+Description=UGREEN USB charger
+DefaultDependencies=no

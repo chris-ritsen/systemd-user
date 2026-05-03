@@ -17,8 +17,8 @@ Wants = alsa_out@amd.service
 Wants = speaker_effects.target
 After = speaker_effects.target
 
-After=jack_connection@speakers_effects.out_1\x2ctv_speakers.playback_1.service
-After=jack_connection@speakers_effects.out_2\x2ctv_speakers.playback_2.service
+After=jack_connection@speakers_effects.out_1\x2ctv_speakers.playback_1.target
+After=jack_connection@speakers_effects.out_2\x2ctv_speakers.playback_2.target
 
-Requires=jack_connection@speakers_effects.out_1\x2ctv_speakers.playback_1.service
-Requires=jack_connection@speakers_effects.out_2\x2ctv_speakers.playback_2.service
+Requires=jack_connection@speakers_effects.out_1\x2ctv_speakers.playback_1.target
+Requires=jack_connection@speakers_effects.out_2\x2ctv_speakers.playback_2.target

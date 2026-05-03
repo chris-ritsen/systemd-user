@@ -1,0 +1,16 @@
+[Unit]
+Description=Dante active configuration enforcement — all devices
+
+Requires=netaudio.service
+Requires=dante-manager.service
+After=netaudio.service
+After=dante-manager.service
+
+Wants=dante-config@lx-dante.target
+Wants=dante-config@ad4d.target
+Wants=dante-config@a32.target
+Wants=dante-config@avio-aes3-1.target
+Wants=dante-config@avio-bt-1.target
+Wants=dante-config@avio-usb-1.target
+Wants=dante-config@avio-usb-2.target
+Wants=dante-config@avio-usb-3.target

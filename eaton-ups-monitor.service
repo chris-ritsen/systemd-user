@@ -4,12 +4,12 @@ Documentation=file://%h/bin/eaton_ups_snmp
 After=network-online.target
 
 [Service]
-ExecStart=%h/.local/bin/eaton-ups-monitor
+ExecStart=%h/.local/bin/surface power ups monitor
 Restart=always
 Type=notify
 Environment=UPS_HOST=192.168.1.6
 Environment=CAPACITY_THRESHOLD=95
-Environment=POLL_INTERVAL=30
+Environment=POLL_INTERVAL=2
 
 [Install]
 WantedBy=default.target

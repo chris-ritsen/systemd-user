@@ -2,12 +2,12 @@
 Description=Netaudio — Dante device discovery and monitoring daemon
 Documentation=file://%h/bin/netaudio
 After=network.target
+PartOf=dante-enforcement.target
 
 [Service]
-Type=simple
-ExecStart=%h/.local/bin/netaudio --log-level INFO server daemon
+Type=notify
+ExecStart=%h/.local/bin/netaudio server start
 Restart=on-failure
 RestartSec=5
 
 [Install]
-WantedBy=default.target

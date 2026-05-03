@@ -3,7 +3,7 @@ Description=PDU SNMP trap handler
 Documentation=file://%h/bin/pdu_snmp
 
 [Service]
-ExecStart=%h/.local/bin/pdu-snmp-trap
+ExecStart=%h/.local/bin/surface power pdu trap
 Restart=always
 Type=notify
 

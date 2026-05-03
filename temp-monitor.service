@@ -1,7 +1,7 @@
 [Unit]
 Description=System temperature monitor
-Documentation=file://%h/bin/system_monitor
+Documentation=file://%h/bin/surface
 
 [Service]
 Type=oneshot
-ExecStart=%h/.local/bin/temp-monitor alert s00pcan@gmail.com --threshold 90.0 --cooldown 1
+ExecStart=%h/.local/bin/surface-temp-monitor alert s00pcan@gmail.com --threshold 90.0 --cooldown 1
