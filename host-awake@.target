@@ -1,0 +1,6 @@
+[Unit]
+Description=%i desired state: awake
+Conflicts=host-asleep@%i.target
+StopWhenUnneeded=yes
+Wants=host-wake@%i.service
+After=host-wake@%i.service

@@ -47,7 +47,7 @@ ExecStart = /bin/zsh -c "tmux -L %i new-session -d -n %i -s %i"
 ExecStartPost = /bin/zsh -c %h/.scripts/zsh/tmux/admin.zsh
 ExecStartPost = /bin/zsh -c "${new_session} -d -s '%i@1' -t '%i'"
 ExecStartPost = /bin/zsh -c "${new_session} -d -s '%i@2' -t '%i'"
-ExecStartPost=-/usr/bin/emacsclient --eval "(ignore-errors (org-agenda-list))"
+ExecStartPost=-/usr/bin/timeout 5 /usr/bin/emacsclient --eval "(ignore-errors (org-agenda-list))"
 
 ExecReload = /bin/zsh -c "${has_session} -t %i"
 

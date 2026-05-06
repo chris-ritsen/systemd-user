@@ -1,0 +1,16 @@
+[Unit]
+Description=Resume Codex conversation %I into tmux
+Requires=tmux@admin.service
+After=tmux@admin.service
+ConditionPathExists=%h/.codex/history.jsonl
+PartOf=codex-conversation@%i.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+Environment="SURFACE_CODEX_COMMAND=codex --dangerously-bypass-approvals-and-sandbox"
+Environment=SURFACE_CODEX_TMUX_SESSION=admin
+ExecStart=%h/.local/bin/surface tmux codex-resume-one %i --session ${SURFACE_CODEX_TMUX_SESSION}
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=codex-conversation

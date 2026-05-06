@@ -1,0 +1,6 @@
+[Unit]
+Description=Stats dashboard
+BindsTo=xmonad.target
+Wants=tmux@dashboard.service
+After=tmux@dashboard.service
+PropagatesReloadTo=tmux@dashboard.service

@@ -1,0 +1,9 @@
+[Unit]
+Description=Sleep host: %i
+Documentation=man:ssh(1)
+Conflicts=host-awake@%i.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=%h/.local/bin/host-sleep-%i

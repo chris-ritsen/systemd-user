@@ -1,0 +1,6 @@
+[Unit]
+Description=Restore saved tmux workspace
+StopWhenUnneeded=no
+
+[Install]
+WantedBy=default.target

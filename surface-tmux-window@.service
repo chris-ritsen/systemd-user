@@ -1,0 +1,11 @@
+[Unit]
+Description=Restore tmux window %I
+PartOf=surface-tmux-workspace.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=%h/.local/bin/surface tmux restore-systemd-window
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=surface-tmux-restore

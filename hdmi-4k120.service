@@ -1,10 +1,9 @@
 [Unit]
-Description=Surface HDMI 4K120 output enforcement
-ConditionEnvironment=DISPLAY
+Description=Deprecated HDMI-0 4K120 output enforcement; use display-4k120@HDMI-0.service
 
 [Service]
 Type=notify
 Environment=DISPLAY=:0
-ExecStart=%h/.local/bin/surface-hdmi-enforce
+ExecStart=%h/.local/bin/surface-hdmi-enforce HDMI-0
 Restart=always
 RestartSec=5

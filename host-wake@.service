@@ -1,0 +1,9 @@
+[Unit]
+Description=Wake host: %i
+Documentation=man:wol(1)
+Conflicts=host-asleep@%i.target
+
+[Service]
+Type=oneshot
+EnvironmentFile=%h/.config/host-roles/%i.env
+ExecStart=/usr/bin/wol ${MAC}

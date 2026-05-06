@@ -1,0 +1,17 @@
+[Unit]
+Description=Materialize recent Codex conversation targets
+Requires=tmux@admin.service
+After=tmux@admin.service
+ConditionPathExists=%h/.codex/history.jsonl
+PartOf=xmonad.target
+
+[Service]
+Type=oneshot
+Environment="SURFACE_CODEX_COMMAND=codex --dangerously-bypass-approvals-and-sandbox"
+ExecStart=%h/.local/bin/surface tmux codex-materialize --target codex-conversations-recent.target --limit 14 --session admin --start
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=codex-conversations-recent
+
+[Install]
+WantedBy=xmonad.target

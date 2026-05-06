@@ -1,0 +1,13 @@
+[Unit]
+Description=Surface 4K120 display enforcement for %i
+After=graphical-session.target
+
+[Service]
+Type=notify
+Environment=DISPLAY=:0
+ExecStart=%h/.local/bin/surface-hdmi-enforce %i
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=graphical-session.target

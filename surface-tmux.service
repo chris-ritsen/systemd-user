@@ -1,0 +1,12 @@
+[Unit]
+Description=Surface manager: tmux session tracker
+After=surface-tmux-workspace.target
+
+[Service]
+Type=notify
+ExecStart=%h/.local/bin/surface collector tmux
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target

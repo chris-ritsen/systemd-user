@@ -10,8 +10,7 @@ StartLimitBurst=3
 Type=dbus
 BusName=org.jackaudio.service
 ExecStart=/usr/bin/jackdbus auto
-Restart=on-failure
-RestartSec=5
+Restart=no
 
 # Capture all output to systemd journal
 StandardOutput=journal

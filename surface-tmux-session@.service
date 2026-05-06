@@ -1,0 +1,12 @@
+[Unit]
+Description=Restore Surface tmux session %I
+Before=surface-tmux-session@%i.target
+PartOf=surface-tmux-workspace.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=%h/.local/bin/surface tmux restore-systemd-session
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=surface-tmux-restore

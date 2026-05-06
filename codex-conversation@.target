@@ -1,0 +1,9 @@
+[Unit]
+Description=Codex conversation %I
+Wants=codex-conversation@%i.service
+After=codex-conversation@%i.service
+PartOf=codex-conversations.target
+StopWhenUnneeded=no
+
+[Install]
+WantedBy=codex-conversations.target

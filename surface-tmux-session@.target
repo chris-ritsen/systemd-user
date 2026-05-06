@@ -1,0 +1,6 @@
+[Unit]
+Description=Restore tmux session %I
+Wants=surface-tmux-session@%i.service
+After=surface-tmux-session@%i.service
+PartOf=surface-tmux-workspace.target
+StopWhenUnneeded=no

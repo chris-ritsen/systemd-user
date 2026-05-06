@@ -1,0 +1,6 @@
+[Unit]
+Description=Codex conversations
+StopWhenUnneeded=no
+
+[Install]
+WantedBy=xmonad.target

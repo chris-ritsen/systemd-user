@@ -5,6 +5,8 @@ Description = JACK sound server — core audio infrastructure
 Documentation = man:jackd(1) man:jack_control(1)
 RefuseManualStart = no
 RefuseManualStop = no
+StartLimitIntervalSec = 60
+StartLimitBurst = 1
 
 After = sound.target
 BindsTo = jackd.target
@@ -109,22 +111,6 @@ ExecReload = /usr/bin/zsh -c "/usr/bin/jack_control dps rate $rate"
 # ExecStartPre = /usr/bin/zsh -c "amixer -c II set 'Line' cap"
 # ExecStartPre = /usr/bin/zsh -c "amixer -c II set 'Master',0 255 unmute"
 
-# EVGA Dark X299
-
-# ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'Capture',0 16 cap"
-# ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'Crystalizer',0 mute"
-# ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'Dialog Plus',0 mute"
-# ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'Equalizer',0 mute"
-# ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'Master',0 255 unmute"
-# ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'PlayEnhancement',0 mute"
-# ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'Smart Volume' mute"
-# ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'Smart Volume',0 mute"
-# ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'Surround',0 mute"
-# ExecStartPre = /usr/bin/zsh -c "amixer -c PCH set 'X-Bass',0 mute"
-
-# Asus SAGE 10G
-ExecStartPre = -/usr/bin/zsh -c "amixer -c PCH set 'Master',0 87 unmute"
-
 # Dante USB module
 # ExecStartPre = -/usr/bin/zsh -c "amixer -c Module set 'PCM',0 32768 unmute"
 # ExecStartPre = -/usr/bin/zsh -c "amixer -c Module set 'Dante USB Receive',0 32768 cap"
@@ -149,7 +135,6 @@ ExecStop = -/usr/bin/jack_control exit
 # BusName = org.jackaudio.service
 RemainAfterExit = yes
 Restart = no
-RestartSec = 10
 TimeoutStartSec = 200
 Type = oneshot
 # Type = dbus

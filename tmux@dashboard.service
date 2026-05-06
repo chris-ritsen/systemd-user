@@ -1,0 +1,25 @@
+[Unit]
+Description=Stats dashboard window
+Documentation=man:kitty(1) man:tmux(1)
+ConditionFileNotEmpty=%h/.scripts/zsh/%p/%i.zsh
+After=graphical-session.target
+BindsTo=dashboard.target
+StartLimitBurst=5
+StartLimitIntervalSec=30
+StopWhenUnneeded=no
+
+[Service]
+Type=simple
+Environment=DISPLAY=:0
+Environment=XCURSOR_SIZE=16
+Environment=TMUX_TMPDIR=%t
+Environment=LIBGL_ALWAYS_SOFTWARE=1
+EnvironmentFile=%h/.config/systemd/user/default_env
+Restart=always
+RestartSec=2
+SendSIGKILL=yes
+TimeoutStartSec=10
+TimeoutStopSec=10
+ExecStart=/usr/bin/kitty --override pointer_shape_when_grabbed=arrow --override default_pointer_shape=arrow --override pointer_shape_when_dragging=arrow --title=clockurxvt -e /bin/zsh -lc 'exec /usr/bin/tmux -u2 -L %i new-session -A -s %i -n %i "%h/.scripts/zsh/name.zsh %i; exec %h/.local/bin/surface dashboard"'
+ExecStopPost=-/usr/bin/tmux -u2 -L %i kill-session -t %i
+ExecReload=/bin/zsh -c '/usr/bin/tmux -L %i respawn-window -k -t %i'
